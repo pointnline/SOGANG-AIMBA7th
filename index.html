@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIMBA 7기 미래혁신국 — AI·창업 트렌드 브리핑</title>
+<meta name="description" content="서강대학교 AIMBA 7기 미래혁신국이 발간하는 주간 AI·창업 트렌드 브리핑">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sogang-red: #8B0029;
+  --sogang-dark: #5a001a;
+  --gold: #c9a84c;
+  --bg: #fafaf8;
+  --text: #1a1a2e;
+  --card-bg: #ffffff;
+  --border: #e8e4da;
+  --accent-blue: #1a5276;
+  --accent-green: #1e8449;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--sogang-red) 0%, var(--sogang-dark) 100%);
+  color: white;
+  text-align: center;
+  padding: 48px 24px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+.header-content { position: relative; z-index: 1; }
+.org-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.header h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+.header .subtitle {
+  font-size: 1rem;
+  opacity: 0.8;
+  font-weight: 300;
+}
+.header .dept {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+/* Container */
+.container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+/* Intro */
+.intro {
+  padding: 40px 0;
+  text-align: center;
+}
+.intro p {
+  font-size: 1rem;
+  opacity: 0.7;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Issue Grid */
+.issues-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--sogang-red);
+}
+.issues-header h2 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.4rem;
+  color: var(--sogang-red);
+}
+.issue-count {
+  font-size: 0.85rem;
+  opacity: 0.5;
+}
+
+.issue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.issue-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.issue-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(139,0,41,0.1);
+}
+.issue-card-header {
+  background: linear-gradient(135deg, var(--sogang-red), var(--sogang-dark));
+  color: white;
+  padding: 20px;
+}
+.issue-card-header .vol {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.issue-card-header .date {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-top: 4px;
+}
+.issue-card-body {
+  padding: 16px 20px;
+}
+.issue-card-body .topic {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  opacity: 0.7;
+}
+.issue-card-body .tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 4px;
+  margin-top: 8px;
+}
+.tag-trend { background: rgba(26,82,118,0.1); color: var(--accent-blue); }
+.tag-startup { background: rgba(30,132,73,0.1); color: var(--accent-green); }
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  opacity: 0.5;
+}
+.empty-state .icon { font-size: 3rem; margin-bottom: 16px; }
+.empty-state p { font-size: 1rem; }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  opacity: 0.4;
+  line-height: 2;
+}
+
+/* Info Cards */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin: 24px 0 48px;
+}
+.info-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+}
+.info-card .icon { font-size: 1.5rem; margin-bottom: 10px; }
+.info-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.info-card p {
+  font-size: 0.85rem;
+  opacity: 0.6;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .header h1 { font-size: 1.6rem; }
+  .issue-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-content">
+    <div class="org-badge">서강대학교 AIMBA 7기</div>
+    <h1>미래혁신국 브리핑</h1>
+    <p class="subtitle">AI · 창업 · 정책 트렌드 위클리</p>
+    <p class="dept">미래혁신국 | 매주 발간</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="intro">
+    <p>AIMBA 7기 미래혁신국이 매주 발간하는 AI·창업 트렌드 브리핑입니다.<br>
+    글로벌 AI 동향, 정부 창업지원 공고, 산학협력 정책을 한눈에 확인하세요.</p>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="icon">🤖</div>
+      <h3>AI 트렌드</h3>
+      <p>글로벌·국내 AI 기술 동향, 산업 적용 사례, 투자 흐름</p>
+    </div>
+    <div class="info-card">
+      <div class="icon">🚀</div>
+      <h3>창업지원 공고</h3>
+      <p>정부과제, 창업지원금, 액셀러레이터, 공모전 마감 일정</p>
+    </div>
+    <div class="info-card">
+      <div class="icon">🏛️</div>
+      <h3>산학협력 정책</h3>
+      <p>산자부·중기부·과기부 정책, R&D 과제, 규제 샌드박스</p>
+    </div>
+  </div>
+
+  <div class="issues-header">
+    <h2>📰 발간 아카이브</h2>
+    <span class="issue-count" id="issueCount"></span>
+  </div>
+
+  <div id="issueGrid" class="issue-grid">
+    <!-- Issues will be dynamically populated -->
+  </div>
+
+  <div id="emptyState" class="empty-state" style="display:none;">
+    <div class="icon">📰</div>
+    <p>첫 번째 브리핑이 곧 발간됩니다.<br>매주 업데이트를 확인해주세요!</p>
+  </div>
+</div>
+
+<div class="footer">
+  서강대학교 AIMBA 7기 미래혁신국<br>
+  AI·창업·정책 트렌드 위클리 브리핑<br>
+  © 2026 SOGANG AIMBA 7th — Innovation Bureau
+</div>
+
+<script>
+// Issue manifest - updated by cron
+const issues = [{"vol": 1, "date": "2026년 03월 26일", "headline": "Qualified Health locks in $125M in fresh...", "path": "issues/vol_20260326.html", "tags": ["트렌드", "창업지원"]}];
+
+const grid = document.getElementById('issueGrid');
+const empty = document.getElementById('emptyState');
+const count = document.getElementById('issueCount');
+
+if (issues.length === 0) {
+  empty.style.display = 'block';
+  grid.style.display = 'none';
+} else {
+  count.textContent = `총 ${issues.length}호`;
+  issues.sort((a, b) => b.vol - a.vol);
+  issues.forEach(issue => {
+    const card = document.createElement('a');
+    card.className = 'issue-card';
+    card.href = issue.path;
+    
+    let tags = '';
+    if (issue.tags) {
+      issue.tags.forEach(t => {
+        const cls = t === '트렌드' ? 'tag-trend' : 'tag-startup';
+        tags += `<span class="tag ${cls}">${t}</span>`;
+      });
+    }
+    
+    card.innerHTML = `
+      <div class="issue-card-header">
+        <div class="vol">VOL.${String(issue.vol).padStart(3,'0')}</div>
+        <div class="date">${issue.date}</div>
+      </div>
+      <div class="issue-card-body">
+        <div class="topic">${issue.headline || ''}</div>
+        <div>${tags}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+</script>
+</body>
+</html>
