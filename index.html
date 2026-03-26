@@ -20,7 +20,6 @@
   --border: #e4ddd0;
   --green: #2d6a4f;
   --blue: #1a5276;
-  --gold: #c9a84c;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
@@ -28,8 +27,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 /* Header */
 .header {
   background: linear-gradient(135deg, var(--sogang) 0%, var(--sogang-dark) 100%);
-  color: white; text-align: center; padding: 36px 24px 32px;
-  position: relative; overflow: hidden;
+  color: white; text-align: center; padding: 36px 24px 32px; position: relative; overflow: hidden;
 }
 .header::before {
   content: ''; position: absolute; inset: 0;
@@ -44,93 +42,92 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .header .subtitle { font-size: 0.9rem; opacity: 0.7; margin-top: 4px; }
 
 /* Layout */
-.layout { display: grid; grid-template-columns: 220px 1fr; max-width: 1100px; margin: 0 auto; min-height: calc(100vh - 200px); }
+.layout { display: grid; grid-template-columns: 200px 1fr; max-width: 1060px; margin: 0 auto; min-height: calc(100vh - 200px); }
 
 /* Sidebar */
 .sidebar {
   background: var(--bg-sidebar); border-right: 1px solid var(--border);
   padding: 24px 0; position: sticky; top: 0; height: fit-content; max-height: 100vh; overflow-y: auto;
 }
-.sidebar-title {
-  font-size: 0.7rem; font-weight: 700; color: var(--text-light); text-transform: uppercase;
-  letter-spacing: 2px; padding: 0 20px; margin-bottom: 12px;
+.sidebar-label {
+  font-size: 0.65rem; font-weight: 700; color: var(--text-light); text-transform: uppercase;
+  letter-spacing: 2px; padding: 0 16px; margin-bottom: 8px;
 }
 .sidebar-nav { list-style: none; }
-.sidebar-nav li { }
 .sidebar-nav a {
-  display: flex; align-items: center; gap: 8px; padding: 10px 20px;
-  text-decoration: none; color: var(--text-body); font-size: 0.85rem; font-weight: 500;
+  display: flex; align-items: center; gap: 7px; padding: 9px 16px;
+  text-decoration: none; color: var(--text-body); font-size: 0.82rem; font-weight: 500;
   border-left: 3px solid transparent; transition: all 0.15s;
 }
-.sidebar-nav a:hover { background: rgba(139,0,41,0.04); color: var(--sogang); border-left-color: rgba(139,0,41,0.2); }
-.sidebar-nav a.active { background: rgba(139,0,41,0.06); color: var(--sogang); border-left-color: var(--sogang); font-weight: 700; }
-.sidebar-nav .emoji { font-size: 1rem; width: 22px; text-align: center; }
-.sidebar-nav .count {
-  margin-left: auto; background: rgba(0,0,0,0.06); color: var(--text-light);
-  font-size: 0.7rem; padding: 1px 7px; border-radius: 10px; font-weight: 600;
+.sidebar-nav a:hover { background: rgba(139,0,41,0.04); color: var(--sogang); }
+.sidebar-nav .emoji { font-size: 0.95rem; width: 20px; text-align: center; }
+.sidebar-divider { height: 1px; background: var(--border); margin: 14px 16px; }
+.sidebar-note {
+  padding: 12px 16px; font-size: 0.72rem; color: var(--text-light); line-height: 1.5;
 }
-.sidebar-divider { height: 1px; background: var(--border); margin: 16px 20px; }
 
-/* Main Content */
+/* Main */
 .main { padding: 28px 32px 48px; }
-.main-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--sogang); }
-.main-header h2 { font-family: 'Noto Serif KR', serif; font-size: 1.2rem; color: var(--sogang); }
-.main-header .count-text { font-size: 0.8rem; color: var(--text-light); }
 
-/* Section */
-.section-block { margin-bottom: 28px; }
-.section-block-title {
-  font-size: 0.95rem; font-weight: 700; color: var(--sogang); margin-bottom: 12px;
-  display: flex; align-items: center; gap: 6px; padding-bottom: 8px; border-bottom: 1px solid var(--border);
+/* Vol Card */
+.vol-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  overflow: hidden; margin-bottom: 20px; transition: all 0.2s;
 }
-
-/* Article Card */
-.article-card {
-  display: block; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
-  padding: 16px 20px; margin-bottom: 10px; text-decoration: none; color: inherit; transition: all 0.15s;
-}
-.article-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(139,0,41,0.08); border-color: var(--sogang); }
-.article-card .card-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-.article-card .vol-badge {
-  background: var(--sogang); color: white; font-size: 0.65rem; font-weight: 700;
-  padding: 2px 8px; border-radius: 4px; white-space: nowrap;
-}
-.article-card .date-text { font-size: 0.75rem; color: var(--text-light); }
-.article-card .card-title { font-size: 0.9rem; font-weight: 600; color: var(--text); line-height: 1.5; }
-.article-card .card-desc { font-size: 0.8rem; color: var(--text-body); margin-top: 2px; }
-.article-card .source { font-size: 0.7rem; color: var(--text-light); margin-top: 4px; }
-.article-card .tags { margin-top: 6px; }
-.article-card .tag {
-  display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-right: 4px;
-}
-.tag-ai { background: rgba(139,0,41,0.08); color: var(--sogang); }
-.tag-biz { background: rgba(201,168,76,0.15); color: #8b6914; }
-.tag-rwa { background: rgba(26,82,118,0.1); color: var(--blue); }
-.tag-re { background: rgba(45,106,79,0.1); color: var(--green); }
-.tag-vc { background: rgba(142,68,173,0.1); color: #6c3483; }
-.tag-mba { background: rgba(211,84,0,0.1); color: #a04000; }
-.tag-gov { background: rgba(45,106,79,0.12); color: var(--green); }
-.tag-sogang { background: rgba(26,82,118,0.12); color: var(--blue); }
-
-/* Issue Archive Cards */
-.archive-card {
-  display: block; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
-  overflow: hidden; text-decoration: none; color: inherit; transition: all 0.15s; margin-bottom: 12px;
-}
-.archive-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139,0,41,0.08); }
-.archive-card-inner { display: flex; align-items: stretch; }
-.archive-card .card-left {
+.vol-card:hover { box-shadow: 0 6px 24px rgba(139,0,41,0.08); }
+.vol-card-header {
   background: linear-gradient(135deg, var(--sogang), var(--sogang-dark));
-  color: white; padding: 16px 20px; min-width: 140px; display: flex; flex-direction: column; justify-content: center;
+  color: white; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;
 }
-.archive-card .card-left .vol { font-size: 0.7rem; opacity: 0.6; letter-spacing: 1px; }
-.archive-card .card-left .date { font-family: 'Noto Serif KR', serif; font-size: 1.05rem; font-weight: 700; margin-top: 2px; }
-.archive-card .card-right { padding: 14px 20px; flex: 1; }
-.archive-card .card-right .headline { font-size: 0.85rem; font-weight: 500; line-height: 1.5; }
-.archive-card .card-right .tags-row { margin-top: 6px; }
+.vol-card-header .left {}
+.vol-card-header .vol { font-size: 0.7rem; opacity: 0.6; letter-spacing: 1px; text-transform: uppercase; }
+.vol-card-header .date { font-family: 'Noto Serif KR', serif; font-size: 1.2rem; font-weight: 700; margin-top: 2px; }
+.vol-card-header .read-btn {
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+  color: white; padding: 6px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: 500;
+  text-decoration: none; transition: all 0.15s; white-space: nowrap;
+}
+.vol-card-header .read-btn:hover { background: rgba(255,255,255,0.25); }
+
+.vol-card-body { padding: 20px 24px; }
+.vol-card-body .headline { font-size: 0.9rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
+
+/* Sector Tags in Vol Card */
+.sector-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px;
+}
+.sector-chip {
+  display: flex; align-items: center; gap: 6px; padding: 8px 12px;
+  background: rgba(0,0,0,0.02); border: 1px solid var(--border); border-radius: 8px;
+  text-decoration: none; color: var(--text); font-size: 0.78rem; transition: all 0.15s;
+}
+.sector-chip:hover { background: rgba(139,0,41,0.04); border-color: var(--sogang); }
+.sector-chip .chip-emoji { font-size: 0.9rem; }
+.sector-chip .chip-label { font-weight: 600; }
+.sector-chip .chip-count { margin-left: auto; color: var(--text-light); font-size: 0.7rem; }
+
+/* Latest Issue Banner */
+.latest-banner {
+  background: linear-gradient(135deg, rgba(139,0,41,0.06), rgba(139,0,41,0.02));
+  border: 1px solid rgba(139,0,41,0.12); border-radius: 10px;
+  padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+}
+.latest-banner .badge {
+  background: var(--sogang); color: white; font-size: 0.65rem; font-weight: 700;
+  padding: 3px 10px; border-radius: 4px; white-space: nowrap;
+}
+.latest-banner .text { font-size: 0.85rem; font-weight: 500; }
+.latest-banner .text a { color: var(--sogang); text-decoration: none; }
+.latest-banner .text a:hover { text-decoration: underline; }
+
+/* Section Title */
+.section-label {
+  font-size: 0.75rem; font-weight: 700; color: var(--text-light); text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--sogang);
+}
 
 /* Footer */
-.footer { text-align: center; padding: 32px 20px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text-light); }
+.footer { text-align: center; padding: 32px 20px; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text-light); line-height: 2; }
 
 /* Mobile */
 @media (max-width: 768px) {
@@ -140,14 +137,11 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
     padding: 12px 0; max-height: none;
   }
   .sidebar-nav { display: flex; flex-wrap: wrap; gap: 4px; padding: 0 12px; }
-  .sidebar-nav a { padding: 6px 12px; border-left: none; border-radius: 6px; font-size: 0.8rem; }
-  .sidebar-nav a.active { border-left: none; background: var(--sogang); color: white; }
-  .sidebar-nav .count { display: none; }
-  .sidebar-divider { display: none; }
-  .sidebar-title { display: none; }
+  .sidebar-nav a { padding: 6px 10px; border-left: none; border-radius: 6px; font-size: 0.78rem; }
+  .sidebar-divider, .sidebar-label, .sidebar-note { display: none; }
   .main { padding: 20px 16px; }
-  .archive-card-inner { flex-direction: column; }
-  .archive-card .card-left { min-width: auto; padding: 12px 16px; }
+  .vol-card-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .sector-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -162,34 +156,31 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 </div>
 
 <div class="layout">
-  <!-- LEFT SIDEBAR -->
+  <!-- LEFT SIDEBAR — 섹터 바로가기 -->
   <nav class="sidebar">
-    <div class="sidebar-title">섹터 분류</div>
+    <div class="sidebar-label">섹터 바로가기</div>
     <ul class="sidebar-nav" id="sectorNav">
-      <li><a href="#" class="active" data-sector="all"><span class="emoji">📰</span> 전체<span class="count" id="cnt-all">0</span></a></li>
-      <li><a href="#" data-sector="ai"><span class="emoji">🤖</span> AI · LLM<span class="count" id="cnt-ai">0</span></a></li>
-      <li><a href="#" data-sector="biz"><span class="emoji">💼</span> 비즈니스 혁신<span class="count" id="cnt-biz">0</span></a></li>
-      <li><a href="#" data-sector="rwa"><span class="emoji">🔗</span> 블록체인 · RWA<span class="count" id="cnt-rwa">0</span></a></li>
-      <li><a href="#" data-sector="re"><span class="emoji">🏠</span> 부동산 · 핀테크<span class="count" id="cnt-re">0</span></a></li>
-      <li><a href="#" data-sector="vc"><span class="emoji">🚀</span> 창업 · VC<span class="count" id="cnt-vc">0</span></a></li>
-      <li><a href="#" data-sector="mba"><span class="emoji">🎓</span> MBA · 커리어<span class="count" id="cnt-mba">0</span></a></li>
+      <li><a href="#" data-goto="ai"><span class="emoji">🤖</span> AI · LLM</a></li>
+      <li><a href="#" data-goto="biz"><span class="emoji">💼</span> 비즈니스 혁신</a></li>
+      <li><a href="#" data-goto="rwa"><span class="emoji">🔗</span> 블록체인 · RWA</a></li>
+      <li><a href="#" data-goto="re"><span class="emoji">🏠</span> 부동산 · 핀테크</a></li>
+      <li><a href="#" data-goto="vc"><span class="emoji">🚀</span> 창업 · VC</a></li>
+      <li><a href="#" data-goto="mba"><span class="emoji">🎓</span> MBA · 커리어</a></li>
       <div class="sidebar-divider"></div>
-      <li><a href="#" data-sector="gov"><span class="emoji">🏛️</span> 정부과제 · 공고<span class="count" id="cnt-gov">0</span></a></li>
-      <li><a href="#" data-sector="sogang"><span class="emoji">🏫</span> 서강대 · AIMBA<span class="count" id="cnt-sogang">0</span></a></li>
-      <div class="sidebar-divider"></div>
-      <li><a href="#" data-sector="archive"><span class="emoji">📁</span> 발간 아카이브<span class="count" id="cnt-archive">0</span></a></li>
+      <li><a href="#" data-goto="gov"><span class="emoji">🏛️</span> 정부과제 · 공고</a></li>
+      <li><a href="#" data-goto="sogang"><span class="emoji">🏫</span> 서강대 · AIMBA</a></li>
     </ul>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-note">
+      💡 섹터 클릭 시<br>최신호 해당 섹션으로<br>바로 이동합니다
+    </div>
   </nav>
 
-  <!-- RIGHT CONTENT -->
+  <!-- RIGHT — 발간물 아카이브 -->
   <div class="main">
-    <div class="main-header">
-      <h2 id="mainTitle">📰 전체 최신 기사</h2>
-      <span class="count-text" id="mainCount"></span>
-    </div>
-    <div id="mainContent">
-      <!-- Dynamically rendered -->
-    </div>
+    <div id="latestBanner"></div>
+    <div class="section-label">📰 발간 아카이브 · <span id="totalCount">0</span>호</div>
+    <div id="volList"></div>
   </div>
 </div>
 
@@ -203,172 +194,77 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 // ══════════════════════════════════════════
 // ISSUE MANIFEST — updated by cron
 // ══════════════════════════════════════════
-const issues = [{"vol":1,"date":"2026년 03월 28일","headline":"Claude Opus 4 출시, 1인 SW 팩토리 시대, BlackRock RWA $2B...","path":"issues/vol_20260328.html","tags":["트렌드","창업지원"]}];
+const issues = [{"vol":1,"date":"2026년 03월 28일","headline":"Claude Opus 4 출시, 1인 SW 팩토리 시대, BlackRock RWA $2B, 서울 매수심리 상승...","path":"issues/vol_20260328.html","sectors":{"ai":5,"biz":5,"rwa":5,"re":5,"vc":5,"mba":5,"gov":6,"sogang":6}}];
 
-// ══════════════════════════════════════════
-// ARTICLE DATABASE — updated by cron
-// Each article: { sector, title, desc, url, source, vol, date }
-// ══════════════════════════════════════════
-const articles = [
-  // Vol.001 — AI·LLM
-  { sector:"ai", title:"Anthropic, Claude Opus 4 출시 — 에이전트 코딩의 새 기준", desc:"7시간 이상 자율 코딩 가능, 코드 보안 감사 경쟁 대비 2배 우수", url:"https://anthropic.com/news/claude-opus-4", source:"anthropic.com", vol:1, date:"2026.03.28" },
-  { sector:"ai", title:"OpenAI, o3·o4-mini 공개 — 멀티모달 추론의 새 장", desc:"이미지 입력 기반 추론, 도구 활용 통합. SWE-bench 69.1%", url:"https://openai.com/index/introducing-o3-and-o4-mini", source:"openai.com", vol:1, date:"2026.03.28" },
-  { sector:"ai", title:"Google, Gemini 2.5 Pro — 코딩 벤치마크 1위 탈환", desc:"100만 토큰 컨텍스트, 내장 사고 기능. LM Arena 전체 1위", url:"https://deepmind.google/technologies/gemini/", source:"deepmind.google", vol:1, date:"2026.03.28" },
-  { sector:"ai", title:"Mistral, 코드스트랄(Codestral) 오픈소스 공개", desc:"80개 이상 프로그래밍 언어, 32K 컨텍스트. 오픈소스 코딩 모델 강자", url:"https://mistral.ai", source:"mistral.ai", vol:1, date:"2026.03.28" },
-  { sector:"ai", title:"팔란티어 AIP, 금융권 도입 가속 — 온톨로지 기반 의사결정", desc:"JP모건·골드만삭스 AIP 도입. 딜 파이프라인 자동화", url:"https://palantir.com", source:"palantir.com", vol:1, date:"2026.03.28" },
-  // Vol.001 — 비즈니스
-  { sector:"biz", title:'"1인 소프트웨어 팩토리" 시대 도래', desc:"Claude Code·Cursor 등 AI 코딩 도구로 MBA도 직접 MVP 제작", url:"https://github.com/features/copilot", source:"github.com", vol:1, date:"2026.03.28" },
-  { sector:"biz", title:"일본 메가뱅크 3사, AI 심사 시스템 전면 도입", desc:"대출 심사 시간 70% 단축. 한국 금융권 도입 가속 전망", url:"https://nikkei.com", source:"nikkei.com", vol:1, date:"2026.03.28" },
-  { sector:"biz", title:'맥킨지 "2026년 AI ROI 실현 원년" 전망', desc:"기업 AI 투자 중 30% 올해 ROI 양전환. 금융·헬스케어·제조 선두", url:"https://www.mckinsey.com", source:"mckinsey.com", vol:1, date:"2026.03.28" },
-  { sector:"biz", title:"엔비디아, AI 에이전트 플랫폼 NIM 확장", desc:"기업용 에이전트 빌더 오픈. GPU 없이 클라우드 배포", url:"https://www.nvidia.com", source:"nvidia.com", vol:1, date:"2026.03.28" },
-  { sector:"biz", title:"세일즈포스 Agentforce 2.0 — CRM AI 에이전트 본격화", desc:"고객 응대·파이프라인·예측 분석 자동화", url:"https://www.salesforce.com", source:"salesforce.com", vol:1, date:"2026.03.28" },
-  // Vol.001 — 블록체인·RWA
-  { sector:"rwa", title:"BlackRock BUIDL 펀드 AUM $2B 돌파", desc:"미국 국채 토큰화 펀드, 기관 투자자 유입 가속", url:"https://bloomberg.com", source:"bloomberg.com", vol:1, date:"2026.03.28" },
-  { sector:"rwa", title:"한국 토큰증권(STO) 가이드라인 7월 시행", desc:"부동산·미술품·지식재산 토큰화, 거래소 3곳 인가", url:"https://fsc.go.kr", source:"fsc.go.kr", vol:1, date:"2026.03.28" },
-  { sector:"rwa", title:"Circle, USDC 기관 결제 네트워크 확대", desc:"스테이블코인 결제 인프라, Visa·Mastercard 연동", url:"https://www.circle.com", source:"circle.com", vol:1, date:"2026.03.28" },
-  { sector:"rwa", title:"이더리움 Pectra 업그레이드 — 계정 추상화 도입", desc:"EIP-7702 일반 계정 스마트 컨트랙트 기능. UX 대폭 개선", url:"https://ethereum.org", source:"ethereum.org", vol:1, date:"2026.03.28" },
-  { sector:"rwa", title:"JP모건 Onyx, 토큰화 국채 레포 거래 $1T 돌파", desc:"블록체인 기반 기관간 레포. TradFi-DeFi 수렴", url:"https://www.jpmorgan.com", source:"jpmorgan.com", vol:1, date:"2026.03.28" },
-  // Vol.001 — 부동산·핀테크
-  { sector:"re", title:"서울 아파트 매수심리 3주 연속 상승", desc:"토허제 해제 기대 + 금리 인하 전망 → 거래량 회복 (KB)", url:"https://kbland.kr", source:"kbland.kr", vol:1, date:"2026.03.28" },
-  { sector:"re", title:"직방, AI 건물 가치평가 서비스 출시", desc:"공시가·실거래가·건축물대장 자동 분석, B2B 확장", url:"https://zigbang.com", source:"zigbang.com", vol:1, date:"2026.03.28" },
-  { sector:"re", title:"한은, 기준금리 동결 2.75% — 하반기 인하 시사", desc:"하반기 경기 하방 리스크 대응 발언. 부동산 기대감", url:"https://www.bok.or.kr", source:"bok.or.kr", vol:1, date:"2026.03.28" },
-  { sector:"re", title:"토스뱅크, AI 기반 소상공인 신용평가 모델", desc:"비금융 데이터 대안 신용평가. 금융 소외 계층 접근성", url:"https://www.toss.im", source:"toss.im", vol:1, date:"2026.03.28" },
-  { sector:"re", title:"수도권 오피스 공실률 6개월 연속 하락", desc:"강남 3구 프라임 오피스 2.8%. AI 기업 수요 견인", url:"https://www.r114.com", source:"r114.com", vol:1, date:"2026.03.28" },
-  // Vol.001 — 창업·VC
-  { sector:"vc", title:"2026 1Q VC 투자 2.3조원 (+40% YoY)", desc:"AI·바이오·기후테크 집중. 시드~시리즈A 회복", url:"https://kvca.or.kr", source:"kvca.or.kr", vol:1, date:"2026.03.28" },
-  { sector:"vc", title:"Y Combinator W26 — 한국팀 역대 최다 7팀", desc:"핀테크 3팀, AI SaaS 2팀, 헬스케어 2팀", url:"https://ycombinator.com", source:"ycombinator.com", vol:1, date:"2026.03.28" },
-  { sector:"vc", title:"중기부, AI 스타트업 전용 펀드 5,000억 조성", desc:"시리즈A~B 집중. AI·로보틱스·바이오 융합 우대", url:"https://www.mss.go.kr", source:"mss.go.kr", vol:1, date:"2026.03.28" },
-  { sector:"vc", title:"스파크랩 18기 데모데이 — 핀테크·프롭테크 집중", desc:"10팀 중 4팀 AI 기반. 서강대 출신 1팀 포함", url:"https://www.sparklab.co.kr", source:"sparklab.co.kr", vol:1, date:"2026.03.28" },
-  { sector:"vc", title:'a16z "AI 에이전트가 SaaS를 대체한다" 보고서', desc:"$600B 시장 중 40% AI 에이전트 전환 가능", url:"https://www.a16z.com", source:"a16z.com", vol:1, date:"2026.03.28" },
-  // Vol.001 — MBA
-  { sector:"mba", title:'"AI 못 쓰는 금융인은 도태" — 금융위 AI 교육 의무화 검토', desc:"증권·보험·은행 임직원 연 20시간 이상", url:"https://fsc.go.kr", source:"fsc.go.kr", vol:1, date:"2026.03.28" },
-  { sector:"mba", title:'FT "MBA 커리큘럼 AI 필수화" — 글로벌 Top 20 중 18곳', desc:"워튼·스탠퍼드 AI 리터러시 필수 과목 지정", url:"https://www.ft.com", source:"ft.com", vol:1, date:"2026.03.28" },
-  { sector:"mba", title:'LinkedIn "AI 스킬 보유 인재 연봉 프리미엄 23%"', desc:"금융·컨설팅 AI 스킬 채용 수요 2.5배 증가", url:"https://www.linkedin.com", source:"linkedin.com", vol:1, date:"2026.03.28" },
-  { sector:"mba", title:"HBS, AI 에이전트 활용 케이스 스터디 시리즈", desc:"금융·헬스케어·리테일 20건 무료 공개", url:"https://www.hbs.edu", source:"hbs.edu", vol:1, date:"2026.03.28" },
-  { sector:"mba", title:'사람인 "금융권 채용 키워드 1위 AI, 2위 데이터"', desc:"2026 상반기 AI 포지션 전년 대비 180% 증가", url:"https://www.saramin.co.kr", source:"saramin.co.kr", vol:1, date:"2026.03.28" },
-  // Vol.001 — 정부과제
-  { sector:"gov", title:"2026년 예비창업패키지 2차 모집", desc:"중기부, 최대 1억원. AI·블록체인 우대", url:"https://www.k-startup.go.kr", source:"k-startup.go.kr", vol:1, date:"2026.03.28" },
-  { sector:"gov", title:"TIPS 민간투자주도형 기술창업 상시모집", desc:"엔젤투자 연계, 최대 5억원. MBA 창업팀 지원 가능", url:"https://www.jointips.or.kr", source:"jointips.or.kr", vol:1, date:"2026.03.28" },
-  { sector:"gov", title:"초기창업패키지 3차 (마감 4/15)", desc:"업력 3년 이내, 최대 1억원", url:"https://www.k-startup.go.kr", source:"k-startup.go.kr", vol:1, date:"2026.03.28" },
-  { sector:"gov", title:"산학협력 선도대학(LINC 4.0) 참여기업 모집", desc:"대학-기업 공동연구, 인건비 지원", url:"https://www.iris.go.kr", source:"iris.go.kr", vol:1, date:"2026.03.28" },
-  { sector:"gov", title:"AI 융합 산업기술개발사업 신규과제", desc:"과기부, 금융·부동산 AI 포함. 총 300억 규모", url:"https://www.iris.go.kr", source:"iris.go.kr", vol:1, date:"2026.03.28" },
-  { sector:"gov", title:"서강대 소셜벤처 아이디어 경진대회", desc:"재학생·졸업생 대상, 상금 500만원", url:"https://startup.sogang.ac.kr", source:"sogang.ac.kr", vol:1, date:"2026.03.28" },
-  // Vol.001 — 서강대·AIMBA
-  { sector:"sogang", title:"[판교캠퍼스] \"이란과 중동 정세\" 3월 특강", desc:"서강대학교 판교캠퍼스 사업단 주최", url:"https://sbs.sogang.ac.kr/bbs/sbs/649/228470/artclView.do", source:"경영대학", vol:1, date:"2026.03.20" },
-  { sector:"sogang", title:"[생각의 창] 뱅크샐러드 이사 특별강연 (3/18)", desc:"AI 시대 불확실한 미래 — 청년세대를 위한 강연", url:"https://sbs.sogang.ac.kr/bbs/sbs/649/228144/artclView.do", source:"경영대학", vol:1, date:"2026.03.12" },
-  { sector:"sogang", title:"TOPCIT 정기평가 접수 안내 (~4/8)", desc:"제25회 TOPCIT 정기평가, SW중심대학사업단", url:"https://scc.sogang.ac.kr/front/cmsboardview.do?siteId=sweducenter&bbsConfigFK=7250&pkid=934108", source:"SW사업단", vol:1, date:"2026.03.24" },
-  { sector:"sogang", title:"AI콘텐츠제작 전문가과정 수강생 모집 (4/10 개강)", desc:"서강대 미래교육원, 12주 36시간, 40만원", url:"https://flec.sogang.ac.kr", source:"미래교육원", vol:1, date:"2026.03" },
-  { sector:"sogang", title:"AI융합콘텐츠기획자 자격증(2급) 과정 (4/9 개강)", desc:"서강대 미래교육원, 12주 36시간, 35만원", url:"https://flec.sogang.ac.kr", source:"미래교육원", vol:1, date:"2026.03" },
-  { sector:"sogang", title:"CFA Scholarship 장학생 선발 안내", desc:"2026학년도 CFA Program Student Scholarship", url:"https://sbs.sogang.ac.kr/bbs/sbs/649/228092/artclView.do", source:"경영대학", vol:1, date:"2026.03.09" },
-];
-
-// ══════════════════════════════════════════
-// Tag config
-// ══════════════════════════════════════════
 const sectorMeta = {
-  ai: { label:"AI·LLM", tag:"tag-ai", emoji:"🤖" },
-  biz: { label:"비즈니스", tag:"tag-biz", emoji:"💼" },
-  rwa: { label:"블록체인", tag:"tag-rwa", emoji:"🔗" },
-  re: { label:"부동산", tag:"tag-re", emoji:"🏠" },
-  vc: { label:"창업·VC", tag:"tag-vc", emoji:"🚀" },
-  mba: { label:"MBA", tag:"tag-mba", emoji:"🎓" },
-  gov: { label:"정부과제", tag:"tag-gov", emoji:"🏛️" },
-  sogang: { label:"서강대", tag:"tag-sogang", emoji:"🏫" },
+  ai: { emoji:"🤖", label:"AI·LLM", anchor:"ai" },
+  biz: { emoji:"💼", label:"비즈니스", anchor:"biz" },
+  rwa: { emoji:"🔗", label:"블록체인", anchor:"rwa" },
+  re: { emoji:"🏠", label:"부동산", anchor:"re" },
+  vc: { emoji:"🚀", label:"창업·VC", anchor:"vc" },
+  mba: { emoji:"🎓", label:"MBA", anchor:"mba" },
+  gov: { emoji:"🏛️", label:"정부과제", anchor:"gov" },
+  sogang: { emoji:"🏫", label:"서강대", anchor:"sogang" },
 };
 
-// ══════════════════════════════════════════
 // Render
-// ══════════════════════════════════════════
-function updateCounts() {
-  document.getElementById('cnt-all').textContent = articles.length;
-  document.getElementById('cnt-archive').textContent = issues.length + '호';
-  Object.keys(sectorMeta).forEach(s => {
-    const el = document.getElementById('cnt-' + s);
-    if (el) el.textContent = articles.filter(a => a.sector === s).length;
-  });
+const volList = document.getElementById('volList');
+const banner = document.getElementById('latestBanner');
+document.getElementById('totalCount').textContent = issues.length;
+
+issues.sort((a, b) => b.vol - a.vol);
+
+// Latest banner
+if (issues.length > 0) {
+  const latest = issues[0];
+  banner.innerHTML = `
+    <div class="latest-banner">
+      <span class="badge">NEW</span>
+      <span class="text">최신호: <a href="${latest.path}"><strong>Vol.${String(latest.vol).padStart(3,'0')}</strong> — ${latest.date}</a></span>
+    </div>`;
 }
 
-function renderArticles(sector) {
-  const container = document.getElementById('mainContent');
-  const title = document.getElementById('mainTitle');
-  const count = document.getElementById('mainCount');
-  container.innerHTML = '';
-
-  if (sector === 'archive') {
-    title.textContent = '📁 발간 아카이브';
-    count.textContent = `총 ${issues.length}호`;
-    issues.sort((a, b) => b.vol - a.vol).forEach(issue => {
-      let tags = '';
-      if (issue.tags) issue.tags.forEach(t => {
-        tags += `<span class="tag ${t==='트렌드'?'tag-ai':'tag-gov'}">${t}</span>`;
-      });
-      container.innerHTML += `
-        <a class="archive-card" href="${issue.path}">
-          <div class="archive-card-inner">
-            <div class="card-left">
-              <div class="vol">VOL.${String(issue.vol).padStart(3,'0')}</div>
-              <div class="date">${issue.date}</div>
-            </div>
-            <div class="card-right">
-              <div class="headline">${issue.headline||''}</div>
-              <div class="tags-row">${tags}</div>
-            </div>
-          </div>
-        </a>`;
+// Vol cards
+issues.forEach(issue => {
+  let chips = '';
+  if (issue.sectors) {
+    Object.entries(issue.sectors).forEach(([key, count]) => {
+      const m = sectorMeta[key];
+      if (!m) return;
+      chips += `<a class="sector-chip" href="${issue.path}#${m.anchor}">
+        <span class="chip-emoji">${m.emoji}</span>
+        <span class="chip-label">${m.label}</span>
+        <span class="chip-count">${count}건</span>
+      </a>`;
     });
-    return;
   }
 
-  const filtered = sector === 'all' ? articles : articles.filter(a => a.sector === sector);
-  const meta = sectorMeta[sector];
-  
-  if (sector === 'all') {
-    title.textContent = '📰 전체 최신 기사';
-    count.textContent = `${filtered.length}건`;
-    // Group by sector
-    const order = ['ai','biz','rwa','re','vc','mba','gov','sogang'];
-    order.forEach(s => {
-      const sArticles = filtered.filter(a => a.sector === s);
-      if (sArticles.length === 0) return;
-      const m = sectorMeta[s];
-      container.innerHTML += `<div class="section-block"><div class="section-block-title">${m.emoji} ${m.label} <span style="font-weight:400;color:var(--text-light);font-size:0.8rem;">(${sArticles.length})</span></div>` +
-        sArticles.slice(0,2).map(a => articleHTML(a)).join('') +
-        `</div>`;
-    });
-  } else {
-    title.textContent = `${meta.emoji} ${meta.label}`;
-    count.textContent = `${filtered.length}건`;
-    filtered.forEach(a => { container.innerHTML += articleHTML(a); });
-  }
-}
+  volList.innerHTML += `
+    <div class="vol-card">
+      <div class="vol-card-header">
+        <div class="left">
+          <div class="vol">VOL.${String(issue.vol).padStart(3,'0')}</div>
+          <div class="date">${issue.date}</div>
+        </div>
+        <a class="read-btn" href="${issue.path}">📖 읽기</a>
+      </div>
+      <div class="vol-card-body">
+        <div class="headline">${issue.headline || ''}</div>
+        <div class="sector-grid">${chips}</div>
+      </div>
+    </div>`;
+});
 
-function articleHTML(a) {
-  const m = sectorMeta[a.sector];
-  return `<a class="article-card" href="${a.url}" target="_blank">
-    <div class="card-top">
-      <span class="vol-badge">Vol.${String(a.vol).padStart(3,'0')}</span>
-      <span class="date-text">${a.date}</span>
-      <span class="tag ${m.tag}" style="margin-left:auto;">${m.label}</span>
-    </div>
-    <div class="card-title">${a.title}</div>
-    <div class="card-desc">${a.desc}</div>
-    <div class="source">→ ${a.source}</div>
-  </a>`;
-}
-
-// Nav interaction
+// Sidebar nav → latest issue sector anchor
 document.getElementById('sectorNav').addEventListener('click', e => {
   e.preventDefault();
   const link = e.target.closest('a');
-  if (!link) return;
-  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
-  link.classList.add('active');
-  renderArticles(link.dataset.sector);
+  if (!link || !issues.length) return;
+  const sector = link.dataset.goto;
+  const latest = issues[0];
+  const m = sectorMeta[sector];
+  if (m) window.location.href = latest.path + '#' + m.anchor;
 });
-
-// Init
-updateCounts();
-renderArticles('all');
 </script>
 </body>
 </html>
