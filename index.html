@@ -134,14 +134,28 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .layout { grid-template-columns: 1fr; }
   .sidebar {
     position: relative; border-right: none; border-bottom: 1px solid var(--border);
-    padding: 12px 0; max-height: none;
+    padding: 10px 0; max-height: none;
   }
-  .sidebar-nav { display: flex; flex-wrap: wrap; gap: 4px; padding: 0 12px; }
-  .sidebar-nav a { padding: 6px 10px; border-left: none; border-radius: 6px; font-size: 0.78rem; }
+  .sidebar-nav { display: flex; flex-wrap: wrap; gap: 4px; padding: 0 10px; }
+  .sidebar-nav a { padding: 5px 9px; border-left: none; border-radius: 6px; font-size: 0.75rem; }
   .sidebar-divider, .sidebar-label, .sidebar-note { display: none; }
-  .main { padding: 20px 16px; }
-  .vol-card-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-  .sector-grid { grid-template-columns: 1fr 1fr; }
+  .main { padding: 16px 12px; }
+  .header { padding: 24px 16px 20px; }
+  .header h1 { font-size: 1.4rem; letter-spacing: 1px; }
+  .header .subtitle { font-size: 0.78rem; }
+  .org-badge { font-size: 0.68rem; padding: 2px 10px; }
+  .vol-card { margin-bottom: 14px; }
+  .vol-card-header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 16px; }
+  .vol-card-header .date { font-size: 1rem; }
+  .vol-card-header .read-btn { padding: 5px 14px; font-size: 0.78rem; }
+  .vol-card-body { padding: 14px 16px; }
+  .vol-card-body .headline { font-size: 0.84rem; margin-bottom: 10px; }
+  .sector-grid { grid-template-columns: 1fr; gap: 6px; }
+  .sector-chip { padding: 7px 10px; font-size: 0.76rem; }
+  .latest-banner { padding: 12px 14px; gap: 8px; flex-wrap: wrap; }
+  .latest-banner .text { font-size: 0.8rem; }
+  .section-label { font-size: 0.7rem; margin-bottom: 10px; }
+  .footer { font-size: 0.7rem; padding: 24px 12px; }
 }
 </style>
 </head>

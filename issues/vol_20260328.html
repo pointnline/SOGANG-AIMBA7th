@@ -104,7 +104,37 @@ body {
 .back-link a:hover { opacity: 0.9; }
 
 @media print { body { background: white; } .page { padding: 20px; } .back-link, .more-toggle { display: none; } .more-items { display: block !important; } }
-@media (max-width: 640px) { .page { padding: 24px 20px; } .main-title h1 { font-size: 28px; letter-spacing: 4px; } .two-col { grid-template-columns: 1fr; gap: 0; } .header-top { font-size: 11px; } }
+@media (max-width: 640px) {
+  .page { padding: 16px 14px 32px; }
+  .header-top { font-size: 10.5px; flex-wrap: wrap; gap: 2px; }
+  .main-title { margin: 10px 0 6px; }
+  .main-title h1 { font-size: 22px; letter-spacing: 2px; }
+  .main-title .en-sub { font-size: 10.5px; letter-spacing: 2px; }
+  .hr-thick { margin: 12px 0 6px; }
+  .hr-thin { margin: 6px 0 18px; }
+  .meta-line { flex-direction: column; gap: 2px; font-size: 10.5px; }
+  .section-title { font-size: 17px; margin: 24px 0 12px; }
+  .two-col { grid-template-columns: 1fr; gap: 8px; }
+  .article-item { padding-left: 30px; margin-bottom: 16px; }
+  .article-item .num { width: 20px; height: 20px; font-size: 10.5px; }
+  .article-item .headline { font-size: 13.5px; line-height: 1.55; }
+  .article-item .desc { font-size: 12px; line-height: 1.6; }
+  .article-item .source-link { font-size: 10.5px; }
+  .insight-box { padding: 16px 14px; margin: 20px 0 16px; }
+  .insight-box .label { font-size: 12px; }
+  .insight-box p { font-size: 13px; line-height: 1.7; }
+  .gov-box { padding: 16px 14px; margin: 20px 0 16px; }
+  .gov-box .label { font-size: 12px; }
+  .gov-item { padding-left: 6px; margin-bottom: 10px; }
+  .gov-item .gov-title { font-size: 13px; }
+  .gov-item .gov-desc { font-size: 11.5px; }
+  .more-toggle { font-size: 11.5px; padding: 4px 10px; }
+  .footer { margin-top: 24px; padding-top: 16px; }
+  .footer .main-line { font-size: 11.5px; }
+  .footer .sub-line { font-size: 10px; }
+  .back-link a { font-size: 12px; padding: 7px 20px; }
+  .section-divider { margin: 20px 0 4px; }
+}
 </style>
 </head>
 <body>
