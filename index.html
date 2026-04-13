@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIMBA 7기 미래혁신국 — AI·창업 트렌드 브리핑</title>
-<meta name="description" content="서강대학교 AIMBA 7기 미래혁신국이 발간하는 주간 AI·창업 트렌드 브리핑">
+<title>SOGANG AIMBA 7th — Weekly Briefing</title>
+<meta name="description" content="SOGANG AI MBA 7th Weekly Briefing — AI, Business, MBA, Startup, Government, Campus News">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -14,13 +14,16 @@
   --bg: #F5F0E8;
   --bg-card: #FFFDF9;
   --bg-sidebar: #faf8f4;
+  --bg-search: #ffffff;
   --text: #1a1a2e;
   --text-body: #555;
   --text-light: #999;
   --border: #e4ddd0;
+  --gold: #c9a84c;
   --green: #2d6a4f;
   --blue: #1a5276;
 }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
 
@@ -41,8 +44,33 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .header h1 { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 900; letter-spacing: 2px; }
 .header .subtitle { font-size: 0.9rem; opacity: 0.7; margin-top: 4px; }
 
+/* Search Bar */
+.search-bar {
+  max-width: 600px; margin: 20px auto 0; position: relative; z-index: 10;
+}
+.search-input {
+  width: 100%; padding: 12px 20px 12px 48px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 25px;
+  background: rgba(255,255,255,0.95);
+  font-size: 0.95rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--text);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 4px 25px rgba(201, 168, 76, 0.3);
+}
+.search-icon {
+  position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+  color: var(--sogang); font-size: 1.2rem; pointer-events: none;
+}
+
 /* Layout */
-.layout { display: grid; grid-template-columns: 200px 1fr; max-width: 1060px; margin: 0 auto; min-height: calc(100vh - 200px); }
+.layout { display: grid; grid-template-columns: 200px 1fr; max-width: 1200px; margin: 0 auto; min-height: calc(100vh - 200px); }
 
 /* Sidebar */
 .sidebar {
@@ -58,8 +86,12 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   display: flex; align-items: center; gap: 7px; padding: 9px 16px;
   text-decoration: none; color: var(--text-body); font-size: 0.82rem; font-weight: 500;
   border-left: 3px solid transparent; transition: all 0.15s;
+  cursor: pointer;
 }
-.sidebar-nav a:hover { background: rgba(139,0,41,0.04); color: var(--sogang); }
+.sidebar-nav a:hover, .sidebar-nav a.active {
+  background: rgba(139,0,41,0.04); color: var(--sogang);
+  border-left-color: var(--sogang);
+}
 .sidebar-nav .emoji { font-size: 0.95rem; width: 20px; text-align: center; }
 .sidebar-divider { height: 1px; background: var(--border); margin: 14px 16px; }
 .sidebar-note {
@@ -68,6 +100,23 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 
 /* Main */
 .main { padding: 28px 32px 48px; }
+
+/* Filter Tags */
+.filter-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+}
+.filter-tag {
+  padding: 6px 14px;
+  background: white; border: 1px solid var(--border); border-radius: 6px;
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--text-body);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-tag:hover { border-color: var(--gold); color: var(--sogang); }
+.filter-tag.active {
+  background: var(--sogang); color: white; border-color: var(--sogang);
+}
 
 /* Vol Card */
 .vol-card {
@@ -82,29 +131,31 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .vol-card-header .left {}
 .vol-card-header .vol { font-size: 0.7rem; opacity: 0.6; letter-spacing: 1px; text-transform: uppercase; }
 .vol-card-header .date { font-family: 'Noto Serif KR', serif; font-size: 1.2rem; font-weight: 700; margin-top: 2px; }
-.vol-card-header .read-btn {
+.vol-card-header .share-btn {
   background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
   color: white; padding: 6px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: 500;
   text-decoration: none; transition: all 0.15s; white-space: nowrap;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
 }
-.vol-card-header .read-btn:hover { background: rgba(255,255,255,0.25); }
+.vol-card-header .share-btn:hover { background: rgba(255,255,255,0.25); }
 
 .vol-card-body { padding: 20px 24px; }
 .vol-card-body .headline { font-size: 0.9rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
 
-/* Sector Tags in Vol Card */
-.sector-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px;
+/* Trend Tags */
+.trend-grid {
+  display: flex; flex-wrap: wrap; gap: 8px;
 }
-.sector-chip {
+.trend-chip {
   display: flex; align-items: center; gap: 6px; padding: 8px 12px;
   background: rgba(0,0,0,0.02); border: 1px solid var(--border); border-radius: 8px;
   text-decoration: none; color: var(--text); font-size: 0.78rem; transition: all 0.15s;
+  white-space: nowrap;
 }
-.sector-chip:hover { background: rgba(139,0,41,0.04); border-color: var(--sogang); }
-.sector-chip .chip-emoji { font-size: 0.9rem; }
-.sector-chip .chip-label { font-weight: 600; }
-.sector-chip .chip-count { margin-left: auto; color: var(--text-light); font-size: 0.7rem; }
+.trend-chip:hover { background: rgba(139,0,41,0.04); border-color: var(--sogang); }
+.trend-chip .chip-emoji { font-size: 0.9rem; }
+.trend-chip .chip-label { font-weight: 600; }
 
 /* Latest Issue Banner */
 .latest-banner {
@@ -147,15 +198,17 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .vol-card { margin-bottom: 14px; }
   .vol-card-header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 16px; }
   .vol-card-header .date { font-size: 1rem; }
-  .vol-card-header .read-btn { padding: 5px 14px; font-size: 0.78rem; }
+  .vol-card-header .share-btn { padding: 5px 14px; font-size: 0.78rem; width: 100%; justify-content: center; }
   .vol-card-body { padding: 14px 16px; }
   .vol-card-body .headline { font-size: 0.84rem; margin-bottom: 10px; }
-  .sector-grid { grid-template-columns: 1fr; gap: 6px; }
-  .sector-chip { padding: 7px 10px; font-size: 0.76rem; }
+  .trend-grid { gap: 6px; }
+  .trend-chip { padding: 7px 10px; font-size: 0.76rem; }
   .latest-banner { padding: 12px 14px; gap: 8px; flex-wrap: wrap; }
   .latest-banner .text { font-size: 0.8rem; }
   .section-label { font-size: 0.7rem; margin-bottom: 10px; }
   .footer { font-size: 0.7rem; padding: 24px 12px; }
+  .search-bar { margin: 15px 16px 0; }
+  .filter-tags { justify-content: flex-start; }
 }
 </style>
 </head>
@@ -164,36 +217,42 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 <div class="header">
   <div class="header-content">
     <div class="org-badge">서강대학교 AIMBA 7기</div>
-    <h1>미래혁신국 트렌드 브리핑</h1>
-    <p class="subtitle">SOGANG AI MBA · FUTURE INNOVATION BUREAU</p>
+    <h1>AIMBA Weekly Briefing</h1>
+    <p class="subtitle">SOGANG AI MBA 7th — AI · Business · MBA · Startup · Government · Campus</p>
   </div>
+</div>
+
+<div class="search-bar">
+  <span class="search-icon">🔍</span>
+  <input type="text" class="search-input" id="searchInput" placeholder="🔍 검색어를 입력하세요 (AI, 비즈니스, MBA, 창업...)">
 </div>
 
 <div class="layout">
   <!-- LEFT SIDEBAR — 섹터 바로가기 -->
   <nav class="sidebar">
-    <div class="sidebar-label">섹터 바로가기</div>
-    <ul class="sidebar-nav" id="sectorNav">
-      <li><a href="#" data-goto="ai"><span class="emoji">🤖</span> AI · LLM</a></li>
-      <li><a href="#" data-goto="biz"><span class="emoji">💼</span> 비즈니스 혁신</a></li>
-      <li><a href="#" data-goto="rwa"><span class="emoji">🔗</span> 블록체인 · RWA</a></li>
-      <li><a href="#" data-goto="re"><span class="emoji">🏠</span> 부동산 · 핀테크</a></li>
-      <li><a href="#" data-goto="vc"><span class="emoji">🚀</span> 창업 · VC</a></li>
-      <li><a href="#" data-goto="mba"><span class="emoji">🎓</span> MBA · 커리어</a></li>
+    <div class="sidebar-label">정렬 & 필터</div>
+    <ul class="sidebar-nav">
+      <li><a href="#" data-sort="latest"><span class="emoji">📅</span> 최신순</a></li>
+      <li><a href="#" data-sort="oldest"><span class="emoji">🕐</span> 오래된순</a></li>
       <div class="sidebar-divider"></div>
-      <li><a href="#" data-goto="gov"><span class="emoji">🏛️</span> 정부과제 · 공고</a></li>
-      <li><a href="#" data-goto="sogang"><span class="emoji">🏫</span> 서강대 · AIMBA</a></li>
+      <li><a href="#" data-filter="all"><span class="emoji">📂</span> 전체보기</a></li>
+      <li><a href="#" data-filter="ai"><span class="emoji">🤖</span> AI·LLM</a></li>
+      <li><a href="#" data-filter="business"><span class="emoji">💼</span> 비즈니스 혁신</a></li>
+      <li><a href="#" data-filter="mba"><span class="emoji">🎓</span> MBA</a></li>
+      <li><a href="#" data-filter="startup"><span class="emoji">🚀</span> 창업·VC·PE</a></li>
+      <li><a href="#" data-filter="government"><span class="emoji">🏛️</span> 정부과제·지원</a></li>
+      <li><a href="#" data-filter="campus"><span class="emoji">🏫</span> 서강대·campus</a></li>
     </ul>
     <div class="sidebar-divider"></div>
     <div class="sidebar-note">
-      💡 섹터 클릭 시<br>최신호 해당 섹션으로<br>바로 이동합니다
+      💡 섹터/정렬 클릭 시<br>필터링 또는 정렬 변경
     </div>
   </nav>
 
   <!-- RIGHT — 발간물 아카이브 -->
   <div class="main">
     <div id="latestBanner"></div>
-    <div class="section-label">📰 발간 아카이브 · <span id="totalCount">0</span>호</div>
+    <div class="section-label">📰 Weekly Briefing · <span id="totalCount">0</span>호</div>
     <div id="volList"></div>
   </div>
 </div>
@@ -201,84 +260,233 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 <div class="footer">
   서강대학교 AIMBA 7기 · 미래혁신국 부국장 조경준<br>
   혁신 아이디어 · 창업 정보 제보 환영<br>
-  © 2026 SOGANG AIMBA 7th — Future Innovation Bureau
+  © 2026 SOGANG AIMBA 7th
 </div>
 
 <script>
 // ══════════════════════════════════════════
 // ISSUE MANIFEST — updated by cron
 // ══════════════════════════════════════════
-const issues = [{"vol":2,"date":"2026년 04월 04일","headline":"구글 젬마4 공개, 에이전틱 AI 얼라이언스 출범, 글로벌 VC $2970억 역대 최대, RWA $276억 돌파...","path":"issues/vol_20260404.html","sectors":{"ai":5,"biz":5,"rwa":5,"re":5,"vc":5,"mba":5,"gov":6,"sogang":4}},{"vol":1,"date":"2026년 03월 28일","headline":"Claude Opus 4 출시, 1인 SW 팩토리 시대, BlackRock RWA $2B, 서울 매수심리 상승...","path":"issues/vol_20260328.html","sectors":{"ai":5,"biz":5,"rwa":5,"re":5,"vc":5,"mba":5,"gov":6,"sogang":6}}];
+const issues = [
+  {
+    vol: 2,
+    date: "2026-04-04",
+    headline: "구글 젬마4 공개, 에이전틱 AI 얼라이언스 출범, 글로벌 VC $2970억 역대 최대, RWA $276억 돌파...",
+    path: "issues/vol_20260404.html",
+    sectors: { ai: 5, business: 5, mba: 5, startup: 5, government: 5, campus: 4 }
+  },
+  {
+    vol: 1,
+    date: "2026-03-28",
+    headline: "Claude Opus 4 출시, 1인 소프트웨어 팩토리 시대, BlackRock RWA $2B, 서울 매수심리 상승...",
+    path: "issues/vol_20260328.html",
+    sectors: { ai: 5, business: 5, mba: 5, startup: 5, government: 5, campus: 6 }
+  }
+];
 
-const sectorMeta = {
-  ai: { emoji:"🤖", label:"AI·LLM", anchor:"ai" },
-  biz: { emoji:"💼", label:"비즈니스", anchor:"biz" },
-  rwa: { emoji:"🔗", label:"블록체인", anchor:"rwa" },
-  re: { emoji:"🏠", label:"부동산", anchor:"re" },
-  vc: { emoji:"🚀", label:"창업·VC", anchor:"vc" },
-  mba: { emoji:"🎓", label:"MBA", anchor:"mba" },
-  gov: { emoji:"🏛️", label:"정부과제", anchor:"gov" },
-  sogang: { emoji:"🏫", label:"서강대", anchor:"sogang" },
+// 섹터 매핑 (데이터베이스 필드 → 레이블)
+const sectorMap = {
+  ai: "AI·LLM",
+  business: "비즈니스",
+  mba: "MBA",
+  startup: "창업·VC·PE",
+  government: "정부과제·지원",
+  campus: "서강대·campus"
 };
 
-// Render
-const volList = document.getElementById('volList');
-const banner = document.getElementById('latestBanner');
-document.getElementById('totalCount').textContent = issues.length;
+// 섹터 메타데이터
+const sectorMeta = {
+  ai: { emoji: "🤖", label: "AI·LLM", anchor: "ai" },
+  business: { emoji: "💼", label: "비즈니스", anchor: "business" },
+  mba: { emoji: "🎓", label: "MBA", anchor: "mba" },
+  startup: { emoji: "🚀", label: "창업·VC·PE", anchor: "startup" },
+  government: { emoji: "🏛️", label: "정부과제", anchor: "government" },
+  campus: { emoji: "🏫", label: "서강대", anchor: "campus" },
+};
 
-issues.sort((a, b) => b.vol - a.vol);
+// 트렌드 매핑 (데이터베이스 필드 → 레이블)
+const trendMap = {
+  real_estate: "부동산",
+  crypto: "블록체인·RWA",
+  economy: "경제·금융"
+};
 
-// Latest banner
-if (issues.length > 0) {
-  const latest = issues[0];
-  banner.innerHTML = `
-    <div class="latest-banner">
-      <span class="badge">NEW</span>
-      <span class="text">최신호: <a href="${latest.path}"><strong>Vol.${String(latest.vol).padStart(3,'0')}</strong> — ${latest.date}</a></span>
-    </div>`;
+// 필터 및 정렬 상태
+let currentFilter = 'all';
+let currentSort = 'latest';
+
+// 초기화
+document.addEventListener('DOMContentLoaded', function() {
+  render();
+  setupEventListeners();
+});
+
+// 이벤트 리스너 설정
+function setupEventListeners() {
+  // 검색 입력
+  document.getElementById('searchInput').addEventListener('input', function(e) {
+    const query = e.target.value.trim().toLowerCase();
+    filterAndRender(issues, query);
+  });
+
+  // 사이드바 클릭 (섹터/정렬)
+  document.getElementById('sectorNav').addEventListener('click', function(e) {
+    e.preventDefault();
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const type = link.dataset.sort || link.dataset.filter;
+    const value = link.dataset.sort || link.dataset.filter;
+
+    if (type === 'sort') {
+      currentSort = value;
+    } else {
+      currentFilter = value;
+      // 사이드바 메뉴 활성 상태 업데이트
+      document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+      if (link) link.classList.add('active');
+    }
+
+    render();
+  });
 }
 
-// Vol cards
-issues.forEach(issue => {
-  let chips = '';
-  if (issue.sectors) {
-    Object.entries(issue.sectors).forEach(([key, count]) => {
-      const m = sectorMeta[key];
-      if (!m) return;
-      chips += `<a class="sector-chip" href="${issue.path}#${m.anchor}">
-        <span class="chip-emoji">${m.emoji}</span>
-        <span class="chip-label">${m.label}</span>
-        <span class="chip-count">${count}건</span>
-      </a>`;
+// 필터링 및 렌더링
+function filterAndRender(data, query = '') {
+  let filtered = [...data];
+
+  // 섹터 필터
+  if (currentFilter !== 'all') {
+    filtered = filtered.filter(issue => {
+      return issue.sectors && issue.sectors[currentFilter] > 0;
     });
   }
 
-  volList.innerHTML += `
-    <div class="vol-card">
-      <div class="vol-card-header">
-        <div class="left">
-          <div class="vol">VOL.${String(issue.vol).padStart(3,'0')}</div>
-          <div class="date">${issue.date}</div>
-        </div>
-        <a class="read-btn" href="${issue.path}">📖 읽기</a>
-      </div>
-      <div class="vol-card-body">
-        <div class="headline">${issue.headline || ''}</div>
-        <div class="sector-grid">${chips}</div>
-      </div>
-    </div>`;
-});
+  // 검색 필터
+  if (query) {
+    filtered = filtered.filter(issue => {
+      const headlineLower = (issue.headline || '').toLowerCase();
+      const volMatch = String(issue.vol).toLowerCase().includes(query);
+      const dateMatch = issue.date.includes(query);
+      return headlineLower.includes(query) || volMatch || dateMatch;
+    });
+  }
 
-// Sidebar nav → latest issue sector anchor
-document.getElementById('sectorNav').addEventListener('click', e => {
-  e.preventDefault();
-  const link = e.target.closest('a');
-  if (!link || !issues.length) return;
-  const sector = link.dataset.goto;
-  const latest = issues[0];
-  const m = sectorMeta[sector];
-  if (m) window.location.href = latest.path + '#' + m.anchor;
-});
+  // 정렬
+  if (currentSort === 'oldest') {
+    filtered.sort((a, b) => a.vol - b.vol);
+  } else {
+    filtered.sort((a, b) => b.vol - a.vol);
+  }
+
+  renderVolList(filtered, query);
+}
+
+// 렌더링
+function render() {
+  const filtered = issues.filter(issue => {
+    if (currentFilter === 'all') return true;
+    return issue.sectors && issue.sectors[currentFilter] > 0;
+  });
+
+  // 최신순 정렬
+  const sorted = [...filtered].sort((a, b) => b.vol - a.vol);
+
+  renderVolList(sorted);
+
+  // 최신 배너
+  if (sorted.length > 0) {
+    const latest = sorted[0];
+    document.getElementById('latestBanner').innerHTML = `
+      <div class="latest-banner">
+        <span class="badge">NEW</span>
+        <span class="text">최신호: <a href="${latest.path}"><strong>Vol.${String(latest.vol).padStart(3,'0')}</strong> — ${latest.date}</a></span>
+      </div>`;
+  }
+}
+
+// Vol Cards 렌더링
+function renderVolList(issuesToRender, query = '') {
+  const volList = document.getElementById('volList');
+  document.getElementById('totalCount').textContent = issuesToRender.length;
+
+  volList.innerHTML = '';
+
+  if (issuesToRender.length === 0) {
+    volList.innerHTML = '<div style="text-align:center; padding: 40px; color: var(--text-light);">🔍 검색 결과가 없습니다</div>';
+    return;
+  }
+
+  issuesToRender.forEach(issue => {
+    let chips = '';
+    if (issue.sectors) {
+      Object.entries(issue.sectors).forEach(([key, count]) => {
+        const m = sectorMeta[key];
+        if (!m) return;
+        chips += `<a class="trend-chip" href="${issue.path}#${m.anchor}">
+          <span class="chip-emoji">${m.emoji}</span>
+          <span class="chip-label">${m.label}</span>
+          <span class="chip-count">${count}건</span>
+        </a>`;
+      });
+    }
+
+    volList.innerHTML += `
+      <div class="vol-card" data-search="${(issue.headline || '').toLowerCase()}" data-vol="${issue.vol}" data-date="${issue.date}">
+        <div class="vol-card-header">
+          <div class="left">
+            <div class="vol">VOL.${String(issue.vol).padStart(3,'0')}</div>
+            <div class="date">${issue.date}</div>
+          </div>
+          <button class="share-btn" onclick="shareIssue('${issue.path}', '${issue.headline.replace(/'/g, "\\'")}')">
+            <span>📤</span> 공유
+          </button>
+        </div>
+        <div class="vol-card-body">
+          <div class="headline">${issue.headline || ''}</div>
+          <div class="trend-grid">${chips}</div>
+        </div>
+      </div>`;
+  });
+
+  // 필터 태그 업데이트
+  updateFilterTags();
+}
+
+// 필터 태그 업데이트
+function updateFilterTags() {
+  // 사이드바 메뉴 활성 상태 업데이트
+  document.querySelectorAll('.sidebar-nav a').forEach(a => {
+    a.classList.remove('active');
+    if (a.dataset.filter === currentFilter) {
+      a.classList.add('active');
+    }
+    if (a.dataset.sort === currentSort) {
+      a.classList.add('active');
+    }
+  });
+}
+
+// 이슈 공유 함수
+function shareIssue(path, headline) {
+  const url = window.location.origin + window.location.pathname + path;
+  const text = `📰 AIMBA Weekly Briefing Vol.${headline.match(/\d+/)?.[0]} - ${headline}`;
+
+  if (navigator.share) {
+    navigator.share({
+      title: 'SOGANG AIMBA Weekly Briefing',
+      text: text,
+      url: url
+    }).catch(console.error);
+  } else {
+    // Fallback: 클립보드에 복사
+    navigator.clipboard.writeText(url).then(() => {
+      alert('링크가 클립보드에 복사되었습니다: ' + url);
+    }).catch(err => {
+      console.error('클립보드 복사 실패:', err);
+    });
+  }
+}
 </script>
 </body>
 </html>
