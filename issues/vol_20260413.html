@@ -210,7 +210,7 @@ body {
         <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209146" target="_blank">AITIMES →</a></div>
       </div>
     </div>
-    <button class="more-toggle" onclick="toggleMore('ai')">더보기 ▼</button>
+    <button class="more-toggle" onclick="toggleMore('ai', this)">더보기 ▼</button>
   </div>
 
   <hr class="section-divider">
@@ -252,7 +252,7 @@ body {
         <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=208877" target="_blank">AITIMES →</a></div>
       </div>
     </div>
-    <button class="more-toggle" onclick="toggleMore('business')">더보기 ▼</button>
+    <button class="more-toggle" onclick="toggleMore('business', this)">더보기 ▼</button>
   </div>
 
   <hr class="section-divider">
@@ -294,7 +294,7 @@ body {
         <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209117" target="_blank">AITIMES →</a></div>
       </div>
     </div>
-    <button class="more-toggle" onclick="toggleMore('mba')">더보기 ▼</button>
+    <button class="more-toggle" onclick="toggleMore('mba', this)">더보기 ▼</button>
   </div>
 
   <hr class="section-divider">
@@ -336,7 +336,7 @@ body {
         <div class="source"><a href="https://www.speedykorea.com/blog/2026-startup-support-program" target="_blank">Speedy →</a></div>
       </div>
     </div>
-    <button class="more-toggle" onclick="toggleMore('startup')">더보기 ▼</button>
+    <button class="more-toggle" onclick="toggleMore('startup', this)">더보기 ▼</button>
   </div>
 
   <hr class="section-divider">
@@ -419,12 +419,15 @@ body {
 </div>
 
 <script>
-function toggleMore(id) {
+function toggleMore(id, btn) {
   const moreItems = document.getElementById('more-' + id);
-  const button = moreItems.previousElementSibling;
-  moreItems.classList.toggle('open');
-  button.classList.toggle('open');
-  button.textContent = moreItems.classList.contains('open') ? '접기 ▲' : '더보기 ▼';
+  if (moreItems) {
+    moreItems.classList.toggle('open');
+    if (btn) {
+      btn.classList.toggle('open');
+      btn.textContent = moreItems.classList.contains('open') ? '접기 ▲' : '더보기 ▼';
+    }
+  }
 }
 </script>
 
