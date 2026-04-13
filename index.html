@@ -37,9 +37,11 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M20 20h-4v-4h4v4zm0-20h-4v4h4V0zM0 20h4v-4H0v4z'/%3E%3C/g%3E%3C/svg%3E");
 }
 .header-content { position: relative; z-index: 1; }
+.header-top { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px; }
+.sogang-logo { width: 48px; height: 48px; object-fit: contain; }
 .org-badge {
   display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
-  padding: 3px 14px; border-radius: 20px; font-size: 0.75rem; letter-spacing: 1px; margin-bottom: 10px;
+  padding: 3px 14px; border-radius: 20px; font-size: 0.75rem; letter-spacing: 1px;
 }
 .header h1 { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 900; letter-spacing: 2px; }
 .header .subtitle { font-size: 0.9rem; opacity: 0.7; margin-top: 4px; }
@@ -192,6 +194,8 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .sidebar-divider, .sidebar-label, .sidebar-note { display: none; }
   .main { padding: 16px 12px; }
   .header { padding: 24px 16px 20px; }
+  .header-top { gap: 8px; margin-bottom: 12px; }
+  .sogang-logo { width: 36px; height: 36px; }
   .header h1 { font-size: 1.4rem; letter-spacing: 1px; }
   .header .subtitle { font-size: 0.78rem; }
   .org-badge { font-size: 0.68rem; padding: 2px 10px; }
@@ -216,7 +220,10 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 
 <div class="header">
   <div class="header-content">
-    <div class="org-badge">서강대학교 AIMBA 7기</div>
+    <div class="header-top">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Sogang_University_Logo.svg/1200px-Sogang_University_Logo.svg.png" alt="서강대학교 로고" class="sogang-logo">
+      <div class="org-badge">AIMBA 7기</div>
+    </div>
     <h1>AIMBA Weekly Briefing</h1>
     <p class="subtitle">SOGANG AI MBA 7th — AI · Business · MBA · Startup · Government · Campus</p>
   </div>
