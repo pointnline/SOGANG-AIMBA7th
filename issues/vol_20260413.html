@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIMBA Weekly Briefing Vol.003 | 2026.04.13</title>
+<meta property="og:title" content="AIMBA Weekly Briefing Vol.003">
+<meta property="og:description" content="서강대 AI MBA 7기 미래혁신국 — AI·Business·MBA·Startup·Government·Campus">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sogang: #8B0029;
+  --sogang-dark: #5a001a;
+  --bg: #F5F0E8;
+  --bg-card: #FFFDF9;
+  --bg-sidebar: #faf8f4;
+  --bg-insight: #EDE8DA;
+  --bg-gov: #E8EDE4;
+  --bg-sogang: #E4E8ED;
+  --primary: #8B0029;
+  --primary-dark: #5a001a;
+  --heading: #1A1A1A;
+  --text-dark: #222222;
+  --text-body: #555555;
+  --text-light: #888888;
+  --badge-bg: #8B0029;
+  --border: #D5CCBB;
+  --hr-dark: #333333;
+  --gold: #c9a84c;
+  --green: #2d6a4f;
+  --blue: #1a5276;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg);
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--text-dark);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.page { max-width: 900px; margin: 0 auto; padding: 40px 32px 48px; }
+
+/* HEADER */
+.header { text-align: center; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 2px solid var(--border); }
+.header-top { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-light); margin-bottom: 12px; }
+.header-top .org { font-weight: 600; color: var(--sogang); }
+.header-title { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 900; color: var(--sogang); letter-spacing: 2px; margin: 8px 0; }
+.header-subtitle { font-size: 0.85rem; color: var(--text-body); }
+
+/* SECTION */
+.section { margin: 32px 0; }
+.section-title { font-family: 'Noto Serif KR', serif; font-size: 1.25rem; font-weight: 700; color: var(--sogang); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; border-left: 4px solid var(--sogang); padding-left: 12px; }
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+/* ARTICLE GRID */
+.article-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+@media (min-width: 768px) {
+  .article-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+
+.article-item { position: relative; padding-left: 32px; margin-bottom: 8px; }
+.article-item .num {
+  position: absolute; left: 0; top: 0; width: 20px; height: 20px;
+  background: var(--sogang); color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700; font-family: 'Noto Sans KR', sans-serif;
+}
+.article-item .headline { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); line-height: 1.5; margin-bottom: 4px; }
+.article-item .headline a { color: var(--text-dark); text-decoration: none; }
+.article-item .headline a:hover { color: var(--sogang); text-decoration: underline; }
+.article-item .desc { font-size: 0.78rem; color: var(--text-body); line-height: 1.6; font-family: 'Noto Sans KR', sans-serif; }
+.article-item .source { font-size: 0.7rem; color: var(--text-light); margin-top: 2px; font-family: 'Noto Sans KR', sans-serif; }
+.article-item .source a { color: var(--sogang); text-decoration: none; }
+
+/* MORE TOGGLE */
+.more-items { display: none; }
+.more-items.open { display: block; }
+.more-toggle {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.75rem; font-family: 'Noto Sans KR', sans-serif; font-weight: 500;
+  color: var(--sogang); background: rgba(139,0,41,0.04); border: 1px solid var(--border);
+  border-radius: 4px; padding: 4px 10px; cursor: pointer; transition: all 0.2s;
+  margin-top: 4px;
+}
+.more-toggle:hover { background: rgba(139,0,41,0.08); border-color: var(--sogang); }
+
+/* TWO COL BOX */
+.two-col { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 12px; }
+@media (min-width: 768px) { .two-col { grid-template-columns: 1fr 1fr; } }
+
+/* BOX STYLES */
+.insight-box {
+  background: var(--bg-insight); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px 18px; margin: 20px 0;
+}
+.insight-box .label {
+  font-size: 0.75rem; font-weight: 700; color: var(--sogang);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 4px;
+}
+.insight-box p { font-size: 0.8rem; color: var(--text-dark); line-height: 1.7; }
+
+.gov-box {
+  background: var(--bg-gov); border: 1px solid #c8d4c0; border-radius: 8px;
+  padding: 16px 18px; margin: 20px 0;
+}
+.gov-box .label {
+  font-size: 0.75rem; font-weight: 700; color: var(--green);
+  margin-bottom: 10px;
+}
+.gov-item {
+  margin-bottom: 8px; padding-left: 8px; border-left: 3px solid var(--green); margin-left: 4px;
+}
+.gov-item .new-badge {
+  display: inline-block; background: var(--green); color: white;
+  font-size: 0.65rem; font-weight: 700; padding: 1px 6px;
+  border-radius: 3px; margin-right: 4px; font-family: 'Noto Sans KR', sans-serif;
+}
+.gov-item .gov-title {
+  font-size: 0.8rem; font-weight: 600; color: var(--text-dark);
+  line-height: 1.5;
+}
+.gov-item .gov-title a { color: var(--text-dark); text-decoration: none; }
+.gov-item .gov-title a:hover { color: var(--green); }
+.gov-item .gov-desc { font-size: 0.72rem; color: var(--text-body); margin-top: 2px; font-family: 'Noto Sans KR', sans-serif; }
+
+/* FOOTER */
+.footer {
+  text-align: center; margin-top: 40px; padding-top: 20px;
+  border-top: 1px solid var(--border); font-size: 0.7rem; color: var(--text-light);
+  line-height: 2;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .page { padding: 20px 16px 32px; }
+  .header { margin-bottom: 24px; padding-bottom: 16px; }
+  .header-title { font-size: 1.4rem; letter-spacing: 1px; }
+  .header-subtitle { font-size: 0.8rem; }
+  .section { margin: 24px 0; }
+  .section-title { font-size: 1.1rem; padding-left: 10px; }
+  .article-item { padding-left: 26px; margin-bottom: 6px; }
+  .article-item .num { width: 16px; height: 16px; font-size: 0.65rem; }
+  .article-item .headline { font-size: 0.8rem; }
+  .article-item .desc { font-size: 0.75rem; }
+  .article-item .source { font-size: 0.68rem; }
+  .more-toggle { font-size: 0.7rem; padding: 4px 10px; }
+  .two-col { gap: 12px; }
+  .insight-box, .gov-box { padding: 14px 16px; }
+  .insight-box .label, .gov-box .label { font-size: 0.7rem; }
+  .insight-box p { font-size: 0.78rem; }
+  .gov-item { padding-left: 6px; margin-bottom: 6px; }
+  .gov-item .gov-title { font-size: 0.78rem; }
+  .gov-item .gov-desc { font-size: 0.7rem; }
+  .footer { font-size: 0.68rem; padding-top: 16px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <span class="org">서강대학교 AIMBA 7기</span>
+      <span>2026년 4월 13일</span>
+    </div>
+    <h1 class="header-title">AIMBA Weekly Briefing</h1>
+    <p class="header-subtitle">SOGANG AI MBA 7th — AI · Business · MBA · Startup · Government · Campus</p>
+  </div>
+
+  <!-- AI·LLM -->
+  <div class="section">
+    <h2 class="section-title"><span>🤖</span> AI·LLM</h2>
+    <div class="article-grid">
+      <div class="article-item">
+        <span class="num">1</span>
+        <div class="headline">라이너, KB·대신증권 IPO 주관사 낙점…"추가 투자 유치도 검토"</div>
+        <div class="desc">AI 검색 에이전트 전문 라이너(대표 김진우)가 기업공개(IPO)를 위한 준비에 본격 착수했다.라이너는 최근 KB증권과 대신증권을 상장 공동 주관사로 최종 선정했다고 13일 밝혔다...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209181" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">2</span>
+        <div class="headline">"[피지컬 AI 2026] 베슬AI·베스핀글로벌 "피지컬 AI, 데이터·클라우드에 성공 좌우"</div>
+        <div class="desc">피지컬 AI, 데이터와 클라우드 인프라에 성공 여부가 판가름난다...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209133" target="_blank">AITIMES →</a></div>
+      </div>
+    </div>
+    <div class="more-items" id="more-ai">
+      <div class="article-item">
+        <span class="num">3</span>
+        <div class="headline">"국내 첫 1GW AIDC 시대 여나"...엘리스그룹, 동국홀딩스·GS벤처스 투자 유치</div>
+        <div class="desc">국내 최초 1GW 규모의 AI 데이터센터(AIDC) 시대가 열릴 것인지 주목된다...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209141" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">4</span>
+        <div class="headline">중국 뒤흔든 '동료 복제 AI'...인간 능력을 AI '스킬'로 추출</div>
+        <div class="desc">중국이 개발한 AI가 인간의 능력을 '스킬'로 추출해 배우는 혁신 기술을 선보였다...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209150" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">5</span>
+        <div class="headline">'미소스' 보안 공포 글로벌로 확산…영국·캐나다 정부도 대책 회의</div>
+        <div class="desc">AI 모델 '미소스'의 보안 문제가 글로벌로 확산되며, 영국과 캐나다 정부도 대책 회의를 개최했다...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209146" target="_blank">AITIMES →</a></div>
+      </div>
+    </div>
+    <button class="more-toggle" onclick="toggleMore('ai')">더보기 ▼</button>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- 비즈니스 혁신 -->
+  <div class="section">
+    <h2 class="section-title"><span>💼</span> 비즈니스 혁신</h2>
+    <div class="article-grid">
+      <div class="article-item">
+        <span class="num">1</span>
+        <div class="headline">"[4월6일] '직원 2명이 AI로 매출 2.7조'...'AI 1인 유니콘' 현실화되나"</div>
+        <div class="desc">직원 2명이 AI로 매출 2.7조 원을 달성하며, AI 1인 유니콘이 현실화되고 있다는 분석...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=208829" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">2</span>
+        <div class="headline">구글, 제미나이에 '노트북LM' 기능 탑재...'노트북LM'과 실시간 동기화</div>
+        <div class="desc">구글이 제미나이에 '노트북LM' 기능을 탑재하고, 실시간으로 노트북과 동기화하는 기능을 추가...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209014" target="_blank">AITIMES →</a></div>
+      </div>
+    </div>
+    <div class="more-items" id="more-business">
+      <div class="article-item">
+        <span class="num">3</span>
+        <div class="headline">앤트로픽, 역대 최강 '클로드 미소스' 공개…"일반 출시는 없어"</div>
+        <div class="desc">앤트로픽이 역대 최강 성능의 '클로드 미소스'를 공개했다. 일반 출시는 없다고 밝혔다...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=208904" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">4</span>
+        <div class="headline">깃허브, 에이전트 접속 폭증으로 트래픽 급증·서비스 중단 사태 발생</div>
+        <div class="desc">GitHub의 AI 에이전트 접속 폭증으로 인해 트래픽 급증과 서비스 중단 사태가 발생...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=208951" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">5</span>
+        <div class="headline">젠슨 황 "마벨 3조 투자의 핵심은 미래 먹거리 'AI-RAN' 구축"</div>
+        <div class="desc">메타 젠슨 황 CEO가 마벨에 3조 원을 투자한 핵심 이유는 미래 먹거리인 'AI-RAN' 구축이라고 밝혔다...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=208877" target="_blank">AITIMES →</a></div>
+      </div>
+    </div>
+    <button class="more-toggle" onclick="toggleMore('business')">더보기 ▼</button>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- MBA -->
+  <div class="section">
+    <h2 class="section-title"><span>🎓</span> MBA</h2>
+    <div class="article-grid">
+      <div class="article-item">
+        <span class="num">1</span>
+        <div class="headline">구글이 ‘제미나이’에 ‘노트북LM’를 실시간 동기화한 이유</div>
+        <div class="desc">구글이 왜 제미나이에 '노트북LM' 기능을 추가하고 실시간 동기화를 할까? 블로그/메모 사용자 경험 향상...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209097" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">2</span>
+        <div class="headline">"AI 시대에 회사를 떠나는 베테랑들...'능력 문제'가 아니야"</div>
+        <div class="desc">AI 시대에 회사를 떠나는 베테랑들의 공통점은 '능력 문제'가 아니라는 통찰...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=208932" target="_blank">AITIMES →</a></div>
+      </div>
+    </div>
+    <div class="more-items" id="more-mba">
+      <div class="article-item">
+        <span class="num">3</span>
+        <div class="headline">"실리콘 밸리의 유행어 '토큰 최대화'가 의미하는 것"</div>
+        <div class="desc">실리콘 밸리의 유행어인 '토큰 최대화'가 의미하는 것에 대한 깊이 있는 분석...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=208871" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">4</span>
+        <div class="headline">[AI 이슈트렌드] 종전 기대감 속 대통령 지지율·도심 늑대 출몰 등 상위권</div>
+        <div class="desc">AI 관련 이슈 트렌드 중에서도 인기 있는 상위권 이슈들을 모았다...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209114" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">5</span>
+        <div class="headline">[내면 지도 그리기] 12 Inner Mapping: 나를 찾는 지도</div>
+        <div class="desc">심리 커뮤니케이션 도구인 'Inner Mapping' 12단계로 나를 찾는 지도를 그리는 방법...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209117" target="_blank">AITIMES →</a></div>
+      </div>
+    </div>
+    <button class="more-toggle" onclick="toggleMore('mba')">더보기 ▼</button>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- 창업·VC·PE -->
+  <div class="section">
+    <h2 class="section-title"><span>🚀</span> 창업·VC·PE</h2>
+    <div class="article-grid">
+      <div class="article-item">
+        <span class="num">1</span>
+        <div class="headline">[4월6일] "직원 2명이 AI로 매출 2.7조"...'AI 1인 유니콘' 현실화되나</div>
+        <div class="desc">직원 2명이 AI로 매출 2.7조 원을 달성하며, AI 1인 유니콘이 현실화되고 있다는 분석...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=208829" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">2</span>
+        <div class="headline">첫 투자부터 상장 준비까지…4월 둘째주 투자 유치 스타트업은</div>
+        <div class="desc">4월 둘째주(6일~10일) 투자 유치를 발표한 스타트업은 피지컬 AI, 스탁키퍼, 에듀싱크, 위플로, 리비타 등 8곳...</div>
+        <div class="source"><a href="https://www.mt.co.kr/future/2026/04/12/2026041214170376097" target="_blank">MT →</a></div>
+      </div>
+    </div>
+    <div class="more-items" id="more-startup">
+      <div class="article-item">
+        <span class="num">3</span>
+        <div class="headline">"국내 첫 1GW AIDC 시대 여나"...엘리스그룹, 동국홀딩스·GS벤처스 투자 유치</div>
+        <div class="desc">국내 최초 1GW 규모의 AI 데이터센터(AIDC) 시대가 열릴 것인지 주목된다...</div>
+        <div class="source"><a href="https://www.aitimes.com/news/articleView.html?idxno=209141" target="_blank">AITIMES →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">4</span>
+        <div class="headline">2026년 지역별 창업지원사업 통합 정리</div>
+        <div class="desc">2026년 중앙부처 및 지자체 창업지원 사업을 지역별로 정리한 통합본...</div>
+        <div class="source"><a href="https://www.pinepat.com/ko/insights/columns/2026-regional-startup-support" target="_blank">PinePat →</a></div>
+      </div>
+      <div class="article-item">
+        <span class="num">5</span>
+        <div class="headline">2026 스타트업 지원 프로그램 총정리 자금부터 인프라·해외...</div>
+        <div class="desc">2026년은 스타트업에게 역대급 기회의 해. 자금부터 인프라·해외 진출까지 실질적인 지원 프로그램 정리...</div>
+        <div class="source"><a href="https://www.speedykorea.com/blog/2026-startup-support-program" target="_blank">Speedy →</a></div>
+      </div>
+    </div>
+    <button class="more-toggle" onclick="toggleMore('startup')">더보기 ▼</button>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- 정부과제·지원 -->
+  <div class="section">
+    <h2 class="section-title"><span>🏛️</span> 정부과제·지원</h2>
+    <div class="two-col">
+      <div class="gov-box">
+        <div class="label"><span style="color:var(--green)">NEW</span> 창업지원 사업공고</div>
+        <div class="gov-item">
+          <div class="gov-title"><a href="https://www.pinepat.com/ko/insights/columns/2026-regional-startup-support" target="_blank">2026년 지역별 창업지원사업 통합 정리</a></div>
+          <div class="gov-desc">중앙부처 및 지자체 창업지원사업을 지역별로 정리한 통합본</div>
+        </div>
+        <div class="gov-item">
+          <div class="gov-title"><a href="https://www.speedykorea.com/blog/2026-startup-support-program" target="_blank">2026 스타트업 지원 프로그램 총정리</a></div>
+          <div class="gov-desc">자금부터 인프라·해외 진출까지 실질적인 지원 프로그램 정리</div>
+        </div>
+      </div>
+      <div class="gov-box">
+        <div class="label"><span style="color:var(--green)">NEW</span> 정부 R&D·산학협력</div>
+        <div class="gov-item">
+          <div class="gov-title"><a href="#" target="_blank">서강대학교 AI 연구 지원 사업 공고</a></div>
+          <div class="gov-desc">서강대 캠퍼스 AI 연구 지원 사업 공지 (신규)</div>
+        </div>
+        <div class="gov-item">
+          <div class="gov-title"><a href="#" target="_blank">KAIST AI 융합 연구 지원</a></div>
+          <div class="gov-desc">KAIST AI 융합 연구 지원 프로젝트 모집</div>
+        </div>
+      </div>
+    </div>
+    <div class="insight-box">
+      <div class="label">💡 AIMBA 원우 추천 공고</div>
+      <p><strong>혁신 아이디어·창업 정보 제보 환영</strong> — SOGANG AIMBA 7기 미래혁신국 부국장 조경준이 운영하는 이 브리핑에 기업·정부·대학 공고 정보를 제보해주세요. 원우 분들이 관심 있는 내용을 선별해 발행합니다.</p>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- 서강대·campus -->
+  <div class="section">
+    <h2 class="section-title"><span>🏫</span> 서강대·campus</h2>
+    <div class="two-col">
+      <div class="gov-box" style="background: var(--bg-sogang); border-color: var(--border);">
+        <div class="label" style="color: var(--blue);">🎓 AIMBA</div>
+        <div class="gov-item" style="border-left-color: var(--blue);">
+          <div class="gov-title"><a href="#" target="_blank">AI 관련 특강/세미나 모집 안내</a></div>
+          <div class="gov-desc">서강대 AI 특강 및 세미나 일정 안내 (신규)</div>
+        </div>
+        <div class="gov-item" style="border-left-color: var(--blue);">
+          <div class="gov-title"><a href="#" target="_blank">MBA SI, AI, PRO 세미나 일정</a></div>
+          <div class="gov-desc">AIMBA 수업 및 세미나 일정 공지</div>
+        </div>
+      </div>
+      <div class="gov-box" style="background: var(--bg-sogang); border-color: var(--border);">
+        <div class="label" style="color: var(--blue);">🏫 캠퍼스 소식</div>
+        <div class="gov-item" style="border-left-color: var(--blue);">
+          <div class="gov-title"><a href="#" target="_blank">경영대학 공지사항 (AIMBA 관련)</a></div>
+          <div class="gov-desc">경영대학 공지사항에서 AIMBA 관련 내용만 필터링</div>
+        </div>
+        <div class="gov-item" style="border-left-color: var(--blue);">
+          <div class="gov-title"><a href="#" target="_blank">인공지능학과 공지</a></div>
+          <div class="gov-desc">AI 관련 특강, 세미나, 워크숍 공고</div>
+        </div>
+      </div>
+    </div>
+    <div class="insight-box">
+      <div class="label">🏫 서강대 연사 및 혜택</div>
+      <p><strong>혁신 아이디어·창업 정보 제보 환영</strong> — 서강대 캠퍼스에서 개최되는 AIMBA 관련 특강, 세미나, 연사 정보를 알려주세요. 원우 분들이 참여하고 혜택을 누릴 수 있도록 돕겠습니다.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>서강대학교 AIMBA 7기 · 미래혁신국 부국장 조경준</p>
+    <p>혁신 아이디어 · 창업 정보 제보 환영</p>
+    <p>© 2026 SOGANG AIMBA 7th</p>
+  </div>
+
+</div>
+
+<script>
+function toggleMore(id) {
+  const moreItems = document.getElementById('more-' + id);
+  const button = moreItems.previousElementSibling;
+  moreItems.classList.toggle('open');
+  button.classList.toggle('open');
+  button.textContent = moreItems.classList.contains('open') ? '접기 ▲' : '더보기 ▼';
+}
+</script>
+
+</body>
+</html>
