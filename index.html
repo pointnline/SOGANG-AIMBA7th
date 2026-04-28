@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SOGANG AIMBA 7th — Weekly Briefing</title>
-<meta name="description" content="SOGANG AI MBA 7th Weekly Briefing — AI, Business, MBA, Startup, Government, Campus News">
+<title>SOGANG AIMBA 7th Weekly Brief — AI·비즈니스·창업 인사이트 브리핑</title>
+<meta name="description" content="서강대 AIMBA 원우를 위한 AI·비즈니스·창업 인사이트 브리핑 — 뉴스를 모으는 것이 아니라, 경영자 관점에서 해석합니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
 <style>
@@ -30,21 +30,63 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 /* Header */
 .header {
   background: linear-gradient(135deg, var(--sogang) 0%, var(--sogang-dark) 100%);
-  color: white; text-align: center; padding: 36px 24px 32px; position: relative; overflow: hidden;
+  color: white; text-align: center; padding: 36px 24px 24px; position: relative; overflow: hidden;
 }
 .header::before {
   content: ''; position: absolute; inset: 0;
   background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M20 20h-4v-4h4v4zm0-20h-4v4h4V0zM0 20h4v-4H0v4z'/%3E%3C/g%3E%3C/svg%3E");
 }
 .header-content { position: relative; z-index: 1; }
-.header-top { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px; }
-.sogang-logo { width: 48px; height: 48px; object-fit: contain; }
+.header-top { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 18px; }
+.logo-lockup {
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 18px;
+  padding: 10px 16px;
+  backdrop-filter: blur(6px);
+}
+.sogang-logo {
+  width: 72px; height: 72px; object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  background: rgba(255,255,255,0.96);
+  border-radius: 14px;
+  padding: 8px;
+}
+.logo-copy { text-align: left; }
+.logo-copy .logo-kicker {
+  font-size: 0.68rem; opacity: 0.72; letter-spacing: 1.4px; text-transform: uppercase;
+}
+.logo-copy .logo-name {
+  font-family: 'Noto Serif KR', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.2; margin-top: 2px;
+}
 .org-badge {
   display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
-  padding: 3px 14px; border-radius: 20px; font-size: 0.75rem; letter-spacing: 1px;
+  padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; letter-spacing: 1px; margin-top: 6px;
 }
-.header h1 { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 900; letter-spacing: 2px; }
-.header .subtitle { font-size: 0.9rem; opacity: 0.7; margin-top: 4px; }
+.header h1 { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 900; letter-spacing: 1px; }
+.header .subtitle { font-size: 0.95rem; opacity: 0.92; margin-top: 8px; font-weight: 600; }
+.header .subcopy { font-size: 0.9rem; opacity: 0.82; margin-top: 8px; }
+.hero-quick {
+  max-width: 820px; margin: 18px auto 0; text-align: left;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 12px; padding: 16px 18px;
+}
+.hero-quick .hero-label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; opacity: 0.8; text-transform: uppercase; margin-bottom: 8px;
+}
+.hero-quick ul { margin: 0; padding-left: 18px; }
+.hero-quick li { margin: 4px 0; font-size: 0.88rem; }
+.hero-actions { margin-top: 14px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.hero-btn {
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+  padding: 10px 16px; border-radius: 999px; font-size: 0.86rem; font-weight: 700;
+  transition: all 0.2s;
+}
+.hero-btn.primary { background: white; color: var(--sogang); }
+.hero-btn.primary:hover { transform: translateY(-1px); }
+.hero-btn.secondary { background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.24); }
+.hero-btn.secondary:hover { background: rgba(255,255,255,0.18); }
 
 /* Search Bar */
 .search-bar {
@@ -163,7 +205,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .latest-banner {
   background: linear-gradient(135deg, rgba(139,0,41,0.06), rgba(139,0,41,0.02));
   border: 1px solid rgba(139,0,41,0.12); border-radius: 10px;
-  padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px;
+  padding: 16px 20px; margin-bottom: 18px; display: flex; align-items: center; gap: 12px;
 }
 .latest-banner .badge {
   background: var(--sogang); color: white; font-size: 0.65rem; font-weight: 700;
@@ -172,6 +214,61 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .latest-banner .text { font-size: 0.85rem; font-weight: 500; }
 .latest-banner .text a { color: var(--sogang); text-decoration: none; }
 .latest-banner .text a:hover { text-decoration: underline; }
+
+.featured-issue {
+  background: linear-gradient(135deg, #fffdf9 0%, #f7f0e6 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 24px rgba(139,0,41,0.05);
+}
+.featured-kicker {
+  font-size: 0.72rem; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--sogang); margin-bottom: 10px;
+}
+.featured-vol {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  font-size: 0.8rem; font-weight: 700; color: var(--text-body);
+}
+.featured-vol .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); display: inline-block; }
+.featured-title {
+  font-family: 'Noto Serif KR', serif; font-size: 1.45rem; font-weight: 700; line-height: 1.4; margin-bottom: 10px;
+}
+.featured-summary {
+  font-size: 0.95rem; color: var(--text-body); margin-bottom: 14px;
+}
+.featured-meta {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;
+}
+.meta-chip {
+  padding: 7px 12px; border-radius: 999px; background: rgba(139,0,41,0.06); border: 1px solid rgba(139,0,41,0.1);
+  color: var(--sogang); font-size: 0.78rem; font-weight: 700;
+}
+.featured-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.featured-btn {
+  display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+  padding: 10px 16px; border-radius: 999px; font-size: 0.86rem; font-weight: 700;
+}
+.featured-btn.primary { background: var(--sogang); color: white; }
+.featured-btn.secondary { background: white; color: var(--text); border: 1px solid var(--border); }
+
+.insight-box {
+  background: linear-gradient(135deg, rgba(26,82,118,0.06), rgba(45,106,79,0.04));
+  border: 1px solid rgba(26,82,118,0.12);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.insight-label {
+  font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.4px;
+  color: var(--blue); margin-bottom: 10px;
+}
+.insight-title {
+  font-family: 'Noto Serif KR', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 10px;
+}
+.insight-list { padding-left: 18px; color: var(--text-body); }
+.insight-list li { margin: 7px 0; }
 
 /* Section Title */
 .section-label {
@@ -195,10 +292,18 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .main { padding: 16px 12px; }
   .header { padding: 24px 16px 20px; }
   .header-top { gap: 8px; margin-bottom: 12px; }
-  .sogang-logo { width: 36px; height: 36px; }
+  .logo-lockup { gap: 10px; padding: 8px 10px; border-radius: 14px; }
+  .sogang-logo { width: 56px; height: 56px; border-radius: 12px; padding: 6px; }
+  .logo-copy .logo-kicker { font-size: 0.62rem; }
+  .logo-copy .logo-name { font-size: 0.88rem; }
   .header h1 { font-size: 1.4rem; letter-spacing: 1px; }
-  .header .subtitle { font-size: 0.78rem; }
-  .org-badge { font-size: 0.68rem; padding: 2px 10px; }
+  .header .subtitle { font-size: 0.84rem; }
+  .header .subcopy { font-size: 0.8rem; }
+  .hero-quick { margin-top: 14px; padding: 12px 14px; text-align: left; }
+  .hero-quick li { font-size: 0.8rem; }
+  .hero-actions { margin-top: 10px; }
+  .hero-btn { width: 100%; justify-content: center; }
+  .org-badge { font-size: 0.68rem; padding: 2px 10px; margin-top: 4px; }
   .vol-card { margin-bottom: 14px; }
   .vol-card-header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 16px; }
   .vol-card-header .date { font-size: 1rem; }
@@ -209,6 +314,12 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .trend-chip { padding: 7px 10px; font-size: 0.76rem; }
   .latest-banner { padding: 12px 14px; gap: 8px; flex-wrap: wrap; }
   .latest-banner .text { font-size: 0.8rem; }
+  .featured-issue { padding: 18px 16px; }
+  .featured-title { font-size: 1.15rem; }
+  .featured-summary { font-size: 0.86rem; }
+  .featured-btn { width: 100%; justify-content: center; }
+  .insight-box { padding: 16px 14px; }
+  .insight-title { font-size: 1rem; }
   .section-label { font-size: 0.7rem; margin-bottom: 10px; }
   .footer { font-size: 0.7rem; padding: 24px 12px; }
   .search-bar { margin: 15px 16px 0; }
@@ -221,11 +332,32 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 <div class="header">
   <div class="header-content">
     <div class="header-top">
-      <img src="https://www.sogang.ac.kr/sites/default/files/sogang_logo.png" alt="서강대학교 로고" class="sogang-logo">
-      <div class="org-badge">AIMBA 7기</div>
+      <div class="logo-lockup">
+        <img src="https://www.sogang.ac.kr/sites/default/files/sogang_logo.png" alt="서강대학교 로고" class="sogang-logo">
+        <div class="logo-copy">
+          <div class="logo-kicker">Sogang University</div>
+          <div class="logo-name">서강대학교 AIMBA 7기</div>
+          <div class="org-badge">미래혁신국 Weekly Brief</div>
+        </div>
+      </div>
     </div>
-    <h1>AIMBA Weekly Briefing</h1>
-    <p class="subtitle">SOGANG AI MBA 7th — AI · Business · MBA · Startup · Government · Campus</p>
+    <h1>SOGANG AIMBA 7th Weekly Brief</h1>
+    <p class="subtitle">서강대 AIMBA 원우를 위한 AI·비즈니스·창업 인사이트 브리핑</p>
+    <p class="subcopy">뉴스를 모으는 것이 아니라, 경영자 관점에서 해석합니다.</p>
+
+    <div class="hero-quick">
+      <div class="hero-label">This Week's Signals</div>
+      <ul>
+        <li>이번 주 꼭 봐야 할 AI·비즈니스·창업 흐름만 압축합니다.</li>
+        <li>AIMBA 원우와 실무자 관점에서 왜 중요한지까지 함께 정리합니다.</li>
+        <li>최신호 중심으로 빠르게 훑고, 아카이브에서 깊게 따라갈 수 있습니다.</li>
+      </ul>
+    </div>
+
+    <div class="hero-actions">
+      <a class="hero-btn primary" href="issues/vol_20260413.html">📰 최신호 보기</a>
+      <a class="hero-btn secondary" href="#volList">📚 아카이브 보기</a>
+    </div>
   </div>
 </div>
 
@@ -236,37 +368,47 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 
 <div class="layout">
   <!-- LEFT SIDEBAR — 섹터 바로가기 -->
-  <nav class="sidebar">
-    <div class="sidebar-label">정렬 & 필터</div>
+  <nav class="sidebar" id="sectorNav">
+    <div class="sidebar-label">Brief Filters</div>
     <ul class="sidebar-nav">
       <li><a href="#" data-sort="latest"><span class="emoji">📅</span> 최신순</a></li>
       <li><a href="#" data-sort="oldest"><span class="emoji">🕐</span> 오래된순</a></li>
       <div class="sidebar-divider"></div>
       <li><a href="#" data-filter="all"><span class="emoji">📂</span> 전체보기</a></li>
       <li><a href="#" data-filter="ai"><span class="emoji">🤖</span> AI·LLM</a></li>
-      <li><a href="#" data-filter="business"><span class="emoji">💼</span> 비즈니스 혁신</a></li>
-      <li><a href="#" data-filter="mba"><span class="emoji">🎓</span> MBA</a></li>
-      <li><a href="#" data-filter="startup"><span class="emoji">🚀</span> 창업·VC·PE</a></li>
-      <li><a href="#" data-filter="government"><span class="emoji">🏛️</span> 정부과제·지원</a></li>
-      <li><a href="#" data-filter="campus"><span class="emoji">🏫</span> 서강대·campus</a></li>
+      <li><a href="#" data-filter="business"><span class="emoji">💼</span> Business & Strategy</a></li>
+      <li><a href="#" data-filter="mba"><span class="emoji">🎓</span> MBA Insight</a></li>
+      <li><a href="#" data-filter="startup"><span class="emoji">🚀</span> Startup & Capital</a></li>
+      <li><a href="#" data-filter="government"><span class="emoji">🏛️</span> Startup & Policy</a></li>
+      <li><a href="#" data-filter="campus"><span class="emoji">🏫</span> AIMBA & Campus</a></li>
     </ul>
     <div class="sidebar-divider"></div>
     <div class="sidebar-note">
-      💡 섹터/정렬 클릭 시<br>필터링 또는 정렬 변경
+      💡 최신호 중심으로 훑고,<br>카테고리별로 다시 읽을 수 있습니다.
     </div>
   </nav>
 
   <!-- RIGHT — 발간물 아카이브 -->
   <div class="main">
     <div id="latestBanner"></div>
-    <div class="section-label">📰 Weekly Briefing · <span id="totalCount">0</span>호</div>
+    <div id="featuredIssue"></div>
+    <div class="insight-box">
+      <div class="insight-label">AIMBA Insight</div>
+      <div class="insight-title">이번 주 흐름은 ‘뉴스’보다 ‘해석’이 중요합니다.</div>
+      <ul class="insight-list">
+        <li>AI 경쟁의 핵심은 기능 비교보다 <strong>실제 조직 도입 속도</strong>입니다.</li>
+        <li>MBA 원우에게 중요한 것은 새로운 툴 자체보다 <strong>현업 적용 판단력</strong>입니다.</li>
+        <li>창업과 사업화 관점에서는 모델 성능보다 <strong>distribution과 execution</strong>이 더 중요합니다.</li>
+      </ul>
+    </div>
+    <div class="section-label">📰 Latest Brief & Archive · <span id="totalCount">0</span> issues</div>
     <div id="volList"></div>
   </div>
 </div>
 
 <div class="footer">
-  서강대학교 AIMBA 7기 · 미래혁신국 부국장 조경준<br>
-  혁신 아이디어 · 창업 정보 제보 환영<br>
+  SOGANG AIMBA 7th Weekly Brief · 미래혁신국 큐레이션 브리핑<br>
+  AI · Business · Startup · MBA Insight<br>
   © 2026 SOGANG AIMBA 7th
 </div>
 
@@ -275,6 +417,13 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 // ISSUE MANIFEST — updated by cron
 // ══════════════════════════════════════════
 const issues = [
+  {
+    vol: 3,
+    date: "2026-04-13",
+    headline: "라이너 IPO 주관사 낙점, AI 1인 유니콘 2.7조, 엘리스 AIDC 1GW, '미소스' 보안 문제 해결 TF...",
+    path: "issues/vol_20260413.html",
+    sectors: { ai: 5, business: 5, mba: 5, startup: 5, government: 4, campus: 8 }
+  },
   {
     vol: 2,
     date: "2026-04-04",
@@ -293,22 +442,22 @@ const issues = [
 
 // 섹터 매핑 (데이터베이스 필드 → 레이블)
 const sectorMap = {
-  ai: "AI·LLM",
-  business: "비즈니스",
-  mba: "MBA",
-  startup: "창업·VC·PE",
-  government: "정부과제·지원",
-  campus: "서강대·campus"
+  ai: "AI & LLM",
+  business: "Business & Strategy",
+  mba: "MBA Insight",
+  startup: "Startup & Capital",
+  government: "Startup & Policy",
+  campus: "AIMBA & Campus"
 };
 
 // 섹터 메타데이터
 const sectorMeta = {
-  ai: { emoji: "🤖", label: "AI·LLM", anchor: "ai" },
-  business: { emoji: "💼", label: "비즈니스", anchor: "business" },
-  mba: { emoji: "🎓", label: "MBA", anchor: "mba" },
-  startup: { emoji: "🚀", label: "창업·VC·PE", anchor: "startup" },
-  government: { emoji: "🏛️", label: "정부과제", anchor: "government" },
-  campus: { emoji: "🏫", label: "서강대", anchor: "campus" },
+  ai: { emoji: "🤖", label: "AI & LLM", anchor: "ai" },
+  business: { emoji: "💼", label: "Business & Strategy", anchor: "business" },
+  mba: { emoji: "🎓", label: "MBA Insight", anchor: "mba" },
+  startup: { emoji: "🚀", label: "Startup & Capital", anchor: "startup" },
+  government: { emoji: "🏛️", label: "Startup & Policy", anchor: "government" },
+  campus: { emoji: "🏫", label: "AIMBA & Campus", anchor: "campus" },
 };
 
 // 트렌드 매핑 (데이터베이스 필드 → 레이블)
@@ -401,13 +550,30 @@ function render() {
 
   renderVolList(sorted);
 
-  // 최신 배너
+  // 최신 배너 + Featured 영역
   if (sorted.length > 0) {
     const latest = sorted[0];
     document.getElementById('latestBanner').innerHTML = `
       <div class="latest-banner">
-        <span class="badge">NEW</span>
-        <span class="text">최신호: <a href="${latest.path}"><strong>Vol.${String(latest.vol).padStart(3,'0')}</strong> — ${latest.date}</a></span>
+        <span class="badge">LATEST</span>
+        <span class="text">이번 주 브리핑: <a href="${latest.path}"><strong>Vol.${String(latest.vol).padStart(3,'0')}</strong> — ${latest.date}</a></span>
+      </div>`;
+
+    document.getElementById('featuredIssue').innerHTML = `
+      <div class="featured-issue">
+        <div class="featured-kicker">Featured Latest Brief</div>
+        <div class="featured-vol">Vol.${String(latest.vol).padStart(3,'0')} <span class="dot"></span> ${latest.date}</div>
+        <div class="featured-title">이번 주 꼭 봐야 할 AIMBA 브리핑</div>
+        <div class="featured-summary">${latest.headline}</div>
+        <div class="featured-meta">
+          <span class="meta-chip">AI & LLM</span>
+          <span class="meta-chip">Business & Strategy</span>
+          <span class="meta-chip">AIMBA Insight</span>
+        </div>
+        <div class="featured-actions">
+          <a class="featured-btn primary" href="${latest.path}">📰 최신호 읽기</a>
+          <a class="featured-btn secondary" href="#volList">📚 지난 호 보기</a>
+        </div>
       </div>`;
   }
 }
