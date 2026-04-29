@@ -38,31 +38,16 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 }
 .header-content { position: relative; z-index: 1; }
 .header-top { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 18px; }
-.logo-lockup {
-  display: flex; align-items: center; gap: 14px;
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 18px;
-  padding: 10px 16px;
-  backdrop-filter: blur(6px);
+.header-brand {
+  display:flex; align-items:center; justify-content:center; gap:16px;
+  margin-bottom: 10px;
 }
-.sogang-logo {
-  width: 72px; height: 72px; object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
-  background: rgba(255,255,255,0.96);
-  border-radius: 14px;
-  padding: 8px;
-}
-.logo-copy { text-align: left; }
-.logo-copy .logo-kicker {
-  font-size: 0.68rem; opacity: 0.72; letter-spacing: 1.4px; text-transform: uppercase;
-}
-.logo-copy .logo-name {
-  font-family: 'Noto Serif KR', serif; font-size: 1.05rem; font-weight: 700; line-height: 1.2; margin-top: 2px;
-}
-.org-badge {
-  display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
-  padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; letter-spacing: 1px; margin-top: 6px;
+.sogang-mark {
+  width: 150px;
+  max-width: 34vw;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,0.16));
 }
 .header h1 { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 900; letter-spacing: 1px; }
 .header .subtitle { font-size: 0.95rem; opacity: 0.92; margin-top: 8px; font-weight: 600; }
@@ -332,7 +317,10 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 <div class="header">
   <div class="header-content">
     <div class="header-top"></div>
-    <h1>SOGANG AIMBA 7th Weekly Brief</h1>
+    <div class="header-brand">
+      <img src="assets/sogang/sogang-symbol.png" alt="서강대학교 로고" class="sogang-mark">
+      <h1>SOGANG AIMBA 7th Weekly Brief</h1>
+    </div>
     <p class="subtitle">서강대 AIMBA 원우를 위한 AI·비즈니스·창업 인사이트 브리핑</p>
     <p class="subcopy">뉴스를 모으는 것이 아니라, 경영자 관점에서 해석합니다.</p>
 
