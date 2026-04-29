@@ -443,6 +443,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
       <li><a href="#" data-filter="mba"><span class="moon-badge">🟡🌙</span> MBA Insight</a></li>
       <li><a href="#" data-filter="startup"><span class="moon-badge">🟠🌙</span> Startup</a></li>
       <li><a href="#" data-filter="campus"><span class="moon-badge">🩵🌙</span> AIMBA & Campus</a></li>
+      <li><a href="issues/vol_20260428.html#events"><span class="moon-badge">🟡🌙</span> AI Events</a></li>
       <li><a href="/SOGANG-AIMBA7th/issues/museum.html"><span class="moon-badge">🩷🌙</span> S.A Museum</a></li>
     </ul>
     <div class="sidebar-divider"></div>
@@ -498,6 +499,7 @@ const issues = [
       conclusion: "결론적으로 이번 흐름의 승부처는 누가 더 빨리 기술을 <strong>현업의 생산성</strong>으로 전환하느냐입니다."
     },
     path: "issues/vol_20260428.html",
+    eventPath: "issues/vol_20260428.html#events",
     sectors: { ai: 5, business: 4, mba: 4, startup: 3, government: 3, campus: 3 }
   },
   {
@@ -784,7 +786,7 @@ function renderVolList(issuesToRender, query = '') {
         <div class="vol-card-body">
           <div class="headline">${issue.headline || ''}</div>
           ${issue.memo ? `<a class="weekly-memo" href="${issue.path}"><div class="weekly-memo-kicker">Total Narrative Memo</div><div class="weekly-memo-lines">${issue.memo.lines.map(line => `<div class="weekly-memo-line">${line}</div>`).join('')}</div><div class="weekly-memo-conclusion"><strong>Conclusion.</strong> ${issue.memo.conclusion}</div></a>` : ''}
-          <div class="trend-grid">${chips}</div>
+          <div class="trend-grid">${chips}${issue.eventPath ? `<a class="trend-chip" href="${issue.eventPath}"><span class="chip-emoji">🟡🌙</span><span class="chip-label">AI Events</span><span class="chip-count">바로가기</span></a>` : ''}</div>
         </div>
       </div>`;
   });
