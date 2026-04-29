@@ -106,6 +106,17 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   background: var(--bg-sidebar); border-right: 1px solid var(--border);
   padding: 24px 0; position: sticky; top: 0; height: fit-content; max-height: 100vh; overflow-y: auto;
 }
+.sidebar-badge {
+  padding: 0 16px 12px;
+  display:flex;
+  justify-content:center;
+}
+.sidebar-badge img {
+  width: 88px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.95;
+}
 .sidebar-label {
   font-size: 0.65rem; font-weight: 700; color: var(--text-light); text-transform: uppercase;
   letter-spacing: 2px; padding: 0 16px; margin-bottom: 8px;
@@ -335,6 +346,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 <div class="layout">
   <!-- LEFT SIDEBAR — 섹터 바로가기 -->
   <nav class="sidebar" id="sectorNav">
+    <div class="sidebar-badge">
+      <img src="assets/sogang/알바트로스새2.png" alt="서강대학교 로고">
+    </div>
     <div class="sidebar-label">Brief Filters</div>
     <ul class="sidebar-nav">
       <li><a href="#" data-sort="latest"><span class="emoji">📅</span> 최신순</a></li>
