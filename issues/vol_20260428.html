@@ -52,6 +52,24 @@ body {
 .section { margin: 32px 0; }
 .section-title { font-family: 'Noto Serif KR', serif; font-size: 1.25rem; font-weight: 700; color: var(--sogang); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; border-left: 4px solid var(--sogang); padding-left: 12px; }
 .section-divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+.newspaper-panel {
+  background: linear-gradient(180deg, #fbf7ef 0%, #f7f1e6 100%);
+  border: 1px solid #e1d6c3;
+  border-radius: 14px;
+  padding: 22px 20px 18px;
+  box-shadow: 0 6px 18px rgba(90,0,26,0.04);
+  position: relative;
+  overflow: hidden;
+}
+.newspaper-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(139,0,41,0.03), transparent 28%),
+              radial-gradient(circle at bottom right, rgba(201,168,76,0.05), transparent 24%);
+  pointer-events: none;
+}
+.newspaper-panel > * { position: relative; z-index: 1; }
 
 /* ARTICLE GRID */
 .article-grid {
@@ -276,7 +294,7 @@ body {
   </div>
 
   <!-- AI·LLM -->
-  <div class="section">
+  <div class="section newspaper-panel">
     <h2 class="section-title" id="ai"><span>🤖</span> AI·LLM</h2>
     <div class="article-grid">
       <div class="article-item">
@@ -318,7 +336,7 @@ body {
   <hr class="section-divider">
 
   <!-- 비즈니스 혁신 -->
-  <div class="section">
+  <div class="section newspaper-panel">
     <h2 class="section-title" id="business"><span>💼</span> 비즈니스 혁신</h2>
     <div class="article-grid">
       <div class="article-item">
@@ -360,7 +378,7 @@ body {
   <hr class="section-divider">
 
   <!-- MBA -->
-  <div class="section">
+  <div class="section newspaper-panel">
     <h2 class="section-title" id="mba"><span>🎓</span> MBA</h2>
     <div class="article-grid">
       <div class="article-item">
@@ -402,7 +420,7 @@ body {
   <hr class="section-divider">
 
   <!-- 창업·VC·PE -->
-  <div class="section">
+  <div class="section newspaper-panel">
     <h2 class="section-title" id="startup"><span>🚀</span> 창업·VC·PE</h2>
     <div class="article-grid">
       <div class="article-item">
