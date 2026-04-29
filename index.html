@@ -523,7 +523,7 @@ const sectorMap = {
   business: "Business & Strategy",
   mba: "MBA Insight",
   startup: "Startup",
-  government: "Startup",
+  government: null,
   campus: "AIMBA & Campus"
 };
 
@@ -533,7 +533,7 @@ const sectorMeta = {
   business: { emoji: "💼", label: "Business & Strategy", anchor: "business" },
   mba: { emoji: "🎓", label: "MBA Insight", anchor: "mba" },
   startup: { emoji: "🚀", label: "Startup", anchor: "startup" },
-  government: { emoji: "🚀", label: "Startup", anchor: "startup" },
+  government: { emoji: "🚀", label: "Startup", anchor: null },
   campus: { emoji: "🏫", label: "AIMBA & Campus", anchor: "campus" },
 };
 
@@ -646,10 +646,7 @@ function render() {
   if (sorted.length > 0) {
     const latest = sorted[0];
     document.getElementById('latestBanner').innerHTML = `
-      <div class="latest-banner">
-        <span class="badge">LATEST</span>
-        <span class="text">이번 주 브리핑: <a href="${latest.path}"><strong>Vol.${String(latest.vol).padStart(3,'0')}</strong> — ${latest.date}</a></span>
-      </div>`;
+      <div class="latest-banner" style="display:none;"></div>`;
 
   }
 }
