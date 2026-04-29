@@ -112,7 +112,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   justify-content:center;
 }
 .sidebar-badge img {
-  width: 88px;
+  width: 112px;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
@@ -182,6 +182,30 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 
 .vol-card-body { padding: 20px 24px; }
 .vol-card-body .headline { font-size: 0.9rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
+.weekly-memo {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(139,0,41,0.04), rgba(139,0,41,0.015));
+  border: 1px solid rgba(139,0,41,0.10);
+  border-radius: 10px;
+}
+.weekly-memo-kicker {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--sogang);
+  margin-bottom: 8px;
+}
+.weekly-memo-text {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text-body);
+}
+.weekly-memo-text strong {
+  color: var(--sogang);
+  font-weight: 800;
+}
 
 /* Trend Tags */
 .trend-grid {
@@ -434,6 +458,7 @@ const issues = [
     vol: 4,
     date: "2026-04-28",
     headline: "AI 도입 경쟁은 이제 모델 비교보다 조직 적용 속도로 이동 중...",
+    memo: "이번 주는 <strong>AI 경쟁의 기준</strong>이 모델 성능이 아니라 <strong>조직 적용 속도</strong>로 이동했다는 점이 핵심입니다.<br><strong>대기업의 실무 도입</strong>, <strong>스타트업의 수익화 압박</strong>, <strong>MBA 관점의 실행 조직화</strong>가 한 흐름으로 묶였고, 결국 승부는 누가 더 빨리 현업에 붙이느냐로 좁혀졌습니다.",
     path: "issues/vol_20260428.html",
     sectors: { ai: 5, business: 4, mba: 4, startup: 3, government: 3, campus: 3 }
   },
@@ -441,6 +466,7 @@ const issues = [
     vol: 3,
     date: "2026-04-13",
     headline: "라이너 IPO 주관사 낙점, AI 1인 유니콘 2.7조, 엘리스 AIDC 1GW, '미소스' 보안 문제 해결 TF...",
+    memo: "이번 주 내러티브는 <strong>AI 인프라 확장</strong>과 <strong>수익모델 현실화</strong>가 동시에 진행됐다는 점입니다.<br><strong>라이너 IPO</strong>, <strong>엘리스의 AIDC</strong>, <strong>보안 이슈 대응</strong>이 이어지며 시장은 성장성보다 <strong>지속 가능한 실행력</strong>을 더 예민하게 보기 시작했습니다.",
     path: "issues/vol_20260413.html",
     sectors: { ai: 5, business: 5, mba: 5, startup: 5, government: 4, campus: 8 }
   },
@@ -448,6 +474,7 @@ const issues = [
     vol: 2,
     date: "2026-04-04",
     headline: "구글 젬마4 공개, 에이전틱 AI 얼라이언스 출범, 글로벌 VC $2970억 역대 최대, RWA $276억 돌파...",
+    memo: "이 주간의 키워드는 <strong>에이전틱 AI</strong>와 <strong>자본시장 재확장</strong>입니다.<br><strong>Gemma 4</strong> 공개, <strong>글로벌 VC 확대</strong>, <strong>RWA 급성장</strong>이 겹치며 기술 뉴스가 곧바로 투자 문법으로 번역되는 구간이 시작됐습니다.",
     path: "issues/vol_20260404.html",
     sectors: { ai: 5, business: 5, mba: 5, startup: 5, government: 5, campus: 4 }
   },
@@ -455,6 +482,7 @@ const issues = [
     vol: 1,
     date: "2026-03-28",
     headline: "Claude Opus 4 출시, 1인 소프트웨어 팩토리 시대, BlackRock RWA $2B, 서울 매수심리 상승...",
+    memo: "첫 호의 무드는 <strong>개인 생산성의 구조적 점프</strong>였습니다.<br><strong>Claude Opus 4</strong>, <strong>1인 소프트웨어 팩토리</strong>, <strong>RWA 확대</strong>가 함께 등장하면서 개인·조직·자본시장이 동시에 재구성되는 출발점이 보였습니다.",
     path: "issues/vol_20260328.html",
     sectors: { ai: 5, business: 5, mba: 5, startup: 5, government: 5, campus: 6 }
   }
@@ -690,6 +718,7 @@ function renderVolList(issuesToRender, query = '') {
         </div>
         <div class="vol-card-body">
           <div class="headline">${issue.headline || ''}</div>
+          ${issue.memo ? `<div class="weekly-memo"><div class="weekly-memo-kicker">Total Narrative Memo</div><div class="weekly-memo-text">${issue.memo}</div></div>` : ''}
           <div class="trend-grid">${chips}</div>
         </div>
       </div>`;
