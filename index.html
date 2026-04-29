@@ -77,6 +77,19 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .search-bar {
   max-width: 600px; margin: 20px auto 0; position: relative; z-index: 10;
 }
+.sidebar-search {
+  max-width: none;
+  margin: 0 16px;
+}
+.sidebar-search .search-input {
+  background: #fff;
+  border-color: var(--border);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  font-size: 0.84rem;
+}
+.sidebar-search .search-icon {
+  color: var(--text-light);
+}
 .search-input {
   width: 100%; padding: 12px 20px 12px 48px;
   border: 2px solid rgba(255,255,255,0.3);
@@ -181,11 +194,11 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .vol-card-header .left {}
 .vol-card-header .center-title {
   text-align: center;
-  font-size: 0.94rem;
-  font-weight: 800;
+  font-size: 1.08rem;
+  font-weight: 900;
   letter-spacing: 0.2px;
-  line-height: 1.4;
-  color: rgba(255,255,255,0.94);
+  line-height: 1.35;
+  color: rgba(255,255,255,0.96);
 }
 .vol-card-header .vol { font-size: 0.7rem; opacity: 0.6; letter-spacing: 1px; text-transform: uppercase; }
 .vol-card-header .date { font-family: 'Noto Serif KR', serif; font-size: 1.2rem; font-weight: 700; margin-top: 2px; }
@@ -438,6 +451,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .filter-tags { justify-content: flex-start; }
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -454,11 +468,6 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   </div>
 </div>
 
-<div class="search-bar">
-  <span class="search-icon">🔍</span>
-  <input type="text" class="search-input" id="searchInput" placeholder="검색어를 입력하세요 (AI, 비즈니스, MBA, 창업...)">
-</div>
-
 <div class="layout">
   <!-- LEFT SIDEBAR — 섹터 바로가기 -->
   <nav class="sidebar" id="sectorNav">
@@ -467,9 +476,6 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
     </div>
     <div class="sidebar-label">Brief Filters</div>
     <ul class="sidebar-nav">
-      <li><a href="#" data-sort="latest"><span class="moon-badge">🔴</span> 최신순</a></li>
-      <li><a href="#" data-sort="oldest"><span class="moon-badge">🟠</span> 오래된순</a></li>
-      <div class="sidebar-divider"></div>
       <li><a href="#" data-filter="all"><span class="moon-badge">🟢</span> 전체보기</a></li>
       <li><a href="#" data-filter="ai"><span class="moon-badge">🔵</span> AI·LLM</a></li>
       <li><a href="#" data-filter="business"><span class="moon-badge">🟣</span> Business & Strategy</a></li>
@@ -480,8 +486,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
       <li><a href="/SOGANG-AIMBA7th/issues/museum.html"><span class="moon-badge">🩷</span> S.A Museum</a></li>
     </ul>
     <div class="sidebar-divider"></div>
-    <div class="sidebar-note">
-      💡 최신호 중심으로 훑고,<br>카테고리별로 다시 읽을 수 있습니다.
+    <div class="search-bar sidebar-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="searchInput" placeholder="검색어를 입력하세요 (AI, 비즈니스, MBA, 창업...)">
     </div>
     <div class="sidebar-divider"></div>
     <div style="padding: 0 16px 8px; display:grid; gap:8px;">
@@ -514,7 +521,7 @@ const issues = [
   {
     vol: 4,
     date: "2026-04-28",
-    narrativeTitle: "AI 경쟁의 승부처는 조직 적용 속도",
+    narrativeTitle: "AI 승부처, 이제 모델이 아니라 조직 적용 속도다",
     headline: "AI 도입 경쟁은 이제 모델 비교보다 조직 적용 속도로 이동 중...",
     memo: {
       lines: [
@@ -530,7 +537,7 @@ const issues = [
   {
     vol: 3,
     date: "2026-04-13",
-    narrativeTitle: "AI 시장은 확장보다 버티는 구조를 본다",
+    narrativeTitle: "AI 시장, 확장보다 "버티는 구조"에 점수 주기 시작",
     headline: "라이너 IPO 주관사 낙점, AI 1인 유니콘 2.7조, 엘리스 AIDC 1GW, '미소스' 보안 문제 해결 TF...",
     memo: {
       lines: [
@@ -545,7 +552,7 @@ const issues = [
   {
     vol: 2,
     date: "2026-04-04",
-    narrativeTitle: "기술 서사와 자본 서사가 다시 붙었다",
+    narrativeTitle: "기술과 자본, 다시 한 배를 탔다",
     headline: "구글 젬마4 공개, 에이전틱 AI 얼라이언스 출범, 글로벌 VC $2970억 역대 최대, RWA $276억 돌파...",
     memo: {
       lines: [
@@ -560,7 +567,7 @@ const issues = [
   {
     vol: 1,
     date: "2026-03-28",
-    narrativeTitle: "개인 생산성이 곧 경쟁력이 되는 출발점",
+    narrativeTitle: "1인 생산성 폭발, 경쟁력의 공식이 바뀌기 시작했다",
     headline: "Claude Opus 4 출시, 1인 소프트웨어 팩토리 시대, BlackRock RWA $2B, 서울 매수심리 상승...",
     memo: {
       lines: [
@@ -657,6 +664,10 @@ const trendMap = {
   crypto: "블록체인·RWA",
   economy: "경제·금융"
 };
+
+const SUPABASE_URL = 'https://lorcsmsbyqalbtbyoyzh.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_xCuNXY2WjvVK6l-85nkfNg_dBd6NWx_';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // 필터 및 정렬 상태
 let currentFilter = 'all';
@@ -853,26 +864,71 @@ function shareIssue(path, headline) {
   }
 }
 
-function initReactions() {
-  const store = JSON.parse(localStorage.getItem('aimba-reactions-v1') || '{}');
+async function initReactions() {
+  const localStore = JSON.parse(localStorage.getItem('aimba-reactions-v1') || '{}');
+  const issueIds = [...new Set(Array.from(document.querySelectorAll('.reaction-btn')).map(btn => btn.dataset.key))];
+
+  let statsMap = {};
+  try {
+    const { data, error } = await supabaseClient
+      .from('weekly_issue_stats')
+      .select('issue_id, views, likes, checks')
+      .in('issue_id', issueIds);
+    if (error) throw error;
+    statsMap = Object.fromEntries((data || []).map(row => [row.issue_id, row]));
+  } catch (err) {
+    console.error('Supabase stats load failed:', err);
+  }
+
   document.querySelectorAll('.reaction-btn').forEach(btn => {
     const reaction = btn.dataset.reaction;
     const key = btn.dataset.key;
     const fullKey = `${key}:${reaction}`;
     const countEl = btn.querySelector('span');
-    const active = !!store[fullKey];
-    if (active) {
-      btn.classList.add('active');
-      countEl.textContent = '1';
-    }
-    btn.addEventListener('click', () => {
-      const next = !store[fullKey];
-      store[fullKey] = next;
+    const row = statsMap[key] || { views: 0, likes: 0, checks: 0 };
+    const fieldMap = { view: 'views', like: 'likes', check: 'checks' };
+    const field = fieldMap[reaction];
+    countEl.textContent = row[field] ?? 0;
+
+    const active = !!localStore[fullKey];
+    if (active && reaction !== 'view') btn.classList.add('active');
+
+    btn.addEventListener('click', async () => {
+      if (reaction === 'view') return;
+      const next = !localStore[fullKey];
+      localStore[fullKey] = next;
       btn.classList.toggle('active', next);
-      countEl.textContent = next ? '1' : '0';
-      localStorage.setItem('aimba-reactions-v1', JSON.stringify(store));
+      localStorage.setItem('aimba-reactions-v1', JSON.stringify(localStore));
+
+      try {
+        const { data, error } = await supabaseClient.rpc('increment_weekly_issue_stat', {
+          p_issue_id: key,
+          p_field: field,
+          p_delta: next ? 1 : -1
+        });
+        if (error) throw error;
+        if (typeof data === 'number') countEl.textContent = data;
+      } catch (err) {
+        console.error('Reaction update failed:', err);
+      }
     });
   });
+
+  const viewed = JSON.parse(localStorage.getItem('aimba-viewed-v1') || '{}');
+  for (const issueId of issueIds) {
+    if (viewed[issueId]) continue;
+    try {
+      await supabaseClient.rpc('increment_weekly_issue_stat', {
+        p_issue_id: issueId,
+        p_field: 'views',
+        p_delta: 1
+      });
+      viewed[issueId] = true;
+    } catch (err) {
+      console.error('View increment failed:', err);
+    }
+  }
+  localStorage.setItem('aimba-viewed-v1', JSON.stringify(viewed));
 }
 
 initReactions();
