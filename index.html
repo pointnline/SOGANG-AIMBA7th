@@ -932,7 +932,9 @@ async function initReactions() {
 }
 
 render();
-initReactions();
+setTimeout(() => {
+  initReactions();
+}, 0);
 </script>
 </body>
 </html>
