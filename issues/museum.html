@@ -14,6 +14,11 @@
 .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.art-card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.18)}.art-image{aspect-ratio:4/3;background:#111;overflow:hidden}.art-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s ease}.art-card:hover .art-image img{transform:scale(1.03)}.art-body{padding:18px 18px 20px}.meta{font-size:.72rem;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}.art-card h3{font-size:1rem;margin-bottom:6px}.art-card p{font-size:.9rem;color:var(--muted)}
 .dual{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;margin-top:28px}.panel{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));border:1px solid var(--line);border-radius:24px;padding:28px}.quote{font-family:'Cormorant Garamond',serif;font-size:2rem;color:#f3e7ca;line-height:1.2;margin-bottom:18px}.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.mini{border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px;background:rgba(109,15,42,.14)}.mini h4{font-size:.9rem;margin-bottom:6px}.mini p{font-size:.84rem;color:var(--muted)}.footer-link{margin-top:24px;display:inline-flex;text-decoration:none;color:var(--gold);font-weight:700;border-bottom:1px solid rgba(201,168,76,.35);padding-bottom:2px}
 .links{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}.pill{display:inline-flex;padding:10px 14px;border-radius:999px;text-decoration:none;font-size:.82rem;font-weight:700;border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.03)}
+.art-card{cursor:zoom-in}
+.modal-backdrop{position:fixed;inset:0;background:rgba(5,5,8,.82);display:none;align-items:center;justify-content:center;padding:24px;z-index:9999;backdrop-filter:blur(8px)}
+.modal-backdrop.open{display:flex}
+.modal-shell{max-width:min(1100px,96vw);max-height:92vh;background:#101018;border:1px solid rgba(255,255,255,.12);border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.modal-image-wrap{background:#0a0a0f}.modal-image-wrap img{display:block;width:100%;max-height:72vh;object-fit:contain;background:#0a0a0f}.modal-copy{padding:20px 22px 24px}.modal-copy .meta{margin-bottom:6px}.modal-copy h3{font-size:1.05rem;margin-bottom:8px}.modal-copy p{font-size:.92rem;color:var(--muted)}.modal-close{position:absolute;top:18px;right:18px;border:none;background:rgba(255,255,255,.08);color:#fff;width:42px;height:42px;border-radius:999px;font-size:1.1rem;cursor:pointer}
 @media (max-width:980px){.gallery{grid-template-columns:1fr 1fr}.dual{grid-template-columns:1fr}.hero h1{font-size:2.9rem}} @media (max-width:720px){.gallery{grid-template-columns:1fr}.mini-grid{grid-template-columns:1fr}.wrap{padding:28px 16px 64px}.hero{padding:30px 22px}.hero h1{font-size:2.35rem}}
 </style>
 </head>
@@ -34,28 +39,28 @@
     <h2 class="section-title">Curated Works</h2>
     <div class="curator-note">이번 큐레이션은 색의 밀도, 몸의 흔적, 도시의 파편이라는 세 가지 축으로 구성했습니다. 작품 설명을 다 외우기보다, 각 작업이 어떤 감정 속도와 공간의 결을 만드는지 먼저 느껴보면 좋습니다.</div>
     <div class="gallery">
-      <article class="art-card">
-        <div class="art-image"><img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Mark_Rothko%2C_1951%2C_No._14%2C_oil_on_canvas%2C_290.8_x_268.3_cm%2C_San_Francisco_Museum_of_Modern_Art.jpg" alt="Mark Rothko"></div>
+      <article class="art-card" tabindex="0">
+        <div class="art-image"><img class="zoomable-art" src="https://upload.wikimedia.org/wikipedia/commons/0/09/Mark_Rothko%2C_1951%2C_No._14%2C_oil_on_canvas%2C_290.8_x_268.3_cm%2C_San_Francisco_Museum_of_Modern_Art.jpg" alt="Mark Rothko"></div>
         <div class="art-body"><div class="meta">Room 1 · Color & Silence</div><h3>Mark Rothko — No. 14</h3><p>색은 설명이 아니라 공기처럼 작동합니다. 이 작품은 보고 이해하는 대상이라기보다, 한동안 그 앞에 머무르게 만드는 정서적 밀도를 보여줍니다.</p></div>
       </article>
-      <article class="art-card">
-        <div class="art-image"><img src="https://upload.wikimedia.org/wikipedia/en/8/87/No._5%2C_1948.jpg" alt="Jackson Pollock"></div>
+      <article class="art-card" tabindex="0">
+        <div class="art-image"><img class="zoomable-art" src="https://upload.wikimedia.org/wikipedia/en/8/87/No._5%2C_1948.jpg" alt="Jackson Pollock"></div>
         <div class="art-body"><div class="meta">Room 2 · Body & Trace</div><h3>Jackson Pollock — No. 5, 1948</h3><p>형태보다 에너지, 재현보다 행위가 더 먼저 읽히는 작업입니다. 선은 이미지이면서 동시에 몸이 지나간 시간의 기록이기도 합니다.</p></div>
       </article>
-      <article class="art-card">
-        <div class="art-image"><img src="https://upload.wikimedia.org/wikipedia/en/1/1a/Composition_VIII.jpg" alt="Kandinsky"></div>
+      <article class="art-card" tabindex="0">
+        <div class="art-image"><img class="zoomable-art" src="https://upload.wikimedia.org/wikipedia/en/1/1a/Composition_VIII.jpg" alt="Kandinsky"></div>
         <div class="art-body"><div class="meta">Room 3 · Geometry & Sound</div><h3>Wassily Kandinsky — Composition VIII</h3><p>회화를 음악처럼 읽는다면 이런 화면에 가까울 수 있습니다. 직선과 원, 색과 리듬이 동시에 울리면서 시각적 악보처럼 펼쳐집니다.</p></div>
       </article>
-      <article class="art-card">
-        <div class="art-image"><img src="https://upload.wikimedia.org/wikipedia/en/4/41/Piet_Mondriaan%2C_1929_-_Foxy_and_Nine.jpg" alt="Piet Mondrian"></div>
+      <article class="art-card" tabindex="0">
+        <div class="art-image"><img class="zoomable-art" src="https://upload.wikimedia.org/wikipedia/en/4/41/Piet_Mondriaan%2C_1929_-_Foxy_and_Nine.jpg" alt="Piet Mondrian"></div>
         <div class="art-body"><div class="meta">Room 4 · Order & Grid</div><h3>Piet Mondrian — Composition with Red, Blue and Yellow</h3><p>단순해 보이지만 이 단순함은 철저한 선택의 결과입니다. 균형은 더하는 능력이 아니라 덜어내는 능력에서 나온다는 걸 보여줍니다.</p></div>
       </article>
-      <article class="art-card">
-        <div class="art-image"><img src="https://upload.wikimedia.org/wikipedia/en/d/dd/Andy_Warhol_Campbell%27s_Soup_Cans_MOMA.jpg" alt="Andy Warhol"></div>
+      <article class="art-card" tabindex="0">
+        <div class="art-image"><img class="zoomable-art" src="https://upload.wikimedia.org/wikipedia/en/d/dd/Andy_Warhol_Campbell%27s_Soup_Cans_MOMA.jpg" alt="Andy Warhol"></div>
         <div class="art-body"><div class="meta">Room 5 · Object & Culture</div><h3>Andy Warhol — Campbell’s Soup Cans</h3><p>예술은 고귀한 대상만 다룬다는 통념을 가볍게 뒤집습니다. 익숙한 상업 이미지를 반복함으로써 오히려 시대의 욕망을 더 선명하게 드러냅니다.</p></div>
       </article>
-      <article class="art-card">
-        <div class="art-image"><img src="https://upload.wikimedia.org/wikipedia/en/7/74/Edward_Hopper_Nighthawks_1942_high_res.jpg" alt="Edward Hopper"></div>
+      <article class="art-card" tabindex="0">
+        <div class="art-image"><img class="zoomable-art" src="https://upload.wikimedia.org/wikipedia/en/7/74/Edward_Hopper_Nighthawks_1942_high_res.jpg" alt="Edward Hopper"></div>
         <div class="art-body"><div class="meta">Room 6 · City & Loneliness</div><h3>Edward Hopper — Nighthawks</h3><p>화면은 조용한데 감정은 진합니다. 도시의 밤, 빛, 거리감이 만들어내는 고독이 오히려 현대적 친밀감을 남깁니다.</p></div>
       </article>
     </div>
@@ -85,5 +90,62 @@
     </section>
   </div>
 </div>
+
+<div class="modal-backdrop" id="artModal" aria-hidden="true">
+  <div class="modal-shell">
+    <button class="modal-close" id="modalClose" aria-label="닫기">✕</button>
+    <div class="modal-image-wrap"><img id="modalImg" src="" alt=""></div>
+    <div class="modal-copy">
+      <div class="meta" id="modalMeta"></div>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+const modal = document.getElementById('artModal');
+const modalImg = document.getElementById('modalImg');
+const modalMeta = document.getElementById('modalMeta');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalClose = document.getElementById('modalClose');
+
+function openArtModal(card) {
+  const img = card.querySelector('img');
+  const meta = card.querySelector('.meta')?.textContent || '';
+  const title = card.querySelector('h3')?.textContent || '';
+  const desc = card.querySelector('p')?.textContent || '';
+  modalImg.src = img?.src || '';
+  modalImg.alt = img?.alt || title;
+  modalMeta.textContent = meta;
+  modalTitle.textContent = title;
+  modalDesc.textContent = desc;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeArtModal() {
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+}
+
+document.querySelectorAll('.art-card').forEach(card => {
+  card.addEventListener('click', () => openArtModal(card));
+  card.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openArtModal(card);
+    }
+  });
+});
+modalClose.addEventListener('click', closeArtModal);
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeArtModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('open')) closeArtModal();
+});
+</script>
 </body>
 </html>
