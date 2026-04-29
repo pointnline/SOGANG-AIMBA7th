@@ -176,9 +176,17 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .vol-card:hover { box-shadow: 0 6px 24px rgba(139,0,41,0.08); }
 .vol-card-header {
   background: linear-gradient(135deg, var(--sogang), var(--sogang-dark));
-  color: white; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;
+  color: white; padding: 20px 24px; display: grid; grid-template-columns: 180px 1fr auto; align-items: center; gap: 14px;
 }
 .vol-card-header .left {}
+.vol-card-header .center-title {
+  text-align: center;
+  font-size: 0.94rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.94);
+}
 .vol-card-header .vol { font-size: 0.7rem; opacity: 0.6; letter-spacing: 1px; text-transform: uppercase; }
 .vol-card-header .date { font-family: 'Noto Serif KR', serif; font-size: 1.2rem; font-weight: 700; margin-top: 2px; }
 .vol-card-header .share-btn {
@@ -506,6 +514,7 @@ const issues = [
   {
     vol: 4,
     date: "2026-04-28",
+    narrativeTitle: "AI 경쟁의 승부처는 조직 적용 속도",
     headline: "AI 도입 경쟁은 이제 모델 비교보다 조직 적용 속도로 이동 중...",
     memo: {
       lines: [
@@ -521,6 +530,7 @@ const issues = [
   {
     vol: 3,
     date: "2026-04-13",
+    narrativeTitle: "AI 시장은 확장보다 버티는 구조를 본다",
     headline: "라이너 IPO 주관사 낙점, AI 1인 유니콘 2.7조, 엘리스 AIDC 1GW, '미소스' 보안 문제 해결 TF...",
     memo: {
       lines: [
@@ -535,6 +545,7 @@ const issues = [
   {
     vol: 2,
     date: "2026-04-04",
+    narrativeTitle: "기술 서사와 자본 서사가 다시 붙었다",
     headline: "구글 젬마4 공개, 에이전틱 AI 얼라이언스 출범, 글로벌 VC $2970억 역대 최대, RWA $276억 돌파...",
     memo: {
       lines: [
@@ -549,6 +560,7 @@ const issues = [
   {
     vol: 1,
     date: "2026-03-28",
+    narrativeTitle: "개인 생산성이 곧 경쟁력이 되는 출발점",
     headline: "Claude Opus 4 출시, 1인 소프트웨어 팩토리 시대, BlackRock RWA $2B, 서울 매수심리 상승...",
     memo: {
       lines: [
@@ -786,6 +798,7 @@ function renderVolList(issuesToRender, query = '') {
             <div class="vol">VOL.${String(issue.vol).padStart(3,'0')}</div>
             <div class="date">${issue.date}</div>
           </div>
+          <div class="center-title">${issue.narrativeTitle || ''}</div>
           <button class="share-btn" onclick="shareIssue('${issue.path}', '${issue.headline.replace(/'/g, "\\'")}')">
             <span>📤</span> 공유
           </button>
@@ -793,7 +806,6 @@ function renderVolList(issuesToRender, query = '') {
         <div class="vol-card-body">
           <div class="headline">${issue.headline || ''}</div>
           ${issue.memo ? `<a class="weekly-memo" href="${issue.path}"><div class="weekly-memo-kicker">Total Narrative Memo</div><div class="weekly-memo-lines">${issue.memo.lines.map(line => `<div class="weekly-memo-line">${line}</div>`).join('')}</div><div class="weekly-memo-conclusion"><strong>Conclusion.</strong> ${issue.memo.conclusion}</div></a>` : ''}
-          <div class="trend-grid">${chips}${issue.eventPath ? `<a class="trend-chip" href="${issue.eventPath}"><span class="chip-emoji">🟡</span><span class="chip-label">AI Events</span><span class="chip-count">바로가기</span></a>` : ''}</div>
           <div class="reaction-row">
             <button class="reaction-btn" type="button" data-reaction="view" data-key="vol-${issue.vol}">👀 <span>0</span></button>
             <button class="reaction-btn" type="button" data-reaction="like" data-key="vol-${issue.vol}">👍 <span>0</span></button>
