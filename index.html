@@ -192,6 +192,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .vol-card-body { padding: 20px 24px; }
 .vol-card-body .headline { font-size: 0.9rem; font-weight: 600; margin-bottom: 12px; line-height: 1.5; }
 .weekly-memo {
+  display:block;
   margin: 0 0 14px;
   padding: 16px 18px;
   background: linear-gradient(180deg, #fffdf9 0%, #f8f3eb 100%);
@@ -199,6 +200,11 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   border-left: 4px solid var(--sogang);
   border-radius: 4px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+  text-decoration:none;
+}
+.weekly-memo:hover {
+  border-color: rgba(139,0,41,0.22);
+  background: linear-gradient(180deg, #fffaf3 0%, #f6eee3 100%);
 }
 .weekly-memo-kicker {
   font-size: 0.66rem;
@@ -437,7 +443,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
       <li><a href="#" data-filter="mba"><span class="moon-badge">🟡🌙</span> MBA Insight</a></li>
       <li><a href="#" data-filter="startup"><span class="moon-badge">🟠🌙</span> Startup</a></li>
       <li><a href="#" data-filter="campus"><span class="moon-badge">🩵🌙</span> AIMBA & Campus</a></li>
-      <li><a href="issues/museum.html"><span class="moon-badge">🩷🌙</span> S.A Museum</a></li>
+      <li><a href="/SOGANG-AIMBA7th/issues/museum.html"><span class="moon-badge">🩷🌙</span> S.A Museum</a></li>
     </ul>
     <div class="sidebar-divider"></div>
     <div class="sidebar-note">
@@ -777,7 +783,7 @@ function renderVolList(issuesToRender, query = '') {
         </div>
         <div class="vol-card-body">
           <div class="headline">${issue.headline || ''}</div>
-          ${issue.memo ? `<div class="weekly-memo"><div class="weekly-memo-kicker">Total Narrative Memo</div><div class="weekly-memo-lines">${issue.memo.lines.map(line => `<div class="weekly-memo-line">${line}</div>`).join('')}</div><div class="weekly-memo-conclusion"><strong>Conclusion.</strong> ${issue.memo.conclusion}</div></div>` : ''}
+          ${issue.memo ? `<a class="weekly-memo" href="${issue.path}"><div class="weekly-memo-kicker">Total Narrative Memo</div><div class="weekly-memo-lines">${issue.memo.lines.map(line => `<div class="weekly-memo-line">${line}</div>`).join('')}</div><div class="weekly-memo-conclusion"><strong>Conclusion.</strong> ${issue.memo.conclusion}</div></a>` : ''}
           <div class="trend-grid">${chips}</div>
         </div>
       </div>`;
