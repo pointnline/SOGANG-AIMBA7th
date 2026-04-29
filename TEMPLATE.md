@@ -89,6 +89,29 @@
 2. 실제 존재하는 기사만 포함 (가상 URL 절대 금지)
 3. 기사 원문 링크 필수 포함
 4. 한 주간(최근 7일) 뉴스 위주
+5. **같은 매체 편중 금지**: 한 섹션에서 동일 매체 최대 1~2건
+6. **출처 다양성 확보**: 각 섹션 최소 2개 이상 서로 다른 출처 사용
+
+## 권장 소스 포트폴리오
+### 🤖 AI·LLM
+- 글로벌 메인: TechCrunch, VentureBeat, MIT Technology Review, Semafor, The Information
+- 공식 소스: OpenAI, Anthropic, Google, Meta, Hugging Face 블로그
+- 국내 보조: AI Times, 전자신문, ZDNet Korea, 디지털데일리
+
+### 💼 비즈니스 혁신 / MBA
+- 글로벌 메인: Harvard Business Review, McKinsey, Bain, BCG, FT, WSJ, Bloomberg, Economist
+- 국내 보조: 한국경제, 매일경제, 조선비즈
+
+### 🚀 창업·VC·자본
+- 글로벌 메인: TechCrunch Startups, Crunchbase News, CB Insights, a16z, Sequoia
+- 국내 보조: 벤처스퀘어, 플래텀, 아웃스탠딩, 머니투데이 스타트업
+
+### 🏛️ 정부과제·지원
+- 공식 소스 우선: 중기부, K-Startup, 과기정통부, 산업부, NIPA, KIAT, KOTRA
+- 보조: 정책브리핑, 주요 기관 뉴스룸
+
+### 🏫 캠퍼스 / AIMBA
+- 공식 소스 우선: 서강대 경영대, AI학과, MOT, SW센터, 서강대 뉴스룸
 
 ## HTML 생성
 1. issues/vol_20260328.html를 템플릿으로 복사
