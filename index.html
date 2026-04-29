@@ -690,20 +690,26 @@ function setupEventListeners() {
 
   // 사이드바 클릭 (섹터/정렬)
   document.getElementById('sectorNav').addEventListener('click', function(e) {
-    e.preventDefault();
     const link = e.target.closest('a');
     if (!link) return;
 
-    const type = link.dataset.sort || link.dataset.filter;
-    const value = link.dataset.sort || link.dataset.filter;
+    const filter = link.dataset.filter;
+    const sort = link.dataset.sort;
 
-    if (type === 'sort') {
-      currentSort = value;
-    } else {
-      currentFilter = value;
-      // 사이드바 메뉴 활성 상태 업데이트
+    if (!filter && !sort) {
+      return;
+    }
+
+    e.preventDefault();
+
+    if (sort) {
+      currentSort = sort;
+    }
+
+    if (filter) {
+      currentFilter = filter;
       document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
-      if (link) link.classList.add('active');
+      link.classList.add('active');
     }
 
     render();
