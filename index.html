@@ -112,7 +112,8 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   justify-content:center;
 }
 .sidebar-badge img {
-  width: 132px;
+  width: 528px;
+  max-width: 100%;
   height: auto;
   object-fit: contain;
   opacity: 0.95;
@@ -249,6 +250,30 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .trend-chip:hover { background: rgba(139,0,41,0.04); border-color: var(--sogang); }
 .trend-chip .chip-emoji { font-size: 0.9rem; }
 .trend-chip .chip-label { font-weight: 600; }
+.reaction-row {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+.reaction-btn {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:#fff;
+  color:var(--text-body);
+  font-size:0.76rem;
+  font-weight:700;
+  cursor:pointer;
+}
+.reaction-btn.active {
+  border-color: rgba(139,0,41,0.28);
+  color: var(--sogang);
+  background: rgba(139,0,41,0.05);
+}
 
 /* Latest Issue Banner */
 .latest-banner {
@@ -434,17 +459,17 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
     </div>
     <div class="sidebar-label">Brief Filters</div>
     <ul class="sidebar-nav">
-      <li><a href="#" data-sort="latest"><span class="moon-badge">🔴🌙</span> 최신순</a></li>
-      <li><a href="#" data-sort="oldest"><span class="moon-badge">🟠🌙</span> 오래된순</a></li>
+      <li><a href="#" data-sort="latest"><span class="moon-badge">🔴</span> 최신순</a></li>
+      <li><a href="#" data-sort="oldest"><span class="moon-badge">🟠</span> 오래된순</a></li>
       <div class="sidebar-divider"></div>
-      <li><a href="#" data-filter="all"><span class="moon-badge">🟢🌙</span> 전체보기</a></li>
-      <li><a href="#" data-filter="ai"><span class="moon-badge">🔵🌙</span> AI·LLM</a></li>
-      <li><a href="#" data-filter="business"><span class="moon-badge">🟣🌙</span> Business & Strategy</a></li>
-      <li><a href="#" data-filter="mba"><span class="moon-badge">🟡🌙</span> MBA Insight</a></li>
-      <li><a href="#" data-filter="startup"><span class="moon-badge">🟠🌙</span> Startup</a></li>
-      <li><a href="#" data-filter="campus"><span class="moon-badge">🩵🌙</span> AIMBA & Campus</a></li>
-      <li><a href="issues/vol_20260428.html#events"><span class="moon-badge">🟡🌙</span> AI Events</a></li>
-      <li><a href="/SOGANG-AIMBA7th/issues/museum.html"><span class="moon-badge">🩷🌙</span> S.A Museum</a></li>
+      <li><a href="#" data-filter="all"><span class="moon-badge">🟢</span> 전체보기</a></li>
+      <li><a href="#" data-filter="ai"><span class="moon-badge">🔵</span> AI·LLM</a></li>
+      <li><a href="#" data-filter="business"><span class="moon-badge">🟣</span> Business & Strategy</a></li>
+      <li><a href="#" data-filter="mba"><span class="moon-badge">🟡</span> MBA Insight</a></li>
+      <li><a href="#" data-filter="startup"><span class="moon-badge">🟠</span> Startup</a></li>
+      <li><a href="#" data-filter="campus"><span class="moon-badge">🩵</span> AIMBA & Campus</a></li>
+      <li><a href="issues/vol_20260428.html#events"><span class="moon-badge">🟤</span> AI Events</a></li>
+      <li><a href="/SOGANG-AIMBA7th/issues/museum.html"><span class="moon-badge">🩷</span> S.A Museum</a></li>
     </ul>
     <div class="sidebar-divider"></div>
     <div class="sidebar-note">
@@ -452,12 +477,6 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
     </div>
     <div class="sidebar-divider"></div>
     <div style="padding: 0 16px 8px; display:grid; gap:8px;">
-      <a href="issues/vol_20260428.html" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; text-decoration:none; background:var(--sogang); color:#fff; border:1px solid rgba(139,0,41,0.2); border-radius:10px; padding:10px 12px; font-size:0.8rem; font-weight:700;">
-        📰 최신호 보기
-      </a>
-      <a href="#volList" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; text-decoration:none; background:#fff; color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.8rem; font-weight:700;">
-        📚 아카이브 보기
-      </a>
       <a href="issues/vol_20260428.html#participateSection" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; text-decoration:none; background:rgba(139,0,41,0.08); color:var(--sogang); border:1px solid rgba(139,0,41,0.16); border-radius:10px; padding:10px 12px; font-size:0.8rem; font-weight:700;">
         🤝 참여하기
       </a>
@@ -468,7 +487,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   <div class="main">
     <div id="latestBanner"></div>
     <div id="healingCard"></div>
-    <div class="section-label">🔵🌙 Latest Brief & Archive · <span id="totalCount">0</span> issues</div>
+    <div class="section-label">🔵 Latest Brief & Archive · <span id="totalCount">0</span> issues</div>
     <div id="volList"></div>
   </div>
 </div>
@@ -612,12 +631,12 @@ const sectorMap = {
 
 // 섹터 메타데이터
 const sectorMeta = {
-  ai: { emoji: "🔴🌙", label: "AI & LLM", anchor: "ai" },
-  business: { emoji: "🟠🌙", label: "Business & Strategy", anchor: "business" },
-  mba: { emoji: "🟡🌙", label: "MBA Insight", anchor: "mba" },
-  startup: { emoji: "🟢🌙", label: "Startup", anchor: "startup" },
-  government: { emoji: "🔵🌙", label: "Startup", anchor: null },
-  campus: { emoji: "🟣🌙", label: "AIMBA & Campus", anchor: "campus" },
+  ai: { emoji: "🔴", label: "AI & LLM", anchor: "ai" },
+  business: { emoji: "🟠", label: "Business & Strategy", anchor: "business" },
+  mba: { emoji: "🟡", label: "MBA Insight", anchor: "mba" },
+  startup: { emoji: "🟢", label: "Startup", anchor: "startup" },
+  government: { emoji: "🔵", label: "Startup", anchor: null },
+  campus: { emoji: "🟣", label: "AIMBA & Campus", anchor: "campus" },
 };
 
 // 트렌드 매핑 (데이터베이스 필드 → 레이블)
@@ -774,7 +793,12 @@ function renderVolList(issuesToRender, query = '') {
         <div class="vol-card-body">
           <div class="headline">${issue.headline || ''}</div>
           ${issue.memo ? `<a class="weekly-memo" href="${issue.path}"><div class="weekly-memo-kicker">Total Narrative Memo</div><div class="weekly-memo-lines">${issue.memo.lines.map(line => `<div class="weekly-memo-line">${line}</div>`).join('')}</div><div class="weekly-memo-conclusion"><strong>Conclusion.</strong> ${issue.memo.conclusion}</div></a>` : ''}
-          <div class="trend-grid">${chips}${issue.eventPath ? `<a class="trend-chip" href="${issue.eventPath}"><span class="chip-emoji">🟡🌙</span><span class="chip-label">AI Events</span><span class="chip-count">바로가기</span></a>` : ''}</div>
+          <div class="trend-grid">${chips}${issue.eventPath ? `<a class="trend-chip" href="${issue.eventPath}"><span class="chip-emoji">🟡</span><span class="chip-label">AI Events</span><span class="chip-count">바로가기</span></a>` : ''}</div>
+          <div class="reaction-row">
+            <button class="reaction-btn" type="button" data-reaction="view" data-key="vol-${issue.vol}">👀 <span>0</span></button>
+            <button class="reaction-btn" type="button" data-reaction="like" data-key="vol-${issue.vol}">👍 <span>0</span></button>
+            <button class="reaction-btn" type="button" data-reaction="check" data-key="vol-${issue.vol}">✅ <span>0</span></button>
+          </div>
         </div>
       </div>`;
   });
@@ -809,7 +833,6 @@ function shareIssue(path, headline) {
       url: url
     }).catch(console.error);
   } else {
-    // Fallback: 클립보드에 복사
     navigator.clipboard.writeText(url).then(() => {
       alert('링크가 클립보드에 복사되었습니다: ' + url);
     }).catch(err => {
@@ -817,6 +840,30 @@ function shareIssue(path, headline) {
     });
   }
 }
+
+function initReactions() {
+  const store = JSON.parse(localStorage.getItem('aimba-reactions-v1') || '{}');
+  document.querySelectorAll('.reaction-btn').forEach(btn => {
+    const reaction = btn.dataset.reaction;
+    const key = btn.dataset.key;
+    const fullKey = `${key}:${reaction}`;
+    const countEl = btn.querySelector('span');
+    const active = !!store[fullKey];
+    if (active) {
+      btn.classList.add('active');
+      countEl.textContent = '1';
+    }
+    btn.addEventListener('click', () => {
+      const next = !store[fullKey];
+      store[fullKey] = next;
+      btn.classList.toggle('active', next);
+      countEl.textContent = next ? '1' : '0';
+      localStorage.setItem('aimba-reactions-v1', JSON.stringify(store));
+    });
+  });
+}
+
+initReactions();
 </script>
 </body>
 </html>
