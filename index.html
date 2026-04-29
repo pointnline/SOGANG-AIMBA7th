@@ -132,7 +132,16 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   background: rgba(139,0,41,0.04); color: var(--sogang);
   border-left-color: var(--sogang);
 }
-.sidebar-nav .emoji { font-size: 0.95rem; width: 20px; text-align: center; }
+.moon-badge {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width: 20px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+}
 .sidebar-divider { height: 1px; background: var(--border); margin: 14px 16px; }
 .sidebar-note {
   padding: 12px 16px; font-size: 0.72rem; color: var(--text-light); line-height: 1.5;
@@ -419,16 +428,16 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
     </div>
     <div class="sidebar-label">Brief Filters</div>
     <ul class="sidebar-nav">
-      <li><a href="#" data-sort="latest"><span class="emoji">📅</span> 최신순</a></li>
-      <li><a href="#" data-sort="oldest"><span class="emoji">🕐</span> 오래된순</a></li>
+      <li><a href="#" data-sort="latest"><span class="moon-badge">🔴🌙</span> 최신순</a></li>
+      <li><a href="#" data-sort="oldest"><span class="moon-badge">🟠🌙</span> 오래된순</a></li>
       <div class="sidebar-divider"></div>
-      <li><a href="#" data-filter="all"><span class="emoji">📂</span> 전체보기</a></li>
-      <li><a href="#" data-filter="ai"><span class="emoji">🤖</span> AI·LLM</a></li>
-      <li><a href="#" data-filter="business"><span class="emoji">💼</span> Business & Strategy</a></li>
-      <li><a href="#" data-filter="mba"><span class="emoji">🎓</span> MBA Insight</a></li>
-      <li><a href="#" data-filter="startup"><span class="emoji">🚀</span> Startup</a></li>
-      <li><a href="#" data-filter="campus"><span class="emoji">🏫</span> AIMBA & Campus</a></li>
-      <li><a href="issues/museum.html"><span class="emoji">🖼️</span> S.A Museum</a></li>
+      <li><a href="#" data-filter="all"><span class="moon-badge">🟢🌙</span> 전체보기</a></li>
+      <li><a href="#" data-filter="ai"><span class="moon-badge">🔵🌙</span> AI·LLM</a></li>
+      <li><a href="#" data-filter="business"><span class="moon-badge">🟣🌙</span> Business & Strategy</a></li>
+      <li><a href="#" data-filter="mba"><span class="moon-badge">🟡🌙</span> MBA Insight</a></li>
+      <li><a href="#" data-filter="startup"><span class="moon-badge">🟠🌙</span> Startup</a></li>
+      <li><a href="#" data-filter="campus"><span class="moon-badge">🩵🌙</span> AIMBA & Campus</a></li>
+      <li><a href="issues/museum.html"><span class="moon-badge">🩷🌙</span> S.A Museum</a></li>
     </ul>
     <div class="sidebar-divider"></div>
     <div class="sidebar-note">
@@ -452,7 +461,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   <div class="main">
     <div id="latestBanner"></div>
     <div id="healingCard"></div>
-    <div class="section-label">📰 Latest Brief & Archive · <span id="totalCount">0</span> issues</div>
+    <div class="section-label">🔵🌙 Latest Brief & Archive · <span id="totalCount">0</span> issues</div>
     <div id="volList"></div>
   </div>
 </div>
@@ -599,12 +608,12 @@ const sectorMap = {
 
 // 섹터 메타데이터
 const sectorMeta = {
-  ai: { emoji: "🤖", label: "AI & LLM", anchor: "ai" },
-  business: { emoji: "💼", label: "Business & Strategy", anchor: "business" },
-  mba: { emoji: "🎓", label: "MBA Insight", anchor: "mba" },
-  startup: { emoji: "🚀", label: "Startup", anchor: "startup" },
-  government: { emoji: "🚀", label: "Startup", anchor: null },
-  campus: { emoji: "🏫", label: "AIMBA & Campus", anchor: "campus" },
+  ai: { emoji: "🔴🌙", label: "AI & LLM", anchor: "ai" },
+  business: { emoji: "🟠🌙", label: "Business & Strategy", anchor: "business" },
+  mba: { emoji: "🟡🌙", label: "MBA Insight", anchor: "mba" },
+  startup: { emoji: "🟢🌙", label: "Startup", anchor: "startup" },
+  government: { emoji: "🔵🌙", label: "Startup", anchor: null },
+  campus: { emoji: "🟣🌙", label: "AIMBA & Campus", anchor: "campus" },
 };
 
 // 트렌드 매핑 (데이터베이스 필드 → 레이블)
