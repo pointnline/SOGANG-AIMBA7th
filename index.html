@@ -310,6 +310,171 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .latest-banner .text a { color: var(--sogang); text-decoration: none; }
 .latest-banner .text a:hover { text-decoration: underline; }
 
+.pulse-panel {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(201,168,76,0.16), transparent 28%),
+    linear-gradient(135deg, #fffdf9 0%, #f4eadb 52%, #fff8ee 100%);
+  border: 1px solid rgba(139,0,41,0.14);
+  border-radius: 18px;
+  padding: 22px;
+  margin-bottom: 24px;
+  box-shadow: 0 14px 38px rgba(90,0,26,0.08);
+}
+.pulse-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+.pulse-kicker {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--sogang);
+  margin-bottom: 6px;
+}
+.pulse-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+.pulse-copy {
+  margin-top: 6px;
+  color: var(--text-body);
+  font-size: 0.88rem;
+}
+.pulse-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  background: rgba(139,0,41,0.08);
+  color: var(--sogang);
+  font-size: 0.72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.pulse-live::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sogang);
+}
+.pulse-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.pulse-stat {
+  background: rgba(255,255,255,0.74);
+  border: 1px solid rgba(139,0,41,0.10);
+  border-radius: 12px;
+  padding: 13px 14px;
+}
+.pulse-stat .label {
+  font-size: 0.7rem;
+  color: var(--text-light);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.pulse-stat .value {
+  margin-top: 4px;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  font-weight: 900;
+  color: var(--text);
+}
+.pulse-stat .hint {
+  margin-top: 4px;
+  font-size: 0.72rem;
+  color: var(--text-body);
+}
+.pulse-vote-title {
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: var(--text);
+  margin: 14px 0 9px;
+}
+.pulse-votes {
+  display: grid;
+  gap: 8px;
+}
+.pulse-vote-btn {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid rgba(139,0,41,0.12);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.72);
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Noto Sans KR', sans-serif;
+  transition: all 0.18s;
+  overflow: hidden;
+  position: relative;
+}
+.pulse-vote-btn:hover {
+  border-color: rgba(139,0,41,0.28);
+  transform: translateY(-1px);
+}
+.pulse-vote-btn.active {
+  border-color: rgba(139,0,41,0.36);
+  background: rgba(139,0,41,0.06);
+}
+.pulse-vote-btn .vote-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--fill, 0%);
+  background: linear-gradient(90deg, rgba(139,0,41,0.11), rgba(201,168,76,0.08));
+  pointer-events: none;
+}
+.pulse-vote-btn .vote-label,
+.pulse-vote-btn .vote-count {
+  position: relative;
+  z-index: 1;
+}
+.pulse-vote-btn .vote-label {
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+.pulse-vote-btn .vote-count {
+  font-size: 0.76rem;
+  color: var(--sogang);
+  font-weight: 900;
+  white-space: nowrap;
+}
+.pulse-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+.pulse-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 15px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+.pulse-action.primary { background: var(--sogang); color: #fff; }
+.pulse-action.secondary { background: #fff; color: var(--text); border: 1px solid var(--border); }
+
 .featured-issue {
   background: linear-gradient(135deg, #fffdf9 0%, #f7f0e6 100%);
   border: 1px solid var(--border);
@@ -439,6 +604,11 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .trend-chip { padding: 7px 10px; font-size: 0.76rem; }
   .latest-banner { padding: 12px 14px; gap: 8px; flex-wrap: wrap; }
   .latest-banner .text { font-size: 0.8rem; }
+  .pulse-panel { padding: 18px 14px; border-radius: 14px; }
+  .pulse-top { flex-direction: column; gap: 10px; }
+  .pulse-title { font-size: 1.08rem; }
+  .pulse-grid { grid-template-columns: 1fr; }
+  .pulse-action { width: 100%; }
   .featured-issue { padding: 18px 16px; }
   .featured-title { font-size: 1.15rem; }
   .featured-summary { font-size: 0.86rem; }
@@ -495,12 +665,48 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
       <a href="issues/vol_20260428.html#participateSection" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; text-decoration:none; background:rgba(139,0,41,0.08); color:var(--sogang); border:1px solid rgba(139,0,41,0.16); border-radius:10px; padding:10px 12px; font-size:0.8rem; font-weight:700;">
         🤝 참여하기
       </a>
+      <a href="issues/future-report.html" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; text-decoration:none; background:#fff; color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.8rem; font-weight:700;">
+        📊 Future Report
+      </a>
     </div>
   </nav>
 
   <!-- RIGHT — 발간물 아카이브 -->
   <div class="main">
     <div id="latestBanner"></div>
+    <section class="pulse-panel" id="aimbaPulse">
+      <div class="pulse-top">
+        <div>
+          <div class="pulse-kicker">AIMBA Pulse</div>
+          <div class="pulse-title">원우들의 관심이 어디로 움직이는지 보는 미래혁신국 상황판</div>
+          <div class="pulse-copy">조회·반응·투표·제보를 모아 다음 브리프와 월간 Future Report의 방향을 정합니다.</div>
+        </div>
+        <div class="pulse-live">LIVE SIGNAL</div>
+      </div>
+      <div class="pulse-grid">
+        <div class="pulse-stat">
+          <div class="label">Total Views</div>
+          <div class="value" id="pulseViews">0</div>
+          <div class="hint">브리프 누적 조회</div>
+        </div>
+        <div class="pulse-stat">
+          <div class="label">Strong Signals</div>
+          <div class="value" id="pulseSignals">0</div>
+          <div class="hint">좋아요 + 체크</div>
+        </div>
+        <div class="pulse-stat">
+          <div class="label">Top Issue</div>
+          <div class="value" id="pulseTopIssue">-</div>
+          <div class="hint" id="pulseTopIssueHint">데이터 수집 중</div>
+        </div>
+      </div>
+      <div class="pulse-vote-title">다음 호에서 깊게 다뤘으면 하는 주제</div>
+      <div class="pulse-votes" id="pulseVotes"></div>
+      <div class="pulse-actions">
+        <a class="pulse-action primary" href="issues/vol_20260428.html#participateSection">제보·의견 남기기</a>
+        <a class="pulse-action secondary" href="issues/future-report.html">월간 Future Report 보기</a>
+      </div>
+    </section>
     <div id="healingCard"></div>
     <div class="section-label">🔵 Latest Brief & Archive · <span id="totalCount">0</span> issues</div>
     <div id="volList"></div>
@@ -668,6 +874,13 @@ const trendMap = {
 const SUPABASE_URL = 'https://lorcsmsbyqalbtbyoyzh.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_xCuNXY2WjvVK6l-85nkfNg_dBd6NWx_';
 const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const pulseVoteOptions = [
+  { id: 'ai-agent-workflow', label: 'AI Agent가 실제 업무를 바꾸는 방식' },
+  { id: 'startup-funding', label: '스타트업 투자·정부지원사업 기회' },
+  { id: 'mba-career-shift', label: 'AI 시대 MBA 커리어 전환 전략' },
+  { id: 'real-estate-rwa', label: '부동산·RWA·금융 인프라 변화' }
+];
 
 // 필터 및 정렬 상태
 let currentFilter = 'all';
@@ -937,11 +1150,121 @@ async function initReactions() {
   localStorage.setItem('aimba-viewed-v1', JSON.stringify(viewed));
 }
 
+function getPulseClientKey() {
+  let key = localStorage.getItem('aimba-pulse-client-key');
+  if (!key) {
+    key = window.crypto && crypto.randomUUID ? crypto.randomUUID() : `client-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    localStorage.setItem('aimba-pulse-client-key', key);
+  }
+  return key;
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat('ko-KR').format(value || 0);
+}
+
+async function initPulse() {
+  renderPulseVotes({});
+  await Promise.all([
+    loadPulseStats(),
+    loadPulseVotes()
+  ]);
+}
+
+async function loadPulseStats() {
+  try {
+    const { data, error } = await supabaseClient
+      .from('weekly_issue_stats')
+      .select('issue_id, views, likes, checks');
+    if (error) throw error;
+
+    const rows = data || [];
+    const totals = rows.reduce((acc, row) => {
+      acc.views += row.views || 0;
+      acc.signals += (row.likes || 0) + (row.checks || 0);
+      return acc;
+    }, { views: 0, signals: 0 });
+    const top = rows
+      .filter(row => /^vol-\d+$/.test(row.issue_id))
+      .sort((a, b) => ((b.likes || 0) + (b.checks || 0) + (b.views || 0)) - ((a.likes || 0) + (a.checks || 0) + (a.views || 0)))[0];
+
+    document.getElementById('pulseViews').textContent = formatNumber(totals.views);
+    document.getElementById('pulseSignals').textContent = formatNumber(totals.signals);
+    if (top) {
+      const vol = top.issue_id.replace('vol-', '');
+      document.getElementById('pulseTopIssue').textContent = `Vol.${String(vol).padStart(3, '0')}`;
+      document.getElementById('pulseTopIssueHint').textContent = `${formatNumber((top.likes || 0) + (top.checks || 0))} strong signals`;
+    }
+  } catch (err) {
+    console.error('Pulse stats load failed:', err);
+  }
+}
+
+async function loadPulseVotes() {
+  try {
+    const { data, error } = await supabaseClient
+      .from('pulse_vote_counts')
+      .select('option_id, votes');
+    if (error) throw error;
+
+    const counts = Object.fromEntries((data || []).map(row => [row.option_id, row.votes || 0]));
+    renderPulseVotes(counts);
+  } catch (err) {
+    console.error('Pulse votes load failed:', err);
+  }
+}
+
+function renderPulseVotes(counts) {
+  const mount = document.getElementById('pulseVotes');
+  if (!mount) return;
+  const voted = localStorage.getItem('aimba-pulse-voted-option');
+  const max = Math.max(1, ...pulseVoteOptions.map(option => counts[option.id] || 0));
+
+  mount.innerHTML = pulseVoteOptions.map(option => {
+    const count = counts[option.id] || 0;
+    const fill = Math.round((count / max) * 100);
+    const active = voted === option.id ? ' active' : '';
+    return `
+      <button class="pulse-vote-btn${active}" type="button" data-pulse-vote="${option.id}" style="--fill:${fill}%">
+        <span class="vote-fill"></span>
+        <span class="vote-label">${option.label}</span>
+        <span class="vote-count">${formatNumber(count)}표</span>
+      </button>`;
+  }).join('');
+
+  mount.querySelectorAll('[data-pulse-vote]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const optionId = btn.dataset.pulseVote;
+      if (localStorage.getItem('aimba-pulse-voted-option')) {
+        alert('이번 주 투표는 이미 반영되었습니다.');
+        return;
+      }
+
+      try {
+        const { error } = await supabaseClient
+          .from('pulse_votes')
+          .insert({
+            option_id: optionId,
+            client_key: getPulseClientKey(),
+            source_path: window.location.pathname
+          });
+        if (error) throw error;
+        localStorage.setItem('aimba-pulse-voted-option', optionId);
+        await loadPulseVotes();
+      } catch (err) {
+        console.error('Pulse vote submit failed:', err);
+        alert('투표 저장에 실패했습니다. 잠시 후 다시 시도해주세요.');
+      }
+    });
+  });
+}
+
 render();
 setTimeout(() => {
   initReactions();
+  initPulse();
 }, 0);
-// cache-bust: 2026-04-29-2218
+// cache-bust: 2026-04-30-2048
 </script>
 </body>
 </html>

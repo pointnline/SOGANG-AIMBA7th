@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIMBA Future Report | SOGANG AIMBA 7th</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root {
+  --sogang:#8B0029;
+  --sogang-dark:#5a001a;
+  --bg:#F5F0E8;
+  --panel:#FFFDF9;
+  --text:#1a1a2e;
+  --body:#555;
+  --muted:#8a8178;
+  --line:#e4ddd0;
+  --gold:#c9a84c;
+  --blue:#1a5276;
+  --green:#2d6a4f;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family:'Noto Sans KR', sans-serif;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(201,168,76,0.16), transparent 26%),
+    linear-gradient(180deg, #f8f3eb 0%, var(--bg) 100%);
+  color:var(--text);
+  line-height:1.7;
+}
+.page { max-width:1120px; margin:0 auto; padding:34px 20px 64px; }
+.hero {
+  min-height:320px;
+  display:grid;
+  align-content:end;
+  padding:34px;
+  border-radius:22px;
+  background:
+    linear-gradient(135deg, rgba(139,0,41,0.92), rgba(90,0,26,0.86)),
+    radial-gradient(circle at 80% 20%, rgba(201,168,76,0.28), transparent 26%);
+  color:#fff;
+  box-shadow:0 22px 60px rgba(90,0,26,0.18);
+}
+.kicker {
+  font-size:0.76rem;
+  font-weight:900;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.72);
+  margin-bottom:10px;
+}
+h1 {
+  font-family:'Noto Serif KR', serif;
+  font-size:clamp(2rem, 5vw, 4rem);
+  line-height:1.08;
+  letter-spacing:0;
+}
+.hero p {
+  margin-top:14px;
+  max-width:760px;
+  color:rgba(255,255,255,0.82);
+  font-size:0.98rem;
+}
+.hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.hero-actions a {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:10px 16px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:0.84rem;
+  font-weight:900;
+}
+.hero-actions .primary { background:#fff; color:var(--sogang); }
+.hero-actions .secondary { background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.24); }
+.section-title {
+  margin:32px 0 14px;
+  font-size:0.82rem;
+  font-weight:900;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:var(--sogang);
+}
+.grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+.card {
+  background:rgba(255,253,249,0.88);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 12px 34px rgba(90,0,26,0.05);
+}
+.metric .label {
+  font-size:0.72rem;
+  font-weight:900;
+  color:var(--muted);
+  letter-spacing:0.9px;
+  text-transform:uppercase;
+}
+.metric .value {
+  margin-top:6px;
+  font-size:2rem;
+  font-weight:900;
+  line-height:1.1;
+}
+.metric .hint { margin-top:6px; font-size:0.8rem; color:var(--body); }
+.wide { grid-column:span 2; }
+.list { display:grid; gap:10px; }
+.row {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border:1px solid rgba(139,0,41,0.10);
+  border-radius:12px;
+  background:rgba(255,255,255,0.62);
+}
+.row strong { font-size:0.88rem; }
+.row span { color:var(--sogang); font-weight:900; font-size:0.84rem; }
+.radar {
+  display:grid;
+  gap:12px;
+}
+.bar-label {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  font-size:0.82rem;
+  font-weight:800;
+}
+.bar {
+  height:10px;
+  border-radius:999px;
+  background:#eee6da;
+  overflow:hidden;
+}
+.bar div {
+  height:100%;
+  width:var(--fill, 0%);
+  background:linear-gradient(90deg, var(--sogang), var(--gold));
+}
+.memo {
+  font-family:'Noto Serif KR', serif;
+  font-size:1.2rem;
+  line-height:1.65;
+}
+.memo small {
+  display:block;
+  margin-top:12px;
+  color:var(--muted);
+  font-family:'Noto Sans KR', sans-serif;
+  font-size:0.78rem;
+}
+.footer {
+  margin-top:32px;
+  color:var(--muted);
+  font-size:0.76rem;
+  text-align:center;
+}
+@media (max-width: 820px) {
+  .hero { padding:26px 20px; border-radius:18px; }
+  .grid { grid-template-columns:1fr; }
+  .wide { grid-column:span 1; }
+  .hero-actions a { width:100%; }
+}
+</style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="kicker">AIMBA Future Report</div>
+      <h1>이번 달 원우들의 관심이 만든 미래 신호</h1>
+      <p>Weekly Brief의 조회, 좋아요, 체크, Pulse 투표를 모아 미래혁신국 관점의 월간 리포트로 정리합니다. 데이터가 쌓일수록 이 페이지는 AIMBA 7기의 집단 관심 지도가 됩니다.</p>
+      <div class="hero-actions">
+        <a class="primary" href="../index.html#aimbaPulse">AIMBA Pulse 보기</a>
+        <a class="secondary" href="./vol_20260428.html#participateSection">제보·의견 남기기</a>
+      </div>
+    </section>
+
+    <div class="section-title">Monthly Signal</div>
+    <section class="grid">
+      <div class="card metric">
+        <div class="label">Total Views</div>
+        <div class="value" id="totalViews">0</div>
+        <div class="hint">브리프 누적 조회</div>
+      </div>
+      <div class="card metric">
+        <div class="label">Strong Signals</div>
+        <div class="value" id="totalSignals">0</div>
+        <div class="hint">좋아요 + 체크</div>
+      </div>
+      <div class="card metric">
+        <div class="label">Top Brief</div>
+        <div class="value" id="topBrief">-</div>
+        <div class="hint" id="topBriefHint">데이터 수집 중</div>
+      </div>
+      <div class="card wide">
+        <div class="section-title" style="margin-top:0;">Future Radar</div>
+        <div class="radar" id="futureRadar"></div>
+      </div>
+      <div class="card">
+        <div class="section-title" style="margin-top:0;">Next Brief Demand</div>
+        <div class="list" id="voteList"></div>
+      </div>
+    </section>
+
+    <div class="section-title">Auto Narrative</div>
+    <section class="card">
+      <div class="memo" id="autoMemo">
+        데이터를 불러오는 중입니다.
+        <small>Supabase 연결 또는 SQL 적용 전이면 기본 문구가 표시됩니다.</small>
+      </div>
+    </section>
+
+    <div class="footer">SOGANG AIMBA 7th · Future Innovation Office · Data-powered briefing system</div>
+  </main>
+
+<script>
+const SUPABASE_URL = 'https://lorcsmsbyqalbtbyoyzh.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_xCuNXY2WjvVK6l-85nkfNg_dBd6NWx_';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const voteOptions = {
+  'ai-agent-workflow': 'AI Agent가 실제 업무를 바꾸는 방식',
+  'startup-funding': '스타트업 투자·정부지원사업 기회',
+  'mba-career-shift': 'AI 시대 MBA 커리어 전환 전략',
+  'real-estate-rwa': '부동산·RWA·금융 인프라 변화'
+};
+
+const radarLabels = [
+  { id: 'ai-agent-workflow', label: 'AI Workflow' },
+  { id: 'startup-funding', label: 'Startup Capital' },
+  { id: 'mba-career-shift', label: 'MBA Career' },
+  { id: 'real-estate-rwa', label: 'RWA / Finance' }
+];
+
+function fmt(value) {
+  return new Intl.NumberFormat('ko-KR').format(value || 0);
+}
+
+async function loadReport() {
+  let stats = [];
+  let votes = [];
+  try {
+    const [statsRes, votesRes] = await Promise.all([
+      supabaseClient.from('weekly_issue_stats').select('issue_id, views, likes, checks'),
+      supabaseClient.from('pulse_vote_counts').select('option_id, votes')
+    ]);
+    if (statsRes.error) throw statsRes.error;
+    if (votesRes.error) throw votesRes.error;
+    stats = statsRes.data || [];
+    votes = votesRes.data || [];
+  } catch (err) {
+    console.error('Future report load failed:', err);
+  }
+
+  const totals = stats.reduce((acc, row) => {
+    acc.views += row.views || 0;
+    acc.signals += (row.likes || 0) + (row.checks || 0);
+    return acc;
+  }, { views: 0, signals: 0 });
+  const top = stats
+    .filter(row => /^vol-\d+$/.test(row.issue_id))
+    .sort((a, b) => ((b.views || 0) + (b.likes || 0) + (b.checks || 0)) - ((a.views || 0) + (a.likes || 0) + (a.checks || 0)))[0];
+
+  document.getElementById('totalViews').textContent = fmt(totals.views);
+  document.getElementById('totalSignals').textContent = fmt(totals.signals);
+  if (top) {
+    const vol = top.issue_id.replace('vol-', '');
+    document.getElementById('topBrief').textContent = `Vol.${String(vol).padStart(3, '0')}`;
+    document.getElementById('topBriefHint').textContent = `${fmt(top.views || 0)} views · ${fmt((top.likes || 0) + (top.checks || 0))} signals`;
+  }
+
+  const voteCounts = Object.fromEntries(votes.map(row => [row.option_id, row.votes || 0]));
+  const maxVote = Math.max(1, ...Object.values(voteCounts));
+  const sortedVotes = Object.entries(voteOptions)
+    .map(([id, label]) => ({ id, label, count: voteCounts[id] || 0 }))
+    .sort((a, b) => b.count - a.count);
+
+  document.getElementById('voteList').innerHTML = sortedVotes.map(item => `
+    <div class="row">
+      <strong>${item.label}</strong>
+      <span>${fmt(item.count)}표</span>
+    </div>
+  `).join('');
+
+  document.getElementById('futureRadar').innerHTML = radarLabels.map(item => {
+    const count = voteCounts[item.id] || 0;
+    const fill = Math.round((count / maxVote) * 100);
+    return `
+      <div>
+        <div class="bar-label"><span>${item.label}</span><span>${fmt(count)}</span></div>
+        <div class="bar"><div style="--fill:${fill}%"></div></div>
+      </div>
+    `;
+  }).join('');
+
+  const topVote = sortedVotes[0];
+  const topBriefText = top ? `Vol.${String(top.issue_id.replace('vol-', '')).padStart(3, '0')}` : '아직 특정 브리프';
+  const topTopic = topVote && topVote.count > 0 ? topVote.label : 'AI·비즈니스·창업의 실제 적용';
+  document.getElementById('autoMemo').innerHTML = `
+    이번 달 AIMBA 7기 데이터에서 가장 강한 신호는 <strong>${topTopic}</strong>입니다.
+    브리프 반응 기준으로는 <strong>${topBriefText}</strong>가 가장 앞서 있으며,
+    다음 발행은 단순 뉴스 요약보다 원우들이 자기 업에 바로 적용할 수 있는 실행 프레임으로 정리하는 편이 좋습니다.
+    <small>이 문단은 Supabase에 쌓인 조회·반응·투표 데이터를 기준으로 자동 생성됩니다.</small>
+  `;
+}
+
+loadReport();
+</script>
+</body>
+</html>

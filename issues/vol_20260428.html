@@ -8,6 +8,7 @@
 <meta property="og:description" content="서강대 AI MBA 7기 미래혁신국 — AI·Business·MBA·Startup·Government·Campus">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
   --sogang: #8B0029;
@@ -264,6 +265,60 @@ body {
   color: #8b5a00;
 }
 
+.participation-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+.participation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.participation-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--text-body);
+  font-weight: 700;
+}
+.participation-form input,
+.participation-form select,
+.participation-form textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.84);
+  color: var(--text-dark);
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.82rem;
+}
+.participation-form textarea {
+  min-height: 104px;
+  resize: vertical;
+}
+.participation-form button {
+  justify-self: start;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: var(--sogang);
+  color: #fff;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.participation-form button:disabled {
+  opacity: 0.58;
+  cursor: wait;
+}
+.participation-status {
+  font-size: 0.78rem;
+  color: var(--text-body);
+}
+
 /* FOOTER */
 .footer {
   text-align: center; margin-top: 40px; padding-top: 20px;
@@ -300,6 +355,8 @@ body {
   .event-card .event-title { font-size: 0.8rem; margin-right: 50px; }
   .event-card .event-location { font-size: 0.68rem; }
   .event-card .event-tag { font-size: 0.6rem; padding: 2px 6px; }
+  .participation-grid { grid-template-columns: 1fr; }
+  .participation-form button { width: 100%; }
   .footer { font-size: 0.68rem; padding-top: 16px; }
 }
 </style>
@@ -311,7 +368,7 @@ body {
   <div class="header">
     <div class="header-top">
       <span class="org">서강대학교 AIMBA 7기</span>
-      <span>2026년 4월 13일</span>
+      <span>2026년 4월 28일</span>
     </div>
     <h1 class="header-title">AIMBA Weekly Briefing</h1>
     <p class="header-subtitle">SOGANG AI MBA 7th — AI · Business · MBA · Startup · Government · Campus</p>
@@ -679,6 +736,46 @@ body {
   <div class="insight-box" id="participateSection" style="margin-top:28px;">
     <div class="label">🤝 Participate</div>
     <p><strong>이번 호에서 가장 의미 있었던 섹션</strong>, <strong>다음 호에서 다뤄줬으면 하는 주제</strong>, <strong>공유하고 싶은 기사·세미나·공고</strong>를 보내주세요.</p>
+    <form class="participation-form" id="participationForm">
+      <div class="participation-grid">
+        <label>
+          이름 또는 닉네임
+          <input name="member_name" type="text" maxlength="60" placeholder="예: 조경준">
+        </label>
+        <label>
+          참여 유형
+          <select name="submission_type" required>
+            <option value="feedback">이번 호 피드백</option>
+            <option value="topic">다음 호 주제 제안</option>
+            <option value="tip">기사·세미나·공고 제보</option>
+            <option value="project">원우 프로젝트·협업 제안</option>
+          </select>
+        </label>
+      </div>
+      <div class="participation-grid">
+        <label>
+          관심 분야
+          <select name="sector">
+            <option value="">선택 안 함</option>
+            <option value="ai">AI·LLM</option>
+            <option value="business">Business & Strategy</option>
+            <option value="mba">MBA Insight</option>
+            <option value="startup">Startup</option>
+            <option value="campus">AIMBA & Campus</option>
+          </select>
+        </label>
+        <label>
+          링크
+          <input name="link_url" type="url" maxlength="500" placeholder="https://...">
+        </label>
+      </div>
+      <label>
+        내용
+        <textarea name="content" required maxlength="2000" placeholder="왜 이 주제가 중요한지, 내 업과 어떻게 연결되는지 짧게 남겨주세요."></textarea>
+      </label>
+      <button type="submit">AIMBA 데이터로 남기기</button>
+      <div class="participation-status" id="participationStatus">제출된 내용은 Supabase에 저장되고, 다음 브리프·월간 Future Report의 원천 데이터로 사용됩니다.</div>
+    </form>
     <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
       <a class="source" href="mailto:?subject=AIMBA%20Brief%20Feedback&body=%5B%ED%94%BC%EB%93%9C%EB%B0%B1%5D%20%EA%B0%80%EC%9E%A5%20%EC%9D%98%EB%AF%B8%20%EC%9E%88%EC%97%88%EB%8D%98%20%EC%84%B9%EC%85%98%3A%20" style="display:inline-block; padding:8px 14px; border-radius:999px; border:1px solid #d9d9d9; text-decoration:none;">✉️ 이번 호 피드백</a>
       <a class="source" href="mailto:?subject=AIMBA%20Brief%20Topic%20Suggestion&body=%5B%EB%8B%A4%EC%9D%8C%20%ED%98%B8%20%EC%A3%BC%EC%A0%9C%5D%20" style="display:inline-block; padding:8px 14px; border-radius:999px; border:1px solid #d9d9d9; text-decoration:none;">💡 다음 주제 제안</a>
@@ -706,6 +803,48 @@ function toggleMore(id, btn) {
     }
   }
 }
+
+const SUPABASE_URL = 'https://lorcsmsbyqalbtbyoyzh.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_xCuNXY2WjvVK6l-85nkfNg_dBd6NWx_';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+document.getElementById('participationForm')?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const button = form.querySelector('button[type="submit"]');
+  const status = document.getElementById('participationStatus');
+  const formData = new FormData(form);
+  const payload = {
+    issue_id: 'vol-4',
+    submission_type: formData.get('submission_type'),
+    member_name: String(formData.get('member_name') || '').trim() || null,
+    sector: String(formData.get('sector') || '').trim() || null,
+    content: String(formData.get('content') || '').trim(),
+    link_url: String(formData.get('link_url') || '').trim() || null,
+    source_path: window.location.pathname
+  };
+
+  if (!payload.content) {
+    status.textContent = '내용을 입력해주세요.';
+    return;
+  }
+
+  button.disabled = true;
+  status.textContent = '저장 중입니다...';
+  try {
+    const { error } = await supabaseClient
+      .from('participation_submissions')
+      .insert(payload);
+    if (error) throw error;
+    form.reset();
+    status.textContent = '저장되었습니다. 다음 브리프와 Future Report에 반영할 데이터로 모아두겠습니다.';
+  } catch (err) {
+    console.error('Participation submit failed:', err);
+    status.textContent = '저장에 실패했습니다. 잠시 후 다시 시도하거나 아래 메일 버튼을 사용해주세요.';
+  } finally {
+    button.disabled = false;
+  }
+});
 </script>
 
 </body>
