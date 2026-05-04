@@ -58,7 +58,6 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M20 20h-4v-4h4v4zm0-20h-4v4h4V0zM0 20h4v-4H0v4z'/%3E%3C/g%3E%3C/svg%3E");
 }
 .header-content { position: relative; z-index: 1; }
-.header-top { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 18px; }
 .header-brand {
   display:flex; align-items:center; justify-content:center; gap:16px;
   margin-bottom: 10px;
@@ -606,7 +605,6 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .sidebar-divider, .sidebar-label, .sidebar-note { display: none; }
   .main { padding: 16px 12px; }
   .header { padding: 24px 16px 20px; }
-  .header-top { gap: 8px; margin-bottom: 12px; }
   .header h1 { font-size: 1.4rem; letter-spacing: 1px; }
   .header .subtitle { font-size: 0.84rem; }
   .header .subcopy { font-size: 0.8rem; }
@@ -655,7 +653,6 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 
 <div class="header">
   <div class="header-content">
-    <div class="header-top"></div>
     <div class="header-brand">
       <img src="assets/sogang/sogang-symbol-300.png"
            srcset="assets/sogang/sogang-symbol-300.png 1x, assets/sogang/sogang-symbol-600.png 2x"
@@ -679,13 +676,13 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
     </div>
     <div class="sidebar-label" id="filterLabel">Brief Filters</div>
     <ul class="sidebar-nav" aria-labelledby="filterLabel">
-      <li><a href="#" data-filter="all" class="active" aria-current="true"><span class="moon-badge" aria-hidden="true">🟢</span> 전체보기</a></li>
-      <li><a href="#" data-filter="ai"><span class="moon-badge" aria-hidden="true">🔵</span> AI·LLM</a></li>
-      <li><a href="#" data-filter="business"><span class="moon-badge" aria-hidden="true">🟣</span> Business & Strategy</a></li>
+      <li><a href="#" data-filter="all" class="active" aria-current="true"><span class="moon-badge" aria-hidden="true">📚</span> 전체보기</a></li>
+      <li><a href="#" data-filter="ai"><span class="moon-badge" aria-hidden="true">🔴</span> AI·LLM</a></li>
+      <li><a href="#" data-filter="business"><span class="moon-badge" aria-hidden="true">🟠</span> Business & Strategy</a></li>
       <li><a href="#" data-filter="mba"><span class="moon-badge" aria-hidden="true">🟡</span> MBA Insight</a></li>
-      <li><a href="#" data-filter="startup"><span class="moon-badge" aria-hidden="true">🟠</span> Startup</a></li>
-      <li><a href="#" data-filter="campus"><span class="moon-badge" aria-hidden="true">🩵</span> AIMBA & Campus</a></li>
-      <li><a href="#" id="navLatestEvents"><span class="moon-badge" aria-hidden="true">🟤</span> AI Events</a></li>
+      <li><a href="#" data-filter="startup"><span class="moon-badge" aria-hidden="true">🟢</span> Startup</a></li>
+      <li><a href="#" data-filter="campus"><span class="moon-badge" aria-hidden="true">🟣</span> AIMBA & Campus</a></li>
+      <li><a href="#" id="navLatestEvents"><span class="moon-badge" aria-hidden="true">🔵</span> AI Events</a></li>
       <li><a href="issues/museum.html"><span class="moon-badge" aria-hidden="true">🩷</span> S.A Museum</a></li>
     </ul>
     <div class="sidebar-divider"></div>
@@ -703,7 +700,6 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 
   <!-- RIGHT — 발간물 아카이브 -->
   <div class="main">
-    <div id="latestBanner"></div>
     <section class="pulse-panel" id="aimbaPulse">
       <div class="pulse-top">
         <div>
@@ -910,23 +906,13 @@ const healingMessages = [
   { text: '햇빛이 비추는 동안 달려라.', source: '로버트 브라우닝' }
 ];
 
-// 섹터 매핑 (데이터베이스 필드 → 레이블)
-const sectorMap = {
-  ai: "AI & LLM",
-  business: "Business & Strategy",
-  mba: "MBA Insight",
-  startup: "Startup",
-  government: null,
-  campus: "AIMBA & Campus"
-};
-
-// 섹터 메타데이터
+// 섹터 메타데이터 (chip 표시용)
 const sectorMeta = {
   ai: { emoji: "🔴", label: "AI & LLM", anchor: "ai" },
   business: { emoji: "🟠", label: "Business & Strategy", anchor: "business" },
   mba: { emoji: "🟡", label: "MBA Insight", anchor: "mba" },
   startup: { emoji: "🟢", label: "Startup", anchor: "startup" },
-  government: { emoji: "🔵", label: "Startup", anchor: null },
+  government: { emoji: "🔵", label: "정부·정책", anchor: "government" },
   campus: { emoji: "🟣", label: "AIMBA & Campus", anchor: "campus" },
 };
 
@@ -955,19 +941,33 @@ let currentSort = 'latest';
 // 초기화
 document.addEventListener('DOMContentLoaded', function() {
   renderHealingCard();
+  setupDynamicLinks();
   render();
   setupEventListeners();
+  initPulse();
 });
+
+// 사이드바·Pulse 동적 링크를 최신 호로 연결
+function setupDynamicLinks() {
+  if (!issues.length) return;
+  const latest = [...issues].sort((a, b) => b.vol - a.vol)[0];
+  const targets = [
+    { id: 'navLatestEvents', hash: '#events' },
+    { id: 'sidebarParticipateLink', hash: '#participateSection' },
+    { id: 'pulseParticipateLink', hash: '#participateSection' }
+  ];
+  targets.forEach(({ id, hash }) => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute('href', `${latest.path}${hash}`);
+  });
+}
 
 // 이벤트 리스너 설정
 function setupEventListeners() {
-  // 검색 입력
-  document.getElementById('searchInput').addEventListener('input', function(e) {
-    const query = e.target.value.trim().toLowerCase();
-    filterAndRender(issues, query);
+  document.getElementById('searchInput').addEventListener('input', function() {
+    render();
   });
 
-  // 사이드바 클릭 (섹터/정렬)
   document.getElementById('sectorNav').addEventListener('click', function(e) {
     const link = e.target.closest('a');
     if (!link) return;
@@ -981,55 +981,17 @@ function setupEventListeners() {
 
     e.preventDefault();
 
-    if (sort) {
-      currentSort = sort;
-    }
-
-    if (filter) {
-      currentFilter = filter;
-      document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
-      link.classList.add('active');
-    }
+    if (sort) currentSort = sort;
+    if (filter) currentFilter = filter;
 
     render();
   });
 }
 
-// 필터링 및 렌더링
-function filterAndRender(data, query = '') {
-  let filtered = [...data];
-
-  // 섹터 필터
-  if (currentFilter !== 'all') {
-    filtered = filtered.filter(issue => {
-      return issue.sectors && issue.sectors[currentFilter] > 0;
-    });
-  }
-
-  // 검색 필터 (headline / vol / date / narrativeTitle / tags)
-  if (query) {
-    filtered = filtered.filter(issue => {
-      const headlineLower = (issue.headline || '').toLowerCase();
-      const titleLower = (issue.narrativeTitle || '').toLowerCase();
-      const tagsLower = (issue.tags || []).join(' ').toLowerCase();
-      const volMatch = String(issue.vol).toLowerCase().includes(query);
-      const dateMatch = issue.date.includes(query);
-      return headlineLower.includes(query)
-        || titleLower.includes(query)
-        || tagsLower.includes(query)
-        || volMatch
-        || dateMatch;
-    });
-  }
-
-  // 정렬
-  if (currentSort === 'oldest') {
-    filtered.sort((a, b) => a.vol - b.vol);
-  } else {
-    filtered.sort((a, b) => b.vol - a.vol);
-  }
-
-  renderVolList(filtered, query);
+// 현재 검색어 가져오기
+function getSearchQuery() {
+  const el = document.getElementById('searchInput');
+  return el ? el.value.trim().toLowerCase() : '';
 }
 
 // 렌더링
@@ -1048,23 +1010,37 @@ function renderHealingCard() {
 }
 
 function render() {
-  const filtered = issues.filter(issue => {
+  const query = getSearchQuery();
+
+  let filtered = issues.filter(issue => {
     if (currentFilter === 'all') return true;
     return issue.sectors && issue.sectors[currentFilter] > 0;
   });
 
-  // 최신순 정렬
-  const sorted = [...filtered].sort((a, b) => b.vol - a.vol);
-
-  renderVolList(sorted);
-
-  // 최신 배너 + Featured 영역
-  if (sorted.length > 0) {
-    const latest = sorted[0];
-    document.getElementById('latestBanner').innerHTML = `
-      <div class="latest-banner" style="display:none;"></div>`;
-
+  if (query) {
+    filtered = filtered.filter(issue => {
+      const headline = (issue.headline || '').toLowerCase();
+      const narrative = (issue.narrativeTitle || '').toLowerCase();
+      const tagsText = (issue.tags || []).join(' ').toLowerCase();
+      const volStr = String(issue.vol).toLowerCase();
+      const dateStr = (issue.date || '').toLowerCase();
+      return headline.includes(query)
+        || narrative.includes(query)
+        || tagsText.includes(query)
+        || volStr.includes(query)
+        || dateStr.includes(query);
+    });
   }
+
+  if (currentSort === 'oldest') {
+    filtered.sort((a, b) => a.vol - b.vol);
+  } else {
+    filtered.sort((a, b) => b.vol - a.vol);
+  }
+
+  renderVolList(filtered, query);
+  bindReactions();
+  updateFilterTags();
 }
 
 // Vol Cards 렌더링
@@ -1101,7 +1077,7 @@ function renderVolList(issuesToRender, query = '') {
             <div class="date">${issue.date}</div>
           </div>
           <div class="center-title">${issue.narrativeTitle || ''}</div>
-          <button class="share-btn" onclick="shareIssue('${issue.path}', '${issue.headline.replace(/'/g, "\\'")}')">
+          <button class="share-btn" onclick="shareIssue('${issue.path}', ${issue.vol}, '${(issue.narrativeTitle || issue.headline || '').replace(/'/g, "\\'").replace(/"/g, '&quot;')}')">
             <span>📤</span> 공유
           </button>
         </div>
@@ -1136,53 +1112,75 @@ function updateFilterTags() {
 }
 
 // 이슈 공유 함수
-function shareIssue(path, headline) {
-  const url = window.location.origin + window.location.pathname + path;
-  const text = `📰 AIMBA Weekly Briefing Vol.${headline.match(/\d+/)?.[0]} - ${headline}`;
+function shareIssue(path, vol, title) {
+  const baseDir = window.location.pathname.replace(/[^/]*$/, '');
+  const url = window.location.origin + baseDir + path;
+  const volLabel = `Vol.${String(vol).padStart(3, '0')}`;
+  const text = `📰 SOGANG AIMBA 7th Weekly Brief ${volLabel} — ${title}`;
 
   if (navigator.share) {
     navigator.share({
-      title: 'SOGANG AIMBA Weekly Briefing',
+      title: 'SOGANG AIMBA 7th Weekly Brief',
       text: text,
       url: url
     }).catch(console.error);
-  } else {
+  } else if (navigator.clipboard) {
     navigator.clipboard.writeText(url).then(() => {
       alert('링크가 클립보드에 복사되었습니다: ' + url);
     }).catch(err => {
       console.error('클립보드 복사 실패:', err);
     });
+  } else {
+    prompt('링크를 복사하세요', url);
   }
 }
 
-async function initReactions() {
-  const localStore = JSON.parse(localStorage.getItem('aimba-reactions-v1') || '{}');
-  const issueIds = [...new Set(Array.from(document.querySelectorAll('.reaction-btn')).map(btn => btn.dataset.key))];
+// Reaction stats 캐싱 + 1회 바인드 + 1회 view increment
+let reactionStatsCache = null;
+let reactionStatsPromise = null;
+let viewIncrementDone = false;
+const REACTION_FIELD_MAP = { view: 'views', like: 'likes', check: 'checks' };
 
-  let statsMap = {};
-  try {
-    const { data, error } = await supabaseClient
-      .from('weekly_issue_stats')
-      .select('issue_id, views, likes, checks')
-      .in('issue_id', issueIds);
-    if (error) throw error;
-    statsMap = Object.fromEntries((data || []).map(row => [row.issue_id, row]));
-  } catch (err) {
-    console.error('Supabase stats load failed:', err);
-  }
+async function fetchReactionStats() {
+  if (reactionStatsCache) return reactionStatsCache;
+  if (reactionStatsPromise) return reactionStatsPromise;
+
+  reactionStatsPromise = (async () => {
+    try {
+      const { data, error } = await supabaseClient
+        .from('weekly_issue_stats')
+        .select('issue_id, views, likes, checks');
+      if (error) throw error;
+      reactionStatsCache = Object.fromEntries((data || []).map(row => [row.issue_id, row]));
+    } catch (err) {
+      console.error('Supabase stats load failed:', err);
+      reactionStatsCache = {};
+    }
+    return reactionStatsCache;
+  })();
+
+  return reactionStatsPromise;
+}
+
+async function bindReactions() {
+  const statsMap = await fetchReactionStats();
+  const localStore = JSON.parse(localStorage.getItem('aimba-reactions-v1') || '{}');
 
   document.querySelectorAll('.reaction-btn').forEach(btn => {
+    if (btn.dataset.bound === '1') return;
+
     const reaction = btn.dataset.reaction;
     const key = btn.dataset.key;
     const fullKey = `${key}:${reaction}`;
     const countEl = btn.querySelector('span');
     const row = statsMap[key] || { views: 0, likes: 0, checks: 0 };
-    const fieldMap = { view: 'views', like: 'likes', check: 'checks' };
-    const field = fieldMap[reaction];
+    const field = REACTION_FIELD_MAP[reaction];
+
     countEl.textContent = row[field] ?? 0;
 
-    const active = !!localStore[fullKey];
-    if (active && reaction !== 'view') btn.classList.add('active');
+    if (localStore[fullKey] && reaction !== 'view') {
+      btn.classList.add('active');
+    }
 
     btn.addEventListener('click', async () => {
       if (reaction === 'view') return;
@@ -1198,23 +1196,44 @@ async function initReactions() {
           p_delta: next ? 1 : -1
         });
         if (error) throw error;
-        if (typeof data === 'number') countEl.textContent = data;
+        if (typeof data === 'number') {
+          countEl.textContent = data;
+          if (reactionStatsCache && reactionStatsCache[key]) {
+            reactionStatsCache[key][field] = data;
+          }
+        }
       } catch (err) {
         console.error('Reaction update failed:', err);
       }
     });
+
+    btn.dataset.bound = '1';
   });
 
+  if (!viewIncrementDone) {
+    viewIncrementDone = true;
+    incrementUnviewed();
+  }
+}
+
+async function incrementUnviewed() {
   const viewed = JSON.parse(localStorage.getItem('aimba-viewed-v1') || '{}');
+  const issueIds = [...new Set(Array.from(document.querySelectorAll('.reaction-btn')).map(btn => btn.dataset.key))];
+
   for (const issueId of issueIds) {
     if (viewed[issueId]) continue;
     try {
-      await supabaseClient.rpc('increment_weekly_issue_stat', {
+      const { data, error } = await supabaseClient.rpc('increment_weekly_issue_stat', {
         p_issue_id: issueId,
         p_field: 'views',
         p_delta: 1
       });
+      if (error) throw error;
       viewed[issueId] = true;
+      if (typeof data === 'number' && reactionStatsCache) {
+        reactionStatsCache[issueId] = reactionStatsCache[issueId] || { views: 0, likes: 0, checks: 0 };
+        reactionStatsCache[issueId].views = data;
+      }
     } catch (err) {
       console.error('View increment failed:', err);
     }
@@ -1332,15 +1351,7 @@ function renderPulseVotes(counts) {
 }
 
 
-// render() is invoked from DOMContentLoaded above — no duplicate call here (S-7 fix).
-// Defer Supabase reads until after the issue cards are mounted by render().
-document.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    initReactions();
-    initPulse();
-  }, 0);
-});
-// cache-bust: 2026-05-04-audit
+// cache-bust: 2026-05-04-rebase
 </script>
 </body>
 </html>
