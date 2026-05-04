@@ -5,7 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SOGANG AIMBA 7th Weekly Brief — AI·비즈니스·창업 인사이트 브리핑</title>
 <meta name="description" content="서강대 AIMBA 원우를 위한 AI·비즈니스·창업 인사이트 브리핑 — 뉴스를 모으는 것이 아니라, 경영자 관점에서 해석합니다.">
+<meta name="theme-color" content="#8B0029">
+<link rel="canonical" href="https://pointnline.github.io/SOGANG-AIMBA7th/">
+<!-- Favicon & app icons -->
+<link rel="icon" href="assets/sogang/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/sogang/apple-touch-icon.png">
+<!-- Open Graph (SNS share preview) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SOGANG AIMBA 7th Weekly Brief">
+<meta property="og:title" content="SOGANG AIMBA 7th Weekly Brief">
+<meta property="og:description" content="서강대 AIMBA 원우를 위한 AI·비즈니스·창업 인사이트 브리핑 — 뉴스를 모으는 것이 아니라, 경영자 관점에서 해석합니다.">
+<meta property="og:url" content="https://pointnline.github.io/SOGANG-AIMBA7th/">
+<meta property="og:image" content="https://pointnline.github.io/SOGANG-AIMBA7th/assets/sogang/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SOGANG AIMBA 7th Weekly Brief">
+<meta name="twitter:description" content="서강대 AIMBA 원우를 위한 AI·비즈니스·창업 인사이트 브리핑">
+<meta name="twitter:image" content="https://pointnline.github.io/SOGANG-AIMBA7th/assets/sogang/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&family=Noto+Serif+KR:wght@600;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -52,26 +73,21 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .header h1 { font-family: 'Noto Serif KR', serif; font-size: 2rem; font-weight: 900; letter-spacing: 1px; }
 .header .subtitle { font-size: 0.95rem; opacity: 0.92; margin-top: 8px; font-weight: 600; }
 .header .subcopy { font-size: 0.9rem; opacity: 0.82; margin-top: 8px; }
-.hero-quick {
-  max-width: 820px; margin: 18px auto 0; text-align: left;
-  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 12px; padding: 16px 18px;
+/* Sidebar CTA buttons (참여하기 / Future Report) */
+.sidebar-cta { display:grid; gap:8px; padding: 0 16px 8px; }
+.sidebar-cta a {
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  text-decoration:none; border-radius:10px; padding:10px 12px;
+  font-size:0.8rem; font-weight:700; min-height:40px;
 }
-.hero-quick .hero-label {
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; opacity: 0.8; text-transform: uppercase; margin-bottom: 8px;
+.sidebar-cta a.primary {
+  background:rgba(139,0,41,0.08); color:var(--sogang);
+  border:1px solid rgba(139,0,41,0.16);
 }
-.hero-quick ul { margin: 0; padding-left: 18px; }
-.hero-quick li { margin: 4px 0; font-size: 0.88rem; }
-.hero-actions { margin-top: 14px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-.hero-btn {
-  display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
-  padding: 10px 16px; border-radius: 999px; font-size: 0.86rem; font-weight: 700;
-  transition: all 0.2s;
+.sidebar-cta a.secondary {
+  background:#fff; color:var(--text);
+  border:1px solid var(--border);
 }
-.hero-btn.primary { background: white; color: var(--sogang); }
-.hero-btn.primary:hover { transform: translateY(-1px); }
-.hero-btn.secondary { background: rgba(255,255,255,0.12); color: white; border: 1px solid rgba(255,255,255,0.24); }
-.hero-btn.secondary:hover { background: rgba(255,255,255,0.18); }
 
 /* Search Bar */
 .search-bar {
@@ -145,6 +161,15 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 .sidebar-nav a:hover, .sidebar-nav a.active {
   background: rgba(139,0,41,0.04); color: var(--sogang);
   border-left-color: var(--sogang);
+}
+.sidebar-nav a:focus-visible {
+  outline: 2px solid var(--sogang);
+  outline-offset: -2px;
+}
+/* Screen reader only helper */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
 .moon-badge {
   display:inline-flex;
@@ -582,18 +607,9 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .main { padding: 16px 12px; }
   .header { padding: 24px 16px 20px; }
   .header-top { gap: 8px; margin-bottom: 12px; }
-  .logo-lockup { gap: 10px; padding: 8px 10px; border-radius: 14px; }
-  .sogang-logo { width: 56px; height: 56px; border-radius: 12px; padding: 6px; }
-  .logo-copy .logo-kicker { font-size: 0.62rem; }
-  .logo-copy .logo-name { font-size: 0.88rem; }
   .header h1 { font-size: 1.4rem; letter-spacing: 1px; }
   .header .subtitle { font-size: 0.84rem; }
   .header .subcopy { font-size: 0.8rem; }
-  .hero-quick { margin-top: 14px; padding: 12px 14px; text-align: left; }
-  .hero-quick li { font-size: 0.8rem; }
-  .hero-actions { margin-top: 10px; }
-  .hero-btn { width: 100%; justify-content: center; }
-  .org-badge { font-size: 0.68rem; padding: 2px 10px; margin-top: 4px; }
   .vol-card { margin-bottom: 14px; }
   .vol-card-header { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px 16px; }
   .vol-card-header .date { font-size: 1rem; }
@@ -620,6 +636,18 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   .search-bar { margin: 15px 16px 0; }
   .filter-tags { justify-content: flex-start; }
 }
+
+/* Print — readable archive list, hide interactive UI */
+@media print {
+  .sidebar, .search-bar, .reaction-row, .pulse-actions, .pulse-votes,
+  .pulse-vote-title, .share-btn, .hero-actions, .filter-tags { display: none !important; }
+  body { background: #fff; color: #000; }
+  .layout { display: block; max-width: 100%; }
+  .main { padding: 0; }
+  .vol-card { page-break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+  .vol-card-header { background: #eee !important; color: #000 !important; }
+  a { color: #000; text-decoration: underline; }
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -629,8 +657,13 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   <div class="header-content">
     <div class="header-top"></div>
     <div class="header-brand">
-      <img src="assets/sogang/sogang-symbol.png" alt="서강대학교 로고" class="sogang-mark">
-      <h1>SOGANG AIMBA 7th Weekly Brief</h1>
+      <img src="assets/sogang/sogang-symbol-300.png"
+           srcset="assets/sogang/sogang-symbol-300.png 1x, assets/sogang/sogang-symbol-600.png 2x"
+           width="150" height="51"
+           alt="서강대학교 심볼 마크"
+           class="sogang-mark"
+           loading="eager" decoding="async">
+      <h1 lang="en">SOGANG AIMBA 7th Weekly Brief</h1>
     </div>
     <p class="subtitle">서강대 AIMBA 원우를 위한 AI·비즈니스·창업 인사이트 브리핑</p>
     <p class="subcopy">뉴스를 모으는 것이 아니라, 경영자 관점에서 해석합니다.</p>
@@ -640,34 +673,31 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
 
 <div class="layout">
   <!-- LEFT SIDEBAR — 섹터 바로가기 -->
-  <nav class="sidebar" id="sectorNav">
-    <div class="sidebar-badge">
-      <img src="assets/sogang/university-seal.svg" alt="서강대학교 로고">
+  <nav class="sidebar" id="sectorNav" aria-label="섹터 필터 및 바로가기">
+    <div class="sidebar-badge" aria-hidden="true">
+      <img src="assets/sogang/university-seal.svg" alt="" role="presentation">
     </div>
-    <div class="sidebar-label">Brief Filters</div>
-    <ul class="sidebar-nav">
-      <li><a href="#" data-filter="all"><span class="moon-badge">🟢</span> 전체보기</a></li>
-      <li><a href="#" data-filter="ai"><span class="moon-badge">🔵</span> AI·LLM</a></li>
-      <li><a href="#" data-filter="business"><span class="moon-badge">🟣</span> Business & Strategy</a></li>
-      <li><a href="#" data-filter="mba"><span class="moon-badge">🟡</span> MBA Insight</a></li>
-      <li><a href="#" data-filter="startup"><span class="moon-badge">🟠</span> Startup</a></li>
-      <li><a href="#" data-filter="campus"><span class="moon-badge">🩵</span> AIMBA & Campus</a></li>
-      <li><a href="issues/vol_20260504.html#events"><span class="moon-badge">🟤</span> AI Events</a></li>
-      <li><a href="https://pointnline.github.io/SOGANG-AIMBA7th/issues/museum.html"><span class="moon-badge">🩷</span> S.A Museum</a></li>
+    <div class="sidebar-label" id="filterLabel">Brief Filters</div>
+    <ul class="sidebar-nav" aria-labelledby="filterLabel">
+      <li><a href="#" data-filter="all" class="active" aria-current="true"><span class="moon-badge" aria-hidden="true">🟢</span> 전체보기</a></li>
+      <li><a href="#" data-filter="ai"><span class="moon-badge" aria-hidden="true">🔵</span> AI·LLM</a></li>
+      <li><a href="#" data-filter="business"><span class="moon-badge" aria-hidden="true">🟣</span> Business & Strategy</a></li>
+      <li><a href="#" data-filter="mba"><span class="moon-badge" aria-hidden="true">🟡</span> MBA Insight</a></li>
+      <li><a href="#" data-filter="startup"><span class="moon-badge" aria-hidden="true">🟠</span> Startup</a></li>
+      <li><a href="#" data-filter="campus"><span class="moon-badge" aria-hidden="true">🩵</span> AIMBA & Campus</a></li>
+      <li><a href="#" id="navLatestEvents"><span class="moon-badge" aria-hidden="true">🟤</span> AI Events</a></li>
+      <li><a href="issues/museum.html"><span class="moon-badge" aria-hidden="true">🩷</span> S.A Museum</a></li>
     </ul>
     <div class="sidebar-divider"></div>
     <div class="search-bar sidebar-search">
-      <span class="search-icon">🔍</span>
+      <label for="searchInput" class="sr-only">검색</label>
+      <span class="search-icon" aria-hidden="true">🔍</span>
       <input type="text" class="search-input" id="searchInput" placeholder="검색어를 입력하세요 (AI, 비즈니스, MBA, 창업...)">
     </div>
     <div class="sidebar-divider"></div>
-    <div style="padding: 0 16px 8px; display:grid; gap:8px;">
-      <a href="issues/vol_20260504.html#participateSection" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; text-decoration:none; background:rgba(139,0,41,0.08); color:var(--sogang); border:1px solid rgba(139,0,41,0.16); border-radius:10px; padding:10px 12px; font-size:0.8rem; font-weight:700;">
-        🤝 참여하기
-      </a>
-      <a href="issues/future-report.html" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; text-decoration:none; background:#fff; color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 12px; font-size:0.8rem; font-weight:700;">
-        📊 Future Report
-      </a>
+    <div class="sidebar-cta">
+      <a id="sidebarParticipateLink" class="primary" href="issues/vol_20260504.html#participateSection">🤝 참여하기</a>
+      <a class="secondary" href="issues/future-report.html">📊 Future Report</a>
     </div>
   </nav>
 
@@ -683,7 +713,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
         </div>
         <div class="pulse-live">LIVE SIGNAL</div>
       </div>
-      <div class="pulse-grid">
+      <div class="pulse-grid" aria-live="polite" aria-atomic="false">
         <div class="pulse-stat">
           <div class="label">Total Views</div>
           <div class="value" id="pulseViews">0</div>
@@ -703,7 +733,7 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
       <div class="pulse-vote-title">다음 호에서 깊게 다뤘으면 하는 주제</div>
       <div class="pulse-votes" id="pulseVotes"></div>
       <div class="pulse-actions">
-        <a class="pulse-action primary" href="issues/vol_20260428.html#participateSection">제보·의견 남기기</a>
+        <a id="pulseParticipateLink" class="pulse-action primary" href="issues/vol_20260504.html#participateSection">제보·의견 남기기</a>
         <a class="pulse-action secondary" href="issues/future-report.html">월간 Future Report 보기</a>
       </div>
     </section>
@@ -713,11 +743,12 @@ body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: va
   </div>
 </div>
 
-<div class="footer">
-  SOGANG AIMBA 7th Weekly Brief · 미래혁신국 큐레이션 브리핑<br>
+<footer class="footer">
+  <strong>SOGANG AIMBA 7th Weekly Brief</strong> · 미래혁신국 큐레이션 브리핑<br>
   AI · Business · Startup · MBA Insight<br>
-  © 2026 SOGANG AIMBA 7th
-</div>
+  발간 주기: 매주 토요일 08:00 KST · 운영: 서강대 AI MBA 7기 미래혁신국<br>
+  © 2026 SOGANG AIMBA 7th · All curated content is summarized for educational use; original sources cited per item.
+</footer>
 
 <script>
 // ══════════════════════════════════════════
@@ -738,6 +769,7 @@ const issues = [
     },
     path: "issues/vol_20260504.html",
     eventPath: "issues/vol_20260504.html#events",
+    tags: ["AI", "에이전트", "워크플로", "엔터프라이즈", "핀테크", "RWA", "창업지원"],
     sectors: { ai: 4, business: 4, mba: 4, startup: 4, government: 6, campus: 5 }
   },
 {
@@ -754,6 +786,7 @@ const issues = [
     },
     path: "issues/vol_20260428.html",
     eventPath: "issues/vol_20260428.html#events",
+    tags: ["AI", "비즈니스", "AIMBA", "조직", "현업전환", "MBA"],
     sectors: { ai: 5, business: 4, mba: 4, startup: 3, government: 3, campus: 3 }
   },
   {
@@ -769,6 +802,7 @@ const issues = [
       conclusion: "이제 AI 시장은 얼마나 빨리 크느냐보다, 얼마나 오래 <strong>버티며 현금흐름을 만들 수 있느냐</strong>를 평가합니다."
     },
     path: "issues/vol_20260413.html",
+    tags: ["AI", "창업", "비즈니스", "IPO", "데이터센터", "보안"],
     sectors: { ai: 5, business: 5, mba: 5, startup: 5, government: 4, campus: 8 }
   },
   {
@@ -784,6 +818,7 @@ const issues = [
       conclusion: "이번 주는 <strong>기술 서사</strong>와 <strong>자본 서사</strong>가 다시 결합하며, 다음 사이클의 문법을 예고한 출발점이었습니다."
     },
     path: "issues/vol_20260404.html",
+    tags: ["트렌드", "창업지원", "에이전틱AI", "Gemma", "VC", "RWA"],
     sectors: { ai: 5, business: 5, mba: 5, startup: 5, government: 5, campus: 4 }
   },
   {
@@ -799,9 +834,24 @@ const issues = [
       conclusion: "앞으로의 우위는 <strong>더 큰 조직</strong>이 아니라, 기술을 활용해 <strong>더 높은 개인 생산성</strong>을 만드는 사람과 팀에서 시작됩니다."
     },
     path: "issues/vol_20260328.html",
+    tags: ["트렌드", "창업지원", "Claude", "Opus", "1인", "RWA"],
     sectors: { ai: 5, business: 5, mba: 5, startup: 5, government: 5, campus: 6 }
   }
 ];
+
+// 최신 호 자동 바인딩 (C-1 fix): Pulse "제보·의견 남기기" / 사이드바 "참여하기"
+// /  AI Events 메뉴가 항상 issues[0](가장 최신호)을 가리키도록.
+(function bindLatestIssueLinks() {
+  const latest = [...issues].sort((a, b) => b.vol - a.vol)[0];
+  if (!latest) return;
+  const setHref = (id, suffix = '') => {
+    const el = document.getElementById(id);
+    if (el) el.setAttribute('href', latest.path + suffix);
+  };
+  setHref('pulseParticipateLink', '#participateSection');
+  setHref('sidebarParticipateLink', '#participateSection');
+  setHref('navLatestEvents', '#events');
+})();
 
 const healingPalette = [
   { bg: 'linear-gradient(135deg, #f8d7da, #fbe9eb)' },
@@ -956,13 +1006,19 @@ function filterAndRender(data, query = '') {
     });
   }
 
-  // 검색 필터
+  // 검색 필터 (headline / vol / date / narrativeTitle / tags)
   if (query) {
     filtered = filtered.filter(issue => {
       const headlineLower = (issue.headline || '').toLowerCase();
+      const titleLower = (issue.narrativeTitle || '').toLowerCase();
+      const tagsLower = (issue.tags || []).join(' ').toLowerCase();
       const volMatch = String(issue.vol).toLowerCase().includes(query);
       const dateMatch = issue.date.includes(query);
-      return headlineLower.includes(query) || volMatch || dateMatch;
+      return headlineLower.includes(query)
+        || titleLower.includes(query)
+        || tagsLower.includes(query)
+        || volMatch
+        || dateMatch;
     });
   }
 
@@ -1275,12 +1331,16 @@ function renderPulseVotes(counts) {
   });
 }
 
-render();
-setTimeout(() => {
-  initReactions();
-  initPulse();
-}, 0);
-// cache-bust: 2026-04-30-2048
+
+// render() is invoked from DOMContentLoaded above — no duplicate call here (S-7 fix).
+// Defer Supabase reads until after the issue cards are mounted by render().
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    initReactions();
+    initPulse();
+  }, 0);
+});
+// cache-bust: 2026-05-04-audit
 </script>
 </body>
 </html>
