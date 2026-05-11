@@ -1,4 +1,5 @@
 import { TOKENS as T } from "@/lib/tokens";
+import { sitePath } from "@/lib/paths";
 
 export function HomeMuseumTeaser() {
   return (
@@ -58,10 +59,10 @@ export function HomeMuseumTeaser() {
               maxWidth: 500,
             }}
           >
-            S.A Museum은 매주 한 점의 작품을 큐레이션합니다. AI · 비즈니스가 잠시
-            멈추는 자리. 지금까지{" "}
-            <strong style={{ color: T.gold }}>23점</strong>의 컬렉션이
-            아카이빙되어 있습니다.
+            S.A Museum은 브리핑 사이에 잠깐 숨을 고르는 월간 큐레이션입니다.
+            이전 페이지의 Selected Works를 살려{" "}
+            <strong style={{ color: T.gold }}>10점</strong>의 작품을 새
+            전시 틀에 연결했습니다.
           </p>
           <div
             style={{
@@ -72,7 +73,7 @@ export function HomeMuseumTeaser() {
             }}
           >
             <a
-              href="/museum"
+              href={sitePath("/museum")}
               style={{
                 padding: "12px 22px",
                 background: T.gold,

@@ -1,6 +1,8 @@
 import { TOKENS as T } from "@/lib/tokens";
+import type { Metadata } from "next";
 import { MUSEUM_WORKS } from "@/lib/data";
 import { SiteFooter } from "@/components/SiteFooter";
+import { sitePath } from "@/lib/paths";
 
 const M = {
   bg: "#0a0a0a",
@@ -10,7 +12,13 @@ const M = {
   wine: T.wine,
 };
 
+export const metadata: Metadata = {
+  title: "S.A Museum · SOGANG AIMBA 7th",
+  description: "브리핑 사이 잠깐 숨을 고르는 AIMBA 7기 월간 작품 큐레이션.",
+};
+
 export default function MuseumPage() {
+  const featured = MUSEUM_WORKS[0];
   return (
     <div
       style={{
@@ -21,6 +29,7 @@ export default function MuseumPage() {
       }}
     >
       <header
+        className="museum-header"
         style={{
           padding: "32px 64px",
           display: "flex",
@@ -33,12 +42,12 @@ export default function MuseumPage() {
           textTransform: "uppercase",
         }}
       >
-        <a href="/">← BACK TO BRIEF</a>
+        <a href={sitePath("/")}>← BACK TO BRIEF</a>
         <span>S . A &nbsp;&nbsp; M U S E U M</span>
-        <span>2026 / 023</span>
+        <span>2026 / MONTHLY 10</span>
       </header>
 
-      <section style={{ padding: "180px 64px 80px", textAlign: "center" }}>
+      <section className="museum-hero" style={{ padding: "180px 64px 80px", textAlign: "center" }}>
         <h1
           style={{
             fontFamily: "var(--serif-display)",
@@ -68,6 +77,7 @@ export default function MuseumPage() {
       </section>
 
       <section
+        className="museum-feature"
         style={{
           padding: "60px 64px 100px",
           display: "grid",
@@ -87,14 +97,9 @@ export default function MuseumPage() {
             boxShadow: "0 50px 120px rgba(0,0,0,0.6)",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              inset: 56,
-              background:
-                "linear-gradient(180deg, #d4541f 0%, #d4541f 32%, transparent 38%, transparent 50%, #5b101c 58%, #1f0408 95%)",
-              filter: "blur(4px)",
-            }}
+          <ArtworkVisual
+            work={featured}
+            variant="feature"
           />
           <div
             style={{
@@ -110,8 +115,8 @@ export default function MuseumPage() {
               letterSpacing: "0.18em",
             }}
           >
-            <span>№ 023</span>
-            <span>OIL ON CANVAS · 235.9 × 206.7 CM</span>
+            <span>№ {featured.index}</span>
+            <span>{featured.year} · {featured.mood}</span>
           </div>
         </div>
         <aside style={{ paddingBottom: 8 }}>
@@ -125,7 +130,7 @@ export default function MuseumPage() {
               marginBottom: 36,
             }}
           >
-            ● ON VIEW · MAY 9 — MAY 16
+            ● ON VIEW · MONTHLY SELECTION
           </div>
           <h2
             style={{
@@ -138,7 +143,7 @@ export default function MuseumPage() {
               margin: "0 0 12px",
             }}
           >
-            Untitled, 1962
+            {featured.work}
           </h2>
           <div
             style={{
@@ -149,7 +154,10 @@ export default function MuseumPage() {
               marginBottom: 48,
             }}
           >
-            Mark Rothko · 1903 — 1970
+            {featured.artist}
+            <div style={{ fontFamily: "var(--mono)", fontSize: 11, marginTop: 8 }}>
+              {featured.year} · {featured.medium}
+            </div>
           </div>
           <div style={{ height: 1, background: M.rule, marginBottom: 32 }} />
           <p
@@ -162,9 +170,24 @@ export default function MuseumPage() {
               margin: 0,
             }}
           >
-            한 주의 회의실, 한 주의 결산. 모든 숫자가 침묵으로 가라앉는 자리에 한
-            점의 색이 남는다. 학예팀이 그 자리를 큐레이션합니다.
+            {featured.note}
           </p>
+          <a
+            href={featured.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: "inline-block",
+              marginTop: 26,
+              fontFamily: "var(--mono)",
+              fontSize: 10,
+              letterSpacing: "0.16em",
+              color: M.ink3,
+              textTransform: "uppercase",
+            }}
+          >
+            {featured.collection} · {featured.license} →
+          </a>
         </aside>
       </section>
 
@@ -206,15 +229,16 @@ export default function MuseumPage() {
               textTransform: "uppercase",
             }}
           >
-            23 PLATES · 2026
+            10 SELECTED WORKS · 2026
           </div>
         </div>
-        {MUSEUM_WORKS.map((w, i) => (
+        {MUSEUM_WORKS.map((w) => (
           <div
-            key={i}
+            key={w.index}
+            className="museum-row"
             style={{
               display: "grid",
-              gridTemplateColumns: "60px 1.4fr 1fr 200px",
+              gridTemplateColumns: "60px 110px 1.1fr 1.4fr 160px",
               padding: "28px 0",
               borderTop: `1px solid ${M.rule}`,
               alignItems: "baseline",
@@ -233,6 +257,12 @@ export default function MuseumPage() {
             >
               № {w.index}
             </div>
+            <div>
+              <ArtworkVisual
+                work={w}
+                variant="thumb"
+              />
+            </div>
             <div
               style={{
                 fontFamily: "var(--serif-display)",
@@ -246,6 +276,12 @@ export default function MuseumPage() {
             </div>
             <div style={{ fontFamily: "var(--korean)", fontSize: 14 }}>
               {w.artist}
+              <div style={{ color: M.ink3, fontSize: 11, marginTop: 3 }}>
+                {w.year} · {w.collection}
+              </div>
+              <div style={{ color: M.ink3, fontSize: 12, marginTop: 4 }}>
+                {w.note}
+              </div>
             </div>
             <div
               style={{
@@ -257,9 +293,9 @@ export default function MuseumPage() {
               }}
             >
               {w.onView ? (
-                <span style={{ color: M.wine }}>● ON VIEW</span>
+                <a href={w.sourceUrl} target="_blank" rel="noreferrer" style={{ color: M.wine }}>● ON VIEW</a>
               ) : (
-                <span>VIEW NOTE →</span>
+                <a href={w.sourceUrl} target="_blank" rel="noreferrer">SOURCE →</a>
               )}
             </div>
           </div>
@@ -319,6 +355,71 @@ export default function MuseumPage() {
       </section>
 
       <SiteFooter />
+    </div>
+  );
+}
+
+type MuseumWork = (typeof MUSEUM_WORKS)[number];
+
+function ArtworkVisual({
+  work,
+  variant,
+}: {
+  work: MuseumWork;
+  variant: "feature" | "thumb";
+}) {
+  const isFeature = variant === "feature";
+  const baseStyle = isFeature
+    ? {
+        position: "absolute" as const,
+        inset: 56,
+        width: "calc(100% - 112px)",
+        height: "calc(100% - 112px)",
+      }
+    : {
+        width: 84,
+        height: 64,
+      };
+
+  if (work.image) {
+    return (
+      <img
+        src={sitePath(work.image)}
+        alt={`${work.artist} - ${work.work}`}
+        style={{
+          ...baseStyle,
+          objectFit: "cover",
+          borderRadius: isFeature ? 0 : 2,
+          filter: "saturate(0.92)",
+          opacity: work.onView || isFeature ? 1 : 0.72,
+        }}
+      />
+    );
+  }
+
+  return (
+    <div
+      aria-label={`${work.artist} - ${work.work}`}
+      role="img"
+      style={{
+        ...baseStyle,
+        borderRadius: isFeature ? 0 : 2,
+        background: `linear-gradient(135deg, ${work.tone[0]}, ${work.tone[1]})`,
+        boxShadow: isFeature ? "inset 0 0 0 1px rgba(255,255,255,0.08)" : "none",
+        opacity: work.onView || isFeature ? 1 : 0.72,
+        position: isFeature ? "absolute" : "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: isFeature ? "18% 14%" : "18% 16%",
+          borderTop: "1px solid rgba(255,255,255,0.32)",
+          borderBottom: "1px solid rgba(0,0,0,0.22)",
+          transform: "rotate(-6deg)",
+        }}
+      />
     </div>
   );
 }

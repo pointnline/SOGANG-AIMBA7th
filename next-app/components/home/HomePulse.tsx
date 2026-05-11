@@ -1,5 +1,11 @@
 import { TOKENS as T } from "@/lib/tokens";
-import { PULSE_METRICS, PULSE_TOPICS } from "@/lib/data";
+import {
+  FUTURE_REPORT_PATH,
+  PARTICIPATE_PATH,
+  PULSE_METRICS,
+  PULSE_TOPICS,
+} from "@/lib/data";
+import { sitePath } from "@/lib/paths";
 
 export function HomePulse() {
   return (
@@ -13,6 +19,7 @@ export function HomePulse() {
       }}
     >
       <div
+        className="home-panel-head"
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -85,6 +92,7 @@ export function HomePulse() {
       </p>
 
       <div
+        className="home-metric-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
@@ -192,8 +200,9 @@ export function HomePulse() {
         ))}
       </ul>
 
-      <div style={{ display: "flex", gap: 10, marginTop: 22 }}>
-        <button
+      <div className="button-row" style={{ display: "flex", gap: 10, marginTop: 22 }}>
+        <a
+          href={sitePath(PARTICIPATE_PATH)}
           style={{
             padding: "12px 22px",
             background: T.wine,
@@ -202,11 +211,13 @@ export function HomePulse() {
             fontFamily: "var(--korean)",
             fontSize: 13.5,
             fontWeight: 600,
+            display: "inline-block",
           }}
         >
           제보 · 의견 남기기
-        </button>
-        <button
+        </a>
+        <a
+          href={sitePath(FUTURE_REPORT_PATH)}
           style={{
             padding: "12px 22px",
             background: "#fff",
@@ -216,10 +227,11 @@ export function HomePulse() {
             fontFamily: "var(--korean)",
             fontSize: 13.5,
             fontWeight: 500,
+            display: "inline-block",
           }}
         >
           월간 Future Report 보기
-        </button>
+        </a>
       </div>
     </div>
   );

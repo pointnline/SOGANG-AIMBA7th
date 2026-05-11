@@ -1,6 +1,15 @@
-import { TOKENS as T } from "@/lib/tokens";
-import { BRIEF_ISSUES } from "@/lib/data";
 import { SiteFooter } from "@/components/SiteFooter";
+import {
+  BRIEF_ISSUES,
+  BRIEF_SECTIONS,
+  CURRENT_BRIEF,
+  EVENTS,
+  FUTURE_REPORT_PATH,
+  PARTICIPATE_PATH,
+  SUPPORT_GROUPS,
+} from "@/lib/data";
+import { sitePath } from "@/lib/paths";
+import { TOKENS as T } from "@/lib/tokens";
 
 export default function BriefPage() {
   return (
@@ -11,8 +20,8 @@ export default function BriefPage() {
         fontFamily: "var(--korean)",
       }}
     >
-      {/* Masthead */}
       <header
+        className="brief-header"
         style={{
           background: T.paper,
           color: T.ink,
@@ -23,6 +32,7 @@ export default function BriefPage() {
         }}
       >
         <div
+          className="brief-topbar"
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -36,24 +46,18 @@ export default function BriefPage() {
             borderBottom: `1px solid ${T.rule}`,
           }}
         >
-          <a href="/">← HOME</a>
-          <span style={{ display: "flex", gap: 18 }}>
-            <span>구독 23,481</span>
+          <a href={sitePath("/")}>← HOME</a>
+          <span style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
+            <span>VOL. {CURRENT_BRIEF.vol}</span>
             <span>·</span>
-            <span>이번 호 조회 4,127</span>
+            <span>{CURRENT_BRIEF.dateLabel}</span>
             <span>·</span>
-            <span style={{ color: T.wine, fontWeight: 600 }}>● LIVE</span>
+            <span style={{ color: T.wine, fontWeight: 600 }}>● CURRENT</span>
           </span>
-          <span>로그인 · 검색</span>
+          <a href={sitePath(FUTURE_REPORT_PATH)}>Future Report</a>
         </div>
 
-        <div
-          style={{
-            padding: "36px 0 24px",
-            textAlign: "center",
-            position: "relative",
-          }}
-        >
+        <div style={{ padding: "36px 0 24px", textAlign: "center" }}>
           <div
             style={{
               fontFamily: "var(--sans)",
@@ -64,16 +68,16 @@ export default function BriefPage() {
               marginBottom: 14,
             }}
           >
-            SINCE 1960 · SOGANG UNIVERSITY · AI MBA 7TH
+            SOGANG UNIVERSITY · AI MBA 7TH · 미래혁신국
           </div>
           <h1
+            className="brief-title"
             style={{
               fontFamily: "var(--serif-display)",
               fontWeight: 500,
               fontStyle: "italic",
               fontSize: 84,
               lineHeight: 0.95,
-              letterSpacing: "-0.025em",
               margin: 0,
               color: T.ink,
             }}
@@ -90,47 +94,38 @@ export default function BriefPage() {
               fontWeight: 300,
             }}
           >
-            A weekly intelligence dossier on AI, business &amp; strategy — for
-            executives in training.
-          </div>
-          <div
-            style={{
-              marginTop: 18,
-              fontFamily: "var(--sans)",
-              fontSize: 10,
-              letterSpacing: "0.3em",
-              color: T.ink3,
-            }}
-          >
-            VOL. VII · ISSUE 23 · 2026년 5월 9일 토요일
+            {CURRENT_BRIEF.subtitle}
           </div>
         </div>
 
         <nav
+          className="brief-nav"
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: 32,
+            gap: 26,
             padding: "14px 0 16px",
             borderTop: `1px solid ${T.rule}`,
             fontFamily: "var(--sans)",
             fontSize: 12,
-            letterSpacing: "0.18em",
+            letterSpacing: "0.14em",
             textTransform: "uppercase",
             fontWeight: 500,
+            flexWrap: "wrap",
           }}
         >
           {[
-            "AI · LLM",
-            "Business",
-            "Strategy",
-            "Startup",
-            "MBA Insight",
-            "Campus",
-            "S.A Museum",
-          ].map((x, i) => (
+            ["AI · LLM", "#ai"],
+            ["Business", "#business"],
+            ["MBA", "#mba"],
+            ["Startup", "#startup"],
+            ["Government", "#government"],
+            ["Campus", "#campus"],
+            ["Events", "#events"],
+          ].map(([label, href], i) => (
             <a
-              key={i}
+              href={href}
+              key={href}
               style={{
                 color: i === 0 ? T.wine : T.ink,
                 borderBottom:
@@ -138,426 +133,463 @@ export default function BriefPage() {
                 paddingBottom: 4,
               }}
             >
-              {x}
+              {label}
             </a>
           ))}
         </nav>
       </header>
 
-      {/* Lead story */}
-      <section
-        style={{
-          padding: "40px 48px",
-          maxWidth: 1280,
-          margin: "0 auto",
-          borderBottom: `1px solid ${T.rule}`,
-        }}
-      >
-        <div
+      <main>
+        <section
+          className="brief-lead"
           style={{
-            display: "grid",
-            gridTemplateColumns: "1.3fr 1fr",
-            gap: 56,
+            padding: "44px 48px",
+            maxWidth: 1280,
+            margin: "0 auto",
+            borderBottom: `1px solid ${T.rule}`,
           }}
         >
-          <article>
-            <div
-              style={{
-                fontFamily: "var(--sans)",
-                fontSize: 11,
-                letterSpacing: "0.22em",
-                color: T.wine,
-                fontWeight: 700,
-                marginBottom: 14,
-              }}
-            >
-              ● THIS WEEK&rsquo;S LEAD · AI · LLM
-            </div>
-            <h2
-              style={{
-                fontFamily: "var(--serif-display)",
-                fontWeight: 500,
-                fontSize: 52,
-                lineHeight: 1.05,
-                letterSpacing: "-0.02em",
-                margin: 0,
-                color: T.ink,
-              }}
-            >
-              Anthropic, Claude 4.5의 &lsquo;경영 추론&rsquo;
-              <br />
-              <em style={{ fontWeight: 400, color: T.wine }}>
-                — 컨설턴트를 대체하는가
-              </em>
-            </h2>
-            <div
-              style={{
-                fontFamily: "var(--sans)",
-                fontSize: 12,
-                color: T.ink3,
-                margin: "20px 0 22px",
-                display: "flex",
-                gap: 12,
-                alignItems: "center",
-              }}
-            >
-              <span>
-                BY{" "}
-                <strong style={{ color: T.ink }}>김민수 · 7기 미래혁신국</strong>
-              </span>
-              <span>·</span>
-              <span>9분 읽기</span>
-              <span>·</span>
-              <span>출처 4건 인용</span>
-            </div>
-            <div
-              style={{
-                height: 240,
-                background: `linear-gradient(135deg, ${T.paper2}, ${T.paper3})`,
-                border: `1px solid ${T.rule}`,
-                marginBottom: 22,
-              }}
-            />
-            <div
-              style={{
-                columnCount: 2,
-                columnGap: 28,
-                fontSize: 15.5,
-                lineHeight: 1.75,
-                color: T.ink2,
-                fontFamily: "var(--korean)",
-                textAlign: "justify",
-              }}
-            >
-              <p style={{ marginTop: 0 }}>
-                <span
-                  style={{
-                    float: "left",
-                    fontFamily: "var(--serif-display)",
-                    fontSize: 64,
-                    lineHeight: 0.85,
-                    marginRight: 8,
-                    marginTop: 4,
-                    color: T.wine,
-                    fontWeight: 500,
-                  }}
-                >
-                  지
-                </span>
-                난 4월 30일 발표된 Claude 4.5 Sonnet은 단순한 모델 업그레이드가
-                아니다. Anthropic은 이번 릴리스에서 처음으로 &lsquo;경영 사례
-                추론&rsquo; 벤치마크를 공개했고, MBB 3사 출신 컨설턴트로 구성된
-                평가단의 65%가 모델의 답변을 &lsquo;Junior Associate
-                이상&rsquo;으로 평가했다.
-              </p>
-              <p>
-                주목할 점은 가격 구조다. 한 시간당 750달러를 청구하던 Senior
-                Associate의 산출물 단가가, API 호출 기준으로는 0.18달러까지
-                떨어졌다. 같은 일을 4,000배 싸게 한다는 뜻이 아니다 — 같은 일을
-                처음부터 다시 정의해야 한다는 뜻이다.
-              </p>
-              <p>
-                <strong style={{ color: T.ink }}>경영자 시사점.</strong> AIMBA
-                원우들이 던져야 할 질문은 &ldquo;AI가 컨설턴트를 대체하는가&rdquo;가
-                아니다. &ldquo;내가 컨설턴트에게 의뢰하던 그 질문이, 애초에 좋은
-                질문이었는가&rdquo;이다.
-              </p>
-            </div>
-          </article>
-
-          <aside>
-            <div
-              style={{
-                borderTop: `3px solid ${T.ink}`,
-                paddingTop: 14,
-                marginBottom: 28,
-              }}
-            >
+          <div
+            className="brief-lead-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1.25fr 0.75fr",
+              gap: 56,
+            }}
+          >
+            <article>
               <div
                 style={{
                   fontFamily: "var(--sans)",
-                  fontSize: 10,
+                  fontSize: 11,
                   letterSpacing: "0.22em",
                   color: T.wine,
                   fontWeight: 700,
-                  marginBottom: 16,
+                  marginBottom: 14,
                 }}
               >
-                PULL QUOTE
+                THIS WEEK'S NARRATIVE · VOL. {CURRENT_BRIEF.vol}
               </div>
-              <blockquote
+              <h2
+                className="brief-lead-title"
                 style={{
-                  margin: 0,
                   fontFamily: "var(--serif-display)",
-                  fontSize: 30,
-                  lineHeight: 1.25,
-                  fontStyle: "italic",
-                  fontWeight: 400,
+                  fontWeight: 500,
+                  fontSize: 52,
+                  lineHeight: 1.05,
+                  margin: 0,
                   color: T.ink,
-                  letterSpacing: "-0.01em",
                 }}
               >
-                &ldquo;AI가 컨설턴트를 대체하는 게 아니다.
-                <span style={{ color: T.wine }}>
-                  {" "}
-                  좋은 질문을 가진 사람
-                </span>
-                이, 그렇지 않은 사람을 대체할 뿐이다.&rdquo;
-              </blockquote>
-            </div>
+                {CURRENT_BRIEF.title}
+              </h2>
+              <div
+                className="brief-copy"
+                style={{
+                  columnCount: 2,
+                  columnGap: 28,
+                  fontSize: 15.5,
+                  lineHeight: 1.75,
+                  color: T.ink2,
+                  fontFamily: "var(--korean)",
+                  textAlign: "justify",
+                  marginTop: 24,
+                }}
+              >
+                {CURRENT_BRIEF.memoLines.map((line) => (
+                  <p key={line} style={{ marginTop: 0 }}>
+                    {line}
+                  </p>
+                ))}
+                <p>
+                  <strong style={{ color: T.ink }}>Conclusion.</strong>{" "}
+                  {CURRENT_BRIEF.conclusion}
+                </p>
+              </div>
+            </article>
 
-            <div
+            <aside>
+              <div
+                style={{
+                  borderTop: `3px solid ${T.ink}`,
+                  paddingTop: 14,
+                  marginBottom: 28,
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "var(--sans)",
+                    fontSize: 10,
+                    letterSpacing: "0.22em",
+                    color: T.wine,
+                    fontWeight: 700,
+                    marginBottom: 16,
+                  }}
+                >
+                  INSIDE THIS ISSUE
+                </div>
+                <ol
+                  style={{
+                    fontFamily: "var(--korean)",
+                    fontSize: 13,
+                    lineHeight: 1.8,
+                    color: T.ink2,
+                    paddingLeft: 18,
+                    margin: 0,
+                  }}
+                >
+                  {BRIEF_SECTIONS.map((section) => (
+                    <li key={section.id}>
+                      <a href={`#${section.id}`}>{section.label}</a>
+                    </li>
+                  ))}
+                  <li>
+                    <a href="#government">정부과제 · 지원</a>
+                  </li>
+                  <li>
+                    <a href="#events">AI 이벤트 · 컨퍼런스</a>
+                  </li>
+                </ol>
+              </div>
+              <a
+                href={sitePath(PARTICIPATE_PATH)}
+                style={{
+                  display: "block",
+                  background: T.wine,
+                  color: T.paper,
+                  padding: "15px 18px",
+                  borderRadius: 6,
+                  fontFamily: "var(--korean)",
+                  fontWeight: 700,
+                }}
+              >
+                이번 호 피드백 남기기 →
+              </a>
+            </aside>
+          </div>
+        </section>
+
+        <section
+          className="brief-sections"
+          style={{ padding: "22px 48px 8px", maxWidth: 1280, margin: "0 auto" }}
+        >
+          {BRIEF_SECTIONS.map((section) => (
+            <section
+              id={section.id}
+              key={section.id}
+              className="brief-section-card"
               style={{
-                background: T.paper2,
-                padding: "20px 22px",
+                margin: "28px 0",
+                padding: "26px 28px",
+                background: "#fff",
                 border: `1px solid ${T.rule}`,
+                borderRadius: 10,
               }}
             >
               <div
                 style={{
-                  fontFamily: "var(--sans)",
-                  fontSize: 10,
-                  letterSpacing: "0.22em",
-                  fontWeight: 700,
-                  color: T.ink,
-                  marginBottom: 12,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: 20,
+                  alignItems: "baseline",
+                  marginBottom: 14,
                 }}
               >
-                INSIDE THIS ISSUE
+                <h3
+                  style={{
+                    fontFamily: "var(--serif-display)",
+                    fontSize: 30,
+                    fontWeight: 500,
+                    fontStyle: "italic",
+                    margin: 0,
+                  }}
+                >
+                  {section.label}
+                </h3>
+                <span
+                  style={{
+                    fontFamily: "var(--mono)",
+                    fontSize: 10,
+                    color: T.wine,
+                    letterSpacing: "0.18em",
+                  }}
+                >
+                  {section.code}
+                </span>
               </div>
-              <ol
+              <p style={{ color: T.ink2, lineHeight: 1.75, marginTop: 0 }}>
+                {section.narrative}
+              </p>
+              <div
+                className="brief-article-grid"
                 style={{
-                  fontFamily: "var(--korean)",
-                  fontSize: 13,
-                  lineHeight: 1.7,
-                  color: T.ink2,
-                  paddingLeft: 18,
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: 14,
+                  marginTop: 20,
+                }}
+              >
+                {section.articles.map((article, index) => (
+                  <a
+                    href={article.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={article.title}
+                    style={{
+                      border: `1px solid ${T.rule}`,
+                      borderRadius: 8,
+                      padding: "16px 18px",
+                      background: T.paper,
+                      minHeight: 132,
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: "var(--mono)",
+                        fontSize: 10,
+                        color: T.wine,
+                        marginBottom: 8,
+                      }}
+                    >
+                      {String(index + 1).padStart(2, "0")} · {article.source}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--serif-display)",
+                        fontSize: 20,
+                        fontWeight: 600,
+                        lineHeight: 1.25,
+                        color: T.ink,
+                      }}
+                    >
+                      {article.title}
+                    </div>
+                    <p
+                      style={{
+                        fontSize: 13,
+                        lineHeight: 1.6,
+                        color: T.ink3,
+                        margin: "10px 0 0",
+                      }}
+                    >
+                      {article.desc}
+                    </p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          ))}
+        </section>
+
+        <section
+          className="brief-sections"
+          style={{ padding: "0 48px", maxWidth: 1280, margin: "0 auto" }}
+        >
+          {SUPPORT_GROUPS.map((group) => (
+            <section
+              id={group.id}
+              key={group.id}
+              className="brief-section-card"
+              style={{
+                margin: "28px 0",
+                padding: "26px 28px",
+                background: T.paper2,
+                border: `1px solid ${T.rule}`,
+                borderRadius: 10,
+              }}
+            >
+              <h3
+                style={{
+                  fontFamily: "var(--serif-display)",
+                  fontSize: 30,
+                  fontWeight: 500,
+                  fontStyle: "italic",
                   margin: 0,
                 }}
               >
-                <li>Anthropic Claude 4.5와 컨설팅의 종말</li>
-                <li>OpenAI 거버넌스 균열 — 이사회 시각</li>
-                <li>토스, 일본 진출 첫 분기 손익 분석</li>
-                <li>K-Pop 4세대 IP 밸류에이션</li>
-                <li>S.A Museum: 이번 주의 작품</li>
-              </ol>
-            </div>
-          </aside>
-        </div>
-      </section>
+                {group.title}
+              </h3>
+              <p style={{ color: T.ink2, lineHeight: 1.75 }}>{group.note}</p>
+              <div
+                className="brief-article-grid"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, 1fr)",
+                  gap: 10,
+                }}
+              >
+                {group.items.map((item) => (
+                  <div
+                    key={item}
+                    style={{
+                      background: "#fff",
+                      border: `1px solid ${T.rule}`,
+                      borderRadius: 8,
+                      padding: "13px 15px",
+                      fontSize: 13.5,
+                      color: T.ink2,
+                    }}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
 
-      {/* Archive table */}
-      <section
-        style={{
-          padding: "36px 48px",
-          maxWidth: 1280,
-          margin: "0 auto",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-            marginBottom: 22,
-            paddingBottom: 12,
-            borderBottom: `2px solid ${T.ink}`,
-          }}
+          <section
+            id="events"
+            className="brief-section-card"
+            style={{
+              margin: "28px 0",
+              padding: "26px 28px",
+              background: "#fff",
+              border: `1px solid ${T.rule}`,
+              borderRadius: 10,
+            }}
+          >
+            <h3
+              style={{
+                fontFamily: "var(--serif-display)",
+                fontSize: 30,
+                fontWeight: 500,
+                fontStyle: "italic",
+                margin: 0,
+              }}
+            >
+              AI 이벤트 · 컨퍼런스 · 학술회
+            </h3>
+            <div
+              className="brief-article-grid"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: 12,
+                marginTop: 20,
+              }}
+            >
+              {EVENTS.map((event) => (
+                <div
+                  key={`${event.date}-${event.title}`}
+                  style={{
+                    background: T.paper,
+                    border: `1px solid ${T.rule}`,
+                    borderRadius: 8,
+                    padding: "14px 15px",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: "var(--mono)",
+                      fontSize: 10,
+                      color: T.wine,
+                      marginBottom: 8,
+                    }}
+                  >
+                    {event.date} · {event.tag}
+                  </div>
+                  <div style={{ fontWeight: 700, lineHeight: 1.45 }}>
+                    {event.title}
+                  </div>
+                  <div style={{ fontSize: 12, color: T.ink3, marginTop: 6 }}>
+                    {event.where}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section
+            id="participateSection"
+            className="brief-section-card"
+            style={{
+              margin: "28px 0 40px",
+              padding: "24px 28px",
+              background: T.pulseBg,
+              border: `1px solid ${T.rule}`,
+              borderRadius: 10,
+            }}
+          >
+            <h3 style={{ margin: 0, fontSize: 22 }}>Participate</h3>
+            <p style={{ lineHeight: 1.7, color: T.ink2 }}>
+              이번 호에서 가장 의미 있었던 섹션, 다음 호에서 다뤄줬으면 하는
+              주제, 공유하고 싶은 기사·세미나·공고를 보내주세요.
+            </p>
+            <div className="button-row" style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <a href="mailto:?subject=AIMBA%20Brief%20Feedback" style={pillStyle}>
+                이번 호 피드백
+              </a>
+              <a href="mailto:?subject=AIMBA%20Brief%20Topic%20Suggestion" style={pillStyle}>
+                다음 주제 제안
+              </a>
+              <a href="mailto:?subject=AIMBA%20Brief%20Tip" style={pillStyle}>
+                기사·세미나 제보
+              </a>
+            </div>
+          </section>
+        </section>
+
+        <section
+          id="archive"
+          style={{ padding: "0 48px 42px", maxWidth: 1280, margin: "0 auto" }}
         >
           <h3
             style={{
               fontFamily: "var(--serif-display)",
               fontSize: 32,
               fontWeight: 500,
-              margin: 0,
               fontStyle: "italic",
-              letterSpacing: "-0.015em",
+              borderBottom: `2px solid ${T.ink}`,
+              paddingBottom: 12,
             }}
           >
             The Archive
           </h3>
-        </div>
-
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            fontFamily: "var(--korean)",
-          }}
-        >
-          <thead>
-            <tr
-              style={{
-                fontFamily: "var(--sans)",
-                fontSize: 10,
-                letterSpacing: "0.18em",
-                color: T.ink3,
-                textTransform: "uppercase",
-              }}
-            >
-              <th
+          <div style={{ display: "grid", gap: 10 }}>
+            {BRIEF_ISSUES.map((issue) => (
+              <a
+                href={sitePath(issue.path)}
+                key={issue.vol}
                 style={{
-                  textAlign: "left",
-                  padding: "12px 0",
-                  borderBottom: `1px solid ${T.rule}`,
-                  width: 70,
-                }}
-              >
-                VOL
-              </th>
-              <th
-                style={{
-                  textAlign: "left",
-                  padding: "12px 0",
-                  borderBottom: `1px solid ${T.rule}`,
-                  width: 110,
-                }}
-              >
-                DATE
-              </th>
-              <th
-                style={{
-                  textAlign: "left",
-                  padding: "12px 0",
-                  borderBottom: `1px solid ${T.rule}`,
-                  width: 130,
-                }}
-              >
-                SECTION
-              </th>
-              <th
-                style={{
-                  textAlign: "left",
-                  padding: "12px 0",
+                  display: "grid",
+                  gridTemplateColumns: "90px 120px 1fr 140px",
+                  gap: 16,
+                  alignItems: "center",
+                  padding: "16px 0",
                   borderBottom: `1px solid ${T.rule}`,
                 }}
+                className="archive-row"
               >
-                HEADLINE
-              </th>
-              <th
-                style={{
-                  textAlign: "right",
-                  padding: "12px 0",
-                  borderBottom: `1px solid ${T.rule}`,
-                  width: 70,
-                }}
-              >
-                READ
-              </th>
-              <th
-                style={{
-                  textAlign: "right",
-                  padding: "12px 0",
-                  borderBottom: `1px solid ${T.rule}`,
-                  width: 90,
-                }}
-              >
-                VIEWS
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {BRIEF_ISSUES.map((it, i) => (
-              <tr
-                key={i}
-                style={{
-                  borderBottom: `1px solid ${T.rule}`,
-                  background: it.live ? T.paper2 : "transparent",
-                }}
-              >
-                <td
-                  className="tabular"
-                  style={{
-                    padding: "18px 0",
-                    fontFamily: "var(--serif-display)",
-                    fontSize: 22,
-                    fontWeight: 500,
-                    color: T.wine,
-                    fontStyle: "italic",
-                  }}
-                >
-                  № {it.vol}
-                </td>
-                <td
-                  className="tabular"
-                  style={{
-                    fontFamily: "var(--mono)",
-                    fontSize: 12,
-                    color: T.ink3,
-                  }}
-                >
-                  {it.date}
-                </td>
-                <td>
-                  <span
-                    style={{
-                      fontFamily: "var(--sans)",
-                      fontSize: 10,
-                      letterSpacing: "0.16em",
-                      fontWeight: 700,
-                      color: T.wine,
-                    }}
-                  >
-                    {it.sectionLabel}
-                  </span>
-                </td>
-                <td
-                  style={{
-                    fontFamily: "var(--serif-display)",
-                    fontSize: 19,
-                    fontWeight: 500,
-                    color: T.ink,
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  {it.title}
-                  {it.live && (
-                    <span
-                      style={{
-                        marginLeft: 10,
-                        fontFamily: "var(--sans)",
-                        fontSize: 9,
-                        background: T.wine,
-                        color: T.paper,
-                        padding: "3px 7px",
-                        letterSpacing: "0.12em",
-                        fontWeight: 700,
-                        verticalAlign: "middle",
-                      }}
-                    >
-                      CURRENT
-                    </span>
-                  )}
-                </td>
-                <td
-                  className="tabular"
-                  style={{
-                    textAlign: "right",
-                    fontFamily: "var(--mono)",
-                    fontSize: 12,
-                    color: T.ink3,
-                  }}
-                >
-                  {it.read}
-                </td>
-                <td
-                  className="tabular"
-                  style={{
-                    textAlign: "right",
-                    fontFamily: "var(--mono)",
-                    fontSize: 12,
-                    color: T.ink2,
-                  }}
-                >
-                  {it.views}
-                </td>
-              </tr>
+                <span style={{ color: T.wine, fontFamily: "var(--serif-display)", fontSize: 22 }}>
+                  No. {issue.vol}
+                </span>
+                <span style={{ fontFamily: "var(--mono)", color: T.ink3, fontSize: 12 }}>
+                  {issue.date}
+                </span>
+                <span style={{ fontFamily: "var(--serif-display)", fontSize: 20 }}>
+                  {issue.title}
+                </span>
+                <span style={{ color: T.ink3, fontSize: 12, textAlign: "right" }}>
+                  {issue.tags.slice(0, 2).join(" · ")}
+                </span>
+              </a>
             ))}
-          </tbody>
-        </table>
-      </section>
+          </div>
+        </section>
+      </main>
 
       <SiteFooter />
     </div>
   );
 }
+
+const pillStyle = {
+  display: "inline-block",
+  padding: "9px 14px",
+  borderRadius: 999,
+  border: `1px solid ${T.rule}`,
+  background: "#fff",
+  color: T.ink,
+  fontSize: 13,
+  fontWeight: 600,
+};

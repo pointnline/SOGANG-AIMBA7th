@@ -1,6 +1,7 @@
 import { TOKENS as T } from "@/lib/tokens";
 import { INTERVIEW_FEATURED, INTERVIEW_COUNT } from "@/lib/data";
 import { SiteFooter } from "@/components/SiteFooter";
+import { sitePath } from "@/lib/paths";
 
 export default function InterviewPage() {
   const f = INTERVIEW_FEATURED;
@@ -27,7 +28,7 @@ export default function InterviewPage() {
           borderBottom: `1px solid ${T.rule}`,
         }}
       >
-        <a href="/">← BACK TO BRIEF</a>
+        <a href={sitePath("/")}>← BACK TO BRIEF</a>
         <span>INTERVIEW ROOM</span>
         <span>VOL. {INTERVIEW_COUNT} / 7</span>
       </header>

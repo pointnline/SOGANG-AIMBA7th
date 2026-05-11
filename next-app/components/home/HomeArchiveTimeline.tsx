@@ -1,5 +1,6 @@
 import { TOKENS as T } from "@/lib/tokens";
 import { ARCHIVE_TIMELINE, BRIEF_ISSUES } from "@/lib/data";
+import { sitePath } from "@/lib/paths";
 
 export function HomeArchiveTimeline() {
   const featured = BRIEF_ISSUES.slice(0, 3);
@@ -43,10 +44,11 @@ export function HomeArchiveTimeline() {
               letterSpacing: "-0.01em",
             }}
           >
-            지난 23개의 호, 한 줄로 펼쳐보다
+            실제 발간된 5개의 호, 한 줄로 펼쳐보다
           </h3>
         </div>
         <a
+          href={sitePath("/brief")}
           style={{
             fontFamily: "var(--sans)",
             fontSize: 12,
@@ -83,7 +85,8 @@ export function HomeArchiveTimeline() {
           {ARCHIVE_TIMELINE.map((a, i) => {
             const isFeatured = i < 3;
             return (
-              <div
+              <a
+                href={sitePath(a.path)}
                 key={a.vol}
                 style={{
                   display: "flex",
@@ -125,7 +128,7 @@ export function HomeArchiveTimeline() {
                 >
                   {a.shortDate}
                 </span>
-              </div>
+              </a>
             );
           })}
         </div>
@@ -139,7 +142,8 @@ export function HomeArchiveTimeline() {
         }}
       >
         {featured.map((b, i) => (
-          <article
+          <a
+            href={sitePath(b.path)}
             key={i}
             style={{
               background: "#fff",
@@ -204,7 +208,7 @@ export function HomeArchiveTimeline() {
                 NOW
               </span>
             )}
-          </article>
+          </a>
         ))}
       </div>
     </div>

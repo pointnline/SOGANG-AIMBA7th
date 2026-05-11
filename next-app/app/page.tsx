@@ -20,6 +20,7 @@ export default function HomePage() {
     >
       <HomeHeader />
       <section
+        className="home-shell"
         style={{
           padding: "40px 64px 56px",
           display: "grid",

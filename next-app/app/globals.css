@@ -21,15 +21,14 @@
   --paper-3: #ebe3d4;
   --cream: #f7f1e6;
 
-  --serif: "Newsreader", "Source Serif 4", "Spectral", Georgia,
-    "Times New Roman", serif;
-  --serif-display: "Newsreader", "Source Serif 4", Georgia, serif;
-  --sans: "Inter Tight", "Inter", system-ui, -apple-system, "Helvetica Neue",
+  --serif: Georgia, "Times New Roman", serif;
+  --serif-display: Georgia, "Times New Roman", serif;
+  --sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue",
     sans-serif;
-  --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo,
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
     monospace;
-  --korean: "Noto Serif KR", var(--serif);
-  --korean-sans: "Pretendard", "Noto Sans KR", var(--sans);
+  --korean: "Malgun Gothic", "Apple SD Gothic Neo", var(--sans);
+  --korean-sans: "Malgun Gothic", "Apple SD Gothic Neo", var(--sans);
 }
 
 @layer base {
@@ -76,5 +75,108 @@
     height: 1px;
     background: var(--rule);
     border: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-hero,
+  .brief-header,
+  .brief-lead,
+  .brief-sections,
+  .museum-header,
+  .museum-hero,
+  .museum-feature {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .site-hero-top,
+  .brief-topbar,
+  .home-panel-head,
+  .museum-header {
+    align-items: flex-start !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .site-hero-title-row {
+    flex-direction: column !important;
+    gap: 14px !important;
+  }
+
+  .site-hero-title,
+  .brief-title {
+    font-size: 42px !important;
+    line-height: 1.05 !important;
+  }
+
+  .home-shell {
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+    padding: 28px 20px 40px !important;
+  }
+
+  .home-metric-grid,
+  .brief-article-grid,
+  .brief-lead-grid,
+  .museum-feature {
+    grid-template-columns: 1fr !important;
+  }
+
+  .brief-lead-title {
+    font-size: 36px !important;
+  }
+
+  .brief-copy {
+    column-count: 1 !important;
+  }
+
+  .archive-row {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    text-align: left !important;
+  }
+
+  .archive-row span {
+    text-align: left !important;
+  }
+
+  .museum-hero {
+    padding-top: 96px !important;
+    padding-bottom: 48px !important;
+  }
+
+  .museum-hero h1 {
+    font-size: 54px !important;
+  }
+
+  .museum-row {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    align-items: start !important;
+  }
+
+  .button-row {
+    flex-direction: column !important;
+  }
+
+  .button-row a,
+  .button-row button {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .brief-nav {
+    justify-content: flex-start !important;
+    gap: 14px !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    padding-bottom: 18px !important;
+  }
+
+  .brief-section-card {
+    padding: 20px 18px !important;
   }
 }

@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "powershell -ExecutionPolicy Bypass -File ..\\scripts\\build-pages.ps1",
+    "export:pages": "powershell -ExecutionPolicy Bypass -File ..\\scripts\\export-static.ps1",
     "start": "next start",
     "lint": "next lint"
   },

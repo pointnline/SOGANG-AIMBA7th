@@ -1,5 +1,6 @@
 import { TOKENS as T } from "@/lib/tokens";
-import { FILTERS } from "@/lib/data";
+import { FILTERS, FUTURE_REPORT_PATH, PARTICIPATE_PATH } from "@/lib/data";
+import { sitePath } from "@/lib/paths";
 
 export function HomeSidebar() {
   return (
@@ -83,15 +84,17 @@ export function HomeSidebar() {
                 >
                   {f.code}
                 </div>
-                <div
+                <a
+                  href={sitePath(f.href)}
                   style={{
                     fontFamily: "var(--korean)",
                     fontSize: 13.5,
                     fontWeight: active ? 600 : 400,
+                    display: "inline-block",
                   }}
                 >
                   {f.label}
-                </div>
+                </a>
               </div>
               <div
                 className="tabular"
@@ -135,7 +138,8 @@ export function HomeSidebar() {
           gap: 8,
         }}
       >
-        <button
+        <a
+          href={sitePath(PARTICIPATE_PATH)}
           style={{
             padding: "12px 14px",
             background: T.wine,
@@ -145,11 +149,13 @@ export function HomeSidebar() {
             fontSize: 13,
             fontWeight: 600,
             textAlign: "left",
+            display: "block",
           }}
         >
           → 참여하기
-        </button>
-        <button
+        </a>
+        <a
+          href={sitePath(FUTURE_REPORT_PATH)}
           style={{
             padding: "12px 14px",
             background: "#fff",
@@ -160,10 +166,11 @@ export function HomeSidebar() {
             fontSize: 13,
             fontWeight: 500,
             textAlign: "left",
+            display: "block",
           }}
         >
           ↗ Future Report
-        </button>
+        </a>
       </div>
     </aside>
   );

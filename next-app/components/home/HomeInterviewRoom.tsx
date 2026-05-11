@@ -1,5 +1,6 @@
 import { TOKENS as T } from "@/lib/tokens";
 import { INTERVIEW_FEATURED, INTERVIEW_COUNT } from "@/lib/data";
+import { sitePath } from "@/lib/paths";
 
 export function HomeInterviewRoom() {
   const f = INTERVIEW_FEATURED;
@@ -97,7 +98,7 @@ export function HomeInterviewRoom() {
           </p>
           <div style={{ marginTop: 18, display: "flex", gap: 12 }}>
             <a
-              href="/interview"
+              href={sitePath("/interview")}
               style={{
                 padding: "11px 20px",
                 background: T.wine,

@@ -16,6 +16,10 @@
 ```
 /
 ├── index.html              # 아카이브 + AIMBA Pulse 대시보드 + 투표
+├── brief/index.html        # Next 디자인 기반 Weekly Brief 고정 틀
+├── museum/index.html       # Next 디자인 기반 S.A Museum 고정 틀
+├── interview/index.html    # Next 디자인 기반 Interview Room
+├── _next/                  # Next static export assets
 ├── issues/
 │   ├── vol_YYYYMMDD.html   # 주간 브리프 (회차별)
 │   ├── future-report.html  # 월간 Future Report (Supabase 집계)
@@ -25,8 +29,30 @@
 ├── assets/sogang/          # 로고·favicon·OG 이미지
 ├── DATA_STACK.md           # 데이터 인프라(Supabase) 개요
 ├── SUPABASE_SETUP.sql      # Supabase 스키마/RLS/RPC
-└── TEMPLATE.md             # 발간 운영 가이드
+├── TEMPLATE.md             # 발간 운영 가이드
+├── next-app/               # Main Home · S.A Museum · Weekly Brief 디자인 원본
+└── scripts/                # Next export 결과를 GitHub Pages 구조로 복사
 ```
+
+## 디자인 업데이트 절차
+
+Main Home, S.A Museum, Weekly Brief의 고정 틀은 `next-app/`에서 수정합니다.
+수정 후 아래 명령을 실행하면 GitHub Pages용 파일이 갱신됩니다.
+
+```bash
+cd next-app
+npm run build:pages
+```
+
+이 명령은 다음 파일을 덮어씁니다.
+
+- `index.html`
+- `brief/index.html`
+- `museum/index.html`
+- `interview/index.html`
+- `issues/vol_20260504.html`
+- `issues/museum.html`
+- `_next/`
 
 ## 섹터 구성
 

@@ -3,6 +3,7 @@ import { TOKENS as T } from "@/lib/tokens";
 export function HomeHeader() {
   return (
     <header
+      className="site-hero"
       style={{
         background: `linear-gradient(180deg, ${T.wineDeep} 0%, ${T.wine} 65%, #6b0021 100%)`,
         color: "#faf6ef",
@@ -12,6 +13,7 @@ export function HomeHeader() {
       }}
     >
       <div
+        className="site-hero-top"
         style={{
           position: "absolute",
           inset: 0,
@@ -39,14 +41,15 @@ export function HomeHeader() {
       >
         <span>SOGANG AIMBA 7TH · 미래혁신국</span>
         <div style={{ display: "flex", gap: 28 }}>
-          <span>VOL. 23</span>
-          <span>2026 · 05 · 09 SAT</span>
+          <span>VOL. 5</span>
+          <span>2026 · 05 · 04</span>
           <span>편집: 미래혁신국</span>
         </div>
       </div>
 
       <div style={{ marginTop: 40, position: "relative", textAlign: "center" }}>
         <div
+          className="site-hero-title-row"
           style={{
             display: "flex",
             justifyContent: "center",
@@ -71,6 +74,7 @@ export function HomeHeader() {
             </g>
           </svg>
           <h1
+            className="site-hero-title"
             style={{
               fontFamily: "var(--serif-display)",
               fontWeight: 600,
