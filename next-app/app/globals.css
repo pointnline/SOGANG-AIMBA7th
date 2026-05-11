@@ -21,14 +21,17 @@
   --paper-3: #ebe3d4;
   --cream: #f7f1e6;
 
-  --serif: Georgia, "Times New Roman", serif;
-  --serif-display: Georgia, "Times New Roman", serif;
-  --sans: system-ui, -apple-system, "Segoe UI", "Helvetica Neue",
-    sans-serif;
+  --serif: "Noto Serif KR", "Newsreader", Georgia, "Times New Roman", serif;
+  --serif-display: "Newsreader", "Noto Serif KR", Georgia, "Times New Roman",
+    serif;
+  --sans: "Inter", "Noto Sans KR", "Pretendard", system-ui, -apple-system,
+    "Segoe UI", "Helvetica Neue", sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
     monospace;
-  --korean: "Malgun Gothic", "Apple SD Gothic Neo", var(--sans);
-  --korean-sans: "Malgun Gothic", "Apple SD Gothic Neo", var(--sans);
+  --korean: "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo",
+    "Malgun Gothic", var(--sans);
+  --korean-sans: "Noto Sans KR", "Pretendard", "Apple SD Gothic Neo",
+    "Malgun Gothic", var(--sans);
 }
 
 @layer base {
@@ -41,7 +44,7 @@
     padding: 0;
     background: var(--paper);
     color: var(--ink);
-    font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+    font-family: var(--korean);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
