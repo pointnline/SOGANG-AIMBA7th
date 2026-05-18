@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/BrandLogo";
 import { SiteFooter } from "@/components/SiteFooter";
 import {
   BRIEF_ISSUES,
@@ -46,7 +47,18 @@ export default function BriefPage() {
             borderBottom: `1px solid ${T.rule}`,
           }}
         >
-          <a href={sitePath("/")}>← HOME</a>
+          <a
+            href={sitePath("/")}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              color: T.ink,
+            }}
+          >
+            <BrandMark tone="dark" size="small" />
+            <span>HOME</span>
+          </a>
           <span style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
             <span>VOL. {CURRENT_BRIEF.vol}</span>
             <span>·</span>

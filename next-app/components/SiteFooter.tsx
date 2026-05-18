@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/BrandLogo";
 import { TOKENS as T } from "@/lib/tokens";
 
 export function SiteFooter() {
@@ -14,18 +15,29 @@ export function SiteFooter() {
     >
       <div
         style={{
-          fontFamily: "var(--serif-display)",
-          fontStyle: "italic",
-          fontSize: 22,
-          color: "#faf6ef",
-          marginBottom: 8,
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+          marginBottom: 12,
         }}
       >
-        SOGANG AIMBA 7th Weekly Brief
-        <span style={{ fontSize: 13, color: "rgba(250,246,239,0.55)" }}>
-          {" "}
-          · 미래혁신국 큐레이션 브리핑
-        </span>
+        <BrandMark tone="light" size="small" />
+        <div>
+          <div
+            style={{
+              fontFamily: "var(--serif-display)",
+              fontStyle: "italic",
+              fontSize: 22,
+              color: "#faf6ef",
+              lineHeight: 1.2,
+            }}
+          >
+            SOGANG AIMBA 7th Weekly Brief
+          </div>
+          <div style={{ fontSize: 13, color: "rgba(250,246,239,0.55)" }}>
+            미래혁신국 큐레이션 브리핑
+          </div>
+        </div>
       </div>
       <div style={{ color: "rgba(250,246,239,0.7)" }}>
         AI · Business · Startup · MBA Insight · S.A Museum · Interview Room

@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/BrandLogo";
 import { TOKENS as T } from "@/lib/tokens";
 
 export function HomeHeader() {
@@ -57,22 +58,7 @@ export function HomeHeader() {
             gap: 22,
           }}
         >
-          <svg
-            width="74"
-            height="58"
-            viewBox="0 0 72 58"
-            style={{ opacity: 0.85 }}
-          >
-            <g fill="rgba(250,246,239,0.85)">
-              <rect x="6" y="22" width="6" height="34" />
-              <rect x="16" y="14" width="6" height="42" />
-              <rect x="26" y="6" width="8" height="50" />
-              <polygon points="30,2 36,2 42,8 24,8" />
-              <rect x="38" y="14" width="6" height="42" />
-              <rect x="48" y="20" width="6" height="36" />
-              <rect x="58" y="26" width="6" height="30" />
-            </g>
-          </svg>
+          <BrandMark tone="light" size="medium" />
           <h1
             className="site-hero-title"
             style={{
