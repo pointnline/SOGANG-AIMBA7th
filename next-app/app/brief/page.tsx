@@ -168,7 +168,7 @@ export default function BriefPage() {
                   marginBottom: 14,
                 }}
               >
-                THIS WEEK'S NARRATIVE · VOL. {CURRENT_BRIEF.vol}
+                THIS WEEK&apos;S NARRATIVE · VOL. {CURRENT_BRIEF.vol}
               </div>
               <h2
                 className="brief-lead-title"

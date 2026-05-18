@@ -155,6 +155,15 @@ h1 {
   font-family:'Noto Sans KR', sans-serif;
   font-size:0.78rem;
 }
+.status {
+  margin-top:14px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff8ec;
+  color:#6d5a39;
+  font-size:0.82rem;
+  line-height:1.55;
+}
 .footer {
   margin-top:32px;
   color:var(--muted);
@@ -177,7 +186,7 @@ h1 {
       <p>Weekly Brief의 조회, 좋아요, 체크, Pulse 투표를 모아 미래혁신국 관점의 월간 리포트로 정리합니다. 데이터가 쌓일수록 이 페이지는 AIMBA 7기의 집단 관심 지도가 됩니다.</p>
       <div class="hero-actions">
         <a class="primary" href="../index.html#aimbaPulse">AIMBA Pulse 보기</a>
-        <a class="secondary" href="./vol_20260428.html#participateSection">제보·의견 남기기</a>
+        <a class="secondary" href="./vol_20260504.html#participateSection">제보·의견 남기기</a>
       </div>
     </section>
 
@@ -214,6 +223,7 @@ h1 {
         데이터를 불러오는 중입니다.
         <small>Supabase 연결 또는 SQL 적용 전이면 기본 문구가 표시됩니다.</small>
       </div>
+      <div class="status" id="dataStatus">Supabase 데이터 연결 확인 중입니다.</div>
     </section>
 
     <div class="footer">SOGANG AIMBA 7th · Future Innovation Office · Data-powered briefing system</div>
@@ -222,7 +232,9 @@ h1 {
 <script>
 const SUPABASE_URL = 'https://lorcsmsbyqalbtbyoyzh.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_xCuNXY2WjvVK6l-85nkfNg_dBd6NWx_';
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
 
 const voteOptions = {
   'ai-agent-workflow': 'AI Agent가 실제 업무를 바꾸는 방식',
@@ -246,6 +258,9 @@ async function loadReport() {
   let stats = [];
   let votes = [];
   try {
+    if (!supabaseClient) {
+      throw new Error('Supabase client script is not loaded.');
+    }
     const [statsRes, votesRes] = await Promise.all([
       supabaseClient.from('weekly_issue_stats').select('issue_id, views, likes, checks'),
       supabaseClient.from('pulse_vote_counts').select('option_id, votes')
@@ -254,8 +269,12 @@ async function loadReport() {
     if (votesRes.error) throw votesRes.error;
     stats = statsRes.data || [];
     votes = votesRes.data || [];
+    document.getElementById('dataStatus').textContent =
+      'Supabase 데이터 연결 정상. 최신 집계가 반영되었습니다.';
   } catch (err) {
     console.error('Future report load failed:', err);
+    document.getElementById('dataStatus').textContent =
+      'Supabase 데이터 연결 확인이 필요합니다. 정적 리포트는 계속 열리지만, 실시간 집계는 기본값으로 표시됩니다.';
   }
 
   const totals = stats.reduce((acc, row) => {

@@ -10,7 +10,9 @@ import { sitePath } from "@/lib/paths";
 export function HomePulse() {
   return (
     <div
+      id="aimbaPulse"
       style={{
+        marginTop: 40,
         background: T.pulseBg,
         border: `1px solid ${T.rule}`,
         borderRadius: 14,

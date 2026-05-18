@@ -2,14 +2,15 @@
 
 ## Goal
 
-Turn the Weekly Brief from a static archive into a data-collecting participation system.
+Keep the Weekly Brief as a stable static archive while using Supabase as an
+optional supporting layer for lightweight participation data.
 
-The site remains a static GitHub Pages site, while Supabase stores the interaction data:
+The site remains a static GitHub Pages site. Supabase can store supporting data:
 
-- issue views, likes, and checks
+- issue views, likes, and checks for archive diagnostics
 - AIMBA Pulse topic votes
 - reader feedback, topic suggestions, tips, and project signals
-- monthly Future Report rollups
+- monthly Future Report rollups when the editorial team wants them
 
 ## Architecture
 
@@ -17,8 +18,8 @@ The site remains a static GitHub Pages site, while Supabase stores the interacti
 GitHub Pages
   index.html
     - archive
-    - AIMBA Pulse dashboard
-    - topic voting
+    - archive homepage
+    - optional AIMBA Pulse summary
   issues/vol_20260428.html
     - participation form
   issues/future-report.html
@@ -72,14 +73,16 @@ should be reviewed in Supabase before being curated into a brief or report.
 2. Run [SUPABASE_SETUP.sql](SUPABASE_SETUP.sql).
 3. Deploy the site to GitHub Pages.
 4. Test:
-   - vote from the home Pulse panel
-   - submit feedback from `issues/vol_20260428.html#participateSection`
-   - open `issues/future-report.html`
+   - confirm the home Pulse panel renders at `index.html#aimbaPulse`
+   - submit feedback from the latest issue's `#participateSection`
+   - if the legacy Supabase form remains enabled, submit once from
+     `issues/vol_20260428.html#participateSection`
+   - open `issues/future-report.html` and confirm the data status message
 
 ## Operating Loop
 
 1. Publish Weekly Brief.
-2. Readers vote, react, and submit tips.
-3. Future Report reads Supabase data and shows the monthly signal.
-4. Curate the strongest submissions into the next issue.
-5. Repeat, keeping Supabase as the long-term memory layer.
+2. Preserve the issue as a static archive page.
+3. Optionally collect votes, reactions, or submissions.
+4. Review Supabase data before it becomes public content.
+5. Use Future Report only when the data is editorially useful.

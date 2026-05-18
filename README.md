@@ -1,6 +1,6 @@
 # SOGANG AIMBA 7th Weekly Brief
 
-> 서강대 AI MBA 7기 미래혁신국이 운영하는 위클리 큐레이션 브리핑.
+> 서강대 AI MBA 7기 미래혁신국이 운영하는 위클리 큐레이션 브리프 아카이브.
 > AI · Business · Startup · MBA Insight를 경영자 관점에서 해석합니다.
 
 🌐 **Live**: https://pointnline.github.io/SOGANG-AIMBA7th/
@@ -9,13 +9,14 @@
 
 - **주기**: 매주 토요일 08:00 KST
 - **포맷**: HTML 신문 스타일 (`issues/vol_YYYYMMDD.html`)
+- **정체성**: 주간 브리프 아카이브
 - **자동 배포**: GitHub Pages (push 시 자동 갱신)
 
 ## 사이트 구조
 
 ```
 /
-├── index.html              # 아카이브 + AIMBA Pulse 대시보드 + 투표
+├── index.html              # 아카이브 홈 + 최신호/큐레이션 진입점
 ├── brief/index.html        # Next 디자인 기반 Weekly Brief 고정 틀
 ├── museum/index.html       # Next 디자인 기반 S.A Museum 고정 틀
 ├── interview/index.html    # Next 디자인 기반 Interview Room
@@ -34,6 +35,11 @@
 └── scripts/                # Next export 결과를 GitHub Pages 구조로 복사
 ```
 
+## 발행 원칙
+
+이 홈페이지의 1차 정체성은 **위클리 브리프 아카이브**입니다.
+Supabase 기반 투표·제보·Future Report는 보조 레이어로 운영하며, 아카이브 발행 안정성을 우선합니다.
+
 ## 디자인 업데이트 절차
 
 Main Home, S.A Museum, Weekly Brief의 고정 틀은 `next-app/`에서 수정합니다.
@@ -41,7 +47,7 @@ Main Home, S.A Museum, Weekly Brief의 고정 틀은 `next-app/`에서 수정합
 
 ```bash
 cd next-app
-npm run build:pages
+npm.cmd run build:pages
 ```
 
 이 명령은 다음 파일을 덮어씁니다.
@@ -69,7 +75,7 @@ npm run build:pages
 
 ## 데이터 인프라
 
-정적 사이트이지만 Supabase로 인터랙션을 수집합니다.
+정적 아카이브가 기본이며, Supabase는 선택적 보조 데이터 레이어입니다.
 
 - `weekly_issue_stats` — 호별 조회·좋아요·체크 누적
 - `pulse_votes` / `pulse_vote_counts` — AIMBA Pulse 투표
@@ -79,9 +85,15 @@ npm run build:pages
 
 ## 참여하기
 
-- **제보·의견**: 사이트 사이드바의 "🤝 참여하기" 또는 각 호 하단의 참여 폼
-- **주제 투표**: 메인 페이지의 AIMBA Pulse 패널
+- **제보·의견**: 각 호 하단의 mailto 링크 또는 Supabase 참여 폼이 있는 과거 호
+- **주제 투표**: 보조 기능으로 유지
 - **토론**: GitHub Issues (계획)
+
+## 운영 문서
+
+- [PUBLISHING.md](./PUBLISHING.md) — 발행 절차와 품질 체크
+- [DATA_STACK.md](./DATA_STACK.md) — 선택적 Supabase 보조 레이어
+- [SECURITY_NOTES.md](./SECURITY_NOTES.md) — 의존성·Supabase 보안 메모
 
 ## 라이선스 및 인용 원칙
 

@@ -1,8 +1,9 @@
+import { SiteFooter } from "@/components/SiteFooter";
+import { MUSEUM_WORKS } from "@/lib/data";
+import { sitePath } from "@/lib/paths";
 import { TOKENS as T } from "@/lib/tokens";
 import type { Metadata } from "next";
-import { MUSEUM_WORKS } from "@/lib/data";
-import { SiteFooter } from "@/components/SiteFooter";
-import { sitePath } from "@/lib/paths";
+import Image from "next/image";
 
 const M = {
   bg: "#0a0a0a",
@@ -14,11 +15,13 @@ const M = {
 
 export const metadata: Metadata = {
   title: "S.A Museum · SOGANG AIMBA 7th",
-  description: "브리핑 사이 잠깐 숨을 고르는 AIMBA 7기 월간 작품 큐레이션.",
+  description:
+    "Tessa 공개 작가 라인업을 기반으로 구성한 AIMBA 7기 S.A Museum 큐레이션.",
 };
 
 export default function MuseumPage() {
   const featured = MUSEUM_WORKS[0];
+
   return (
     <div
       style={{
@@ -44,10 +47,13 @@ export default function MuseumPage() {
       >
         <a href={sitePath("/")}>← BACK TO BRIEF</a>
         <span>S . A &nbsp;&nbsp; M U S E U M</span>
-        <span>2026 / MONTHLY 10</span>
+        <span>2026 / TESSA LINE-UP {MUSEUM_WORKS.length}</span>
       </header>
 
-      <section className="museum-hero" style={{ padding: "180px 64px 80px", textAlign: "center" }}>
+      <section
+        className="museum-hero"
+        style={{ padding: "180px 64px 80px", textAlign: "center" }}
+      >
         <h1
           style={{
             fontFamily: "var(--serif-display)",
@@ -72,7 +78,7 @@ export default function MuseumPage() {
             textTransform: "uppercase",
           }}
         >
-          ── ONE WORK · ONE NOTE · EVERY WEEK ──
+          TESSA ARTIST LINE-UP · ONE IMAGE · ONE NOTE
         </div>
       </section>
 
@@ -97,10 +103,7 @@ export default function MuseumPage() {
             boxShadow: "0 50px 120px rgba(0,0,0,0.6)",
           }}
         >
-          <ArtworkVisual
-            work={featured}
-            variant="feature"
-          />
+          <ArtworkVisual work={featured} variant="feature" />
           <div
             style={{
               position: "absolute",
@@ -115,8 +118,10 @@ export default function MuseumPage() {
               letterSpacing: "0.18em",
             }}
           >
-            <span>№ {featured.index}</span>
-            <span>{featured.year} · {featured.mood}</span>
+            <span>NO. {featured.index}</span>
+            <span>
+              {featured.year} · {featured.mood}
+            </span>
           </div>
         </div>
         <aside style={{ paddingBottom: 8 }}>
@@ -130,7 +135,7 @@ export default function MuseumPage() {
               marginBottom: 36,
             }}
           >
-            ● ON VIEW · MONTHLY SELECTION
+            ON VIEW · TESSA LINE-UP
           </div>
           <h2
             style={{
@@ -229,12 +234,12 @@ export default function MuseumPage() {
               textTransform: "uppercase",
             }}
           >
-            10 SELECTED WORKS · 2026
+            {MUSEUM_WORKS.length} LINE-UP IMAGES · 2026
           </div>
         </div>
-        {MUSEUM_WORKS.map((w) => (
+        {MUSEUM_WORKS.map((work) => (
           <div
-            key={w.index}
+            key={work.index}
             className="museum-row"
             style={{
               display: "grid",
@@ -242,8 +247,7 @@ export default function MuseumPage() {
               padding: "28px 0",
               borderTop: `1px solid ${M.rule}`,
               alignItems: "baseline",
-              color: w.onView ? M.paper : "rgba(237,237,235,0.5)",
-              cursor: "pointer",
+              color: work.onView ? M.paper : "rgba(237,237,235,0.5)",
             }}
           >
             <div
@@ -252,16 +256,13 @@ export default function MuseumPage() {
                 fontFamily: "var(--mono)",
                 fontSize: 11,
                 letterSpacing: "0.18em",
-                color: w.onView ? M.wine : M.ink3,
+                color: work.onView ? M.wine : M.ink3,
               }}
             >
-              № {w.index}
+              NO. {work.index}
             </div>
             <div>
-              <ArtworkVisual
-                work={w}
-                variant="thumb"
-              />
+              <ArtworkVisual work={work} variant="thumb" />
             </div>
             <div
               style={{
@@ -272,15 +273,15 @@ export default function MuseumPage() {
                 letterSpacing: "-0.01em",
               }}
             >
-              {w.work}
+              {work.work}
             </div>
             <div style={{ fontFamily: "var(--korean)", fontSize: 14 }}>
-              {w.artist}
+              {work.artist}
               <div style={{ color: M.ink3, fontSize: 11, marginTop: 3 }}>
-                {w.year} · {w.collection}
+                {work.year} · {work.collection}
               </div>
               <div style={{ color: M.ink3, fontSize: 12, marginTop: 4 }}>
-                {w.note}
+                {work.note}
               </div>
             </div>
             <div
@@ -292,10 +293,19 @@ export default function MuseumPage() {
                 textTransform: "uppercase",
               }}
             >
-              {w.onView ? (
-                <a href={w.sourceUrl} target="_blank" rel="noreferrer" style={{ color: M.wine }}>● ON VIEW</a>
+              {work.onView ? (
+                <a
+                  href={work.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: M.wine }}
+                >
+                  ON VIEW
+                </a>
               ) : (
-                <a href={w.sourceUrl} target="_blank" rel="noreferrer">SOURCE →</a>
+                <a href={work.sourceUrl} target="_blank" rel="noreferrer">
+                  SOURCE →
+                </a>
               )}
             </div>
           </div>
@@ -334,11 +344,11 @@ export default function MuseumPage() {
             letterSpacing: "-0.015em",
           }}
         >
-          &ldquo;데이터가 답을 줄 때, 우리는 답을 빠르게 얻는다.
+          &ldquo;데이터가 작품을 고르는 순간,
           <br />
-          작품 앞에서, 우리는 비로소 —{" "}
+          우리는 가격보다 먼저{" "}
           <em style={{ color: M.wine, fontWeight: 400 }}>좋은 질문</em>을 다시
-          배운다.&rdquo;
+          배웁니다.&rdquo;
         </p>
         <div
           style={{
@@ -350,7 +360,7 @@ export default function MuseumPage() {
             textTransform: "uppercase",
           }}
         >
-          — AIMBA 7th 학예팀
+          AIMBA 7th · S.A Museum
         </div>
       </section>
 
@@ -382,16 +392,39 @@ function ArtworkVisual({
       };
 
   if (work.image) {
+    const imageStyle = {
+      objectFit: "cover" as const,
+      borderRadius: isFeature ? 0 : 2,
+      filter: "saturate(0.92)",
+      opacity: work.onView || isFeature ? 1 : 0.72,
+    };
+
+    if (isFeature) {
+      return (
+        <div style={baseStyle}>
+          <Image
+            src={sitePath(work.image)}
+            alt={`${work.artist} - ${work.work}`}
+            fill
+            priority={work.index === "01"}
+            sizes="(max-width: 900px) calc(100vw - 40px), 60vw"
+            style={imageStyle}
+          />
+        </div>
+      );
+    }
+
     return (
-      <img
+      <Image
         src={sitePath(work.image)}
         alt={`${work.artist} - ${work.work}`}
+        width={84}
+        height={64}
+        sizes="84px"
         style={{
-          ...baseStyle,
-          objectFit: "cover",
-          borderRadius: isFeature ? 0 : 2,
-          filter: "saturate(0.92)",
-          opacity: work.onView || isFeature ? 1 : 0.72,
+          ...imageStyle,
+          width: 84,
+          height: 64,
         }}
       />
     );

@@ -1,7 +1,11 @@
-import { TOKENS as T } from "@/lib/tokens";
+import { MUSEUM_WORKS } from "@/lib/data";
 import { sitePath } from "@/lib/paths";
+import { TOKENS as T } from "@/lib/tokens";
+import Image from "next/image";
 
 export function HomeMuseumTeaser() {
+  const featured = MUSEUM_WORKS[0];
+
   return (
     <div
       style={{
@@ -33,7 +37,7 @@ export function HomeMuseumTeaser() {
               marginBottom: 16,
             }}
           >
-            S.A MUSEUM · CURATION
+            S.A MUSEUM · TESSA LINE-UP
           </div>
           <h3
             style={{
@@ -46,8 +50,9 @@ export function HomeMuseumTeaser() {
               letterSpacing: "-0.015em",
             }}
           >
-            데이터의 끝에서 우리는
-            <br />한 점의 색 앞에 선다.
+            미술품 투자 플랫폼의
+            <br />
+            작가 풀을 큐레이션으로 읽다.
           </h3>
           <p
             style={{
@@ -59,10 +64,9 @@ export function HomeMuseumTeaser() {
               maxWidth: 500,
             }}
           >
-            S.A Museum은 브리핑 사이에 잠깐 숨을 고르는 월간 큐레이션입니다.
-            이전 페이지의 Selected Works를 살려{" "}
-            <strong style={{ color: T.gold }}>10점</strong>의 작품을 새
-            전시 틀에 연결했습니다.
+            S.A Museum의 작품 풀을 Tessa 공개 작가 라인업 기준으로 다시
+            세팅했습니다. 현재 <strong style={{ color: T.gold }}>{MUSEUM_WORKS.length}명</strong>의
+            작가 이미지를 로컬 에셋으로 연결했습니다.
           </p>
           <div
             style={{
@@ -95,21 +99,39 @@ export function HomeMuseumTeaser() {
                 color: "rgba(250,246,239,0.5)",
               }}
             >
-              open · tue–sun · 24h online
+              TESSA public line-up · 2026
             </span>
           </div>
         </div>
         <div style={{ position: "relative" }}>
-          <div
-            style={{
-              width: "100%",
-              aspectRatio: "3/4",
-              background:
-                "linear-gradient(180deg, #d4541f 0%, #b53524 35%, #5b101c 75%, #2d0810 100%)",
-              borderRadius: 4,
-              boxShadow: "0 24px 48px -16px rgba(0,0,0,0.6)",
-            }}
-          />
+          {featured.image ? (
+            <Image
+              src={sitePath(featured.image)}
+              alt={`${featured.artist} - ${featured.work}`}
+              width={640}
+              height={853}
+              priority
+              sizes="(max-width: 900px) 100vw, 320px"
+              style={{
+                width: "100%",
+                height: "auto",
+                aspectRatio: "3 / 4",
+                objectFit: "cover",
+                borderRadius: 4,
+                boxShadow: "0 24px 48px -16px rgba(0,0,0,0.6)",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                width: "100%",
+                aspectRatio: "3/4",
+                background: `linear-gradient(180deg, ${featured.tone[0]}, ${featured.tone[1]})`,
+                borderRadius: 4,
+                boxShadow: "0 24px 48px -16px rgba(0,0,0,0.6)",
+              }}
+            />
+          )}
           <div
             style={{
               marginTop: 14,
@@ -119,7 +141,7 @@ export function HomeMuseumTeaser() {
               color: "#faf6ef",
             }}
           >
-            Mark Rothko · Untitled, 1962
+            {featured.artist} · {featured.work}
           </div>
           <div
             style={{
@@ -129,7 +151,7 @@ export function HomeMuseumTeaser() {
               marginTop: 4,
             }}
           >
-            THIS WEEK · NO. 23 / 23
+            FEATURED · NO. {featured.index} / {MUSEUM_WORKS.length}
           </div>
         </div>
       </div>

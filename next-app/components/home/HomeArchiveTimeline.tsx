@@ -6,6 +6,7 @@ export function HomeArchiveTimeline() {
   const featured = BRIEF_ISSUES.slice(0, 3);
   return (
     <div
+      id="archive"
       style={{
         marginTop: 40,
         padding: "30px 34px",

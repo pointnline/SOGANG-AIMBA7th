@@ -1,6 +1,7 @@
 import { HomeHeader } from "@/components/home/HomeHeader";
 import { HomeSidebar } from "@/components/home/HomeSidebar";
 import { HomeHealingNote } from "@/components/home/HomeHealingNote";
+import { HomePulse } from "@/components/home/HomePulse";
 import { HomeArchiveTimeline } from "@/components/home/HomeArchiveTimeline";
 import { HomeMuseumTeaser } from "@/components/home/HomeMuseumTeaser";
 import { HomeInterviewRoom } from "@/components/home/HomeInterviewRoom";
@@ -32,6 +33,7 @@ export default function HomePage() {
         <HomeSidebar />
         <div>
           <HomeHealingNote />
+          <HomePulse />
           <HomeArchiveTimeline />
           <HomeMuseumTeaser />
           <HomeInterviewRoom />

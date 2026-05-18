@@ -11,6 +11,7 @@ create table if not exists public.weekly_issue_stats (
 
 insert into public.weekly_issue_stats (issue_id)
 values
+  ('vol-5'),
   ('vol-4'),
   ('vol-3'),
   ('vol-2'),
@@ -18,6 +19,9 @@ values
 on conflict (issue_id) do nothing;
 
 alter table public.weekly_issue_stats enable row level security;
+
+drop policy if exists "weekly_issue_stats_select"
+on public.weekly_issue_stats;
 
 create policy "weekly_issue_stats_select"
 on public.weekly_issue_stats
@@ -85,7 +89,21 @@ on public.pulse_votes (option_id);
 create index if not exists pulse_votes_created_at_idx
 on public.pulse_votes (created_at desc);
 
+delete from public.pulse_votes a
+using public.pulse_votes b
+where a.id > b.id
+  and a.option_id = b.option_id
+  and a.client_key is not null
+  and a.client_key = b.client_key;
+
+create unique index if not exists pulse_votes_option_client_key_uidx
+on public.pulse_votes (option_id, client_key)
+where client_key is not null;
+
 alter table public.pulse_votes enable row level security;
+
+drop policy if exists "pulse_votes_insert"
+on public.pulse_votes;
 
 create policy "pulse_votes_insert"
 on public.pulse_votes
@@ -119,9 +137,13 @@ create table if not exists public.participation_submissions (
   sector text,
   content text not null,
   link_url text,
+  moderation_status text not null default 'pending',
   source_path text,
   created_at timestamptz not null default now()
 );
+
+alter table public.participation_submissions
+add column if not exists moderation_status text not null default 'pending';
 
 create index if not exists participation_submissions_issue_id_idx
 on public.participation_submissions (issue_id);
@@ -129,7 +151,13 @@ on public.participation_submissions (issue_id);
 create index if not exists participation_submissions_created_at_idx
 on public.participation_submissions (created_at desc);
 
+create index if not exists participation_submissions_moderation_status_idx
+on public.participation_submissions (moderation_status);
+
 alter table public.participation_submissions enable row level security;
+
+drop policy if exists "participation_submissions_insert"
+on public.participation_submissions;
 
 create policy "participation_submissions_insert"
 on public.participation_submissions
@@ -137,6 +165,12 @@ for insert
 with check (
   submission_type in ('feedback', 'topic', 'tip', 'project')
   and length(content) between 2 and 2000
+  and moderation_status = 'pending'
+  and (
+    link_url is null
+    or link_url = ''
+    or link_url ~* '^https?://'
+  )
 );
 
 -- Keep raw submissions private by default. Review them in Supabase, then curate into briefs/reports.
