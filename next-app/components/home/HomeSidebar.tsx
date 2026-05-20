@@ -148,6 +148,23 @@ export function HomeSidebar() {
         >
           ↗ Future Report
         </a>
+        <a
+          href={sitePath("/contests/")}
+          style={{
+            padding: "12px 14px",
+            background: "#fff",
+            color: T.ink,
+            border: `1px solid ${T.rule}`,
+            borderRadius: 4,
+            fontFamily: "var(--korean)",
+            fontSize: 13,
+            fontWeight: 500,
+            textAlign: "left",
+            display: "block",
+          }}
+        >
+          ↗ AI Contest Board
+        </a>
       </div>
     </aside>
   );

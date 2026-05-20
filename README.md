@@ -20,6 +20,7 @@
 ├── brief/index.html        # Next 디자인 기반 Weekly Brief 고정 틀
 ├── museum/index.html       # Next 디자인 기반 S.A Museum 고정 틀
 ├── interview/index.html    # Next 디자인 기반 Interview Room
+├── contests/index.html     # AI Contest Board (외부 JSON 실시간 인용)
 ├── _next/                  # Next static export assets
 ├── issues/
 │   ├── vol_YYYYMMDD.html   # 주간 브리프 (회차별)
@@ -56,6 +57,7 @@ npm.cmd run build:pages
 - `brief/index.html`
 - `museum/index.html`
 - `interview/index.html`
+- `contests/index.html`
 - `issues/vol_20260504.html`
 - `issues/museum.html`
 - `_next/`
@@ -99,6 +101,7 @@ npm.cmd run build:pages
 
 - 본 사이트의 큐레이션·해설 텍스트는 교육 목적의 요약이며, 모든 인용 기사는 원 출처를 명시합니다.
 - 외부 작품·이미지는 가능한 경우 Public Domain / Wikimedia Commons 자료를 사용하며, 저작권 보호 중인 작품은 `museum-monthly.html`의 라이선스 표기를 참고하세요.
+- `contests/`는 외부 공개 JSON([`junyeo217/ai-contest-board`](https://github.com/junyeo217/ai-contest-board))을 실시간 인용해 P&L 신문 스타일로 재구성합니다. 데이터 정확성·갱신은 원본 운영자 책임이며, AIMBA 측은 렌더링·큐레이션만 담당합니다.
 
 ## 운영
 

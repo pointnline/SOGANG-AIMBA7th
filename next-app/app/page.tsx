@@ -4,6 +4,7 @@ import { HomeHealingNote } from "@/components/home/HomeHealingNote";
 import { HomePulse } from "@/components/home/HomePulse";
 import { HomeArchiveTimeline } from "@/components/home/HomeArchiveTimeline";
 import { HomeMuseumTeaser } from "@/components/home/HomeMuseumTeaser";
+import { HomeContestsTeaser } from "@/components/home/HomeContestsTeaser";
 import { HomeInterviewRoom } from "@/components/home/HomeInterviewRoom";
 import { HomeCalendarBooks } from "@/components/home/HomeCalendarBooks";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -36,6 +37,7 @@ export default function HomePage() {
           <HomePulse />
           <HomeArchiveTimeline />
           <HomeMuseumTeaser />
+          <HomeContestsTeaser />
           <HomeInterviewRoom />
           <HomeCalendarBooks />
         </div>

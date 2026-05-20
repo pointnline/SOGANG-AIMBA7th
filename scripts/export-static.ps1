@@ -8,45 +8,74 @@ if (-not (Test-Path -LiteralPath $outDir)) {
   throw "Next export output not found: $outDir. Run from next-app with: npm run build"
 }
 
-$targetsToRefresh = @(
-  (Join-Path $repoRoot "_next"),
-  (Join-Path $repoRoot "brief"),
-  (Join-Path $repoRoot "museum"),
-  (Join-Path $repoRoot "interview")
-)
-
-foreach ($target in $targetsToRefresh) {
-  $resolvedParent = Resolve-Path (Split-Path -Parent $target)
-  if (-not ($resolvedParent.Path.StartsWith($repoRoot.Path))) {
-    throw "Refusing to remove outside repo: $target"
+function Assert-InRepo($path) {
+  $parent = Split-Path -Parent $path
+  if (-not (Test-Path -LiteralPath $parent)) {
+    New-Item -ItemType Directory -Force -Path $parent | Out-Null
   }
-  if (Test-Path -LiteralPath $target) {
-    Remove-Item -LiteralPath $target -Recurse -Force
+  $resolvedParent = Resolve-Path -LiteralPath $parent
+  if (-not ($resolvedParent.Path.StartsWith($repoRoot.Path))) {
+    throw "Refusing to write outside repo: $path"
   }
 }
 
-Copy-Item -LiteralPath (Join-Path $outDir "_next") -Destination (Join-Path $repoRoot "_next") -Recurse -Force
-Copy-Item -LiteralPath (Join-Path $outDir "index.html") -Destination (Join-Path $repoRoot "index.html") -Force
+function Replace-Directory($source, $destination) {
+  if (-not (Test-Path -LiteralPath $source)) {
+    throw "Required export directory not found: $source"
+  }
+  Assert-InRepo $destination
+  $newPath = "$destination.__new"
+  $oldPath = "$destination.__old"
+  if (Test-Path -LiteralPath $newPath) {
+    Remove-Item -LiteralPath $newPath -Recurse -Force
+  }
+  if (Test-Path -LiteralPath $oldPath) {
+    Remove-Item -LiteralPath $oldPath -Recurse -Force
+  }
+  Copy-Item -LiteralPath $source -Destination $newPath -Recurse -Force
+  if (Test-Path -LiteralPath $destination) {
+    Move-Item -LiteralPath $destination -Destination $oldPath -Force
+  }
+  Move-Item -LiteralPath $newPath -Destination $destination -Force
+  if (Test-Path -LiteralPath $oldPath) {
+    Remove-Item -LiteralPath $oldPath -Recurse -Force
+  }
+}
 
-New-Item -ItemType Directory -Force -Path (Join-Path $repoRoot "brief") | Out-Null
+function Replace-File($source, $destination) {
+  if (-not (Test-Path -LiteralPath $source)) {
+    throw "Required export file not found: $source"
+  }
+  Assert-InRepo $destination
+  $newPath = "$destination.__new"
+  Copy-Item -LiteralPath $source -Destination $newPath -Force
+  Move-Item -LiteralPath $newPath -Destination $destination -Force
+}
+
 $briefHtml = Join-Path $outDir "brief.html"
-Copy-Item -LiteralPath $briefHtml -Destination (Join-Path $repoRoot "brief\index.html") -Force
-Copy-Item -LiteralPath $briefHtml -Destination (Join-Path $repoRoot "issues\vol_20260504.html") -Force
-
-New-Item -ItemType Directory -Force -Path (Join-Path $repoRoot "museum") | Out-Null
 $museumHtml = Join-Path $outDir "museum.html"
-Copy-Item -LiteralPath $museumHtml -Destination (Join-Path $repoRoot "museum\index.html") -Force
-Copy-Item -LiteralPath $museumHtml -Destination (Join-Path $repoRoot "issues\museum.html") -Force
-
-New-Item -ItemType Directory -Force -Path (Join-Path $repoRoot "interview") | Out-Null
 $interviewHtml = Join-Path $outDir "interview.html"
-Copy-Item -LiteralPath $interviewHtml -Destination (Join-Path $repoRoot "interview\index.html") -Force
+$contestsHtml = Join-Path $outDir "contests.html"
+
+Replace-Directory (Join-Path $outDir "_next") (Join-Path $repoRoot "_next")
+Replace-File (Join-Path $outDir "index.html") (Join-Path $repoRoot "index.html")
+
+Replace-File $briefHtml (Join-Path $repoRoot "brief\index.html")
+Replace-File $briefHtml (Join-Path $repoRoot "issues\vol_20260504.html")
+
+Replace-File $museumHtml (Join-Path $repoRoot "museum\index.html")
+Replace-File $museumHtml (Join-Path $repoRoot "issues\museum.html")
+
+Replace-File $interviewHtml (Join-Path $repoRoot "interview\index.html")
+
+Replace-File $contestsHtml (Join-Path $repoRoot "contests\index.html")
 
 Write-Host "Updated GitHub Pages files from next-app export:"
 Write-Host " - index.html"
 Write-Host " - brief/index.html"
 Write-Host " - museum/index.html"
 Write-Host " - interview/index.html"
+Write-Host " - contests/index.html"
 Write-Host " - issues/vol_20260504.html"
 Write-Host " - issues/museum.html"
 Write-Host " - _next/"

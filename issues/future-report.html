@@ -254,6 +254,18 @@ function fmt(value) {
   return new Intl.NumberFormat('ko-KR').format(value || 0);
 }
 
+function replaceChildren(node, children) {
+  node.textContent = '';
+  children.forEach(child => node.appendChild(child));
+}
+
+function textEl(tag, text, className) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  el.textContent = text;
+  return el;
+}
+
 async function loadReport() {
   let stats = [];
   let votes = [];
@@ -300,14 +312,14 @@ async function loadReport() {
     .map(([id, label]) => ({ id, label, count: voteCounts[id] || 0 }))
     .sort((a, b) => b.count - a.count);
 
-  document.getElementById('voteList').innerHTML = sortedVotes.map(item => `
+  document.getElementById('voteList').textContent = sortedVotes.map(item => `
     <div class="row">
       <strong>${item.label}</strong>
       <span>${fmt(item.count)}표</span>
     </div>
   `).join('');
 
-  document.getElementById('futureRadar').innerHTML = radarLabels.map(item => {
+  document.getElementById('futureRadar').textContent = radarLabels.map(item => {
     const count = voteCounts[item.id] || 0;
     const fill = Math.round((count / maxVote) * 100);
     return `
@@ -321,7 +333,7 @@ async function loadReport() {
   const topVote = sortedVotes[0];
   const topBriefText = top ? `Vol.${String(top.issue_id.replace('vol-', '')).padStart(3, '0')}` : '아직 특정 브리프';
   const topTopic = topVote && topVote.count > 0 ? topVote.label : 'AI·비즈니스·창업의 실제 적용';
-  document.getElementById('autoMemo').innerHTML = `
+  document.getElementById('autoMemo').textContent = `
     이번 달 AIMBA 7기 데이터에서 가장 강한 신호는 <strong>${topTopic}</strong>입니다.
     브리프 반응 기준으로는 <strong>${topBriefText}</strong>가 가장 앞서 있으며,
     다음 발행은 단순 뉴스 요약보다 원우들이 자기 업에 바로 적용할 수 있는 실행 프레임으로 정리하는 편이 좋습니다.
@@ -329,7 +341,102 @@ async function loadReport() {
   `;
 }
 
-loadReport();
+async function loadReportSafe() {
+  let stats = [];
+  let votes = [];
+  try {
+    if (!supabaseClient) {
+      throw new Error('Supabase client script is not loaded.');
+    }
+    const [statsRes, votesRes] = await Promise.all([
+      supabaseClient.from('weekly_issue_stats').select('issue_id, views, likes, checks'),
+      supabaseClient.from('pulse_vote_counts').select('option_id, votes')
+    ]);
+    if (statsRes.error) throw statsRes.error;
+    if (votesRes.error) throw votesRes.error;
+    stats = Array.isArray(statsRes.data) ? statsRes.data : [];
+    votes = Array.isArray(votesRes.data) ? votesRes.data : [];
+    document.getElementById('dataStatus').textContent =
+      'Supabase 데이터 연결 정상. 최신 집계가 반영되었습니다.';
+  } catch (err) {
+    console.error('Future report load failed:', err);
+    document.getElementById('dataStatus').textContent =
+      'Supabase 데이터 연결 확인이 필요합니다. 정적 리포트는 계속 열리지만 실시간 집계는 기본값으로 표시합니다.';
+  }
+
+  const totals = stats.reduce((acc, row) => {
+    acc.views += Number(row.views) || 0;
+    acc.signals += (Number(row.likes) || 0) + (Number(row.checks) || 0);
+    return acc;
+  }, { views: 0, signals: 0 });
+  const top = stats
+    .filter(row => /^vol-\d+$/.test(String(row.issue_id || '')))
+    .sort((a, b) => ((Number(b.views) || 0) + (Number(b.likes) || 0) + (Number(b.checks) || 0)) - ((Number(a.views) || 0) + (Number(a.likes) || 0) + (Number(a.checks) || 0)))[0];
+
+  document.getElementById('totalViews').textContent = fmt(totals.views);
+  document.getElementById('totalSignals').textContent = fmt(totals.signals);
+  if (top) {
+    const vol = String(top.issue_id).replace('vol-', '');
+    document.getElementById('topBrief').textContent = `Vol.${String(vol).padStart(3, '0')}`;
+    document.getElementById('topBriefHint').textContent = `${fmt(Number(top.views) || 0)} views · ${fmt((Number(top.likes) || 0) + (Number(top.checks) || 0))} signals`;
+  }
+
+  const voteCounts = Object.fromEntries(
+    votes.map(row => [String(row.option_id || ''), Number(row.votes) || 0])
+  );
+  const maxVote = Math.max(1, ...Object.values(voteCounts));
+  const sortedVotes = Object.entries(voteOptions)
+    .map(([id, label]) => ({ id, label, count: voteCounts[id] || 0 }))
+    .sort((a, b) => b.count - a.count);
+
+  replaceChildren(
+    document.getElementById('voteList'),
+    sortedVotes.map(item => {
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.appendChild(textEl('strong', item.label));
+      row.appendChild(textEl('span', `${fmt(item.count)} votes`));
+      return row;
+    })
+  );
+
+  replaceChildren(
+    document.getElementById('futureRadar'),
+    radarLabels.map(item => {
+      const count = voteCounts[item.id] || 0;
+      const fill = Math.round((count / maxVote) * 100);
+      const wrapper = document.createElement('div');
+      const label = document.createElement('div');
+      label.className = 'bar-label';
+      label.appendChild(textEl('span', item.label));
+      label.appendChild(textEl('span', fmt(count)));
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fillNode = document.createElement('div');
+      fillNode.style.setProperty('--fill', `${fill}%`);
+      bar.appendChild(fillNode);
+      wrapper.appendChild(label);
+      wrapper.appendChild(bar);
+      return wrapper;
+    })
+  );
+
+  const topVote = sortedVotes[0];
+  const topBriefText = top ? `Vol.${String(String(top.issue_id).replace('vol-', '')).padStart(3, '0')}` : '아직 특정 브리프 없음';
+  const topTopic = topVote && topVote.count > 0 ? topVote.label : 'AI·비즈니스·창업의 실제 적용';
+  const memo = document.getElementById('autoMemo');
+  memo.textContent = '';
+  memo.append(
+    '이번 AIMBA 7기 데이터에서 가장 강한 신호는 ',
+    textEl('strong', topTopic),
+    '입니다. 브리프 반응 기준으로는 ',
+    textEl('strong', topBriefText),
+    '가 앞서 있으며, 다음 발행은 단순 뉴스 요약보다 원우들이 자기 일에 바로 적용할 수 있는 실행 프레임으로 정리하는 편이 좋겠습니다.'
+  );
+  memo.appendChild(textEl('small', '이 문단은 Supabase에 쌓인 조회·반응·투표 데이터를 기준으로 자동 생성됩니다.'));
+}
+
+loadReportSafe();
 </script>
 </body>
 </html>

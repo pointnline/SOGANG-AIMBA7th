@@ -36,10 +36,19 @@ create or replace function public.increment_weekly_issue_stat(
 returns integer
 language plpgsql
 security definer
+set search_path = public
 as $$
 declare
   new_value integer;
 begin
+  if p_issue_id not in ('vol-1', 'vol-2', 'vol-3', 'vol-4', 'vol-5') then
+    raise exception 'unsupported issue_id: %', p_issue_id;
+  end if;
+
+  if p_delta <> 1 then
+    raise exception 'unsupported delta: %', p_delta;
+  end if;
+
   insert into public.weekly_issue_stats (issue_id)
   values (p_issue_id)
   on conflict (issue_id) do nothing;

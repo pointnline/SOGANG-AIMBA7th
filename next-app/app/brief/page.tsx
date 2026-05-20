@@ -66,7 +66,10 @@ export default function BriefPage() {
             <span>·</span>
             <span style={{ color: T.wine, fontWeight: 600 }}>● CURRENT</span>
           </span>
-          <a href={sitePath(FUTURE_REPORT_PATH)}>Future Report</a>
+          <span style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+            <a href={sitePath("/contests/")}>AI Contests</a>
+            <a href={sitePath(FUTURE_REPORT_PATH)}>Future Report</a>
+          </span>
         </div>
 
         <div style={{ padding: "36px 0 24px", textAlign: "center" }}>

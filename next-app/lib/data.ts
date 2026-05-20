@@ -917,3 +917,39 @@ export const INTERVIEW_FEATURED: Interviewee = {
 };
 
 export const INTERVIEW_COUNT = 4;
+
+// 외부 데이터 소스: 공모전 보드 (junyeo217/ai-contest-board, 출처 명시 조건으로 공개 JSON 활용)
+export const CONTESTS_DATA_URL =
+  "https://raw.githubusercontent.com/junyeo217/ai-contest-board/main/data/contests.json";
+export const CONTESTS_SOURCE_REPO_URL =
+  "https://github.com/junyeo217/ai-contest-board";
+export const CONTESTS_SOURCE_SITE_URL =
+  "https://junyeo217.github.io/ai-contest-board/";
+
+export interface ContestEntry {
+  title: string;
+  category: string;
+  organizer: string;
+  submission_start?: string;
+  submission_end?: string;
+  result_date?: string;
+  url?: string;
+  source_type?: string;
+  discovery_source?: string;
+  discovery_url?: string;
+  evidence?: string;
+  summary?: string;
+  status?: string;
+  source_checked_at?: string;
+}
+
+export interface ContestsFeed {
+  generated_at?: string;
+  notice?: string;
+  sections: {
+    starting_today?: ContestEntry[];
+    ongoing?: ContestEntry[];
+    awaiting_result?: ContestEntry[];
+    [key: string]: ContestEntry[] | undefined;
+  };
+}
