@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Next.js build output (kept out of root; generated separately for Pages)
+next-app/.next/
+next-app/out/
+
+# OMC orchestration state / local agent artifacts
+.omc/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Env files (should never be committed)
+.env
+.env.*
+!.env.example

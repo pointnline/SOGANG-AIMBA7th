@@ -16,7 +16,7 @@ const M = {
 export const metadata: Metadata = {
   title: "S.A Museum · SOGANG AIMBA 7th",
   description:
-    "Tessa 공개 작가 라인업을 기반으로 구성한 AIMBA 7기 S.A Museum 큐레이션.",
+    "퍼블릭 도메인 명화 50점으로 구성한 AIMBA 7기 S.A Museum 큐레이션.",
 };
 
 export default function MuseumPage() {
@@ -47,7 +47,7 @@ export default function MuseumPage() {
       >
         <a href={sitePath("/")}>← BACK TO BRIEF</a>
         <span>S . A &nbsp;&nbsp; M U S E U M</span>
-        <span>2026 / TESSA LINE-UP {MUSEUM_WORKS.length}</span>
+        <span>2026 / PUBLIC DOMAIN {MUSEUM_WORKS.length}</span>
       </header>
 
       <section
@@ -78,7 +78,7 @@ export default function MuseumPage() {
             textTransform: "uppercase",
           }}
         >
-          TESSA ARTIST LINE-UP · ONE IMAGE · ONE NOTE
+          PUBLIC DOMAIN MASTERPIECES · ONE IMAGE · ONE NOTE
         </div>
       </section>
 
@@ -135,7 +135,7 @@ export default function MuseumPage() {
               marginBottom: 36,
             }}
           >
-            ON VIEW · TESSA LINE-UP
+            ON VIEW · MASTERPIECE
           </div>
           <h2
             style={{
@@ -234,7 +234,7 @@ export default function MuseumPage() {
               textTransform: "uppercase",
             }}
           >
-            {MUSEUM_WORKS.length} LINE-UP IMAGES · 2026
+            {MUSEUM_WORKS.length} MASTERPIECES · 2026
           </div>
         </div>
         {MUSEUM_WORKS.map((work) => (

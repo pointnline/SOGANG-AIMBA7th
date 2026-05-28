@@ -37,7 +37,7 @@ export function HomeMuseumTeaser() {
               marginBottom: 16,
             }}
           >
-            S.A MUSEUM · TESSA LINE-UP
+            S.A MUSEUM · PUBLIC DOMAIN
           </div>
           <h3
             style={{
@@ -50,9 +50,9 @@ export function HomeMuseumTeaser() {
               letterSpacing: "-0.015em",
             }}
           >
-            미술품 투자 플랫폼의
+            한 점의 명화를
             <br />
-            작가 풀을 큐레이션으로 읽다.
+            오늘의 호흡으로 읽다.
           </h3>
           <p
             style={{
@@ -64,9 +64,9 @@ export function HomeMuseumTeaser() {
               maxWidth: 500,
             }}
           >
-            S.A Museum의 작품 풀을 Tessa 공개 작가 라인업 기준으로 다시
-            세팅했습니다. 현재 <strong style={{ color: T.gold }}>{MUSEUM_WORKS.length}명</strong>의
-            작가 이미지를 로컬 에셋으로 연결했습니다.
+            S.A Museum의 작품 풀을 저작권이 만료된 퍼블릭 도메인 명화로 다시
+            세팅했습니다. 현재 <strong style={{ color: T.gold }}>{MUSEUM_WORKS.length}점</strong>의
+            명화를 로컬 에셋으로 연결했습니다.
           </p>
           <div
             style={{
@@ -99,7 +99,7 @@ export function HomeMuseumTeaser() {
                 color: "rgba(250,246,239,0.5)",
               }}
             >
-              TESSA public line-up · 2026
+              Public domain masterpieces · 2026
             </span>
           </div>
         </div>
