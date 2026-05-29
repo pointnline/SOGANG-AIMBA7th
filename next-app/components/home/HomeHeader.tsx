@@ -1,7 +1,12 @@
 import { BrandMark } from "@/components/BrandLogo";
 import { TOKENS as T } from "@/lib/tokens";
+import { CURRENT_ISSUE } from "@/lib/data";
 
 export function HomeHeader() {
+  // 최신호(현재호) 기준으로 vol/날짜 자동연동. isoDate(YYYYMMDD) → "YYYY · MM · DD"
+  const iso = CURRENT_ISSUE.isoDate;
+  const issueDate = `${iso.slice(0, 4)} · ${iso.slice(4, 6)} · ${iso.slice(6, 8)}`;
+
   return (
     <header
       className="site-hero"
@@ -42,8 +47,7 @@ export function HomeHeader() {
       >
         <span>SOGANG AIMBA 7TH · 미래혁신국</span>
         <div style={{ display: "flex", gap: 28 }}>
-          <span>VOL. 5</span>
-          <span>2026 · 05 · 04</span>
+          <span>{issueDate}</span>
           <span>편집: 미래혁신국</span>
         </div>
       </div>
