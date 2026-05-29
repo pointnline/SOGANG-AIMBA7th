@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const SITE_TITLE = "SOGANG AIMBA 7th · Weekly Brief";
 const SITE_DESC =
@@ -50,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>{children}</body>
+      <GoogleAnalytics />
     </html>
   );
 }
