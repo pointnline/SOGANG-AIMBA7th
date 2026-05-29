@@ -1088,24 +1088,13 @@ export const MUSEUM_WORKS: MuseumWork[] = [
   },
 ];
 
-export interface Interviewee {
-  name: string;
-  cohort: string;
-  field: string;
-  pullQuote: string;
-  publishedAt: string;
-}
-
-export const INTERVIEW_FEATURED: Interviewee = {
-  name: "이지원",
-  cohort: "7기",
-  field: "AI 헬스케어",
-  pullQuote:
-    "MBA에 와서 처음 깨달은 건, 내가 어떤 질문에 답하고 싶은가였습니다.",
-  publishedAt: "2026.05.07",
+// Interview Room — 첫 인터뷰 준비 중(coming soon). 실제 발행 전까지 정직한 예고 상태로 운영한다.
+export const INTERVIEW_INTRO = {
+  sectionQuote: "지금 가장 답하고 싶은 질문은 무엇인가요?",
+  lead: "7기 원우 한 사람의 이야기를, 격주로 싣습니다. 첫 인터뷰를 준비하고 있습니다.",
+  // 수신자 빈칸 + 제목 프리필 (사이트 공통 mailto 패턴)
+  proposeMailto: "mailto:?subject=AIMBA%207th%20Interview%20%EC%A0%9C%EC%95%88",
 };
-
-export const INTERVIEW_COUNT = 4;
 
 // 외부 데이터 소스: 공모전 보드 (junyeo217/ai-contest-board, 출처 명시 조건으로 공개 JSON 활용)
 export const CONTESTS_DATA_URL =
