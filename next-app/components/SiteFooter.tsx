@@ -43,7 +43,7 @@ export function SiteFooter() {
         AI · Business · Startup · MBA Insight · S.A Museum · Interview Room
       </div>
       <div style={{ color: "rgba(250,246,239,0.55)" }}>
-        발간 주기: 매주 토요일 08:00 KST · 운영: 서강대 AI MBA 7기 미래혁신국
+        발간 주기: 매주 월요일 08:00 KST · 운영: 서강대 AI MBA 7기 미래혁신국
       </div>
       <div
         style={{

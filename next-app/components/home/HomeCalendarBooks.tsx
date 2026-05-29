@@ -103,7 +103,19 @@ export function HomeCalendarBooks() {
                 </td>
                 <td style={{ padding: "12px 8px", verticalAlign: "top" }}>
                   <div style={{ color: T.ink, fontWeight: 500 }}>
-                    {event.title}
+                    {event.link ? (
+                      <a
+                        href={event.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ color: "inherit" }}
+                      >
+                        {event.title}
+                        <span style={{ color: T.wine, marginLeft: 5 }}>↗</span>
+                      </a>
+                    ) : (
+                      event.title
+                    )}
                   </div>
                   <div
                     style={{

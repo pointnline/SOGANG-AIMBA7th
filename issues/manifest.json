@@ -1,5 +1,38 @@
 [
   {
+    "vol": 8,
+    "date": "2026년 05월 25일",
+    "headline": "Anthropic 분기 흑자·Google I/O 2026·Karpathy 이적이 겹치며 AI가 데모가 아닌 재무제표로 말하기 시작한 변곡점...",
+    "path": "issues/vol_20260525.html",
+    "tags": [
+      "AI",
+      "수익화",
+      "유니콘"
+    ]
+  },
+  {
+    "vol": 7,
+    "date": "2026년 05월 18일",
+    "headline": "Anthropic 소상공인 공략·Dell Technologies World AI 팩토리 5,000곳·AlphaEvolve 실증·국가 AI 컴퓨팅센터 실시협약이 겹치며 AI가 현장으로 내려온 주...",
+    "path": "issues/vol_20260518.html",
+    "tags": [
+      "AI",
+      "온프레미스",
+      "GPU주권"
+    ]
+  },
+  {
+    "vol": 6,
+    "date": "2026년 05월 11일",
+    "headline": "OpenAI $4B 배포 자회사·KPMG 27만 명 Claude 탑재·IESE·Darden AI 코어 전환으로 AI가 기업 운영체제로 올라선 주...",
+    "path": "issues/vol_20260511.html",
+    "tags": [
+      "AI",
+      "엔터프라이즈",
+      "MBA"
+    ]
+  },
+  {
     "vol": 5,
     "date": "2026년 05월 04일",
     "headline": "에이전트형 AI가 조직 운영 레이어로 올라오고, 창업·정부지원도 실증과 협업형 구조로 재편된 한 주...",

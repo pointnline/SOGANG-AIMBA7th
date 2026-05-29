@@ -433,21 +433,33 @@ export default function BriefPage() {
                   gap: 10,
                 }}
               >
-                {group.items.map((item) => (
-                  <div
-                    key={item}
-                    style={{
-                      background: "#fff",
-                      border: `1px solid ${T.rule}`,
-                      borderRadius: 8,
-                      padding: "13px 15px",
-                      fontSize: 13.5,
-                      color: T.ink2,
-                    }}
-                  >
-                    {item}
-                  </div>
-                ))}
+                {group.items.map((item) => {
+                  const cardStyle = {
+                    background: "#fff",
+                    border: `1px solid ${T.rule}`,
+                    borderRadius: 8,
+                    padding: "13px 15px",
+                    fontSize: 13.5,
+                    color: T.ink2,
+                    display: "block",
+                  } as const;
+                  return item.href ? (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={cardStyle}
+                    >
+                      {item.title}
+                      <span style={{ color: T.wine, marginLeft: 6 }}>↗</span>
+                    </a>
+                  ) : (
+                    <div key={item.title} style={cardStyle}>
+                      {item.title}
+                    </div>
+                  );
+                })}
               </div>
             </section>
           ))}
@@ -483,34 +495,53 @@ export default function BriefPage() {
                 marginTop: 20,
               }}
             >
-              {EVENTS.map((event) => (
-                <div
-                  key={`${event.date}-${event.title}`}
-                  style={{
-                    background: T.paper,
-                    border: `1px solid ${T.rule}`,
-                    borderRadius: 8,
-                    padding: "14px 15px",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: "var(--mono)",
-                      fontSize: 10,
-                      color: T.wine,
-                      marginBottom: 8,
-                    }}
+              {EVENTS.map((event) => {
+                const cardStyle = {
+                  background: T.paper,
+                  border: `1px solid ${T.rule}`,
+                  borderRadius: 8,
+                  padding: "14px 15px",
+                  display: "block",
+                  color: "inherit",
+                } as const;
+                const inner = (
+                  <>
+                    <div
+                      style={{
+                        fontFamily: "var(--mono)",
+                        fontSize: 10,
+                        color: T.wine,
+                        marginBottom: 8,
+                      }}
+                    >
+                      {event.date} · {event.tag}
+                      {event.link ? " ↗" : ""}
+                    </div>
+                    <div style={{ fontWeight: 700, lineHeight: 1.45 }}>
+                      {event.title}
+                    </div>
+                    <div style={{ fontSize: 12, color: T.ink3, marginTop: 6 }}>
+                      {event.where}
+                    </div>
+                  </>
+                );
+                const key = `${event.date}-${event.title}`;
+                return event.link ? (
+                  <a
+                    key={key}
+                    href={event.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={cardStyle}
                   >
-                    {event.date} · {event.tag}
+                    {inner}
+                  </a>
+                ) : (
+                  <div key={key} style={cardStyle}>
+                    {inner}
                   </div>
-                  <div style={{ fontWeight: 700, lineHeight: 1.45 }}>
-                    {event.title}
-                  </div>
-                  <div style={{ fontSize: 12, color: T.ink3, marginTop: 6 }}>
-                    {event.where}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </section>
 

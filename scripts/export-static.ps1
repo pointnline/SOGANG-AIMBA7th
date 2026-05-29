@@ -61,7 +61,7 @@ Replace-Directory (Join-Path $outDir "_next") (Join-Path $repoRoot "_next")
 Replace-File (Join-Path $outDir "index.html") (Join-Path $repoRoot "index.html")
 
 Replace-File $briefHtml (Join-Path $repoRoot "brief\index.html")
-Replace-File $briefHtml (Join-Path $repoRoot "issues\vol_20260504.html")
+# 날짜별 아카이브(issues\vol_YYYYMMDD.html) 생성은 build-pages.ps1 의 호별 빌드 루프에서 담당한다.
 
 Replace-File $museumHtml (Join-Path $repoRoot "museum\index.html")
 Replace-File $museumHtml (Join-Path $repoRoot "issues\museum.html")
@@ -76,6 +76,5 @@ Write-Host " - brief/index.html"
 Write-Host " - museum/index.html"
 Write-Host " - interview/index.html"
 Write-Host " - contests/index.html"
-Write-Host " - issues/vol_20260504.html"
 Write-Host " - issues/museum.html"
 Write-Host " - _next/"

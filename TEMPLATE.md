@@ -1,7 +1,7 @@
 # AIMBA 미래혁신국 주간 브리핑 — 크론 가이드
 
 ## 발간 규격
-- 매주 토요일 08:00 KST
+- 매주 월요일 08:00 KST
 - HTML 신문 스타일 (issues/vol_YYYYMMDD.html)
 - GitHub Pages 자동 배포
 

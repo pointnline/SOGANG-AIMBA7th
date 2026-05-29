@@ -14,7 +14,8 @@ const CACHE_KEY = "aimba_contests_feed_v1";
 const CACHE_TTL_MS = 1000 * 60 * 60 * 6;
 const FETCH_TIMEOUT_MS = 1000 * 10;
 
-type CategoryFilter = "ALL" | "IMAGE" | "VIDEO";
+type CategoryFilter = "ALL" | "IMAGE" | "VIDEO" | "IDEA" | "PLANNING";
+type CategoryBucket = Exclude<CategoryFilter, "ALL">;
 type SortKey = "deadline" | "recent";
 
 type SectionKey = "starting_today" | "ongoing" | "awaiting_result";
@@ -84,16 +85,74 @@ const SECTION_META: Record<
   },
 };
 
-function classifyCategory(category: string | undefined): CategoryFilter {
-  if (!category) return "ALL";
-  if (category.includes("영상") || /video/i.test(category)) return "VIDEO";
-  if (category.includes("이미지") || /image/i.test(category)) return "IMAGE";
-  return "ALL";
+// 표시용 category 텍스트만 보고 부문 버킷을 분류한다. 한 항목이 여러 부문에
+// 동시에 속할 수 있어 배열로 반환한다(예: "AI 이미지·영상" → 이미지 + 영상).
+// 원본 보드 규칙과 동일하게 디자인 → 이미지, 생성형 AI → 영상으로 묶는다.
+function categoryBuckets(category: string | undefined): CategoryBucket[] {
+  const text = (category || "").toLowerCase();
+  const buckets = new Set<CategoryBucket>();
+
+  // 영상: 영상/video/숏폼/숏필름/필름/생성형 AI
+  if (
+    text.includes("영상") ||
+    text.includes("video") ||
+    text.includes("숏폼") ||
+    text.includes("숏필름") ||
+    text.includes("필름") ||
+    text.includes("생성형")
+  ) {
+    buckets.add("VIDEO");
+  }
+
+  // 이미지: 이미지/image/디자인/포스터/그림/일러스트/굿즈
+  if (
+    text.includes("이미지") ||
+    text.includes("image") ||
+    text.includes("디자인") ||
+    text.includes("design") ||
+    text.includes("포스터") ||
+    text.includes("그림") ||
+    text.includes("일러스트") ||
+    text.includes("굿즈")
+  ) {
+    buckets.add("IMAGE");
+  }
+
+  // 아이디어: 아이디어/idea/공모(아이디어성)/발명
+  if (
+    text.includes("아이디어") ||
+    text.includes("idea") ||
+    text.includes("발명")
+  ) {
+    buckets.add("IDEA");
+  }
+
+  // 기획: 기획/planning/plan/제안/비즈니스 모델/사업화
+  if (
+    text.includes("기획") ||
+    text.includes("planning") ||
+    text.includes("plan") ||
+    text.includes("제안") ||
+    text.includes("사업화") ||
+    text.includes("비즈니스")
+  ) {
+    buckets.add("PLANNING");
+  }
+
+  return Array.from(buckets);
+}
+
+// 선택된 필터에 항목이 속하는지 판정. ALL은 항상 통과.
+function matchesCategory(category: string | undefined, filter: CategoryFilter): boolean {
+  if (filter === "ALL") return true;
+  return categoryBuckets(category).includes(filter);
 }
 
 function categoryLabel(cat: CategoryFilter): string {
   if (cat === "IMAGE") return "이미지";
   if (cat === "VIDEO") return "영상";
+  if (cat === "IDEA") return "아이디어";
+  if (cat === "PLANNING") return "기획";
   return "전체";
 }
 
@@ -197,10 +256,9 @@ export function ContestBoardClient() {
     const keys: SectionKey[] = ["starting_today", "ongoing", "awaiting_result"];
     for (const key of keys) {
       const list = feed.sections[key] || [];
-      const filtered = list.filter((item) => {
-        if (category === "ALL") return true;
-        return classifyCategory(item.category) === category;
-      });
+      const filtered = list.filter((item) =>
+        matchesCategory(item.category, category)
+      );
 
       const sorted = [...filtered].sort((a, b) => {
         if (sortKey === "deadline") {
@@ -302,7 +360,7 @@ function ToolbarRow({
   stale: boolean;
   error: string | null;
 }) {
-  const cats: CategoryFilter[] = ["ALL", "IMAGE", "VIDEO"];
+  const cats: CategoryFilter[] = ["ALL", "IMAGE", "VIDEO", "IDEA", "PLANNING"];
   const sorts: { key: SortKey; label: string }[] = [
     { key: "deadline", label: "마감 임박순" },
     { key: "recent", label: "최신 업데이트순" },
@@ -335,7 +393,7 @@ function ToolbarRow({
         }}
       >
         <span style={{ color: T.wine }}>
-          AI CONTEST BOARD · 국내 이미지·영상 큐레이션
+          AI CONTEST BOARD · 국내 이미지·영상·아이디어·기획 큐레이션
         </span>
         <span>
           {generatedAtLabel && <>업데이트 {generatedAtLabel}</>}

@@ -7,7 +7,7 @@ import { TOKENS as T } from "@/lib/tokens";
 export const metadata = {
   title: "SOGANG AIMBA 7th · AI Contest Board",
   description:
-    "국내 AI 이미지·영상 공모전을 P&L 신문 스타일로 정리한 큐레이션 보드. 데이터 원본은 junyeo217/ai-contest-board.",
+    "국내 AI 이미지·영상·아이디어·기획 공모전을 P&L 신문 스타일로 정리한 큐레이션 보드. 데이터 원본은 junyeo217/ai-contest-board.",
 };
 
 export default function ContestsPage() {
@@ -105,7 +105,8 @@ export default function ContestsPage() {
               fontWeight: 300,
             }}
           >
-            국내 AI 이미지·영상 공모전을 매일 큐레이션해 신문 형태로 정리합니다.
+            국내 AI 이미지·영상·아이디어·기획 공모전을 매일 큐레이션해 신문
+            형태로 정리합니다.
           </div>
         </div>
 
@@ -200,7 +201,7 @@ export default function ContestsPage() {
                   color: T.ink,
                 }}
               >
-                AI 이미지·영상 공모전을 한 화면에서.
+                AI 이미지·영상·아이디어·기획 공모전을 한 화면에서.
               </h2>
               <p
                 style={{
@@ -247,8 +248,8 @@ export default function ContestsPage() {
                     margin: 0,
                   }}
                 >
-                  <li>부문 필터로 이미지·영상을 선택</li>
-                  <li>마감 임박순 또는 최신 업데이트순으로 정렬</li>
+                  <li>부문 필터로 이미지·영상·아이디어·기획을 선택</li>
+                  <li>마감 임박순 또는 최신 업데이트순으로 자동 정렬</li>
                   <li>카드 클릭 → 공식 페이지로 이동해 접수</li>
                   <li>데이터는 외부 보드 실시간 인용 (출처 명시)</li>
                 </ol>
