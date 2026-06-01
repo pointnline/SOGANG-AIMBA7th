@@ -1,10 +1,11 @@
-import { MUSEUM_WORKS } from "@/lib/data";
+import { CURATED_WORKS, MUSEUM_WORKS } from "@/lib/data";
 import { sitePath } from "@/lib/paths";
 import { TOKENS as T } from "@/lib/tokens";
 import Image from "next/image";
 
 export function HomeMuseumTeaser() {
-  const featured = MUSEUM_WORKS[0];
+  // 이번 호 큐레이션 대표작(= CURATED_WORKS[0]). 폴백으로 50점 풀의 첫 작품 사용.
+  const featured = CURATED_WORKS[0] ?? MUSEUM_WORKS[0];
 
   return (
     <div

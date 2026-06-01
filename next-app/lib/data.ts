@@ -17,12 +17,12 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260525.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260601.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
 export const FILTERS: FilterItem[] = [
-  { code: "ALL", label: "전체보기", count: 8, href: "#archive" },
+  { code: "ALL", label: "전체보기", count: 9, href: "#archive" },
   { code: "AI-LLM", label: "AI · LLM", count: 4, href: `${CURRENT_ISSUE_PATH}#ai` },
   { code: "BUS", label: "Business · Strategy", count: 4, href: `${CURRENT_ISSUE_PATH}#business` },
   { code: "MBA", label: "MBA Insight", count: 4, href: `${CURRENT_ISSUE_PATH}#mba` },
@@ -46,9 +46,9 @@ export const PULSE_TOPICS: PulseTopic[] = [
 ];
 
 export const PULSE_METRICS = [
-  { key: "PUBLISHED", value: "8", sub: "누적 발간 호수" },
-  { key: "CURRENT", value: "Vol.8", sub: "2026.05.25 최신호" },
-  { key: "TOP SIGNAL", value: "AI", sub: "워크플로 전환" },
+  { key: "PUBLISHED", value: "9", sub: "누적 발간 호수" },
+  { key: "CURRENT", value: "Vol.9", sub: "2026.06.01 최신호" },
+  { key: "TOP SIGNAL", value: "AI", sub: "에이전트 실력 경쟁" },
 ] as const;
 
 export interface BriefIssue {
@@ -67,6 +67,21 @@ export interface BriefIssue {
 }
 
 export const BRIEF_ISSUES: BriefIssue[] = [
+  {
+    vol: 9,
+    date: "2026.06.01",
+    shortDate: "06.01",
+    section: "AI-LLM",
+    sectionLabel: "AI · Frontier",
+    title: "프런티어가 한 단계 더 위로 — 에이전트 실력 경쟁의 주",
+    headline:
+      "Claude Opus 4.8가 지능 지수 1위에 오르고 Qwen 3.7 Max·Cognition $1B가 겹치며, AI 경쟁이 '누가 더 똑똑한가'에서 '누가 더 오래·안전하게 일을 끝내는가'로 넘어간 주.",
+    path: "/issues/vol_20260601.html",
+    read: "13분",
+    views: "최신",
+    live: true,
+    tags: ["AI", "Opus4.8", "에이전트", "Cognition", "RWA", "STO", "엔터프라이즈"],
+  },
   {
     vol: 8,
     date: "2026.05.25",
@@ -658,6 +673,290 @@ const VOL6: IssueContent = {
   ],
 };
 
+const VOL9: IssueContent = {
+  vol: 9,
+  dateLabel: "2026년 6월 1일",
+  isoDate: "20260601",
+  title:
+    "프런티어가 한 단계 더 위로 — Claude Opus 4.8·Qwen 3.7 Max·Cognition $1B가 만든 에이전트 실력 경쟁의 주",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주는 모델 발표가 '이벤트'에서 '분기 업데이트'로 일상화되는 가운데, Anthropic의 Claude Opus 4.8이 지능 지표 1위에 오르고 Alibaba Qwen 3.7 Max가 1M 토큰·에이전트 특화로 추격하며 프런티어 실력 경쟁이 한 단계 더 위로 올라간 장면이 선명했습니다.",
+    "자본 시장에서는 AI 코딩 에이전트 Cognition이 8개월 만에 기업가치를 두 배로 키워 $26B에 $1B를 조달했고, 엔터프라이즈에서는 Anthropic·Salesforce가 '에이전트를 고객 보안 경계 안으로' 들이는 배포 경쟁에 들어갔습니다.",
+  ],
+  conclusion:
+    "모델은 이제 '누가 더 똑똑한가'를 넘어 '누가 더 오래·안전하게 일을 끝내는가'로 평가받기 시작했으며, 이 자율 실행 신뢰도를 먼저 조직 워크플로에 심는 팀이 다음 분기를 가져갑니다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "Anthropic은 5월 28일 Claude Opus 4.8을 공개하며 Artificial Analysis 지능 지수 1위(61.4)에 올랐고, Online-Mind2Web 84%로 에이전트형 작업의 신뢰도를 한 단계 끌어올렸습니다. Alibaba는 5월 20일 Qwen 3.7 Max를 정식 발표하며 1M 토큰 컨텍스트와 '에이전트 프런티어'를 내세워 35시간 연속 자율 실행을 시연했습니다. 모델 경쟁의 축이 단발 성능에서 '장기 자율 실행 + 비용'으로 이동했습니다.",
+      articles: [
+        {
+          title: "Introducing Claude Opus 4.8",
+          desc: "Anthropic이 5월 28일 Claude Opus 4.8을 공개했습니다 — Artificial Analysis 지능 지수 1위(61.4)로 GPT-5.5를 추월, Online-Mind2Web 84% 달성, claude.ai에 작업 노력(effort) 제어와 Claude Code '동적 워크플로' 기능을 추가했습니다.",
+          source: "Anthropic",
+          href: "https://www.anthropic.com/news/claude-opus-4-8",
+        },
+        {
+          title: "Alibaba introduces Qwen3.7-Max as next-gen AI agent model",
+          desc: "Alibaba가 5월 20일 클라우드 서밋에서 Qwen 3.7 Max를 정식 발표했습니다 — 1M 토큰 컨텍스트, Terminal-Bench·SWE-Bench Pro에서 상위권, 내부 테스트에서 1,000회 이상 도구 호출과 최대 35시간 자율 실행을 시연한 '에이전트 프런티어' 모델입니다.",
+          source: "TechNode",
+          href: "https://technode.com/2026/05/21/alibaba-introduces-qwen3-7-max-as-next-gen-ai-agent-model/",
+        },
+        {
+          title:
+            "Qwen Introduces Qwen3.7-Max: A Reasoning Agent Model With a 1M-Token Context Window",
+          desc: "Qwen 3.7 Max는 1M 토큰 컨텍스트와 56.6 지능 지수를 갖춘 폐쇄형 에이전트 특화 모델로, $2.50/$7.50(100만 토큰) 가격으로 Opus 4.7 대비 약 절반 수준에서 장기 자율 코딩·추론 워크플로를 겨냥합니다.",
+          source: "MarkTechPost",
+          href: "https://www.marktechpost.com/2026/05/21/qwen-introduces-qwen3-7-max-a-reasoning-agent-model-with-a-1m-token-context-window/",
+        },
+        {
+          title: "AI coding startup Cognition raises $1B at $25B pre-money valuation",
+          desc: "Devin을 만든 Cognition이 Lux Capital·General Catalyst·8VC 주도로 $1B+를 조달해 기업가치 $26B에 올랐으며, 연환산 매출이 1년 만에 $37M→$492M으로 급증해 AI 코딩 에이전트의 엔터프라이즈 수요를 입증했습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/05/27/ai-coding-startup-cognition-raises-1b-at-25b-pre-money-valuation/",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "엔터프라이즈 AI의 화두가 '도입 여부'에서 '에이전트를 고객 보안 경계 안으로 어떻게 들이느냐'로 이동했습니다. Anthropic은 5월 19일 자체 인프라에서 도구를 실행하는 self-hosted 샌드박스와 MCP 터널을 공개했고, Salesforce는 5월 21일 검색을 행동으로 바꾸는 Agentforce Coworker를 베타 출시했습니다. ServiceNow·Accenture는 '실증 후 전사 확산' 모델로 에이전트 배포의 마지막 1마일을 메우고 있습니다.",
+      articles: [
+        {
+          title: "New in Claude Managed Agents: self-hosted sandboxes and MCP tunnels",
+          desc: "Anthropic이 5월 19일 Code with Claude London에서 self-hosted 샌드박스(퍼블릭 베타)와 MCP 터널(리서치 프리뷰)을 공개했습니다 — 민감 데이터·도구 실행은 기업 내부에 두고, 오케스트레이션만 Anthropic이 담당해 '에이전트를 보안 경계 안으로' 들이는 모델입니다.",
+          source: "Anthropic (Claude Blog)",
+          href: "https://claude.com/blog/claude-managed-agents-updates",
+        },
+        {
+          title: "Salesforce Announces Agentforce Coworker: AI 'In Every Search Bar'",
+          desc: "Salesforce가 5월 21일 Agentforce Coworker를 베타 출시했습니다 — CRM·Slack·270여 개 외부 데이터를 하나의 대화형 인터페이스로 묶어 '검색을 답으로, 답을 실행으로' 바꾸며, 월 10억 회에 달하는 Salesforce 검색을 에이전트 행동으로 전환합니다.",
+          source: "Salesforce Ben",
+          href: "https://www.salesforceben.com/salesforce-announces-agentforce-coworker-ai-in-every-search-bar/",
+        },
+        {
+          title:
+            "ServiceNow and Accenture Launch Forward Deployed Engineering Program to Scale Agentic AI",
+          desc: "ServiceNow와 Accenture가 5월 6일 Forward Deployed Engineering 프로그램을 출범했습니다 — 300여 개 사전 구축 에이전트 스킬을 고객 환경에서 직접 구현하며, '전사적 AI 효과를 지속한다'고 답한 리더가 32%에 그친 '실행 격차'를 메우는 것을 목표로 합니다.",
+          source: "Accenture Newsroom",
+          href: "https://newsroom.accenture.com/news/2026/servicenow-and-accenture-launch-forward-deployed-engineering-program-to-scale-agentic-ai-across-the-enterprise",
+        },
+        {
+          title: "Anthropic debuts MCP tunnels and self-hosted sandboxes to lock down AI agent infrastructure",
+          desc: "MCP 터널은 경량 게이트웨이가 단일 아웃바운드 연결만 열어, 내부 DB·사설 API·지식베이스·티켓 시스템을 인바운드 방화벽 규칙 없이 에이전트의 도구로 연결합니다 — 규제 산업의 에이전트 도입 장벽을 직접 겨냥한 설계입니다.",
+          source: "The New Stack",
+          href: "https://thenewstack.io/anthropic-mcp-tunnels-sandboxes/",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA",
+      code: "MBA",
+      narrative:
+        "이번 주 MBA 씬의 핵심은 'AI 시대에 MBA의 가치가 무엇인가'라는 질문이 학생·지원자·입학처 세 층위에서 동시에 제기됐다는 점입니다. Poets&Quants는 AI 벤처 창업자가 'AI는 내 커리어를, MBA는 내 사고를 바꿨다'고 말한 사례와, AI로 작성한 지원서가 입학처에서 통하지 않는다는 현장 진단을 같은 주에 다뤘습니다. 임원 교육 시장은 AI 주제로 사상 최대 규모로 성장 중입니다.",
+      articles: [
+        {
+          title: "AI Changed My Career. The MBA Changed My Thinking",
+          desc: "LBS 졸업생이자 AI 벤처 창업자가 'AI 시대일수록 MBA의 가치가 더 커진다'고 말합니다 — 기술은 커리어를 바꾸지만, 인간+AI 조직을 이끄는 판단력과 사고의 틀은 여전히 경영 교육에서 길러진다는 관점입니다.",
+          source: "Poets & Quants",
+          href: "https://poetsandquants.com/2026/05/25/ai-changed-my-career-the-mba-changed-my-thinking/",
+        },
+        {
+          title:
+            "The MBA Applicant's Guide To AI In 2026: What's Allowed, What's Risky, And What To Avoid",
+          desc: "입학 담당자들이 AI로 작성한 지원서가 '통조림 에세이'처럼 진정성이 떨어진다고 진단합니다 — AI를 브레인스토밍 보조로 쓰되, 자기 목소리를 잃으면 오히려 감점이라는 2026 지원 전략 가이드입니다.",
+          source: "Poets & Quants",
+          href: "https://poetsandquants.com/2026/05/26/the-mba-applicants-guide-to-ai-in-2026-whats-allowed-whats-risky-and-what-to-avoid/",
+        },
+        {
+          title: "Business schools boost revenue with executive education courses",
+          desc: "하버드·MIT·Kellogg 등이 AI 주제 단기 임원 교육으로 수억 달러 매출을 창출하며, 글로벌 임원 교육 시장은 2026년 551억 달러 규모로 성장했습니다 — AIMBA 원우에게는 정규 학위 외 단기 AI 과정 활용의 레퍼런스입니다.",
+          source: "Marketplace",
+          href: "https://www.marketplace.org/story/2026/05/19/business-schools-boost-revenue-with-executive-education-courses",
+        },
+        {
+          title: "The Top MBA Admissions Consultants Of 2026",
+          desc: "Poets&Quants가 가장 호평받은 2026 MBA 입학 컨설턴트 순위를 공개했습니다 — Personal MBA Coach의 Scott Edinburgh가 9.98 만족도로 1위에 오르며, AI 시대 지원 시장에서도 '사람이 검증한 전략'의 수요가 유지됨을 보여줍니다.",
+          source: "Poets & Quants",
+          href: "https://poetsandquants.com/2026/05/18/the-top-mba-admissions-consultants-of-2026/",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "자본은 '병목을 푸는 곳'으로 더 선명하게 집중되고 있습니다. 글로벌에서는 AI 코딩 에이전트 Cognition($1B)과 모델 라우팅 OpenRouter(시리즈B $113M)처럼 AI 경제의 운영 레이어를 쥔 기업에 대형 자금이 몰렸습니다. 국내에서는 웨어러블 로봇 위로보틱스가 950억 원 시리즈B로 5월 최대 규모 라운드를 기록하며, 피지컬 AI·딥테크로 자본이 확장되는 흐름을 보였습니다.",
+      articles: [
+        {
+          title: "위로보틱스, 950억원 시리즈B 투자 유치…5월 국내 최대 라운드",
+          desc: "보행 보조용 웨어러블 로봇 기업 위로보틱스가 950억 원 규모 시리즈B를 유치해 5월 둘째 주 국내 최대 라운드를 기록했으며, 자본이 소프트웨어 AI를 넘어 피지컬 AI·로보틱스 딥테크로 확장되는 흐름을 보여줬습니다.",
+          source: "머니투데이",
+          href: "https://www.mt.co.kr/amp/future/2026/05/17/2026051714180265167",
+        },
+        {
+          title: "Venture Capital & Startup Funding Roundup, May 27, 2026",
+          desc: "Cognition $1B+, Capchase $200M+, Thea Energy $100M 시리즈B 등 5월 27일 하루의 주요 라운드를 정리했습니다 — '검증된 엔터프라이즈 수요·컴퓨팅 비용 절감·소프트웨어 공급망 강화'에 자본이 집중된다는 분석입니다.",
+          source: "Tech Startups",
+          href: "https://techstartups.com/2026/05/27/venture-capital-startup-funding-roundup-may-27-2026/",
+        },
+        {
+          title: "AI coding startup Cognition raises $1B at $25B pre-money valuation",
+          desc: "Devin 개발사 Cognition이 $1B+를 조달해 기업가치 $26B에 올랐으며, 연환산 매출이 1년 만에 $37M→$492M으로 급증해 AI 에이전트가 실매출로 자본을 끌어들이는 단계에 진입했음을 보였습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/05/27/ai-coding-startup-cognition-raises-1b-at-25b-pre-money-valuation/",
+        },
+        {
+          title: "Q1 2026 Shatters Venture Funding Records As AI Boom Pushes Investment To $300B",
+          desc: "Crunchbase 집계에서 2026년 1분기 글로벌 벤처 투자가 약 3,000억 달러로 사상 최대를 기록했으며, 자금이 소수의 대형 AI 확신 베팅에 쏠리는 '집중형 구조'가 2분기까지 이어지고 있습니다.",
+          source: "Crunchbase News",
+          href: "https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "RWA(실물연계자산) 토큰화가 '실험'에서 '제도권 인프라'로 넘어가는 신호가 동시에 나왔습니다. BlackRock의 BUIDL이 30억 달러 AUM을 돌파하고 Franklin Templeton의 BENJI가 8개 체인으로 확장되며 토큰화 국채 시장이 70억 달러를 넘어섰습니다. 국내에서는 토큰증권(STO) 법제화가 마무리되며 2026년이 실질적 개막 원년으로 자리잡았고, 중국은 위안화 스테이블코인·RWA를 전면 금지하며 규제 분기점을 만들었습니다.",
+      articles: [
+        {
+          title: "RWA Stablecoins Explode in May: BlackRock, Franklin Templeton, and the On-Chain Future",
+          desc: "5월 BlackRock BUIDL이 30억 달러 AUM을 돌파하고, Franklin Templeton BENJI가 8개 블록체인으로 확장되며 토큰화 국채 시장이 70억 달러를 넘어섰습니다 — 자산운용 빅네임이 온체인 정산 인프라에 프로덕션급 자본을 투입하기 시작했습니다.",
+          source: "RWA Times",
+          href: "https://rwatimes.substack.com/p/rwa-stablecoins-explode-in-may-blackrock",
+        },
+        {
+          title: "Tokenized RWAs Grew From $6B To $31B, And The Real Race Is Just Starting",
+          desc: "스테이블코인을 제외한 온체인 RWA가 1년 만에 약 60억→310억 달러로 5배 성장했으며, 국채가 약 45%로 최대 비중을 차지하고 토큰화 주식이 가장 빠르게 성장하는 신규 카테고리로 부상했습니다.",
+          source: "Yellow.com Research",
+          href: "https://yellow.com/research/tokenized-rwas-31b-market-growth-real-race-starting",
+        },
+        {
+          title: "China bans yuan stablecoins and RWA tokenization in new crypto regulation",
+          desc: "중국이 새 가상자산 규제로 위안화 스테이블코인과 RWA 토큰화를 전면 금지하며, 미국·홍콩의 제도권 편입 흐름과 정반대 방향을 택했습니다 — 글로벌 RWA 규제 지형이 두 갈래로 갈리는 분기점입니다.",
+          source: "Crypto Valley Journal",
+          href: "https://cryptovalleyjournal.com/focus/legal-and-compliance/china-bans-yuan-stablecoins-and-rwa-tokenization-in-new-crypto-regulation/",
+        },
+        {
+          title: "Global Tokenized Real Estate Market Could Explode to $4T by 2035 (Deloitte)",
+          desc: "Deloitte는 부동산 토큰화 시장이 2035년 4조 달러 규모로 성장할 수 있다고 전망합니다 — 국내 STO 법제화와 맞물려 부동산금융·대체투자의 토큰화 트랙이 AIMBA 원우의 실무 관심사로 부상하고 있습니다.",
+          source: "CoinDesk",
+          href: "https://www.coindesk.com/markets/2025/04/24/global-tokenized-real-estate-market-could-explode-to-usd4t-by-2035-deloitte-forecasts",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "부동산·핀테크는 '명확한 ROI와 규제 안전판'이 있는 곳에만 자본이 가는 선별 국면입니다. 글로벌에서는 결제·클로징·심사 같은 핵심 워크플로에 박힌 프롭테크가 자금을 받고, 미국은 ROAD Act로 대형 기관의 단독주택 매집을 제한하며 규제가 시장 구조를 바꾸고 있습니다. RWA 토큰화와 부동산금융의 접점이 넓어지며 대체투자 트랙이 재편되고 있습니다.",
+      articles: [
+        {
+          title: "Proptech VCs Want Faster Payback And Fewer Risks In 2026",
+          desc: "프롭테크 VC들이 2026년 더 빠른 회수와 낮은 리스크를 요구하면서, 결제·클로징·조달 같은 핵심 거래 워크플로에 박혀 명확한 ROI를 내는 플랫폼에만 자금이 집중되는 선별 국면이 뚜렷해졌습니다.",
+          source: "Inman",
+          href: "https://www.inman.com/2026/02/11/proptech-vcs-want-faster-payback-and-fewer-risks-in-2026/",
+        },
+        {
+          title: "2026 US Real Estate Market Trends: PropTech, Policy & Investments",
+          desc: "2026년 3월 상원을 통과한 ROAD Act가 대형 기관투자자의 단독주택 추가 매입을 향후 15년간 제한하는 등, 정책이 프롭테크·대체투자 시장 구조를 직접 재편하고 있습니다 — 92% 이상의 상업용 부동산 기업이 AI 파일럿을 가동 중입니다.",
+          source: "FifthRow",
+          href: "https://www.fifthrow.com/blog/2026-us-real-estate-market-trends-prop-tech-policy-investments",
+        },
+        {
+          title: "2026년 5월, 시드·시리즈A 투자 활발…AI·핀테크 스타트업에 글로벌 초기 자금 집중",
+          desc: "부동산 금융 기술 기업 ReFiBuy가 1,360만 달러 시드를, 임베디드 금융 CredibleX가 무바달라 주도 1,500만 달러 시리즈A를 유치하는 등 핀테크가 특정 산업 버티컬과 결합해 글로벌 초기 자금을 흡수하고 있습니다.",
+          source: "한국IT산업뉴스",
+          href: "https://www.koreaiin.com/news/901379",
+        },
+        {
+          title: "RWA Weekly: Crypto Market Structure Bill Advances; Meta Begins Stablecoin Payments",
+          desc: "Meta가 Stripe 지원으로 일부 크리에이터에게 스테이블코인 결제를 시작하고 크립토 시장구조 법안이 진전되는 등, 핀테크 결제 레일이 스테이블코인·온체인 인프라로 확장되는 흐름이 이어졌습니다.",
+          source: "PANews",
+          href: "https://www.panewslab.com/en/articles/019de267-8de4-76ef-b3dc-984d29a07964",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "중소벤처기업부의 2026년 창업지원사업 통합공고와 민관협력 오픈이노베이션·기술개발 통합공고가 모집 중이며, 창업진흥원 예비창업패키지(약 491억 원, 300명 내외)는 6월부터 사업비 지원이 시작됩니다. AI·딥테크·핀테크 분야 창업자·중소기업은 마감 전 아래 공고를 즉시 확인하시길 권합니다.",
+      items: [
+        {
+          title: "2026년 중앙부처 및 지자체 창업지원사업 통합 공고 (중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000116904",
+        },
+        {
+          title: "2026년 민관협력 오픈이노베이션 지원사업 수요기업·기관 협업과제 모집 공고",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000117048",
+        },
+        {
+          title: "2026년 중소기업 기술개발 지원사업 통합 공고 (중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000116943",
+        },
+        {
+          title: "예비창업패키지 (창업진흥원) — 6월부터 사업비 지원 시작",
+          href: "https://www.kised.or.kr/menu.es?mid=a10205010000",
+        },
+        {
+          title: "K-Startup 창업지원포털 신규 사업 공고 목록",
+          href: "https://www.k-startup.go.kr/web/main/mainSection0.do",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 포인트는 5월 28일 CFA Institute Rob Langrick 초청 특강과 제446회 글로벌 이슈 특강입니다. 또한 교내 생성형 AI 아이디어 공모전 접수가 5월 29일 마감(결선 9/4)을 앞두고 있어, AIMBA 원우는 금융·글로벌 이슈 특강과 공모전 참가를 우선순위로 점검하시길 권합니다.",
+      items: [
+        {
+          title: "CFA Institute Rob Langrick 초청 특강 (5월 28일 16시) — 경영대학 공지",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do",
+        },
+        {
+          title: "제446회 글로벌 이슈 특강(Special Lecture on Global Issues) 안내 (5/20)",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do",
+        },
+        {
+          title: "서강대학교 생성형 AI 기반 아이디어 공모전 (접수 ~5/29, 결선 9/4)",
+          href: "https://contest.sogang.ac.kr/",
+        },
+        {
+          title: "서강대학교 인공지능학과 공지사항 (특강·콜로퀴엄 모니터링)",
+          href: "https://ai.sogang.ac.kr/front/cmsboardlist.do?siteId=ai&bbsConfigFK=6330",
+        },
+        {
+          title: "SW중심대학사업단 공지 (SW·AI 특강·해커톤)",
+          href: "https://scc.sogang.ac.kr/front/cmsboardlist.do?siteId=sweducenter&bbsConfigFK=7250",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "6월 10일", day: "수", title: "Smart Tech Korea 2026 (AI & Big Data Show, 6/10~6/12)", where: "서울 COEX", tag: "전시/컨퍼런스", link: "https://en.smarttechkorea.com/aibigdatashow" },
+    { date: "6월 22일", day: "월", title: "AAAI 2026 Summer Symposium Series (6/22~6/24)", where: "동국대학교, 서울", tag: "학술 심포지엄", link: "https://aaai.org/conference/summer-symposia/suss26/" },
+    { date: "7월 7일", day: "화", title: "ICML 2026 (International Conference on Machine Learning, 7/7~7/9)", where: "서울 COEX", tag: "국제 학술대회", link: "https://icml.cc/" },
+    { date: "8월 19일", day: "수", title: "AI Summit Seoul & Expo 2026 (8/19~8/21)", where: "서울 COEX 그랜드볼룸 & B홀", tag: "글로벌 AI 서밋", link: "https://www.aisummitseoul.com/" },
+    { date: "5월 29일 (마감)", day: "금", title: "서강대 생성형 AI 아이디어 공모전 — 접수 마감 (결선 9/4)", where: "서강대학교", tag: "교내 공모전", link: "https://contest.sogang.ac.kr/" },
+    { date: "5월 28일 (기개최)", day: "목", title: "CFA Institute Rob Langrick 초청 특강 (참고용)", where: "서강대학교", tag: "교내 특강", link: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do" },
+  ],
+};
+
 const VOL8: IssueContent = {
   vol: 8,
   dateLabel: "2026년 5월 25일",
@@ -1102,7 +1401,7 @@ const VOL7: IssueContent = {
 };
 
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL8, VOL7, VOL6, VOL5];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL9, VOL8, VOL7, VOL6];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));
@@ -1859,6 +2158,23 @@ export const MUSEUM_WORKS: MuseumWork[] = [
     tone: ["#c08c7a", "#456b6f"],
   },
 ];
+
+// 명화 10점 로테이션 — vol을 seed로 MUSEUM_WORKS(50점)에서 결정론적으로 10점 선택.
+// Math.random 금지(빌드 재현성·정적 export 안전): 같은 vol → 항상 같은 10점.
+export function curatedWorks(vol: number, n = 10): MuseumWork[] {
+  const pool = [...MUSEUM_WORKS];
+  // LCG 기반 결정론적 셔플 (seed = vol)
+  let s = (vol * 9301 + 49297) % 233280 || 1;
+  const rng = () => (s = (s * 9301 + 49297) % 233280) / 233280;
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, n);
+}
+
+// 이번 호 큐레이션 10점(현재 렌더 중인 호 기준). CURATED_WORKS[0] = 대표작.
+export const CURATED_WORKS: MuseumWork[] = curatedWorks(SELECTED_VOL, 10);
 
 // Interview Room — 첫 인터뷰 준비 중(coming soon). 실제 발행 전까지 정직한 예고 상태로 운영한다.
 export const INTERVIEW_INTRO = {

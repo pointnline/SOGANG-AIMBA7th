@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { MUSEUM_WORKS } from "@/lib/data";
+import { CURATED_WORKS, MUSEUM_WORKS } from "@/lib/data";
 import { sitePath } from "@/lib/paths";
 import { TOKENS as T } from "@/lib/tokens";
 
@@ -48,6 +48,90 @@ export function MuseumGallery() {
 
   return (
     <>
+      {/* 🖼️ 이번 호 큐레이션 10점 — vol seed 기반 결정론적 선택. 클릭 시 위 뷰어로 로드 */}
+      <section
+        style={{
+          padding: "44px 64px 8px",
+          maxWidth: 1400,
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "baseline",
+            marginBottom: 22,
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "var(--serif-display)",
+              fontStyle: "italic",
+              fontSize: 24,
+              fontWeight: 300,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            🖼️ 이번 호 큐레이션 10점
+          </div>
+          <div
+            style={{
+              fontFamily: "var(--mono)",
+              fontSize: 10,
+              letterSpacing: "0.22em",
+              color: M.ink3,
+              textTransform: "uppercase",
+            }}
+          >
+            CURATED · {CURATED_WORKS.length} OF {works.length}
+          </div>
+        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(116px, 1fr))",
+            gap: 14,
+          }}
+        >
+          {CURATED_WORKS.map((cw) => {
+            const idx = works.findIndex((w) => w.index === cw.index);
+            const active = idx === current;
+            return (
+              <button
+                key={cw.index}
+                type="button"
+                onClick={() => idx >= 0 && selectWork(idx)}
+                aria-label={`${cw.artist} - ${cw.work}`}
+                title={`${cw.work} · ${cw.artist}`}
+                style={{
+                  border: active
+                    ? `1px solid ${M.wine}`
+                    : `1px solid ${M.rule}`,
+                  background: "transparent",
+                  padding: 6,
+                  cursor: "pointer",
+                  textAlign: "left",
+                }}
+              >
+                <ThumbVisual work={cw} active={active} />
+                <div
+                  style={{
+                    fontFamily: "var(--mono)",
+                    fontSize: 9,
+                    letterSpacing: "0.12em",
+                    color: active ? M.wine : M.ink3,
+                    marginTop: 8,
+                  }}
+                >
+                  NO. {cw.index}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
       {/* 대형 피처 뷰어 (이전/다음으로 넘김) */}
       <section
         ref={featureRef}
