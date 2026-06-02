@@ -5,6 +5,7 @@ export type Section =
   | "BUS"
   | "MBA"
   | "STARTUP"
+  | "VIBE"
   | "GOV"
   | "CAMPUS"
   | "EVENT"
@@ -17,7 +18,7 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260601.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260603.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
@@ -37,9 +38,9 @@ export const PULSE_TOPICS: PulseTopic[] = [
 ];
 
 export const PULSE_METRICS = [
-  { key: "PUBLISHED", value: "9", sub: "누적 발간 호수" },
-  { key: "CURRENT", value: "Vol.9", sub: "2026.06.01 최신호" },
-  { key: "TOP SIGNAL", value: "AI", sub: "에이전트 실력 경쟁" },
+  { key: "PUBLISHED", value: "10", sub: "누적 발간 호수" },
+  { key: "CURRENT", value: "Vol.10", sub: "2026.06.03 최신호" },
+  { key: "TOP SIGNAL", value: "AI", sub: "$965B · 바이브코딩" },
 ] as const;
 
 export interface BriefIssue {
@@ -59,6 +60,21 @@ export interface BriefIssue {
 
 export const BRIEF_ISSUES: BriefIssue[] = [
   {
+    vol: 10,
+    date: "2026.06.03",
+    shortDate: "06.03",
+    section: "BUS",
+    sectionLabel: "AI · Capital",
+    title: "Anthropic $965B 질주 · 바이브코딩이 창업 표준이 된 주",
+    headline:
+      "Anthropic이 $65B 시리즈H로 OpenAI를 바짝 추격하고 Opus 4.8이 벤치마크 1위에 오르는 사이, '바이브코딩'이 2026 스타트업의 표준 개발 방식으로 자리잡은 주.",
+    path: "/issues/vol_20260603.html",
+    read: "14분",
+    views: "최신",
+    live: true,
+    tags: ["AI", "Anthropic", "메가라운드", "Opus4.8", "바이브코딩", "RWA", "부동산금융"],
+  },
+  {
     vol: 9,
     date: "2026.06.01",
     shortDate: "06.01",
@@ -69,8 +85,7 @@ export const BRIEF_ISSUES: BriefIssue[] = [
       "Claude Opus 4.8가 지능 지수 1위에 오르고 Qwen 3.7 Max·Cognition $1B가 겹치며, AI 경쟁이 '누가 더 똑똑한가'에서 '누가 더 오래·안전하게 일을 끝내는가'로 넘어간 주.",
     path: "/issues/vol_20260601.html",
     read: "13분",
-    views: "최신",
-    live: true,
+    views: "archive",
     tags: ["AI", "Opus4.8", "에이전트", "Cognition", "RWA", "STO", "엔터프라이즈"],
   },
   {
@@ -84,8 +99,7 @@ export const BRIEF_ISSUES: BriefIssue[] = [
       "Anthropic 분기 흑자·Google I/O 2026 에이전트 선언·Karpathy 이적이 한 주에 겹치며, AI가 데모가 아닌 재무제표로 말하기 시작한 변곡점.",
     path: "/issues/vol_20260525.html",
     read: "13분",
-    views: "최신",
-    live: true,
+    views: "archive",
     tags: ["AI", "Anthropic", "수익화", "GoogleIO", "인재이동", "유니콘", "AI중심대학"],
   },
   {
@@ -661,6 +675,310 @@ const VOL6: IssueContent = {
     { date: "6월 22일~24일", day: "월~수", title: "AAAI 2026 Summer Symposium Series", where: "동국대학교, 서울", tag: "학술컨퍼런스", link: "https://aaai.org/conference/summer-symposia/suss26/" },
     { date: "6월 27일~7월 3일", day: "토~금", title: "Festival of Learning 2026 (AI·교육·HCI 국제학술제)", where: "서울", tag: "국제학술", link: "https://festival-of-learning-2026.info/" },
     { date: "8월 19일~21일", day: "수~금", title: "AI Summit Seoul & Expo 2026", where: "COEX 그랜드볼룸 & Exhibition Hall B, 강남구", tag: "컨퍼런스/전시", link: "https://www.eventbrite.com/e/ai-summit-seoul-2026-ais-2026-tickets-1986491576781" },
+  ],
+};
+
+const VOL10: IssueContent = {
+  vol: 10,
+  dateLabel: "2026년 6월 3일",
+  isoDate: "20260603",
+  title:
+    "자본·성능·개발문화가 동시에 정점 — Anthropic $965B 질주·Opus 4.8 1위·바이브코딩이 창업 표준이 된 주",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주 AI 경쟁은 자본과 성능 양쪽에서 정점을 찍었습니다. Anthropic이 시리즈 H로 650억 달러를 조달해 기업가치 약 9,650억 달러로 OpenAI를 바짝 추격했고, Claude Opus 4.8이 주요 리더보드에서 1위권에 오르며 IPO 경쟁의 압력을 한층 끌어올렸습니다.",
+    "더 큰 변화는 '개발 문화'에서 일어났습니다. 자연어로 소프트웨어를 만드는 '바이브코딩'이 실험을 넘어 2026년 스타트업이 제품을 빌드하는 표준 워크플로로 자리잡았고, 이번 호부터 이를 다루는 'Vibe Coding' 코너를 신설했습니다.",
+  ],
+  conclusion:
+    "자본·모델·개발문화 세 축이 같은 주에 임계점을 넘었으며, AI를 '쓰는 법(바이브코딩)'을 먼저 조직 워크플로에 체화하는 팀이 다음 분기를 가져갑니다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "Anthropic은 5월 28일 플래그십 Claude Opus 4.8을 공개하며 Vellum·Artificial Analysis 등 주요 리더보드 선두권에 올랐고, 구글은 I/O 2026에서 경량·고속 Gemini 3.5 Flash와 에이전트 빌더 Gemini Spark를 선보이며 추격했습니다. 엔터프라이즈에서는 Asana가 노코드 에이전트 빌더 StackAI를 인수하며 '에이전트를 업무 플랫폼에 직접 심는' 경쟁이 본격화됐습니다.",
+      articles: [
+        {
+          title: "Anthropic, 플래그십 Claude Opus 4.8 공개…OpenAI와 IPO 경쟁 가열",
+          desc: "Anthropic이 5월 28일 플래그십 모델 Claude Opus 4.8을 공개했습니다 — 주요 지능 벤치마크에서 선두권에 오르며, OpenAI와의 기업가치·IPO 경쟁이 한층 달아올랐습니다.",
+          source: "Yahoo Finance",
+          href: "https://finance.yahoo.com/news/anthropic-debuts-flagship-claude-opus-48-ai-model-as-ipo-race-with-openai-heats-up-170000527.html",
+        },
+        {
+          title: "Google I/O 2026: Gemini 3.5 Flash·Gemini Spark 공개",
+          desc: "구글이 I/O 2026에서 경량·고속 Gemini 3.5 Flash와, 누구나 에이전트를 만드는 Gemini Spark를 선보이며 '에이전트 퍼스트' 전략을 재확인했습니다 — 모델 경쟁이 성능과 접근성 양면으로 확장됐습니다.",
+          source: "Duke Digital Media",
+          href: "https://sites.duke.edu/ddmc/2026/05/23/google-i-o-2026-gemini-3-5-flash-gemini-omni-gemini-spark/",
+        },
+        {
+          title: "Vellum LLM 리더보드 2026 (5월 업데이트)",
+          desc: "Vellum이 5월 29일 갱신한 LLM 리더보드에서 Claude Opus 4.8·GPT·Gemini 최신 모델의 추론·코딩·비용 지표를 한눈에 비교했습니다 — 어떤 작업에 어떤 모델을 쓸지 정하는 실무 기준점입니다.",
+          source: "Vellum",
+          href: "https://www.vellum.ai/llm-leaderboard",
+        },
+        {
+          title: "Asana, 노코드 에이전트 빌더 StackAI 인수",
+          desc: "Asana가 노코드 AI 에이전트 빌더 StackAI를 인수하며 업무관리 플랫폼에 에이전트 구축 기능을 직접 내재화했습니다 — SaaS 기업들이 '에이전트를 사들여 제품에 박는' 흐름을 보여준 사례입니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/05/28/asana-acquires-no-code-agent-builder-stack-ai/",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "AI 비즈니스가 '자본 규모'와 '수익 모델' 양쪽에서 동시에 시험대에 올랐습니다. Anthropic은 시리즈 H로 650억 달러를 조달하며 약 9,650억 달러 가치로 OpenAI를 바짝 추격했고, GitHub Copilot은 토큰 기반 과금으로 전환하며 'AI 도구의 단위경제'를 둘러싼 개발자 반발을 불렀습니다. 한편 '바이브코딩'은 2026년 스타트업이 제품을 만드는 표준 방식으로 자리잡았습니다.",
+      articles: [
+        {
+          title: "Anthropic, 650억 달러 조달…IPO 앞두고 1조 달러 가치 육박",
+          desc: "Anthropic이 시리즈 H로 650억 달러를 유치하며 기업가치 약 9,650억 달러에 올라 OpenAI를 바짝 추격했습니다 — IPO를 앞둔 AI 메가라운드 경쟁이 정점에 달했습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/05/28/anthropic-raises-65-billion-nears-1t-valuation-ahead-of-ipo/",
+        },
+        {
+          title: "'장난하나'…GitHub Copilot 토큰 과금 전환에 개발자 반발",
+          desc: "GitHub Copilot이 정액제에서 토큰 기반 과금으로 전환하자 개발자들이 비용 예측 불가를 이유로 강하게 반발했습니다 — AI 코딩 도구의 지속가능한 단위경제가 핵심 쟁점으로 떠올랐습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/05/30/what-a-joke-github-copilots-new-token-based-billing-spurs-consternation-among-devs/",
+        },
+        {
+          title: "바이브코딩, 2026년 스타트업이 제품을 만드는 표준이 되다",
+          desc: "SeedScope는 2026년 스타트업 다수가 기획부터 출시까지를 자연어 기반 '바이브코딩'으로 빌드하고 있다고 분석했습니다 — 비개발자 창업자도 AI 에이전트로 MVP를 빠르게 만드는 시대가 열렸습니다.",
+          source: "SeedScope",
+          href: "https://seedscope.ai/blog/vibe-coding-is-how-startups-are-being-built-in-2026.-here-is-what-founders-need-to-know.",
+        },
+        {
+          title: "벤처 투자 라운드업 (5월 28일) — Fonoa·Corgi·Daloopa·Saris",
+          desc: "Fonoa·Corgi·Daloopa·Saris 등 5월 말 주요 라운드를 정리했습니다 — 규제·세무·데이터 자동화처럼 '명확한 업무 병목을 푸는' AI 버티컬에 자본이 선별적으로 집중되는 흐름입니다.",
+          source: "Tech Startups",
+          href: "https://techstartups.com/2026/05/28/venture-capital-startup-funding-roundup-may-28-2026/",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA",
+      code: "MBA",
+      narrative:
+        "AI 시대 MBA의 핵심 화두는 '커리큘럼'과 '채용 기준'으로 동시에 모였습니다. 하버드 경영대학원이 AI를 정규 커리큘럼 전반에 통합하기 시작했고, GMAC 2026 조사는 경영대학원이 AI 역량을 커리큘럼의 핵심 축으로 빠르게 편입하고 있음을 보였습니다. 고용주들은 MBA 채용을 늘리면서도 'AI 유창성'을 채용의 기본 전제로 요구하기 시작했습니다.",
+      articles: [
+        {
+          title: "하버드 경영대학원, AI를 커리큘럼 전면에 통합",
+          desc: "하버드 비즈니스스쿨이 AI를 정규 커리큘럼 전반에 통합하는 개편에 착수했습니다 — 사례연구·재무·전략 과목에 AI 활용을 내재화하며, AI 시대 경영교육의 방향을 제시했습니다.",
+          source: "Harvard Crimson",
+          href: "https://www.thecrimson.com/article/2026/4/11/hbs-ai-integration/",
+        },
+        {
+          title: "GMAC 2026: B스쿨 커리큘럼, AI 역량을 핵심 축으로",
+          desc: "GMAC 2026 조사에 따르면 경영대학원들이 AI 활용 역량을 커리큘럼의 핵심 축으로 빠르게 편입하고 있으며, 지원자 평가와 졸업생 경쟁력에서도 AI 유창성이 변별 요소로 부상하고 있습니다.",
+          source: "Careers360",
+          href: "https://news.careers360.com/b-schools-skills-ai-curriculum-study-destination-career-outcomes-roi-gme-mba-business-masters-student-survey-gmac-report-2026",
+        },
+        {
+          title: "고용주들 'MBA 채용 늘린다'…AI 유창성은 이제 기본값",
+          desc: "CSP 글로벌이 매니저 500명을 조사한 결과, 2026년 더 많은 고용주가 MBA 채용을 계획하면서 AI 유창성을 채용의 '기본 전제'로 요구하기 시작했습니다 — AIMBA 원우에게 AI 실무 역량이 곧 시장 가치임을 보여줍니다.",
+          source: "CSP Global",
+          href: "https://online.csp.edu/resources/article/more-employers-plan-to-hire-mbas-in-2026-and-ai-fluency-is-now-the-baseline/",
+        },
+        {
+          title: "2026 직무 트렌드: AI와 인간 역량, 그리고 채용 시장 전망",
+          desc: "GMAC가 2026년 일터 트렌드로 AI 활용 능력과 인간 고유 역량(리더십·소통)의 결합을 꼽으며, MBA 졸업생의 채용 시장 전망을 분석했습니다 — '기술 + 사람' 역량을 함께 갖춘 인재가 우위에 섭니다.",
+          source: "GMAC",
+          href: "https://www.gmac.com/resources/learners/business-careers/career-planning/workplace-trends-job-market-predictions",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "자본이 'AI 경제의 운영 레이어'와 국내 딥테크에 동시에 몰렸습니다. 여러 LLM을 한 API로 묶는 모델 라우팅 인프라 OpenRouter가 1년 만에 기업가치를 두 배로 키워 13억 달러에 올랐고, 국내에서는 AR 광학 레티널(278억)과 통신 반도체 뉴라텍(218억)이 대형 라운드를 마감하며 자본이 소프트웨어를 넘어 하드웨어·딥테크로 확장되는 흐름을 보였습니다.",
+      articles: [
+        {
+          title: "OpenRouter, 1년 만에 기업가치 두 배…13억 달러로 점프",
+          desc: "여러 LLM을 한 API로 묶는 모델 라우팅 인프라 OpenRouter가 시리즈 B로 1억 1,300만 달러를 유치하며 기업가치 13억 달러에 올랐습니다 — AI 경제의 '운영 레이어'를 쥔 인프라에 자본이 집중되는 흐름입니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/05/26/openrouter-more-than-doubles-valuation-to-1-3b-in-a-year/",
+        },
+        {
+          title: "AR 광학 레티널, 278억원 프리IPO 투자유치",
+          desc: "AR 글래스용 광학기술 기업 레티널(Letinar)이 278억 원 규모 프리IPO 라운드를 유치하며, 국내 자본이 피지컬·하드웨어 AI 분야로 확장되는 흐름을 보여줬습니다.",
+          source: "벤처스퀘어",
+          href: "https://www.venturesquare.net/1083124",
+        },
+        {
+          title: "통신 반도체 뉴라텍, 218억원 투자유치",
+          desc: "무선통신 반도체 설계 기업 뉴라텍이 218억 원을 유치하며, AI 인프라의 핵심인 반도체·통신 딥테크에 대한 투자 열기를 이어갔습니다 — 같은 주 레티널과 함께 국내 딥테크 라운드가 집중됐습니다.",
+          source: "스타트업레시피",
+          href: "https://startuprecipe.co.kr/archives/5818165",
+        },
+        {
+          title: "2026년 5월, 시드·시리즈A AI·핀테크 스타트업에 초기 자금 집중",
+          desc: "2026년 5월 국내외 시드·시리즈A 라운드가 AI·핀테크 버티컬에 집중되며, 초기 단계 스타트업으로도 글로벌 자금이 선별적으로 유입되는 흐름이 확인됐습니다.",
+          source: "유스연합뉴스",
+          href: "https://www.youthassembly.kr/news/949698",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "이번 호부터 신설하는 'Vibe Coding' 코너는 AI 에이전트와 자연어로 소프트웨어를 만드는 개발 문화를 다룹니다. Anthropic·Cursor 등 핵심 도구사가 잇따라 베스트 프랙티스를 공개하고, '스펙 주도 개발(SDD)'처럼 비개발자도 따라 할 수 있는 방법론이 정리되면서, 바이브코딩이 실험에서 '재현 가능한 워크플로'로 성숙하고 있습니다. AIMBA 원우가 직접 MVP를 만드는 데 바로 쓸 수 있는 실전 가이드를 모았습니다.",
+      articles: [
+        {
+          title: "Claude Code 베스트 프랙티스 (Anthropic 공식 가이드)",
+          desc: "Anthropic이 공개한 Claude Code 공식 가이드 — CLAUDE.md 설정, 컨텍스트 관리, 에이전트 워크플로 설계 등 AI 코딩의 기본기를 한 문서로 정리했습니다. 💡 핵심: 프로젝트 루트에 CLAUDE.md로 맥락을 풍부하게 주면 답의 질이 급상승합니다.",
+          source: "Anthropic",
+          href: "https://code.claude.com/docs/en/best-practices",
+        },
+        {
+          title: "에이전트와 코딩하는 베스트 프랙티스 (Cursor)",
+          desc: "Cursor가 정리한 에이전트 코딩 실전 가이드 — 작은 단위로 검증하고 규칙(rules)으로 일관성을 유지하는 법을 다룹니다. 💡 핵심: 큰 작업은 Plan 모드로 먼저 계획→승인→실행으로 쪼개세요.",
+          source: "Cursor",
+          href: "https://cursor.com/blog/agent-best-practices",
+        },
+        {
+          title: "Claude Code, 첫날부터 알았으면 좋았을 팁들",
+          desc: "실무 개발팀 Marmelab이 Claude Code를 쓰며 체득한 팁 모음 — 커스텀 명령, 컨텍스트 관리, 반복 작업 자동화 노하우입니다. 💡 핵심: 자주 쓰는 작업은 커스텀 슬래시 명령으로 만들어 반복을 제거하세요.",
+          source: "Marmelab",
+          href: "https://marmelab.com/blog/2026/04/24/claude-code-tips-i-wish-id-had-from-day-one.html",
+        },
+        {
+          title: "Cursor로 하는 스펙 주도 개발(SDD)",
+          desc: "Augment Code가 정리한 '스펙 주도 개발' 가이드 — 코드를 짜기 전에 명세를 먼저 합의하면 비개발자도 AI와 일관된 결과물을 만들 수 있다는 방법론입니다. 💡 핵심: 코딩 전에 스펙을 먼저 합의하면 AI 산출물이 의도에서 덜 벗어납니다.",
+          source: "Augment Code",
+          href: "https://www.augmentcode.com/guides/cursor-spec-driven-development",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "RWA(실물연계자산) 토큰화가 자산운용 빅네임과 제도권으로 더 깊이 들어갔습니다. BlackRock이 스테이블코인 보유자를 겨냥한 토큰화 펀드를 확대하고, 스테이블코인을 제외한 전체 RWA 시장이 약 345억 달러로 1년 새 두 배로 커졌습니다. 월스트리트는 주식시장 전체의 토큰화 경쟁에 뛰어들었고, 한국은 디지털자산기본법·스테이블코인 발행 주체를 둘러싼 제도 설계 국면에 들어갔습니다.",
+      articles: [
+        {
+          title: "BlackRock, 스테이블코인 보유자 겨냥 토큰화 펀드 확대",
+          desc: "BlackRock이 이더리움 기반 토큰화 펀드를 스테이블코인 보유자에게 열며 온체인 정산 인프라에 프로덕션급 자본을 투입하고 있습니다 — 자산운용 빅네임의 RWA 진입이 가속되고 있습니다.",
+          source: "SpazioCrypto",
+          href: "https://en.spaziocrypto.com/rwa/blackrock-tokenized-funds-stablecoin-holders/",
+        },
+        {
+          title: "RWA 시장 규모 345억 달러…1년 새 약 2배 성장",
+          desc: "스테이블코인을 제외한 온체인 RWA 시장이 약 345억 달러로 1년 새 100% 이상 성장했으며, 토큰화 국채가 최대 비중을 차지했습니다 — 실험 단계를 넘어 제도권 인프라로 자리잡는 신호입니다.",
+          source: "Bitcoin.com",
+          href: "https://news.bitcoin.com/rwa-market-cap-37-5-billion-120-percent-growth-2026/",
+        },
+        {
+          title: "월스트리트가 '주식시장 전체'를 토큰화하려는 이유",
+          desc: "월스트리트가 주식시장 전체의 토큰화 경쟁에 뛰어들었으며, Bullish의 Equiniti 42억 달러 인수 등 인프라 선점 움직임이 본격화됐습니다 — 토큰화가 채권을 넘어 주식으로 확장되는 분기점입니다.",
+          source: "CoinDesk",
+          href: "https://www.coindesk.com/business/2026/05/14/here-is-why-wall-street-is-racing-to-tokenize-the-entire-stock-market",
+        },
+        {
+          title: "디지털자산기본법·스테이블코인 발행주체 논쟁 본격화",
+          desc: "한국에서 디지털자산기본법 입법과 원화 스테이블코인 발행 주체(은행 vs 비은행)를 둘러싼 제도 설계 논쟁이 본격화되며, 2026년이 제도권 RWA·스테이블코인의 분기점으로 부상했습니다.",
+          source: "파이낸셜뉴스",
+          href: "https://www.fnnews.com/news/202605051838387567",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "부동산·금융 인프라가 '모험자본 공급'과 '리스크 관리' 양쪽에서 동시에 재편되고 있습니다. 종합금융투자사업자의 발행어음을 통한 모험자본 공급이 54조 원대로 커지며 자본시장이 부동산·벤처로 자금을 흘려보내는 엔진이 진화했고, 서울 아파트값은 약 3개월 만에 최대폭으로 반등했습니다. 동시에 저축은행의 부동산업 대출 연체율이 오르며 부동산금융의 건전성 관리가 핵심 과제로 떠올랐습니다.",
+      articles: [
+        {
+          title: "모험자본 엔진 진화…종투사 발행어음 54조 시대",
+          desc: "종합금융투자사업자의 발행어음 잔액이 54조 원대로 커지며, 자본시장이 부동산·벤처로 모험자본을 공급하는 엔진이 한 단계 진화했습니다 — 부동산금융 실무의 자금 조달 구조가 바뀌는 흐름입니다.",
+          source: "파이낸셜뉴스",
+          href: "https://www.fnnews.com/news/202605160903064409",
+        },
+        {
+          title: "서울 아파트값 주간 +0.28%…3개월 만에 최대 상승",
+          desc: "서울 아파트 매매가격이 주간 0.28% 올라 약 3개월 만에 최대 상승폭을 기록하며, 규제·금리 환경 속에서도 핵심지 수요가 견조함을 보였습니다.",
+          source: "머니투데이",
+          href: "https://www.mt.co.kr/amp/estate/2026/05/14/2026051414573745425",
+        },
+        {
+          title: "저축은행 부동산업 대출 연체율 상승…건전성 경고등",
+          desc: "저축은행의 부동산업종 대출 연체율이 오르며 부동산금융의 건전성 관리가 핵심 과제로 떠올랐습니다 — PF·브릿지 익스포저를 둔 금융사의 리스크 점검이 시급한 국면입니다.",
+          source: "아주경제",
+          href: "https://www.ajunews.com/view/20260531145617442",
+        },
+        {
+          title: "NAR, 2026년 5월 미국 상업용 부동산 인사이트",
+          desc: "전미부동산중개인협회(NAR)가 2026년 5월 상업용 부동산 시장 인사이트를 공개하며, 금리·공실·거래량 지표로 미국 CRE 시장의 회복·조정 신호를 진단했습니다 — 국내 부동산금융 비교 벤치마크입니다.",
+          source: "NAR",
+          href: "https://www.nar.realtor/commercial-real-estate-market-insights/may-2026-commercial-real-estate-market-insights",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주 정부·공공 트랙에서는 K-Startup을 통한 딥테크(DIPS)·방산·산업 AI 분야 지원사업 2차 모집이 잇따랐고, 중소벤처기업부의 2026년 창업지원사업 통합공고가 진행 중입니다. AI·딥테크 창업자·중소기업은 마감 전 아래 공고를 확인하시길 권합니다.",
+      items: [
+        {
+          title: "딥테크(DIPS) AX 분야 2차 모집 — K-Startup 창업지원포털",
+          href: "https://www.k-startup.go.kr/web/main/mainSection0.do",
+        },
+        {
+          title: "방산 스타트업 챌린지 2차 모집 — K-Startup 창업지원포털",
+          href: "https://www.k-startup.go.kr/web/main/mainSection0.do",
+        },
+        {
+          title: "산업 AI EXPO 참가기업(공동관) 모집 — K-Startup 창업지원포털",
+          href: "https://www.k-startup.go.kr/web/main/mainSection0.do",
+        },
+        {
+          title: "2026년 중앙부처 및 지자체 창업지원사업 통합 공고 (중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000116904",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 포인트는 6월 1일 신규 공지된 토론토대 연계 AI 융합 교육프로그램 모집입니다. 이와 함께 Apple 디벨로퍼 아카데미 연계 워크숍, 하계 AI·SW 실습멘토 모집 등 AI 실습 기회가 집중됐으니, AIMBA 원우는 관심 프로그램의 마감일을 우선 점검하시길 권합니다.",
+      items: [
+        {
+          title: "토론토대 연계 AI 융합 교육프로그램 모집 (6/1 신규) — 인공지능학과 공지",
+          href: "https://ai.sogang.ac.kr/front/cmsboardlist.do?siteId=ai&bbsConfigFK=6330",
+        },
+        {
+          title: "Apple 디벨로퍼 아카데미 연계 워크숍·특강 안내 — SW중심대학사업단",
+          href: "https://scc.sogang.ac.kr/front/cmsboardlist.do?siteId=sweducenter&bbsConfigFK=7250",
+        },
+        {
+          title: "2026 하계 AI·SW 실습멘토 모집 — SW중심대학사업단",
+          href: "https://scc.sogang.ac.kr/front/cmsboardlist.do?siteId=sweducenter&bbsConfigFK=7250",
+        },
+        {
+          title: "서강대 인공지능학과 공지 (특강·콜로퀴엄 상시 모니터링)",
+          href: "https://ai.sogang.ac.kr/front/cmsboardlist.do?siteId=ai&bbsConfigFK=6330",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "6월 10일", day: "수", title: "Smart Tech Korea 2026 (AI & Big Data Show, 6/10~6/12)", where: "서울 COEX", tag: "전시/컨퍼런스", link: "https://en.smarttechkorea.com/aibigdatashow" },
+    { date: "6월 22일", day: "월", title: "AAAI 2026 Summer Symposium Series (6/22~6/24)", where: "동국대학교, 서울", tag: "학술 심포지엄", link: "https://aaai.org/conference/summer-symposia/suss26/" },
+    { date: "7월 7일", day: "화", title: "ICML 2026 (International Conference on Machine Learning, 7/7~7/9)", where: "서울 COEX", tag: "국제 학술대회", link: "https://icml.cc/" },
+    { date: "8월 19일", day: "수", title: "AI Summit Seoul & Expo 2026 (8/19~8/21)", where: "서울 COEX 그랜드볼룸 & B홀", tag: "글로벌 AI 서밋", link: "https://www.aisummitseoul.com/" },
   ],
 };
 
@@ -1392,7 +1710,7 @@ const VOL7: IssueContent = {
 };
 
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL9, VOL8, VOL7, VOL6];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL10, VOL9, VOL8, VOL7];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));
@@ -2227,6 +2545,7 @@ export const FILTERS: FilterItem[] = [
   { code: "BUS", label: "Business · Strategy", count: filterSectionCount("business"), href: `${CURRENT_ISSUE_PATH}#business` },
   { code: "MBA", label: "MBA Insight", count: filterSectionCount("mba"), href: `${CURRENT_ISSUE_PATH}#mba` },
   { code: "STARTUP", label: "Startup · VC · PE", count: filterSectionCount("startup"), href: `${CURRENT_ISSUE_PATH}#startup` },
+  { code: "VIBE", label: "Vibe Coding", count: filterSectionCount("vibe"), href: `${CURRENT_ISSUE_PATH}#vibe` },
   { code: "GOV", label: "정부과제 · 지원", count: filterGroupCount("government"), href: `${CURRENT_ISSUE_PATH}#government` },
   { code: "CAMPUS", label: "AIMBA · Campus", count: filterGroupCount("campus"), href: `${CURRENT_ISSUE_PATH}#campus` },
   { code: "EVENT", label: "AI Events", count: EVENTS.length, href: `${CURRENT_ISSUE_PATH}#events` },

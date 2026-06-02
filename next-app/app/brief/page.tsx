@@ -135,6 +135,7 @@ export default function BriefPage() {
             ["Business", "#business"],
             ["MBA", "#mba"],
             ["Startup", "#startup"],
+            ["Vibe Coding", "#vibe"],
             ["Government", "#government"],
             ["Campus", "#campus"],
             ["Events", "#events"],
