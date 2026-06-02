@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/BrandLogo";
+import { BriefReactions } from "@/components/BriefReactions";
 import { SiteFooter } from "@/components/SiteFooter";
 import {
   BRIEF_ISSUES,
@@ -561,6 +562,10 @@ export default function BriefPage() {
               이번 호에서 가장 의미 있었던 섹션, 다음 호에서 다뤄줬으면 하는
               주제, 공유하고 싶은 기사·세미나·공고를 보내주세요.
             </p>
+            <BriefReactions
+              issueVol={CURRENT_BRIEF.vol}
+              issueTitle={CURRENT_BRIEF.title}
+            />
             <div className="button-row" style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               <a href="mailto:?subject=AIMBA%20Brief%20Feedback" style={pillStyle}>
                 이번 호 피드백

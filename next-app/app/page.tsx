@@ -6,6 +6,7 @@ import { HomeMuseumTeaser } from "@/components/home/HomeMuseumTeaser";
 import { HomeContestsTeaser } from "@/components/home/HomeContestsTeaser";
 import { HomeInterviewRoom } from "@/components/home/HomeInterviewRoom";
 import { HomeCalendarBooks } from "@/components/home/HomeCalendarBooks";
+import { HomeAimbaPulse } from "@/components/home/HomeAimbaPulse";
 import { SiteFooter } from "@/components/SiteFooter";
 import { TOKENS as T } from "@/lib/tokens";
 
@@ -36,6 +37,7 @@ export default function HomePage() {
           <HomeArchiveTimeline />
           <HomeMuseumTeaser />
           <HomeCalendarBooks />
+          <HomeAimbaPulse />
           <HomeContestsTeaser />
           <HomeInterviewRoom />
         </div>

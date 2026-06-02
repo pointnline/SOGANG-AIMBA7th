@@ -6,7 +6,6 @@
 <title>AIMBA Future Report | SOGANG AIMBA 7th</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root {
   --sogang:#8B0029;
@@ -183,10 +182,10 @@ h1 {
     <section class="hero">
       <div class="kicker">AIMBA Future Report</div>
       <h1>이번 달 원우들의 관심이 만든 미래 신호</h1>
-      <p>Weekly Brief의 조회, 좋아요, 체크, Pulse 투표를 모아 미래혁신국 관점의 월간 리포트로 정리합니다. 데이터가 쌓일수록 이 페이지는 AIMBA 7기의 집단 관심 지도가 됩니다.</p>
+      <p>Weekly Brief의 조회수와 좋아요·체크·Pulse 투표(GA4 집계)를 모아 미래혁신국 관점의 월간 리포트로 정리합니다. 발간 시점의 집계 스냅샷을 기준으로 합니다.</p>
       <div class="hero-actions">
-        <a class="primary" href="../index.html#aimbaPulse">AIMBA Pulse 보기</a>
-        <a class="secondary" href="./vol_20260504.html#participateSection">제보·의견 남기기</a>
+        <a class="primary" href="../index.html#aimbaPulse">AIMBA Pulse 투표하기</a>
+        <a class="secondary" href="./vol_20260601.html#participateSection">제보·의견 남기기</a>
       </div>
     </section>
 
@@ -195,7 +194,7 @@ h1 {
       <div class="card metric">
         <div class="label">Total Views</div>
         <div class="value" id="totalViews">0</div>
-        <div class="hint">브리프 누적 조회</div>
+        <div class="hint">브리프 누적 조회 (GA4)</div>
       </div>
       <div class="card metric">
         <div class="label">Strong Signals</div>
@@ -221,20 +220,41 @@ h1 {
     <section class="card">
       <div class="memo" id="autoMemo">
         데이터를 불러오는 중입니다.
-        <small>Supabase 연결 또는 SQL 적용 전이면 기본 문구가 표시됩니다.</small>
       </div>
-      <div class="status" id="dataStatus">Supabase 데이터 연결 확인 중입니다.</div>
+      <div class="status" id="dataStatus">GA4 집계 스냅샷을 표시합니다.</div>
     </section>
 
-    <div class="footer">SOGANG AIMBA 7th · Future Innovation Office · Data-powered briefing system</div>
+    <div class="footer">SOGANG AIMBA 7th · Future Innovation Office · GA4-powered monthly snapshot</div>
   </main>
 
 <script>
-const SUPABASE_URL = 'https://lorcsmsbyqalbtbyoyzh.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_xCuNXY2WjvVK6l-85nkfNg_dBd6NWx_';
-const supabaseClient = window.supabase
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-  : null;
+/* ─────────────────────────────────────────────────────────────
+   Future Report 데이터 = GA4 발간-스냅샷
+   ---------------------------------------------------------------
+   Supabase(실시간 DB) 대신, 발간 시점에 GA4 대시보드(보고서 > 참여도 >
+   이벤트)에서 확인한 수치를 아래 SNAPSHOT 에 그대로 박는다.
+
+   - views        : GA4 page_view (호별 페이지뷰 합)
+   - signals      : brief_like + brief_check 이벤트 수
+   - topBrief     : 반응이 가장 강한 호
+   - votes        : pulse_vote 이벤트의 option_id 별 count
+                    (id 는 홈 HomeAimbaPulse 의 PULSE_OPTIONS 와 동일)
+
+   ▶ 매월 발간 때 asOf 와 숫자만 갱신하면 끝. (코드 수정 불필요)
+   ───────────────────────────────────────────────────────────── */
+const SNAPSHOT = {
+  asOf: '2026-06-01',          // 스냅샷 기준일 (발간 때 갱신)
+  totalViews: 0,                // GA4 page_view 합
+  topBrief: { vol: '', hint: '집계 누적 중' },  // 예: { vol: 'Vol.009', hint: '128 views · 12 signals' }
+  votes: {                      // pulse_vote option_id 별 count
+    'ai-agent-workflow': 0,
+    'startup-funding': 0,
+    'mba-career-shift': 0,
+    'real-estate-rwa': 0
+  },
+  likes: 0,                     // brief_like 이벤트 수
+  checks: 0                     // brief_check 이벤트 수
+};
 
 const voteOptions = {
   'ai-agent-workflow': 'AI Agent가 실제 업무를 바꾸는 방식',
@@ -266,127 +286,23 @@ function textEl(tag, text, className) {
   return el;
 }
 
-async function loadReport() {
-  let stats = [];
-  let votes = [];
-  try {
-    if (!supabaseClient) {
-      throw new Error('Supabase client script is not loaded.');
-    }
-    const [statsRes, votesRes] = await Promise.all([
-      supabaseClient.from('weekly_issue_stats').select('issue_id, views, likes, checks'),
-      supabaseClient.from('pulse_vote_counts').select('option_id, votes')
-    ]);
-    if (statsRes.error) throw statsRes.error;
-    if (votesRes.error) throw votesRes.error;
-    stats = statsRes.data || [];
-    votes = votesRes.data || [];
-    document.getElementById('dataStatus').textContent =
-      'Supabase 데이터 연결 정상. 최신 집계가 반영되었습니다.';
-  } catch (err) {
-    console.error('Future report load failed:', err);
-    document.getElementById('dataStatus').textContent =
-      'Supabase 데이터 연결 확인이 필요합니다. 정적 리포트는 계속 열리지만, 실시간 집계는 기본값으로 표시됩니다.';
+function renderReport() {
+  const totalSignals = (Number(SNAPSHOT.likes) || 0) + (Number(SNAPSHOT.checks) || 0);
+  const hasData = (Number(SNAPSHOT.totalViews) || 0) > 0 || totalSignals > 0
+    || Object.values(SNAPSHOT.votes).some(v => Number(v) > 0);
+
+  document.getElementById('totalViews').textContent = fmt(SNAPSHOT.totalViews);
+  document.getElementById('totalSignals').textContent = fmt(totalSignals);
+
+  if (SNAPSHOT.topBrief && SNAPSHOT.topBrief.vol) {
+    document.getElementById('topBrief').textContent = SNAPSHOT.topBrief.vol;
+    document.getElementById('topBriefHint').textContent = SNAPSHOT.topBrief.hint || '';
   }
 
-  const totals = stats.reduce((acc, row) => {
-    acc.views += row.views || 0;
-    acc.signals += (row.likes || 0) + (row.checks || 0);
-    return acc;
-  }, { views: 0, signals: 0 });
-  const top = stats
-    .filter(row => /^vol-\d+$/.test(row.issue_id))
-    .sort((a, b) => ((b.views || 0) + (b.likes || 0) + (b.checks || 0)) - ((a.views || 0) + (a.likes || 0) + (a.checks || 0)))[0];
-
-  document.getElementById('totalViews').textContent = fmt(totals.views);
-  document.getElementById('totalSignals').textContent = fmt(totals.signals);
-  if (top) {
-    const vol = top.issue_id.replace('vol-', '');
-    document.getElementById('topBrief').textContent = `Vol.${String(vol).padStart(3, '0')}`;
-    document.getElementById('topBriefHint').textContent = `${fmt(top.views || 0)} views · ${fmt((top.likes || 0) + (top.checks || 0))} signals`;
-  }
-
-  const voteCounts = Object.fromEntries(votes.map(row => [row.option_id, row.votes || 0]));
-  const maxVote = Math.max(1, ...Object.values(voteCounts));
+  const voteCounts = SNAPSHOT.votes || {};
+  const maxVote = Math.max(1, ...Object.values(voteCounts).map(v => Number(v) || 0));
   const sortedVotes = Object.entries(voteOptions)
-    .map(([id, label]) => ({ id, label, count: voteCounts[id] || 0 }))
-    .sort((a, b) => b.count - a.count);
-
-  document.getElementById('voteList').textContent = sortedVotes.map(item => `
-    <div class="row">
-      <strong>${item.label}</strong>
-      <span>${fmt(item.count)}표</span>
-    </div>
-  `).join('');
-
-  document.getElementById('futureRadar').textContent = radarLabels.map(item => {
-    const count = voteCounts[item.id] || 0;
-    const fill = Math.round((count / maxVote) * 100);
-    return `
-      <div>
-        <div class="bar-label"><span>${item.label}</span><span>${fmt(count)}</span></div>
-        <div class="bar"><div style="--fill:${fill}%"></div></div>
-      </div>
-    `;
-  }).join('');
-
-  const topVote = sortedVotes[0];
-  const topBriefText = top ? `Vol.${String(top.issue_id.replace('vol-', '')).padStart(3, '0')}` : '아직 특정 브리프';
-  const topTopic = topVote && topVote.count > 0 ? topVote.label : 'AI·비즈니스·창업의 실제 적용';
-  document.getElementById('autoMemo').textContent = `
-    이번 달 AIMBA 7기 데이터에서 가장 강한 신호는 <strong>${topTopic}</strong>입니다.
-    브리프 반응 기준으로는 <strong>${topBriefText}</strong>가 가장 앞서 있으며,
-    다음 발행은 단순 뉴스 요약보다 원우들이 자기 업에 바로 적용할 수 있는 실행 프레임으로 정리하는 편이 좋습니다.
-    <small>이 문단은 Supabase에 쌓인 조회·반응·투표 데이터를 기준으로 자동 생성됩니다.</small>
-  `;
-}
-
-async function loadReportSafe() {
-  let stats = [];
-  let votes = [];
-  try {
-    if (!supabaseClient) {
-      throw new Error('Supabase client script is not loaded.');
-    }
-    const [statsRes, votesRes] = await Promise.all([
-      supabaseClient.from('weekly_issue_stats').select('issue_id, views, likes, checks'),
-      supabaseClient.from('pulse_vote_counts').select('option_id, votes')
-    ]);
-    if (statsRes.error) throw statsRes.error;
-    if (votesRes.error) throw votesRes.error;
-    stats = Array.isArray(statsRes.data) ? statsRes.data : [];
-    votes = Array.isArray(votesRes.data) ? votesRes.data : [];
-    document.getElementById('dataStatus').textContent =
-      'Supabase 데이터 연결 정상. 최신 집계가 반영되었습니다.';
-  } catch (err) {
-    console.error('Future report load failed:', err);
-    document.getElementById('dataStatus').textContent =
-      'Supabase 데이터 연결 확인이 필요합니다. 정적 리포트는 계속 열리지만 실시간 집계는 기본값으로 표시합니다.';
-  }
-
-  const totals = stats.reduce((acc, row) => {
-    acc.views += Number(row.views) || 0;
-    acc.signals += (Number(row.likes) || 0) + (Number(row.checks) || 0);
-    return acc;
-  }, { views: 0, signals: 0 });
-  const top = stats
-    .filter(row => /^vol-\d+$/.test(String(row.issue_id || '')))
-    .sort((a, b) => ((Number(b.views) || 0) + (Number(b.likes) || 0) + (Number(b.checks) || 0)) - ((Number(a.views) || 0) + (Number(a.likes) || 0) + (Number(a.checks) || 0)))[0];
-
-  document.getElementById('totalViews').textContent = fmt(totals.views);
-  document.getElementById('totalSignals').textContent = fmt(totals.signals);
-  if (top) {
-    const vol = String(top.issue_id).replace('vol-', '');
-    document.getElementById('topBrief').textContent = `Vol.${String(vol).padStart(3, '0')}`;
-    document.getElementById('topBriefHint').textContent = `${fmt(Number(top.views) || 0)} views · ${fmt((Number(top.likes) || 0) + (Number(top.checks) || 0))} signals`;
-  }
-
-  const voteCounts = Object.fromEntries(
-    votes.map(row => [String(row.option_id || ''), Number(row.votes) || 0])
-  );
-  const maxVote = Math.max(1, ...Object.values(voteCounts));
-  const sortedVotes = Object.entries(voteOptions)
-    .map(([id, label]) => ({ id, label, count: voteCounts[id] || 0 }))
+    .map(([id, label]) => ({ id, label, count: Number(voteCounts[id]) || 0 }))
     .sort((a, b) => b.count - a.count);
 
   replaceChildren(
@@ -395,7 +311,7 @@ async function loadReportSafe() {
       const row = document.createElement('div');
       row.className = 'row';
       row.appendChild(textEl('strong', item.label));
-      row.appendChild(textEl('span', `${fmt(item.count)} votes`));
+      row.appendChild(textEl('span', `${fmt(item.count)}표`));
       return row;
     })
   );
@@ -403,7 +319,7 @@ async function loadReportSafe() {
   replaceChildren(
     document.getElementById('futureRadar'),
     radarLabels.map(item => {
-      const count = voteCounts[item.id] || 0;
+      const count = Number(voteCounts[item.id]) || 0;
       const fill = Math.round((count / maxVote) * 100);
       const wrapper = document.createElement('div');
       const label = document.createElement('div');
@@ -422,21 +338,26 @@ async function loadReportSafe() {
   );
 
   const topVote = sortedVotes[0];
-  const topBriefText = top ? `Vol.${String(String(top.issue_id).replace('vol-', '')).padStart(3, '0')}` : '아직 특정 브리프 없음';
-  const topTopic = topVote && topVote.count > 0 ? topVote.label : 'AI·비즈니스·창업의 실제 적용';
+  const topBriefText = (SNAPSHOT.topBrief && SNAPSHOT.topBrief.vol) ? SNAPSHOT.topBrief.vol : '아직 특정 브리프 없음';
+  const topTopic = (topVote && topVote.count > 0) ? topVote.label : 'AI·비즈니스·창업의 실제 적용';
+
   const memo = document.getElementById('autoMemo');
   memo.textContent = '';
   memo.append(
-    '이번 AIMBA 7기 데이터에서 가장 강한 신호는 ',
+    '이번 달 AIMBA 7기 데이터에서 가장 강한 신호는 ',
     textEl('strong', topTopic),
     '입니다. 브리프 반응 기준으로는 ',
     textEl('strong', topBriefText),
     '가 앞서 있으며, 다음 발행은 단순 뉴스 요약보다 원우들이 자기 일에 바로 적용할 수 있는 실행 프레임으로 정리하는 편이 좋겠습니다.'
   );
-  memo.appendChild(textEl('small', '이 문단은 Supabase에 쌓인 조회·반응·투표 데이터를 기준으로 자동 생성됩니다.'));
+  memo.appendChild(textEl('small', `GA4 집계 기준 · 스냅샷 ${SNAPSHOT.asOf}`));
+
+  document.getElementById('dataStatus').textContent = hasData
+    ? `GA4 집계 스냅샷(${SNAPSHOT.asOf}) 기준으로 표시 중입니다.`
+    : `아직 집계 데이터가 충분하지 않습니다. 조회·좋아요·체크·Pulse 투표가 쌓이면 다음 발간 스냅샷(${SNAPSHOT.asOf})부터 반영됩니다.`;
 }
 
-loadReportSafe();
+renderReport();
 </script>
 </body>
 </html>
