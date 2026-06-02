@@ -45,7 +45,7 @@ export function HomeArchiveTimeline() {
               letterSpacing: "-0.01em",
             }}
           >
-            실제 발간된 5개의 호, 한 줄로 펼쳐보다
+            실제 발간된 {BRIEF_ISSUES.length}개의 호, 한 줄로 펼쳐보다
           </h3>
         </div>
         <a
