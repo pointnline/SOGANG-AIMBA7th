@@ -35,9 +35,9 @@ export default function HomePage() {
           <HomeHealingNote />
           <HomeArchiveTimeline />
           <HomeMuseumTeaser />
+          <HomeCalendarBooks />
           <HomeContestsTeaser />
           <HomeInterviewRoom />
-          <HomeCalendarBooks />
         </div>
       </section>
       <SiteFooter />

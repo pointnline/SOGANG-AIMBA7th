@@ -75,9 +75,7 @@ export function HomeContestsTeaser() {
             }}
           >
             공개 데이터 소스의 공모전 정보를 P&amp;L 신문 스타일로 재구성해
-            마감일·주최·부문 필터를 한 화면에 정리했습니다. 데이터 원본은{" "}
-            <strong style={{ color: T.wine }}>junyeo217/ai-contest-board</strong>
-            의 공개 JSON을 실시간 인용합니다.
+            마감일·주최·부문 필터를 한 화면에 정리했습니다.
           </p>
           <div
             style={{
@@ -104,16 +102,6 @@ export function HomeContestsTeaser() {
             >
               BOARD 열기 →
             </a>
-            <span
-              style={{
-                fontFamily: "var(--mono)",
-                fontSize: 11,
-                color: T.ink3,
-                letterSpacing: "0.1em",
-              }}
-            >
-              DATA · junyeo217/ai-contest-board
-            </span>
           </div>
         </div>
 
@@ -162,16 +150,6 @@ export function HomeContestsTeaser() {
                 }}
               >
                 {sec.label}
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--mono)",
-                  fontSize: 10,
-                  color: T.ink3,
-                  letterSpacing: "0.12em",
-                }}
-              >
-                {sec.short}
               </span>
             </div>
           ))}

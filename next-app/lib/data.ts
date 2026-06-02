@@ -21,17 +21,8 @@ export const CURRENT_ISSUE_PATH = "/issues/vol_20260601.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
-export const FILTERS: FilterItem[] = [
-  { code: "ALL", label: "전체보기", count: 9, href: "#archive" },
-  { code: "AI-LLM", label: "AI · LLM", count: 4, href: `${CURRENT_ISSUE_PATH}#ai` },
-  { code: "BUS", label: "Business · Strategy", count: 4, href: `${CURRENT_ISSUE_PATH}#business` },
-  { code: "MBA", label: "MBA Insight", count: 4, href: `${CURRENT_ISSUE_PATH}#mba` },
-  { code: "STARTUP", label: "Startup · VC · PE", count: 4, href: `${CURRENT_ISSUE_PATH}#startup` },
-  { code: "GOV", label: "정부과제 · 지원", count: 6, href: `${CURRENT_ISSUE_PATH}#government` },
-  { code: "CAMPUS", label: "AIMBA · Campus", count: 5, href: `${CURRENT_ISSUE_PATH}#campus` },
-  { code: "EVENT", label: "AI Events", count: 6, href: `${CURRENT_ISSUE_PATH}#events` },
-  { code: "MUSEUM", label: "S.A Museum", count: 50, href: "/issues/museum.html" },
-];
+// FILTERS 정의는 파일 하단으로 이동했다 — count를 실제 데이터에 자동연동하기 위해
+// CURRENT_ISSUE·EVENTS·MUSEUM_WORKS·BRIEF_ISSUES 선언 이후에 계산한다. (아래 참조)
 
 export interface PulseTopic {
   topic: string;
@@ -2219,3 +2210,21 @@ export interface ContestsFeed {
     [key: string]: ContestEntry[] | undefined;
   };
 }
+
+// ── 좌측 카탈로그 필터 (실제 데이터 자동연동) ───────────────────────────────
+// count를 하드코딩하지 않는다. 현재호 섹션 기사 수 / AI Events 수 / 명화 수 /
+// 누적 발간 호수에서 매 빌드 시 계산 → /aimba 발간 때마다 자동으로 정확히 맞춰진다.
+const filterSectionCount = (id: string): number =>
+  CURRENT_ISSUE.sections.find((s) => s.id === id)?.articles.length ?? 0;
+
+export const FILTERS: FilterItem[] = [
+  { code: "ALL", label: "전체보기", count: BRIEF_ISSUES.length, href: "#archive" },
+  { code: "AI-LLM", label: "AI · LLM", count: filterSectionCount("ai"), href: `${CURRENT_ISSUE_PATH}#ai` },
+  { code: "BUS", label: "Business · Strategy", count: filterSectionCount("business"), href: `${CURRENT_ISSUE_PATH}#business` },
+  { code: "MBA", label: "MBA Insight", count: filterSectionCount("mba"), href: `${CURRENT_ISSUE_PATH}#mba` },
+  { code: "STARTUP", label: "Startup · VC · PE", count: filterSectionCount("startup"), href: `${CURRENT_ISSUE_PATH}#startup` },
+  { code: "GOV", label: "정부과제 · 지원", count: filterSectionCount("government"), href: `${CURRENT_ISSUE_PATH}#government` },
+  { code: "CAMPUS", label: "AIMBA · Campus", count: filterSectionCount("campus"), href: `${CURRENT_ISSUE_PATH}#campus` },
+  { code: "EVENT", label: "AI Events", count: EVENTS.length, href: `${CURRENT_ISSUE_PATH}#events` },
+  { code: "MUSEUM", label: "S.A Museum", count: MUSEUM_WORKS.length, href: "/issues/museum.html" },
+];

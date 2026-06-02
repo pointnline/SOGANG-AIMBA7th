@@ -34,17 +34,26 @@ export function HomeSidebar() {
       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {FILTERS.map((f, i) => {
           const active = f.code === "ALL";
+          const emphasized = f.code === "EVENT" || f.code === "MUSEUM";
           return (
             <li
               key={i}
               style={{
-                padding: "13px 0",
-                borderBottom: `1px solid ${T.rule}`,
+                padding: emphasized ? "11px 12px" : "13px 0",
+                borderBottom: emphasized ? "none" : `1px solid ${T.rule}`,
+                border: emphasized ? `1.5px solid ${T.wine}` : undefined,
+                borderRadius: emphasized ? 6 : undefined,
+                background: emphasized ? "#fff" : undefined,
+                boxShadow: emphasized
+                  ? `0 0 0 3px ${T.wineSoft}1f`
+                  : undefined,
+                marginTop: emphasized ? 7 : 0,
+                marginBottom: emphasized ? 1 : 0,
                 display: "grid",
                 gridTemplateColumns: "1fr auto",
                 gap: 12,
                 alignItems: "baseline",
-                color: active ? T.wine : T.ink2,
+                color: active ? T.wine : emphasized ? T.wine : T.ink2,
                 cursor: "pointer",
               }}
             >

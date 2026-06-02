@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/issues/:path*",
+      "destination": "https://pointnline.github.io/SOGANG-AIMBA7th/issues/:path*"
+    },
+    {
+      "source": "/SOGANG-AIMBA7th/:path*",
+      "destination": "https://pointnline.github.io/SOGANG-AIMBA7th/:path*"
+    }
+  ]
+}
