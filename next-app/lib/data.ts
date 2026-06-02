@@ -2217,14 +2217,18 @@ export interface ContestsFeed {
 const filterSectionCount = (id: string): number =>
   CURRENT_ISSUE.sections.find((s) => s.id === id)?.articles.length ?? 0;
 
+// 정부과제·Campus는 sections가 아니라 supportGroups(items)에 들어있다 → 별도 카운트
+const filterGroupCount = (id: string): number =>
+  CURRENT_ISSUE.supportGroups.find((g) => g.id === id)?.items.length ?? 0;
+
 export const FILTERS: FilterItem[] = [
   { code: "ALL", label: "전체보기", count: BRIEF_ISSUES.length, href: "#archive" },
   { code: "AI-LLM", label: "AI · LLM", count: filterSectionCount("ai"), href: `${CURRENT_ISSUE_PATH}#ai` },
   { code: "BUS", label: "Business · Strategy", count: filterSectionCount("business"), href: `${CURRENT_ISSUE_PATH}#business` },
   { code: "MBA", label: "MBA Insight", count: filterSectionCount("mba"), href: `${CURRENT_ISSUE_PATH}#mba` },
   { code: "STARTUP", label: "Startup · VC · PE", count: filterSectionCount("startup"), href: `${CURRENT_ISSUE_PATH}#startup` },
-  { code: "GOV", label: "정부과제 · 지원", count: filterSectionCount("government"), href: `${CURRENT_ISSUE_PATH}#government` },
-  { code: "CAMPUS", label: "AIMBA · Campus", count: filterSectionCount("campus"), href: `${CURRENT_ISSUE_PATH}#campus` },
+  { code: "GOV", label: "정부과제 · 지원", count: filterGroupCount("government"), href: `${CURRENT_ISSUE_PATH}#government` },
+  { code: "CAMPUS", label: "AIMBA · Campus", count: filterGroupCount("campus"), href: `${CURRENT_ISSUE_PATH}#campus` },
   { code: "EVENT", label: "AI Events", count: EVENTS.length, href: `${CURRENT_ISSUE_PATH}#events` },
   { code: "MUSEUM", label: "S.A Museum", count: MUSEUM_WORKS.length, href: "/issues/museum.html" },
 ];
