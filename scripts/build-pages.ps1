@@ -36,6 +36,17 @@ try {
   & npm.cmd run export:pages
   Copy-BriefArchive $latest.Iso
 
+  # sitemap.xml — Next 가 out/ 에 생성한 것을 repo 루트로 복사
+  $sitemapSrc = Join-Path $nextApp "out\sitemap.xml"
+  if (Test-Path -LiteralPath $sitemapSrc) {
+    Copy-Item -LiteralPath $sitemapSrc -Destination (Join-Path $repoRoot "sitemap.xml") -Force
+    Write-Host " - sitemap.xml"
+  }
+
+  # RSS feed.xml — issues/manifest.json 기반 생성
+  & node (Join-Path $PSScriptRoot "gen-feed.mjs")
+  Write-Host " - feed.xml (RSS)"
+
   # 2) 과거 호: brief 페이지만 날짜별 아카이브로 생성
   foreach ($issue in $issues[1..($issues.Count - 1)]) {
     Write-Host "==> Building archive issue (Vol $($issue.Vol))"

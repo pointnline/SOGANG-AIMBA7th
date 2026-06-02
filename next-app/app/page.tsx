@@ -8,6 +8,7 @@ import { HomeInterviewRoom } from "@/components/home/HomeInterviewRoom";
 import { HomeCalendarBooks } from "@/components/home/HomeCalendarBooks";
 import { HomeAimbaPulse } from "@/components/home/HomeAimbaPulse";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SubscribeCTA } from "@/components/SubscribeCTA";
 import { TOKENS as T } from "@/lib/tokens";
 
 export default function HomePage() {
@@ -35,6 +36,7 @@ export default function HomePage() {
         <div>
           <HomeHealingNote />
           <HomeArchiveTimeline />
+          <SubscribeCTA />
           <HomeMuseumTeaser />
           <HomeCalendarBooks />
           <HomeAimbaPulse />

@@ -2551,3 +2551,149 @@ export const FILTERS: FilterItem[] = [
   { code: "EVENT", label: "AI Events", count: EVENTS.length, href: `${CURRENT_ISSUE_PATH}#events` },
   { code: "MUSEUM", label: "S.A Museum", count: MUSEUM_WORKS.length, href: "/issues/museum.html" },
 ];
+
+// ── 구독 / 재방문 장치 ────────────────────────────────────────
+// 새 호 발간 알림을 받을 채널. 텔레그램 채널을 개설하면 telegram 값만 채우면
+// 버튼이 자동 활성화된다(비우면 텔레그램 버튼은 숨김). 그 전까지는 이메일(mailto)이 기본 동작.
+export const SUBSCRIBE = {
+  // 예: "https://t.me/aimba7th" — 채널/봇 링크. 비우면 텔레그램 버튼 숨김.
+  telegram: "",
+  // 구글폼 등 외부 구독 폼 URL. 비우면 mailto 폴백 사용.
+  formUrl: "",
+  // mailto 폴백 (제목·본문 프리필)
+  mailto:
+    "mailto:?subject=AIMBA%207th%20Weekly%20Brief%20%EA%B5%AC%EB%8F%85%20%EC%8B%A0%EC%B2%AD&body=AIMBA%207th%20Weekly%20Brief%20%EC%83%88%20%ED%98%B8%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EB%B0%9B%EA%B3%A0%20%EC%8B%B6%EC%8A%B5%EB%8B%88%EB%8B%A4.",
+  headline: "매주, 새 호를 가장 먼저",
+  sub: "AI · 비즈니스 · MBA · 창업 인사이트를 경영자 관점으로 정리해 보내드립니다. 발간 알림을 받아보세요.",
+};
+
+// ── 사이트 검색 인덱스 (무의존성·빌드타임 생성) ──────────────────
+// 풀콘텐츠 호(ISSUE_CONTENTS)는 기사 단위, 전체 호(BRIEF_ISSUES)는 헤드라인 단위로
+// 평탄화한다. 클라이언트에서 substring/토큰 매칭으로 즉시 검색(서버·외부 의존 0).
+export interface SearchDoc {
+  vol: number;
+  date: string;
+  code: string;
+  sectionLabel: string;
+  title: string;
+  desc: string;
+  source: string;
+  href: string; // sitePath 적용 전 경로
+  kind: "article" | "issue";
+}
+
+const ISSUE_PATH_BY_VOL = new Map(BRIEF_ISSUES.map((i) => [i.vol, i.path]));
+
+export const SEARCH_INDEX: SearchDoc[] = [
+  // 1) 풀콘텐츠 호: 섹션별 기사 단위 (깊은 검색)
+  ...ISSUE_CONTENTS.flatMap((issue) => {
+    const base =
+      ISSUE_PATH_BY_VOL.get(issue.vol) ?? `/issues/vol_${issue.isoDate}.html`;
+    return issue.sections.flatMap((sec) =>
+      sec.articles.map((a) => ({
+        vol: issue.vol,
+        date: issue.dateLabel,
+        code: sec.code,
+        sectionLabel: sec.label,
+        title: a.title,
+        desc: a.desc,
+        source: a.source,
+        href: `${base}#${sec.id}`,
+        kind: "article" as const,
+      }))
+    );
+  }),
+  // 2) 전체 호 헤드라인: 과거 호까지 호 단위로 커버 (넓은 검색)
+  ...BRIEF_ISSUES.map((i) => ({
+    vol: i.vol,
+    date: i.date,
+    code: i.section,
+    sectionLabel: i.sectionLabel,
+    title: i.title,
+    desc: i.headline,
+    source: `Vol.${i.vol}`,
+    href: i.path,
+    kind: "issue" as const,
+  })),
+];
+
+// ── 아카이브 횡단(토픽별) 뷰 ──────────────────────────────────
+// 풀콘텐츠 호의 섹션을 토픽 코드(code) 기준으로 가로로 묶는다 →
+// "AI만 전 호 모아보기" 같은 종단(縱斷)이 아니라 횡단(橫斷) 탐색을 가능케 한다.
+export interface TopicArticle {
+  vol: number;
+  date: string;
+  href: string;
+  title: string;
+  desc: string;
+  source: string;
+}
+export interface TopicGroup {
+  code: string;
+  label: string;
+  count: number;
+  articles: TopicArticle[];
+}
+
+export const TOPIC_GROUPS: TopicGroup[] = (() => {
+  const map = new Map<string, TopicGroup>();
+  for (const issue of ISSUE_CONTENTS) {
+    const base =
+      ISSUE_PATH_BY_VOL.get(issue.vol) ?? `/issues/vol_${issue.isoDate}.html`;
+    for (const sec of issue.sections) {
+      const g: TopicGroup =
+        map.get(sec.code) ??
+        { code: sec.code, label: sec.label, count: 0, articles: [] };
+      for (const a of sec.articles) {
+        g.articles.push({
+          vol: issue.vol,
+          date: issue.dateLabel,
+          href: `${base}#${sec.id}`,
+          title: a.title,
+          desc: a.desc,
+          source: a.source,
+        });
+      }
+      g.count = g.articles.length;
+      map.set(sec.code, g);
+    }
+  }
+  // 최신 호가 위로 오도록 vol 내림차순 정렬
+  for (const g of map.values()) g.articles.sort((a, b) => b.vol - a.vol);
+  return [...map.values()].sort((a, b) => b.count - a.count);
+})();
+
+// ── 발간 검증 가드 (빌드/모듈 로드 시 1회) ──────────────────────
+// 필수 필드 누락은 빌드를 막는다(throw). 링크 형식 등 약한 위반은 경고만 남긴다.
+// /aimba 발간 때 데이터 실수를 빌드 단계에서 즉시 잡기 위한 안전장치.
+(function validateIssues() {
+  const linkOk = /^(https?:\/\/|\/|#|mailto:)/;
+  for (const issue of ISSUE_CONTENTS) {
+    const tag = `Vol.${issue?.vol ?? "?"}`;
+    if (!issue.vol || !issue.title || !issue.isoDate) {
+      throw new Error(`[data 검증] ${tag}: vol/title/isoDate 필수값 누락`);
+    }
+    if (!issue.sections?.length) {
+      throw new Error(`[data 검증] ${tag}: sections 가 비어 있음`);
+    }
+    for (const sec of issue.sections) {
+      if (!sec.id || !sec.code || !sec.label) {
+        throw new Error(
+          `[data 검증] ${tag}/${sec?.id ?? "?"}: 섹션 id/code/label 누락`
+        );
+      }
+      for (const a of sec.articles ?? []) {
+        if (!a.title || !a.href) {
+          throw new Error(
+            `[data 검증] ${tag}/${sec.id}: 기사 title/href 누락 (${a.title ?? "?"})`
+          );
+        }
+        if (!linkOk.test(a.href) && typeof console !== "undefined") {
+          console.warn(
+            `[data 검증] ${tag}/${sec.id}: 비표준 링크 형식 — ${a.href}`
+          );
+        }
+      }
+    }
+  }
+})();

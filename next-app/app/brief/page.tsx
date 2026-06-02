@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import { BrandMark } from "@/components/BrandLogo";
 import { BriefReactions } from "@/components/BriefReactions";
+import { SubscribeCTA } from "@/components/SubscribeCTA";
 import { SiteFooter } from "@/components/SiteFooter";
 import {
   BRIEF_ISSUES,
@@ -12,6 +14,26 @@ import {
 } from "@/lib/data";
 import { sitePath } from "@/lib/paths";
 import { TOKENS as T } from "@/lib/tokens";
+
+// 호별 동적 메타데이터 — 빌드 시 NEXT_PUBLIC_ISSUE_VOL 에 따라 CURRENT_BRIEF 가
+// 바뀌므로 각 vol_YYYYMMDD.html 이 그 호 고유의 title/description/OG 텍스트를 갖는다.
+// (정적 export 라 동적 OG '이미지'는 불가 → 텍스트 메타로 호별 공유 카드를 차별화)
+const _issueTitle = `Vol.${CURRENT_BRIEF.vol} · ${CURRENT_BRIEF.title}`;
+const _issueDesc =
+  (CURRENT_BRIEF.memoLines?.[0] ?? CURRENT_BRIEF.subtitle).slice(0, 155);
+
+export const metadata: Metadata = {
+  title: `${_issueTitle} — SOGANG AIMBA 7th`,
+  description: _issueDesc,
+  openGraph: {
+    title: _issueTitle,
+    description: _issueDesc,
+  },
+  twitter: {
+    title: _issueTitle,
+    description: _issueDesc,
+  },
+};
 
 export default function BriefPage() {
   return (
@@ -597,6 +619,19 @@ export default function BriefPage() {
           >
             The Archive
           </h3>
+          <a
+            href={sitePath("/archive/")}
+            style={{
+              display: "inline-block",
+              marginBottom: 18,
+              fontFamily: "var(--korean)",
+              fontSize: 13,
+              fontWeight: 600,
+              color: T.wine,
+            }}
+          >
+            토픽별로 여러 호를 가로질러 보기 →
+          </a>
           <div style={{ display: "grid", gap: 10 }}>
             {BRIEF_ISSUES.map((issue) => (
               <a
@@ -627,6 +662,10 @@ export default function BriefPage() {
               </a>
             ))}
           </div>
+        </section>
+
+        <section style={{ padding: "0 48px 48px", maxWidth: 1280, margin: "0 auto" }}>
+          <SubscribeCTA variant="panel" />
         </section>
       </main>
 

@@ -185,3 +185,23 @@
     padding: 20px 18px !important;
   }
 }
+
+/* 신규 컴포넌트(검색·구독·아카이브 횡단) 반응형 */
+@media (max-width: 900px) {
+  .archive-topic-card {
+    padding: 16px 18px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .archive-chips {
+    gap: 6px !important;
+  }
+  .archive-topic-card {
+    padding: 14px 16px !important;
+  }
+  /* 좁은 화면에서 검색 결과 패널이 화면 밖으로 나가지 않도록 */
+  .site-search [role="listbox"] {
+    min-width: 0 !important;
+  }
+}

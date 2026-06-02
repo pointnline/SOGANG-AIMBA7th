@@ -56,6 +56,7 @@ $briefHtml = Join-Path $outDir "brief.html"
 $museumHtml = Join-Path $outDir "museum.html"
 $interviewHtml = Join-Path $outDir "interview.html"
 $contestsHtml = Join-Path $outDir "contests.html"
+$archiveHtml = Join-Path $outDir "archive.html"
 
 Replace-Directory (Join-Path $outDir "_next") (Join-Path $repoRoot "_next")
 Replace-File (Join-Path $outDir "index.html") (Join-Path $repoRoot "index.html")
@@ -70,11 +71,14 @@ Replace-File $interviewHtml (Join-Path $repoRoot "interview\index.html")
 
 Replace-File $contestsHtml (Join-Path $repoRoot "contests\index.html")
 
+Replace-File $archiveHtml (Join-Path $repoRoot "archive\index.html")
+
 Write-Host "Updated GitHub Pages files from next-app export:"
 Write-Host " - index.html"
 Write-Host " - brief/index.html"
 Write-Host " - museum/index.html"
 Write-Host " - interview/index.html"
 Write-Host " - contests/index.html"
+Write-Host " - archive/index.html"
 Write-Host " - issues/museum.html"
 Write-Host " - _next/"

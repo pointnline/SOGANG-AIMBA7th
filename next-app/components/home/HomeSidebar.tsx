@@ -2,6 +2,7 @@ import { BrandLockup } from "@/components/BrandLogo";
 import { TOKENS as T } from "@/lib/tokens";
 import { FILTERS, FUTURE_REPORT_PATH, PARTICIPATE_PATH } from "@/lib/data";
 import { sitePath } from "@/lib/paths";
+import { SiteSearch } from "@/components/SiteSearch";
 
 export function HomeSidebar() {
   return (
@@ -97,24 +98,7 @@ export function HomeSidebar() {
         })}
       </ul>
 
-      <div
-        style={{
-          marginTop: 20,
-          padding: "11px 14px",
-          background: "#fff",
-          border: `1px solid ${T.rule}`,
-          borderRadius: 4,
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          fontFamily: "var(--mono)",
-          fontSize: 11,
-          color: T.ink3,
-        }}
-      >
-        <span>⌕</span>
-        <span>SEARCH...</span>
-      </div>
+      <SiteSearch />
 
       <div
         style={{
@@ -173,6 +157,23 @@ export function HomeSidebar() {
           }}
         >
           ↗ AI Contest Board
+        </a>
+        <a
+          href={sitePath("/archive/")}
+          style={{
+            padding: "12px 14px",
+            background: "#fff",
+            color: T.ink,
+            border: `1px solid ${T.rule}`,
+            borderRadius: 4,
+            fontFamily: "var(--korean)",
+            fontSize: 13,
+            fontWeight: 500,
+            textAlign: "left",
+            display: "block",
+          }}
+        >
+          ↗ 토픽 아카이브
         </a>
       </div>
     </aside>
