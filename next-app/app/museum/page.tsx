@@ -16,7 +16,7 @@ const M = {
 export const metadata: Metadata = {
   title: "S.A Museum · SOGANG AIMBA 7th",
   description:
-    "퍼블릭 도메인 명화 50점으로 구성한 AIMBA 7기 S.A Museum 큐레이션.",
+    "퍼블릭 도메인 명화 105점으로 구성한 AIMBA 7기 S.A Museum 큐레이션.",
 };
 
 export default function MuseumPage() {

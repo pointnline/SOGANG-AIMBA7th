@@ -4,9 +4,9 @@ S.A Museum에 전시된 작품은 모두 저작권이 만료된 **퍼블릭 도�
 이미지는 Wikimedia Commons에서 내려받아 `assets/museum/` 에 로컬 저장했습니다.
 각 작품의 출처(원본 파일/소장처)는 아래 표와 같습니다.
 
-- 총 작품 수: **50점**
+- 총 작품 수: **105점** (기존 50점 + 2026-06-03 확장 55점)
 - 라이선스: Public Domain / Wikimedia Commons
-- 수집 스크립트: `scripts/fetch_museum.py`, `scripts/fix_museum.py`
+- 수집 스크립트: `scripts/fetch_museum.py`, `scripts/fix_museum.py`, `scripts/fetch_museum_v2.py` (확장 배치, 매직바이트+용량 검증)
 
 | # | Artist | Work | Year | Collection | Source |
 |---|--------|------|------|------------|--------|
@@ -62,3 +62,65 @@ S.A Museum에 전시된 작품은 모두 저작권이 만료된 **퍼블릭 도�
 | 50 | Pierre-Auguste Renoir | Two Sisters (On the Terrace) | 1881 | Art Institute of Chicago | [link](https://commons.wikimedia.org/wiki/File:Renoir_-_The_Two_Sisters,_On_the_Terrace.jpg) |
 
 > 일부 출처는 Wikimedia Commons 검색 결과 페이지로 연결됩니다(파일명이 자주 바뀌는 작품). 모든 이미지는 다운로드 시점에 매직바이트와 용량으로 무결성을 검증했습니다.
+
+## 2026-06-03 확장 — 신규 55점 (index 51-105)
+
+모두 Wikimedia Commons 퍼블릭 도메인. `fetch_museum_v2.py`로 다운로드+검증(55/55 통과).
+
+| # | Artist | Work | Year | Collection | Source |
+|---|--------|------|------|------------|--------|
+| 51 | Hieronymus Bosch | The Garden of Earthly Delights | c. 1490-1510 | Museo del Prado | [link](https://commons.wikimedia.org/wiki/File:The_Garden_of_Earthly_Delights_by_Bosch_High_Resolution.jpg) |
+| 52 | Leonardo da Vinci | The Last Supper | 1495-1498 | Santa Maria delle Grazie, Milan | [link](https://commons.wikimedia.org/wiki/File:Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg) |
+| 53 | Leonardo da Vinci | Lady with an Ermine | c. 1489-1491 | Czartoryski Museum, Kraków | [link](https://commons.wikimedia.org/wiki/File:Lady_with_an_Ermine_-_Leonardo_da_Vinci_-_Google_Art_Project.jpg) |
+| 54 | Sandro Botticelli | Primavera | c. 1480 | Uffizi Gallery | [link](https://commons.wikimedia.org/wiki/File:Botticelli-primavera.jpg) |
+| 55 | Albrecht Dürer | Self-Portrait at Twenty-Eight | 1500 | Alte Pinakothek, Munich | [link](https://commons.wikimedia.org/wiki/File:Albrecht_D%C3%BCrer_-_1500_self-portrait_%28High_resolution_and_detail%29.jpg) |
+| 56 | Titian | Bacchus and Ariadne | 1522-1523 | The National Gallery, London | [link](https://commons.wikimedia.org/wiki/File:Titian_Bacchus_and_Ariadne.jpg) |
+| 57 | Hans Holbein the Younger | The Ambassadors | 1533 | The National Gallery, London | [link](https://commons.wikimedia.org/wiki/File:Hans_Holbein_the_Younger_-_The_Ambassadors_-_Google_Art_Project.jpg) |
+| 58 | El Greco | View of Toledo | c. 1599-1600 | The Metropolitan Museum of Art | [link](https://commons.wikimedia.org/wiki/File:El_Greco_View_of_Toledo.jpg) |
+| 59 | Caravaggio | Medusa | 1597 | Uffizi Gallery | [link](https://commons.wikimedia.org/wiki/File:Medusa_by_Caravaggio.jpg) |
+| 60 | Peter Paul Rubens | The Three Graces | c. 1635 | Museo del Prado | [link](https://commons.wikimedia.org/wiki/File:Peter_Paul_Rubens_-_The_Three_Graces%2C_1635.jpg) |
+| 61 | Artemisia Gentileschi | Judith Slaying Holofernes | c. 1612-1613 | Museo di Capodimonte, Naples | [link](https://commons.wikimedia.org/wiki/File:Artemisia_Gentileschi_-_Giuditta_decapita_Oloferne_-_Google_Art_Project.jpg) |
+| 62 | Anthony van Dyck | Charles I at the Hunt | c. 1635 | Musée du Louvre | [link](https://commons.wikimedia.org/wiki/File:Anthonis_van_Dyck_037.jpg) |
+| 63 | Rembrandt van Rijn | The Anatomy Lesson of Dr. Nicolaes Tulp | 1632 | Mauritshuis | [link](https://commons.wikimedia.org/wiki/File:Rembrandt_-_The_Anatomy_Lesson_of_Dr_Nicolaes_Tulp.jpg) |
+| 64 | Rembrandt van Rijn | The Return of the Prodigal Son | c. 1668 | Hermitage Museum | [link](https://commons.wikimedia.org/wiki/File:Rembrandt_-_The_Return_of_the_Prodigal_Son.jpg) |
+| 65 | Johannes Vermeer | The Astronomer | c. 1668 | Musée du Louvre | [link](https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_The_Astronomer_-_1668.jpg) |
+| 66 | Jean-Honoré Fragonard | The Swing | 1767 | Wallace Collection, London | [link](https://commons.wikimedia.org/wiki/File:Fragonard%2C_The_Swing.jpg) |
+| 67 | Jacques-Louis David | The Death of Marat | 1793 | Royal Museums of Fine Arts of Belgium | [link](https://commons.wikimedia.org/wiki/File:Death_of_Marat_by_David.jpg) |
+| 68 | Jacques-Louis David | Napoleon Crossing the Alps | 1801 | Château de Malmaison | [link](https://commons.wikimedia.org/wiki/File:David_-_Napoleon_crossing_the_Alps_-_Malmaison1.jpg) |
+| 69 | Jean-Auguste-Dominique Ingres | La Grande Odalisque | 1814 | Musée du Louvre | [link](https://commons.wikimedia.org/wiki/File:Jean_Auguste_Dominique_Ingres%2C_La_Grande_Odalisque%2C_1814.jpg) |
+| 70 | Théodore Géricault | The Raft of the Medusa | 1818-1819 | Musée du Louvre | [link](https://commons.wikimedia.org/wiki/File:JEAN_LOUIS_TH%C3%89ODORE_G%C3%89RICAULT_-_La_Balsa_de_la_Medusa_%28Museo_del_Louvre%2C_1818-19%29.jpg) |
+| 71 | Eugène Delacroix | Liberty Leading the People | 1830 | Musée du Louvre | [link](https://commons.wikimedia.org/wiki/File:Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg) |
+| 72 | Caspar David Friedrich | The Sea of Ice | 1823-1824 | Hamburger Kunsthalle | [link](https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Das_Eismeer_-_Hamburger_Kunsthalle_-_02.jpg) |
+| 73 | J. M. W. Turner | Rain, Steam and Speed | 1844 | The National Gallery, London | [link](https://commons.wikimedia.org/wiki/File:Rain_Steam_and_Speed_the_Great_Western_Railway.jpg) |
+| 74 | Jean-François Millet | The Gleaners | 1857 | Musée d'Orsay | [link](https://commons.wikimedia.org/wiki/File:Jean-Fran%C3%A7ois_Millet_-_Gleaners_-_Google_Art_Project.jpg) |
+| 75 | Jean-François Millet | The Angelus | 1857-1859 | Musée d'Orsay | [link](https://commons.wikimedia.org/wiki/File:Jean-Fran%C3%A7ois_Millet_%28II%29_001.jpg) |
+| 76 | Gustave Courbet | The Artist's Studio | 1855 | Musée d'Orsay | [link](https://commons.wikimedia.org/wiki/File:Courbet_LAtelier_du_peintre.jpg) |
+| 77 | James McNeill Whistler | Nocturne in Black and Gold | 1875 | Detroit Institute of Arts | [link](https://commons.wikimedia.org/wiki/File:Whistler-Nocturne_in_black_and_gold.jpg) |
+| 78 | Claude Monet | Rouen Cathedral, Façade (Sunset) | 1892-1894 | Musée Marmottan Monet | [link](https://commons.wikimedia.org/wiki/File:Claude_Monet_-_Rouen_Cathedral%2C_West_Fa%C3%A7ade%2C_Sunlight_-_Google_Art_Project.jpg) |
+| 79 | Édouard Manet | The Railway | 1873 | National Gallery of Art | [link](https://commons.wikimedia.org/wiki/File:Edouard_Manet_-_The_Railway_-_Google_Art_Project.jpg) |
+| 80 | Edgar Degas | The Dance Class | 1873-1876 | Musée d'Orsay | [link](https://commons.wikimedia.org/wiki/File:Edgar_Degas_-_The_Ballet_Class_-_Google_Art_Project.jpg) |
+| 81 | Berthe Morisot | The Cradle | 1872 | Musée d'Orsay | [link](https://commons.wikimedia.org/wiki/File:Berthe_Morisot_-_The_Cradle_-_Google_Art_Project.jpg) |
+| 82 | Gustave Caillebotte | The Floor Scrapers | 1875 | Musée d'Orsay | [link](https://commons.wikimedia.org/wiki/File:Gustave_Caillebotte_-_The_Floor_Planers_-_Google_Art_Project.jpg) |
+| 83 | Pierre-Auguste Renoir | A Girl with a Watering Can | 1876 | National Gallery of Art | [link](https://commons.wikimedia.org/wiki/File:Auguste_Renoir_-_A_Girl_with_a_Watering_Can_-_Google_Art_Project.jpg) |
+| 84 | Mary Cassatt | The Boating Party | 1893-1894 | National Gallery of Art | [link](https://commons.wikimedia.org/wiki/File:Mary_Cassatt_-_The_Boating_Party_-_Google_Art_Project.jpg) |
+| 85 | Georges Seurat | Bathers at Asnières | 1884 | The National Gallery, London | [link](https://commons.wikimedia.org/wiki/File:Baigneurs_a_Asnieres.jpg) |
+| 86 | Vincent van Gogh | Café Terrace at Night | 1888 | Kröller-Müller Museum | [link](https://commons.wikimedia.org/wiki/File:Vincent_Willem_van_Gogh_-_Cafe_Terrace_at_Night_%28Yorck%29.jpg) |
+| 87 | Vincent van Gogh | Self-Portrait | 1889 | Musée d'Orsay | [link](https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project_%28454045%29.jpg) |
+| 88 | Vincent van Gogh | Wheatfield with Crows | 1890 | Van Gogh Museum | [link](https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Wheatfield_with_crows_-_Google_Art_Project.jpg) |
+| 89 | Vincent van Gogh | Almond Blossoms | 1890 | Van Gogh Museum | [link](https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project.jpg) |
+| 90 | Paul Cézanne | The Large Bathers | 1898-1905 | Philadelphia Museum of Art | [link](https://commons.wikimedia.org/wiki/File:Paul_C%C3%A9zanne%2C_French_-_The_Large_Bathers_-_Google_Art_Project.jpg) |
+| 91 | Paul Gauguin | Vision after the Sermon | 1888 | Scottish National Gallery | [link](https://commons.wikimedia.org/wiki/File:Paul_Gauguin_137.jpg) |
+| 92 | Henri Rousseau | The Sleeping Gypsy | 1897 | Museum of Modern Art (MoMA) | [link](https://commons.wikimedia.org/wiki/File:La_Boh%C3%A9mienne_endormie.jpg) |
+| 93 | Gustav Klimt | Judith I | 1901 | Belvedere, Vienna | [link](https://commons.wikimedia.org/wiki/File:Gustav_Klimt_039.jpg) |
+| 94 | Edvard Munch | Madonna | 1894-1895 | Munch Museum, Oslo | [link](https://commons.wikimedia.org/wiki/File:Edvard_Munch_-_Madonna_-_Google_Art_Project.jpg) |
+| 95 | John Singer Sargent | Carnation, Lily, Lily, Rose | 1885-1886 | Tate Britain | [link](https://commons.wikimedia.org/wiki/File:John_Singer_Sargent_-_Carnation%2C_Lily%2C_Lily%2C_Rose_-_Google_Art_Project.jpg) |
+| 96 | John Singer Sargent | Madame X | 1883-1884 | The Metropolitan Museum of Art | [link](https://commons.wikimedia.org/wiki/File:Madame_X_%28Madame_Pierre_Gautreau%29%2C_John_Singer_Sargent%2C_1884_%28unfree_frame_crop%29.jpg) |
+| 97 | Winslow Homer | The Gulf Stream | 1899 | The Metropolitan Museum of Art | [link](https://commons.wikimedia.org/wiki/File:Winslow_Homer_-_The_Gulf_Stream_-_Metropolitan_Museum_of_Art.jpg) |
+| 98 | Thomas Eakins | The Gross Clinic | 1875 | Philadelphia Museum of Art | [link](https://commons.wikimedia.org/wiki/File:Thomas_Eakins%2C_American_-_Portrait_of_Dr._Samuel_D._Gross_%28The_Gross_Clinic%29_-_Google_Art_Project.jpg) |
+| 99 | Henri Rousseau | The Dream | 1910 | Museum of Modern Art (MoMA) | [link](https://commons.wikimedia.org/wiki/File:Henri_Rousseau_005.jpg) |
+| 100 | Jean-Léon Gérôme | Pollice Verso | 1872 | Phoenix Art Museum | [link](https://commons.wikimedia.org/wiki/File:Jean-Leon_Gerome_Pollice_Verso.jpg) |
+| 101 | William-Adolphe Bouguereau | The Birth of Venus | 1879 | Musée d'Orsay | [link](https://commons.wikimedia.org/wiki/File:William-Adolphe_Bouguereau_%281825-1905%29_-_The_Birth_of_Venus_%281879%29.jpg) |
+| 102 | Grant Wood | American Gothic | 1930 | Art Institute of Chicago | [link](https://commons.wikimedia.org/wiki/File:Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg) |
+| 103 | Camille Pissarro | Boulevard Montmartre, Spring | 1897 | Private / Various collections | [link](https://commons.wikimedia.org/wiki/File:Camille_Pissarro%2C_Boulevard_Montmartre%2C_spring.jpg) |
+| 104 | Utagawa Hiroshige | Plum Park in Kameido | 1857 | Various collections | [link](https://commons.wikimedia.org/wiki/File:De_pruimenboomgaard_te_Kameido-Rijksmuseum_RP-P-1956-743.jpeg) |
+| 105 | Johannes Vermeer | Girl with a Red Hat | c. 1665-1666 | National Gallery of Art | [link](https://commons.wikimedia.org/wiki/File:Vermeer_-_Girl_with_a_Red_Hat.JPG) |
