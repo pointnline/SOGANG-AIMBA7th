@@ -26,22 +26,24 @@ export default function HomePage() {
         style={{
           padding: "40px 64px 56px",
           display: "grid",
-          gridTemplateColumns: "240px 1fr",
+          gridTemplateColumns: "240px minmax(0, 1fr) 320px",
           gap: 40,
-          maxWidth: 1280,
+          maxWidth: 1320,
           margin: "0 auto",
         }}
       >
         <HomeSidebar />
         <div>
           <HomeArchiveTimeline />
-          <HomeHealingNote />
           <SubscribeCTA />
           <HomeMuseumTeaser />
           <HomeCalendarBooks />
           <HomeAimbaPulse />
           <HomeContestsTeaser />
           <HomeInterviewRoom />
+        </div>
+        <div className="home-right">
+          <HomeHealingNote />
         </div>
       </section>
       <SiteFooter />

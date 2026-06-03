@@ -51,8 +51,8 @@ export function HomeHealingNote() {
     <div
       style={{
         display: "flex",
-        justifyContent: "flex-end",
-        margin: "18px 0 8px",
+        justifyContent: "center",
+        margin: "2px 0 0",
       }}
     >
       <div
@@ -60,8 +60,8 @@ export function HomeHealingNote() {
           position: "relative",
           transform: "rotate(-1.4deg)",
           background: "linear-gradient(180deg, #fff8e7, #f3e9ce)",
-          padding: "24px 30px 22px",
-          width: 340,
+          padding: "24px 28px 22px",
+          width: 290,
           boxShadow:
             "0 12px 22px -14px rgba(60,40,10,0.35), 0 2px 0 rgba(0,0,0,0.04)",
           borderRadius: 2,
