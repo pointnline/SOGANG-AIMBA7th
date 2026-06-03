@@ -1,6 +1,5 @@
 import { HomeHeader } from "@/components/home/HomeHeader";
 import { HomeSidebar } from "@/components/home/HomeSidebar";
-import { HomeHealingNote } from "@/components/home/HomeHealingNote";
 import { HomeArchiveTimeline } from "@/components/home/HomeArchiveTimeline";
 import { HomeMuseumTeaser } from "@/components/home/HomeMuseumTeaser";
 import { HomeContestsTeaser } from "@/components/home/HomeContestsTeaser";
@@ -26,9 +25,9 @@ export default function HomePage() {
         style={{
           padding: "40px 64px 56px",
           display: "grid",
-          gridTemplateColumns: "240px minmax(0, 1fr) 320px",
+          gridTemplateColumns: "240px 1fr",
           gap: 40,
-          maxWidth: 1320,
+          maxWidth: 1280,
           margin: "0 auto",
         }}
       >
@@ -41,9 +40,6 @@ export default function HomePage() {
           <HomeAimbaPulse />
           <HomeContestsTeaser />
           <HomeInterviewRoom />
-        </div>
-        <div className="home-right">
-          <HomeHealingNote />
         </div>
       </section>
       <SiteFooter />

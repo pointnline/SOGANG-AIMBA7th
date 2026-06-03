@@ -121,12 +121,6 @@
     padding: 28px 20px 40px !important;
   }
 
-  /* 모바일: 우측 Healing Note 컬럼은 sticky 해제하고 본문 흐름으로 복귀 */
-  .home-right {
-    position: static !important;
-    top: auto !important;
-  }
-
   .home-metric-grid,
   .brief-article-grid,
   .brief-lead-grid,
@@ -221,11 +215,4 @@
   border-color: #8B0029 !important;
   box-shadow: 0 5px 18px rgba(139, 0, 41, 0.16) !important;
   transform: translateY(-1px);
-}
-
-/* Healing Note 우측 컬럼 — 데스크탑에서 스크롤 따라오는 sticky 메모 */
-.home-right {
-  align-self: start;
-  position: sticky;
-  top: 88px;
 }

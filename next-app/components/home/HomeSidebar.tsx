@@ -3,6 +3,7 @@ import { TOKENS as T } from "@/lib/tokens";
 import { FILTERS, FUTURE_REPORT_PATH, PARTICIPATE_PATH } from "@/lib/data";
 import { sitePath } from "@/lib/paths";
 import { SiteSearch } from "@/components/SiteSearch";
+import { HomeHealingNote } from "@/components/home/HomeHealingNote";
 
 export function HomeSidebar() {
   return (
@@ -241,6 +242,9 @@ export function HomeSidebar() {
           ↗ 토픽 아카이브
         </a>
       </div>
+
+      {/* 힐링 노트 — 사이드바 하단에 작게. 들어올 때마다 잠언 1개 랜덤 */}
+      <HomeHealingNote />
     </aside>
   );
 }
