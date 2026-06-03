@@ -17,6 +17,71 @@ export function HomeSidebar() {
         <BrandLockup tone="dark" size="small" compact />
       </div>
 
+      {/* EdgePoint 링크허브 — 조전무 개인 채널 모음으로 가는 외부 링크 */}
+      <a
+        href="https://r-edgepoint.vercel.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="edgepoint-card"
+        style={{
+          display: "block",
+          marginBottom: 26,
+          padding: "13px 15px",
+          borderRadius: 10,
+          border: `1.5px solid ${T.gold}`,
+          background:
+            "linear-gradient(135deg, #fffdf8 0%, #f7f0e2 100%)",
+          boxShadow: `0 0 0 3px ${T.gold}1a`,
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "baseline",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--mono)",
+              fontSize: 8.5,
+              fontWeight: 700,
+              letterSpacing: "0.22em",
+              color: T.goldDeep,
+            }}
+          >
+            LINKPAGE
+          </span>
+          <span style={{ fontSize: 12, color: T.gold }}>↗</span>
+        </div>
+        <div
+          style={{
+            fontFamily: "var(--serif-display)",
+            fontSize: 19,
+            fontWeight: 600,
+            fontStyle: "italic",
+            color: T.ink,
+            lineHeight: 1.1,
+            marginTop: 3,
+          }}
+        >
+          EdgePoint
+        </div>
+        <div
+          style={{
+            fontFamily: "var(--korean)",
+            fontSize: 10.5,
+            color: T.ink3,
+            marginTop: 4,
+            letterSpacing: "0.01em",
+          }}
+        >
+          모든 채널을 한 곳에서 · 링크 허브
+        </div>
+      </a>
+
       <div
         style={{
           fontFamily: "var(--mono)",

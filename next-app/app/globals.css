@@ -205,3 +205,14 @@
     min-width: 0 !important;
   }
 }
+
+/* EdgePoint 링크허브 카드 — 호버 시 살짝 떠오르며 와인 테두리 */
+.edgepoint-card {
+  transition: box-shadow 0.18s ease, border-color 0.18s ease,
+    transform 0.18s ease;
+}
+.edgepoint-card:hover {
+  border-color: #8B0029 !important;
+  box-shadow: 0 5px 18px rgba(139, 0, 41, 0.16) !important;
+  transform: translateY(-1px);
+}

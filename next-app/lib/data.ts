@@ -2560,9 +2560,9 @@ export const SUBSCRIBE = {
   telegram: "",
   // 구글폼 등 외부 구독 폼 URL. 비우면 mailto 폴백 사용.
   formUrl: "",
-  // mailto 폴백 (제목·본문 프리필)
+  // mailto 폴백 (수신: 조전무 · 제목·본문 프리필) — 방문자가 신청 메일을 보내면 아래 주소로 도착
   mailto:
-    "mailto:?subject=AIMBA%207th%20Weekly%20Brief%20%EA%B5%AC%EB%8F%85%20%EC%8B%A0%EC%B2%AD&body=AIMBA%207th%20Weekly%20Brief%20%EC%83%88%20%ED%98%B8%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EB%B0%9B%EA%B3%A0%20%EC%8B%B6%EC%8A%B5%EB%8B%88%EB%8B%A4.",
+    "mailto:jun160022@gmail.com?subject=AIMBA%207th%20Weekly%20Brief%20%EA%B5%AC%EB%8F%85%20%EC%8B%A0%EC%B2%AD&body=AIMBA%207th%20Weekly%20Brief%20%EC%83%88%20%ED%98%B8%20%EC%95%8C%EB%A6%BC%EC%9D%84%20%EB%B0%9B%EA%B3%A0%20%EC%8B%B6%EC%8A%B5%EB%8B%88%EB%8B%A4.%0A%0A%EC%8B%A0%EC%B2%AD%EC%9E%90%20%EC%84%B1%ED%95%A8%3A%20%0A%EC%97%B0%EB%9D%BD%EC%B2%98(%EC%84%A0%ED%83%9D)%3A%20",
   headline: "매주, 새 호를 가장 먼저",
   sub: "AI · 비즈니스 · MBA · 창업 인사이트를 경영자 관점으로 정리해 보내드립니다. 발간 알림을 받아보세요.",
 };
