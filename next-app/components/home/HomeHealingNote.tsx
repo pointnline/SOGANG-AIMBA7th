@@ -51,19 +51,19 @@ export function HomeHealingNote() {
     <div
       style={{
         display: "flex",
-        justifyContent: "center",
-        margin: "36px 0 8px",
+        justifyContent: "flex-end",
+        margin: "18px 0 8px",
       }}
     >
       <div
         style={{
           position: "relative",
-          transform: "rotate(-1.6deg)",
+          transform: "rotate(-1.4deg)",
           background: "linear-gradient(180deg, #fff8e7, #f3e9ce)",
-          padding: "36px 44px 32px",
-          width: 520,
+          padding: "24px 30px 22px",
+          width: 340,
           boxShadow:
-            "0 14px 28px -16px rgba(60,40,10,0.35), 0 2px 0 rgba(0,0,0,0.04)",
+            "0 12px 22px -14px rgba(60,40,10,0.35), 0 2px 0 rgba(0,0,0,0.04)",
           borderRadius: 2,
         }}
       >
@@ -73,8 +73,8 @@ export function HomeHealingNote() {
             top: -14,
             left: "50%",
             transform: "translateX(-50%) rotate(2deg)",
-            width: 90,
-            height: 22,
+            width: 70,
+            height: 18,
             background: "rgba(184,150,80,0.55)",
             boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
           }}
@@ -83,10 +83,10 @@ export function HomeHealingNote() {
           style={{
             fontFamily: "var(--mono)",
             fontSize: 10,
-            letterSpacing: "0.28em",
+            letterSpacing: "0.26em",
             color: "#8a6b3a",
             fontWeight: 700,
-            marginBottom: 14,
+            marginBottom: 11,
             textAlign: "center",
           }}
         >
@@ -96,13 +96,13 @@ export function HomeHealingNote() {
           style={{
             fontFamily: '"Newsreader", "Noto Serif KR", serif',
             fontStyle: "italic",
-            fontSize: 25,
+            fontSize: 18,
             fontWeight: 400,
             color: "#3d2a16",
             letterSpacing: "-0.005em",
-            lineHeight: 1.45,
+            lineHeight: 1.4,
             textAlign: "center",
-            minHeight: 72,
+            minHeight: 56,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -113,9 +113,9 @@ export function HomeHealingNote() {
         <div
           style={{
             fontFamily: "var(--korean)",
-            fontSize: 12,
+            fontSize: 11,
             color: "#6b5236",
-            marginTop: 18,
+            marginTop: 14,
             textAlign: "right",
             fontStyle: "italic",
           }}

@@ -34,8 +34,8 @@ export default function HomePage() {
       >
         <HomeSidebar />
         <div>
-          <HomeHealingNote />
           <HomeArchiveTimeline />
+          <HomeHealingNote />
           <SubscribeCTA />
           <HomeMuseumTeaser />
           <HomeCalendarBooks />
