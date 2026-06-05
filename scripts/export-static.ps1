@@ -73,6 +73,13 @@ Replace-File $contestsHtml (Join-Path $repoRoot "contests\index.html")
 
 Replace-File $archiveHtml (Join-Path $repoRoot "archive\index.html")
 
+# public/data/* (공모전 보강 소스 등) → 루트 /data 로 동기화.
+# GH Pages(basePath /SOGANG-AIMBA7th)에서 /SOGANG-AIMBA7th/data/contests-extra.json 서빙용.
+$dataDir = Join-Path $outDir "data"
+if (Test-Path -LiteralPath $dataDir) {
+  Replace-Directory $dataDir (Join-Path $repoRoot "data")
+}
+
 Write-Host "Updated GitHub Pages files from next-app export:"
 Write-Host " - index.html"
 Write-Host " - brief/index.html"
