@@ -43,6 +43,11 @@ OUT_PATH = (Path(__file__).resolve().parent.parent
 DELAY = 1.2          # 요청 간 예의 지연(초)
 DETAIL_DELAY = 1.2
 
+# 안정성 가드: 수집량이 비정상이면 기존 파일을 보존(덮어쓰기 거부)한다.
+MIN_ENTRIES = 5      # 이보다 적으면 사이트 구조변경/차단 의심
+MIN_RATIO = 0.5      # 직전 대비 이 비율 미만으로 급감하면 의심
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
 
 def now_kst_iso() -> str:
     return datetime.now(KST).replace(microsecond=0).isoformat()
@@ -71,7 +76,9 @@ def parse_dday(text: str) -> int | None:
     return None
 
 
-def parse_dates(detail_html: str) -> tuple[str | None, str | None, str | None]:
+def parse_dates(
+    detail_html: str,
+) -> tuple[str | None, str | None, str | None, str | None]:
     """상세 페이지에서 접수기간(시작/끝)과 심사발표(있으면) 추출."""
     soup = BeautifulSoup(detail_html, "html.parser")
     start = end = result = None
@@ -96,7 +103,14 @@ def parse_dates(detail_html: str) -> tuple[str | None, str | None, str | None]:
 
 
 def norm_date(s: str) -> str:
-    return s.replace(".", "-").replace("--", "-")
+    """'2024.1.5' / '2024-12-5' 등을 ISO(YYYY-MM-DD)로 0-패딩 정규화.
+    한 자리 월/일을 패딩하지 않으면 DATE_RE 검증 실패 + 프론트 Date.parse가
+    엔진별로 NaN/오해석되어 D-day·마감정렬이 깨진다."""
+    m = re.match(r"(20\d{2})[.\-](\d{1,2})[.\-](\d{1,2})", s.strip())
+    if not m:
+        return s.replace(".", "-").strip()
+    y, mo, d = m.groups()
+    return f"{y}-{int(mo):02d}-{int(d):02d}"
 
 
 def status_to_section(status: str) -> str | None:
@@ -228,7 +242,53 @@ def build_feed(entries: list[dict]) -> dict:
     }
 
 
-def main():
+def validate_feed(feed: dict) -> list[str]:
+    """출력 직전 스키마/값 무결성 점검. 치명/경고 메시지 리스트 반환."""
+    errs: list[str] = []
+    sections = feed.get("sections")
+    if not isinstance(sections, dict):
+        return ["sections 누락 또는 dict 아님"]
+    for sec, items in sections.items():
+        if not isinstance(items, list):
+            errs.append(f"섹션 {sec} 가 리스트 아님")
+            continue
+        for i, e in enumerate(items):
+            if not isinstance(e, dict) or not e.get("title"):
+                errs.append(f"{sec}[{i}] title 없음(파싱 손상 의심)")
+                continue
+            for k in ("submission_start", "submission_end", "result_date"):
+                v = e.get(k)
+                if v and not DATE_RE.match(str(v)):
+                    errs.append(f"{sec}[{i}] {k} 날짜형식 이상: {v}")
+            u = e.get("url") or e.get("discovery_url")
+            if u and not str(u).startswith(("http://", "https://")):
+                errs.append(f"{sec}[{i}] url 비정상: {u}")
+    return errs
+
+
+def feed_total(feed: dict) -> int:
+    sections = feed.get("sections", {})
+    return sum(len(v) for v in sections.values() if isinstance(v, list))
+
+
+def previous_total(path: Path) -> int | None:
+    """기존 산출 파일의 항목 수(급감 판정 기준선). 없거나 깨졌으면 None."""
+    try:
+        old = json.loads(path.read_text(encoding="utf-8"))
+        return feed_total(old)
+    except Exception:
+        return None
+
+
+def atomic_write_json(path: Path, data: dict) -> None:
+    """임시파일 기록 후 원자적 교체 — 중단 시 기존 파일 손상 방지."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(path.name + ".tmp")
+    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp.replace(path)
+
+
+def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--pages", type=int, default=4, help="위비티 목록 페이지 수")
     ap.add_argument("--no-detail", action="store_true", help="상세 페이지 생략(빠름)")
@@ -244,16 +304,34 @@ def main():
         print(f"  - {e['title'][:36]} | {e['category'][:24]} | "
               f"{e.get('submission_start')}~{e.get('submission_end')}")
 
+    # ── 무결성 검증 ──────────────────────────────────────────────
+    errs = validate_feed(feed)
+    fatal = [e for e in errs if "title 없음" in e or "sections 누락" in e]
+    if errs:
+        print(f"[validate] 경고 {len(errs)}건:")
+        for e in errs[:10]:
+            print("  -", e)
+
+    # ── 급감/빈약 가드: 비정상이면 기존 파일 보존 ────────────────
+    prev = previous_total(OUT_PATH)
+    if total < MIN_ENTRIES:
+        print(f"[abort] {total}건(<{MIN_ENTRIES}) — 수집 실패 의심, 기존 파일 보존")
+        return 2
+    if prev is not None and prev > 0 and total < prev * MIN_RATIO:
+        print(f"[abort] {total}건이 직전 {prev}건의 {MIN_RATIO:.0%} 미만 — 급감 의심, 보존")
+        return 2
+    if fatal:
+        print(f"[abort] 치명 검증 오류 {len(fatal)}건 — 파싱 손상 의심, 보존")
+        return 2
+
     if args.dry_run:
-        print("[dry-run] 파일 미기록")
-        return
-    if total == 0:
-        print("[abort] 0건 — 기존 파일 보존(덮어쓰기 안 함)")
-        return
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(json.dumps(feed, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"기록: {OUT_PATH} ({total}건)")
+        print(f"[dry-run] 검증 통과(직전 {prev}건 → 신규 {total}건). 파일 미기록")
+        return 0
+
+    atomic_write_json(OUT_PATH, feed)
+    print(f"기록: {OUT_PATH} ({total}건, 직전 {prev}건)")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
