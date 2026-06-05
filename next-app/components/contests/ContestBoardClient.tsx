@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   CONTESTS_DATA_URL,
+  CONTESTS_EXTRA_URL,
   CONTESTS_SOURCE_REPO_URL,
   CONTESTS_SOURCE_SITE_URL,
   type ContestEntry,
@@ -41,8 +42,48 @@ function normalizeFeed(value: unknown): ContestsFeed | null {
     sections: {
       starting_today: normalizeEntries(value.sections.starting_today),
       ongoing: normalizeEntries(value.sections.ongoing),
-      awaiting_result: normalizeEntries(value.sections.awaiting_result),
+      // 원본 소스는 섹션 키를 awaiting_results(복수)로 쓴다. 과거 단수 키만
+      // 읽어 발표대기 항목이 통째로 누락되던 버그를 양쪽 키 모두 허용해 수정.
+      awaiting_result: normalizeEntries(
+        value.sections.awaiting_results ?? value.sections.awaiting_result
+      ),
     },
+  };
+}
+
+// 외부 단일 소스(이미지/영상)와 자체 크롤 보강 소스(기획/아이디어)를 한 피드로
+// 합친다. 같은 공모가 양쪽에 있으면 url > title 기준으로 중복 제거(외부 우선).
+function dedupeKey(e: ContestEntry): string {
+  const u = (e.url || e.discovery_url || "").trim().toLowerCase();
+  if (u) return `u:${u}`;
+  return `t:${(e.title || "").trim().toLowerCase()}`;
+}
+
+function mergeFeeds(
+  primary: ContestsFeed | null,
+  extra: ContestsFeed | null
+): ContestsFeed | null {
+  if (!primary && !extra) return null;
+  const keys: SectionKey[] = ["starting_today", "ongoing", "awaiting_result"];
+  const sections: ContestsFeed["sections"] = {};
+  for (const key of keys) {
+    const seen = new Set<string>();
+    const merged: ContestEntry[] = [];
+    for (const src of [primary, extra]) {
+      for (const e of src?.sections?.[key] || []) {
+        const k = dedupeKey(e);
+        if (seen.has(k)) continue;
+        seen.add(k);
+        merged.push(e);
+      }
+    }
+    sections[key] = merged;
+  }
+  // 갱신시각/공지는 외부 소스 우선, 없으면 보강 소스 값을 쓴다.
+  return {
+    generated_at: primary?.generated_at ?? extra?.generated_at,
+    notice: primary?.notice ?? extra?.notice,
+    sections,
   };
 }
 
@@ -143,9 +184,14 @@ function categoryBuckets(category: string | undefined): CategoryBucket[] {
 }
 
 // 선택된 필터에 항목이 속하는지 판정. ALL은 항상 통과.
-function matchesCategory(category: string | undefined, filter: CategoryFilter): boolean {
+// category 필드뿐 아니라 제목·요약 텍스트까지 함께 스캔해, 분야 라벨이
+// 비거나 부정확한 크롤 항목도 키워드로 올바른 부문에 잡히게 한다.
+function matchesCategory(entry: ContestEntry, filter: CategoryFilter): boolean {
   if (filter === "ALL") return true;
-  return categoryBuckets(category).includes(filter);
+  const text = [entry.category, entry.title, entry.summary]
+    .filter(Boolean)
+    .join(" ");
+  return categoryBuckets(text).includes(filter);
 }
 
 function categoryLabel(cat: CategoryFilter): string {
@@ -206,22 +252,35 @@ export function ContestBoardClient() {
       // 캐시 무시
     }
 
-    // 2) 네트워크 갱신
+    // 2) 네트워크 갱신: 외부 소스(이미지/영상) + 자체 크롤 보강 소스(기획/아이디어)를
+    //    병렬로 받아 한 피드로 합친다. 한쪽이 실패해도 다른 쪽만으로 렌더한다.
     (async () => {
       const controller = new AbortController();
       const timeout = window.setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+      const grab = async (url: string): Promise<ContestsFeed | null> => {
+        try {
+          const res = await fetch(url, {
+            cache: "no-store",
+            signal: controller.signal,
+          });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return normalizeFeed(await res.json());
+        } catch {
+          return null;
+        }
+      };
       try {
-        const res = await fetch(CONTESTS_DATA_URL, {
-          cache: "no-store",
-          signal: controller.signal,
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = normalizeFeed(await res.json());
+        const [primary, extra] = await Promise.all([
+          grab(CONTESTS_DATA_URL),
+          grab(CONTESTS_EXTRA_URL),
+        ]);
+        const data = mergeFeeds(primary, extra);
         if (!data) throw new Error("Invalid contests feed");
         if (cancelled) return;
         setFeed(data);
         setStale(false);
-        setError(null);
+        // 두 소스 다 실패한 경우만 위에서 throw → 여기선 부분성공도 정상 처리.
+        setError(primary || extra ? null : "no source");
         try {
           window.localStorage.setItem(
             CACHE_KEY,
@@ -256,9 +315,7 @@ export function ContestBoardClient() {
     const keys: SectionKey[] = ["starting_today", "ongoing", "awaiting_result"];
     for (const key of keys) {
       const list = feed.sections[key] || [];
-      const filtered = list.filter((item) =>
-        matchesCategory(item.category, category)
-      );
+      const filtered = list.filter((item) => matchesCategory(item, category));
 
       const sorted = [...filtered].sort((a, b) => {
         if (sortKey === "deadline") {
@@ -859,6 +916,19 @@ function CreditFooter() {
         </a>
         에서 확인할 수 있으며, 데이터 정확성·갱신 책임은 원본 운영자에게 있습니다.
         AIMBA 측은 큐레이션·렌더링만 담당합니다.
+      </p>
+      <p style={{ margin: "8px 0 0" }}>
+        기획·아이디어 부문은{" "}
+        <a
+          href="https://www.wevity.com/?c=find&s=1&gub=1&cidx=1"
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: T.wine, fontWeight: 700 }}
+        >
+          위비티(wevity.com)
+        </a>
+        의 공개 공모 목록을 매일 자동 수집해 보강합니다. 접수기간·링크 등 세부
+        정보는 각 공모전 원문을 반드시 확인하시기 바랍니다.
       </p>
     </div>
   );

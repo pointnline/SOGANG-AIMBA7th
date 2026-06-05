@@ -3271,6 +3271,15 @@ export const CONTESTS_SOURCE_REPO_URL =
 export const CONTESTS_SOURCE_SITE_URL =
   "https://junyeo217.github.io/ai-contest-board/";
 
+// 자체 크롤 보강 소스: 위비티 기획/아이디어 분야(cidx=1) — 외부 단일 소스가
+// 이미지/영상만 큐레이션해 '기획·아이디어' 필터가 빈 화면이던 문제를 보강한다.
+// 정적 export와 동일 오리진에 떨구므로 basePath만 붙여 상대 경로로 fetch한다.
+// scripts/crawl_contests.py 가 매일(GitHub Actions) 갱신한다.
+export const CONTESTS_EXTRA_URL = `${
+  process.env.NEXT_PUBLIC_BASE_PATH || ""
+}/data/contests-extra.json`;
+export const CONTESTS_EXTRA_SITE_URL = "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1";
+
 export interface ContestEntry {
   title: string;
   category: string;
