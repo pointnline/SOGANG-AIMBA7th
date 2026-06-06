@@ -18,7 +18,7 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260603.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260608.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
@@ -38,9 +38,9 @@ export const PULSE_TOPICS: PulseTopic[] = [
 ];
 
 export const PULSE_METRICS = [
-  { key: "PUBLISHED", value: "10", sub: "누적 발간 호수" },
-  { key: "CURRENT", value: "Vol.10", sub: "2026.06.03 최신호" },
-  { key: "TOP SIGNAL", value: "AI", sub: "$965B · 바이브코딩" },
+  { key: "PUBLISHED", value: "11", sub: "누적 발간 호수" },
+  { key: "CURRENT", value: "Vol.11", sub: "2026.06.08 최신호" },
+  { key: "TOP SIGNAL", value: "AI", sub: "에이전트 OS · 오픈웨이트" },
 ] as const;
 
 export interface BriefIssue {
@@ -60,6 +60,21 @@ export interface BriefIssue {
 
 export const BRIEF_ISSUES: BriefIssue[] = [
   {
+    vol: 11,
+    date: "2026.06.08",
+    shortDate: "06.08",
+    section: "BUS",
+    sectionLabel: "AI · Agent OS",
+    title: "AI가 '운영체제'로 들어온 주 — 엔터프라이즈 에이전트·오픈웨이트 약진",
+    headline:
+      "Snowflake·Experian·Meta가 '업무를 끝까지 자율로 처리하는' 엔터프라이즈 AI 에이전트를 내놓고, 미니맥스 M3·MS 자체모델 7종이 오픈웨이트·'AI 주권'으로 맞서며, AI 경쟁이 '모델 성능'에서 '에이전트 운영력'으로 넘어간 주.",
+    path: "/issues/vol_20260608.html",
+    read: "14분",
+    views: "최신",
+    live: true,
+    tags: ["AI", "엔터프라이즈에이전트", "오픈웨이트", "Snowflake", "Experian", "RWA", "부동산금융"],
+  },
+  {
     vol: 10,
     date: "2026.06.03",
     shortDate: "06.03",
@@ -70,8 +85,7 @@ export const BRIEF_ISSUES: BriefIssue[] = [
       "Anthropic이 $65B 시리즈H로 OpenAI를 바짝 추격하고 Opus 4.8이 벤치마크 1위에 오르는 사이, '바이브코딩'이 2026 스타트업의 표준 개발 방식으로 자리잡은 주.",
     path: "/issues/vol_20260603.html",
     read: "14분",
-    views: "최신",
-    live: true,
+    views: "archive",
     tags: ["AI", "Anthropic", "메가라운드", "Opus4.8", "바이브코딩", "RWA", "부동산금융"],
   },
   {
@@ -675,6 +689,310 @@ const VOL6: IssueContent = {
     { date: "6월 22일~24일", day: "월~수", title: "AAAI 2026 Summer Symposium Series", where: "동국대학교, 서울", tag: "학술컨퍼런스", link: "https://aaai.org/conference/summer-symposia/suss26/" },
     { date: "6월 27일~7월 3일", day: "토~금", title: "Festival of Learning 2026 (AI·교육·HCI 국제학술제)", where: "서울", tag: "국제학술", link: "https://festival-of-learning-2026.info/" },
     { date: "8월 19일~21일", day: "수~금", title: "AI Summit Seoul & Expo 2026", where: "COEX 그랜드볼룸 & Exhibition Hall B, 강남구", tag: "컨퍼런스/전시", link: "https://www.eventbrite.com/e/ai-summit-seoul-2026-ais-2026-tickets-1986491576781" },
+  ],
+};
+
+const VOL11: IssueContent = {
+  vol: 11,
+  dateLabel: "2026년 6월 8일",
+  isoDate: "20260608",
+  title:
+    "AI가 '운영체제'로 들어왔다 — 엔터프라이즈 에이전트·오픈웨이트 약진이 겹친 주",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주의 신호는 분명합니다 — AI가 '더 똑똑한 모델' 경쟁에서 '업무를 끝까지 자율로 처리하는 에이전트' 경쟁으로 넘어갔습니다. Snowflake·Anthropic이 거버넌스된 데이터 위에서 Claude 에이전트를 돌리고, Experian은 대출 전 과정을 감사·인적감독 하에 자동화하는 '금융권 Agent OS'를, 메타는 예약·결제·판매까지 자율 수행하는 Business Agent를 공개했습니다.",
+    "동시에 미니맥스 M3가 오픈웨이트로 프런티어 코딩 벤치를 찍고 마이크로소프트가 자체 모델 7종으로 'AI 주권'을 선언하면서, 기업이 AI를 빌려 쓰는 단계에서 직접 '내재화하고 운영하는' 단계로 빠르게 이동하고 있습니다.",
+  ],
+  conclusion:
+    "AI의 승부처가 모델 성능에서 '업무를 자율로 끝내는 에이전트 운영력'으로 옮겨갔습니다 — 어떤 모델이 더 똑똑한가보다, 누가 더 빨리 에이전트를 거버넌스된 업무 흐름에 심는가가 다음 분기의 격차를 만듭니다. AIMBA 원우분들은 '어떤 AI를 쓸까'를 넘어 '어떤 업무를 에이전트에게 맡길까'를 설계하는 훈련을 지금 시작해야 합니다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "이번 주 AI 섹션의 키워드는 '오픈웨이트의 약진'과 '자체 모델 내재화'입니다. 미니맥스 M3가 오픈웨이트 모델로 SWE-Bench Pro 59%를 찍으며 프런티어 코딩 경쟁에 합류했고, 마이크로소프트는 자체 모델 7종(MAI)을 공개하며 OpenAI 의존을 줄이는 'AI 주권' 노선을 분명히 했습니다. 딥시크는 창업 후 첫 외부펀딩으로 74억 달러를 추진하며 텐센트·CATL을 끌어들였습니다 — 빅테크가 자본과 오픈소스 양면에서 '독자 모델'을 두고 경쟁하는 국면입니다.",
+      articles: [
+        {
+          title: "딥시크, 첫 외부 투자로 74억 달러 조달 추진…텐센트·CATL 합류",
+          desc: "중국 AI 기업 딥시크가 창업 후 첫 외부 펀딩으로 약 500억 위안(74억 달러)을 모집 중이며, 창업자 량원펑이 30억 달러, 텐센트 15억 달러, CATL 7.4억 달러를 투입합니다. 투자 후 기업가치는 490억~560억 달러로 평가됩니다 — 중국 오픈소스 진영의 자본력이 한 단계 올라섰습니다.",
+          source: "TechNode",
+          href: "https://technode.com/2026/06/04/deepseek-in-talks-to-raise-7-billion-from-tencent-catl-and-other-investors/",
+        },
+        {
+          title: "미니맥스, 오픈웨이트 'M3' 공개…1M 컨텍스트·코딩서 GPT-5.5 추월 주장",
+          desc: "미니맥스가 6월 1일 공개한 오픈웨이트 모델 M3는 SWE-Bench Pro 59.0%로 GPT-5.5와 Gemini 3.1 Pro를 앞섰다고 밝혔으며, 자체 희소어텐션(MSA)으로 최대 100만 토큰 컨텍스트와 네이티브 멀티모달을 지원합니다 — 오픈웨이트가 프런티어 성능에 근접한 상징적 장면입니다.",
+          source: "MiniMax",
+          href: "https://www.minimax.io/blog/minimax-m3",
+        },
+        {
+          title: "MS, 자체 AI 모델 7종 'MAI' 공개…오픈AI 의존 줄이기 본격화",
+          desc: "마이크로소프트가 Build 2026에서 추론모델 MAI-Thinking-1(활성 350억 파라미터·25.6만 토큰 컨텍스트) 등 자체 모델 7종을 공개했습니다. 수레이만 AI CEO는 이 모델들이 GPT-5.5를 능가하면서 비용은 10분의 1 수준이라고 주장했습니다 — 플랫폼 기업의 '모델 내재화' 전략이 본격화됐습니다.",
+          source: "IndexBox",
+          href: "https://www.indexbox.io/blog/microsoft-unveils-seven-in-house-ai-models-at-build-2026-reducing-reliance-on-openai/",
+        },
+        {
+          title: "시장 인텔리전스 'AlphaSense', 75억 달러 가치에 3.5억 달러 조달",
+          desc: "금융·기업 리서치용 AI 검색 플랫폼 AlphaSense가 3.5억 달러를 유치하며 기업가치 75억 달러를 인정받았습니다 — 이번 주 크런치베이스 펀딩 톱10에 AI 스타트업이 대거 이름을 올리며, '모델'을 넘어 'AI 애플리케이션 레이어'로 자본이 확산되는 흐름을 보였습니다.",
+          source: "Crunchbase News",
+          href: "https://news.crunchbase.com/venture/biggest-funding-rounds-june-5-2026/",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "AI 에이전트가 '엔터프라이즈 운영체제'로 들어가는 한 주였습니다. Snowflake·Anthropic은 데이터 거버넌스 위에서 Claude 에이전트를 돌리는 통합을 발표했고, Experian은 대출 전 과정을 감사·인적감독 하에 자동화하는 금융권용 'Agent OS'를, 메타는 예약·결제·판매를 자율 수행하는 Business Agent를 공개했습니다. AI가 '보조 도구'에서 '업무를 끝까지 처리하는 운영 레이어'로 이동하는 변곡점입니다.",
+      articles: [
+        {
+          title: "스노우플레이크·앤트로픽, Summit 2026서 '거버넌스 갖춘 엔터프라이즈 AI' 가속",
+          desc: "6월 1일 샌프란시스코 Snowflake Summit 26에서 양사는 Claude가 Cortex AI·Cortex Code·Snowflake Intelligence를 구동한다고 발표했습니다. Cortex Code는 사내 최단기간 7,100명+ 사용자를 모은 최고 성장 제품이 됐고, Block·Carvana·Notion 등이 데이터 이동 없이 거버넌스된 AI 에이전트를 운영 중입니다.",
+          source: "Snowflake",
+          href: "https://www.snowflake.com/en/news/press-releases/snowflake-and-anthropic-accelerate-enterprise-ai-adoption-driven-by-rising-demand-for-governed-ai/",
+        },
+        {
+          title: "익스피리언, 금융용 '에이전트 운영체제(Agent OS)' 공개…서비스나우 첫 통합",
+          desc: "6월 2일 익스피리언은 Ascend 플랫폼 위에 신뢰 가능한 에이전틱 AI 계층 'Agent Operating System'을 발표했고, 서비스나우가 첫 통합 파트너로 합류했습니다. 고객획득부터 신용결정·포트폴리오 모니터링까지 대출 전 과정을 감사·인적감독 하에 자동화하며, 2,300개 클라이언트 솔루션으로 확장될 예정입니다.",
+          source: "Experian",
+          href: "https://www.experianplc.com/newsroom/press-releases/2026/experian-brings-trusted-agentic-ai-to-financial-services-with-th",
+        },
+        {
+          title: "메타, 기업용 'Business Agent' 출시…무료 시작 후 유료화로 수익모델 시험",
+          desc: "6월 3일 런던 Conversations 컨퍼런스에서 메타는 예약·결제·판매성사·리드검증을 자율 수행하는 Business Agent를 공개했습니다. WhatsApp·Messenger·Instagram과 Shopify·Zendesk 등 외부 시스템에 연동되며, 초기 무료 제공 후 향후 유료 구독을 도입하는 단계적 과금 전략을 택했습니다.",
+          source: "Global Banking & Finance Review",
+          href: "https://www.globalbankingandfinance.com/meta-launches-enterprise-focused-ai-business-agent-automate/",
+        },
+        {
+          title: "로리킷, '자가최적화 에이전트' 출시…출시 전 수천 시나리오로 검증",
+          desc: "6월 4일 Money20/20 유럽에서 로리킷은 AI 고객지원 에이전트를 실서비스 투입 전 수천 개 고객 시나리오로 테스트·개선하는 self-optimising agents를 발표했습니다. 한 고객사는 출시 즉시 해결률 5%p, 이후 월 10%p 상승, 만족도는 직전 벤더 대비 30점 높았습니다 — 에이전트의 '단위경제'를 검증하는 방법론입니다.",
+          source: "FF News",
+          href: "https://ffnews.com/newsarticle/fintech/lorikeet-launches-self-optimising-agents-at-money20-20-europe",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA",
+      code: "MBA",
+      narrative:
+        "AI 시대 MBA의 화두가 '판단력 교육'과 '채용 변별력'으로 모였습니다. 스페인 IESE가 1학년 전 과목에 AI를 내재화하며 '판단력'에 베팅했고, Woxsen 교수진은 평가 무결성·형평성을 축으로 한 AI 윤리 프레임을 제시했습니다. 채용 시장에선 AI 유창성이 '기본값'이 되며 변별이 더 어려워지고, 졸업생 일자리는 소기업·AI 직군으로 재편되고 있습니다 — AIMBA 원우에게 '사람만이 하는 판단'의 가치가 커지는 국면입니다.",
+      articles: [
+        {
+          title: "AI 시대, IESE는 MBA의 미래를 '판단력'에 건다 — 1년차 전 과목에 AI 내재화",
+          desc: "스페인 IESE 경영대학원이 2026년 9월부터 풀타임 MBA를 전면 개편해, AI를 일부 선택과목에 '붙이는' 대신 1학년 모든 과목에 내재화합니다. 개인 AI 활용→업무 재설계→전략적 AI 통찰의 3단계 역량 체계를 세우고, 교수 120명 중 약 85명이 가을 해커톤에 참여했습니다. 루틴 업무가 자동화될수록 '판단력과 리더십'의 가치가 커진다는 베팅입니다.",
+          source: "Poets & Quants",
+          href: "https://poetsandquants.com/2026/06/02/in-the-age-of-ai-iese-bets-the-mbas-future-on-judgment/",
+        },
+        {
+          title: "AI가 MBA 강의실에 들어와도, 성적표는 여전히 '윤리'가 쥔다",
+          desc: "Woxsen대 교수 2인은 경영대학원이 AI를 단순 도구로 다루지 말고 윤리적 프레임워크를 세워야 한다고 주장합니다. 핵심은 ①평가 무결성(프롬프트 실력이 아닌 학생의 사고를 측정) ②형평성(프리미엄 AI 접근 격차) ③허용·제한·금지 구간을 명시한 책임 사용 정책입니다. MBA 졸업생이 곧 기업 AI 거버넌스를 설계하므로, 강의실 규범이 미래 기업 윤리의 예행연습이라는 메시지입니다.",
+          source: "Poets & Quants",
+          href: "https://poetsandquants.com/2026/06/01/when-ai-walks-into-the-mba-classroom-ethics-still-holds-the-grade-sheet/",
+        },
+        {
+          title: "빅테크는 잊어라: 2026년 소기업이 신입 100만 명 채용 — 일부는 'AI가 못 뺏는' 일자리",
+          desc: "Gusto 분석에 따르면 2026년 봄·여름 직원 1~49인 소기업이 20~24세 졸업생 약 97.4만 명을 채용하며 전년(96.2만)보다 소폭 늘어납니다. '대기업은 수비, 소기업은 공격' 구도 속에 전통적 재무분석·SW 엔지니어 신입은 줄고 AI·파운딩 엔지니어 수요가 급증합니다 — Z세대 커리어가 'AI 네이티브'와 '숙련 기술직' 두 갈래로 갈리고 있습니다.",
+          source: "Fortune",
+          href: "https://fortune.com/2026/05/01/one-million-new-grads-hired-small-businesses-2026-hottest-jobs-ai-proof-service-technicians/",
+        },
+        {
+          title: "현행 채용 시스템은 'AI 준비된' 졸업생을 못 가려낸다 — SHL 100만 평가 분석",
+          desc: "SHL이 100만 건 이상의 역량평가를 분석한 결과, 신입 졸업생은 학습민첩성·적응력 등 AI 시대 핵심 행동역량에서 오히려 경력직을 앞섰지만 기존 채용 절차가 이를 측정하지 못해 'AI 준비된 인재'를 놓치고 있다고 지적했습니다. NACE에 따르면 2025년 지원 건수는 26% 늘고 지원자 70%가 AI 도구를 썼습니다 — 채용은 더 붐비고 변별은 더 어려워졌습니다.",
+          source: "HR Executive",
+          href: "https://hrexecutive.com/current-hiring-processes-arent-built-to-find-ai-ready-graduates-data-finds/",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "자본이 '딥테크 하드웨어'와 'AI 인프라'로 동시에 몰렸습니다. 한국 민간 우주발사체 우나스텔라가 335억 원 시리즈B(알토스 리드)를 마감했고, 바이브코딩 수혜주 Supabase가 105억 달러 가치에 시리즈F를, AI 음악 Suno가 저작권 소송 와중에도 54억 달러 가치를 인정받았습니다. 로봇 파운데이션모델 Generalist AI는 20억 달러 가치에 4억 달러를 유치했습니다 — 소프트웨어를 넘어 우주·로봇·물리 AGI로 자본이 번지는 흐름입니다.",
+      articles: [
+        {
+          title: "우주발사체 '우나스텔라', 335억 시리즈B 유치…누적 615억",
+          desc: "한국 민간 최초 자체 개발 로켓 자력 발사(2025년 5월, 고흥)에 성공한 우주발사체 스타트업 우나스텔라가 335억 원 규모 시리즈B를 유치했습니다. 알토스벤처스가 리드하고 산업은행·스트롱벤처스·하나벤처스·우리벤처파트너스 등이 참여, 누적 투자액은 615억 원입니다. 엔진·차세대 발사체 개발과 시험·발사 인프라 확충에 투입해 '한국 뉴스페이스' 상용화에 박차를 가합니다.",
+          source: "벤처스퀘어",
+          href: "https://www.venturesquare.net/1088208",
+        },
+        {
+          title: "Supabase, 5억 달러 시리즈F…기업가치 105억 달러로 '바이브 코딩' 수혜",
+          desc: "오픈소스 Postgres 백엔드 플랫폼 Supabase가 GIC 주도로 5억 달러 시리즈F를 유치하며 기업가치 105억 달러를 인정받았습니다. Stripe·Accel·Y Combinator·Salesforce Ventures 등이 참여했고, 직전 시리즈E(7개월 전) 대비 가치가 약 2배 뛰었습니다. AI 코딩 에이전트(특히 Claude Code)가 신규 DB 배포의 다수를 차지하며 DB 수가 전년 대비 600% 급증한 것이 성장 동력입니다.",
+          source: "TNGlobal",
+          href: "https://technode.global/2026/06/05/gic-leads-supabases-500m-series-f-funding/",
+        },
+        {
+          title: "AI 음악 '서노(Suno)', 저작권 소송 와중에도 4억 달러 시리즈D",
+          desc: "AI 음악 생성 서비스 Suno가 Bond 주도로 4억 달러 시리즈D를 유치, 기업가치 54억 달러를 기록했습니다. 7개월 전 24.5억 달러 대비 2배 이상입니다. 구독자 200만·연환산매출(ARR) 3억 달러, 하루 700만 곡 생성 규모입니다. UMG·Sony와 저작권 소송이 진행 중이지만 '공정이용' 논리로 맞서며 워너뮤직과는 라이선스 합의를 마쳤습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/06/03/still-facing-copyright-lawsuits-ai-music-generator-suno-raises-another-400m/",
+        },
+        {
+          title: "로봇 파운데이션모델 'Generalist AI', 4억 달러 유치…기업가치 20억 달러",
+          desc: "여러 로봇 플랫폼을 아우르는 '피지컬 AGI'를 표방하는 Generalist AI가 Radical Ventures 주도로 4억 달러를 유치하며 기업가치 20억 달러에 올랐습니다. 엔비디아 NVentures·베이조스·페이페이 리·나발 라비칸트 등이 참여했습니다. 딥마인드·보스턴다이내믹스 출신 팀이 창업, 플래그십 모델 'GEN-1'로 물리 작업 숙련도를 입증하며 로봇 데이터 인프라·상용 배포 확대에 자금을 투입합니다.",
+          source: "SiliconANGLE",
+          href: "https://siliconangle.com/2026/06/04/generalist-ai-raises-400m-2b-valuation-build-general-intelligence-real-world/",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "이번 호 Vibe Coding은 '서브에이전트와 에이전틱 워크플로'에 초점을 맞췄습니다. Claude Code 서브에이전트와 GitHub Copilot 에이전트 모드가 나란히 '아키텍처부터 매핑→계획→실행' 패턴을 권하고, CLAUDE.md·슬래시 명령 커스터마이징으로 반복 작업을 제거하는 실전 노하우가 정리됐습니다. 비개발자도 따라 할 수 있는 재현 가능한 워크플로로 바이브코딩이 성숙하고 있습니다 — AIMBA 원우가 직접 MVP를 빌드할 때 바로 쓸 수 있는 가이드입니다.",
+      articles: [
+        {
+          title: "Claude Code 서브에이전트 실전 설정 가이드 (2026)",
+          desc: "서브에이전트를 .claude/agents/(프로젝트)·~/.claude/agents/(유저) 디렉토리에 두는 우선순위 규칙과 code-reviewer.md(YAML frontmatter: name/description/tools/model) 템플릿, 내장 Explore·Plan·general 에이전트 활용법을 구체 예시로 설명합니다. 💡 핵심: 리뷰·리서치처럼 컨텍스트를 많이 잡아먹는 작업은 별도 서브에이전트로 위임해 메인 대화 오염을 막으세요.",
+          source: "Tembo",
+          href: "https://www.tembo.io/blog/claude-code-subagents",
+        },
+        {
+          title: "GitHub Copilot 에이전트 능력 200% 끌어내기",
+          desc: "Copilot agent mode에 '이 서비스를 도메인·인프라·인터페이스 레이어로 모듈 분해해줘' 같은 아키텍처 지향 프롬프트를 던져 다중 파일 변경·안전한 마이그레이션·리팩터링 계획을 단계별로 받는 1st-party 가이드입니다. 💡 핵심: 코딩 전에 '아키텍처 영향부터 매핑해줘'로 계획을 먼저 뽑고, 롤백 전략을 포함한 하위호환 변경을 요청하세요.",
+          source: "GitHub Blog",
+          href: "https://github.blog/ai-and-ml/github-copilot/how-to-maximize-github-copilots-agentic-capabilities/",
+        },
+        {
+          title: "Claude Code 커스터마이징: CLAUDE.md·슬래시커맨드·서브에이전트",
+          desc: "CLAUDE.md에 라이브러리 llms.txt 문서를 자동 로드시키고, /dexie-help 같은 슬래시커맨드와 전용 서브에이전트를 YAML frontmatter(allowed-tools, model: opus)로 정의하는 실제 코드 예시를 제공합니다. 💡 핵심: 자주 쓰는 지시는 슬래시커맨드로 패키징하고, 답변 전 항상 최신 공식문서를 WebFetch하도록 강제해 할루시네이션을 줄이세요.",
+          source: "alexop.dev",
+          href: "https://alexop.dev/posts/claude-code-customization-guide-claudemd-skills-subagents/",
+        },
+        {
+          title: "아이디어에서 PR까지: GitHub Copilot 에이전틱 워크플로우",
+          desc: "자연어로 이슈를 생성→Copilot coding agent에 할당→브랜치·환경 구성·코드베이스 탐색·계획 수립 후 draft PR을 자동 생성하는 전 과정을 보여주는 1st-party 가이드입니다(.chatmode.md 커스텀 모드, 원격 MCP 서버 설정 포함). 💡 핵심: 이슈를 '타이트하게' 좁히고 acceptance criteria를 명시한 뒤, 머지 전 반드시 PR 코드와 에이전트 추론을 리뷰하세요.",
+          source: "GitHub Blog",
+          href: "https://github.blog/ai-and-ml/github-copilot/from-idea-to-pr-a-guide-to-github-copilots-agentic-workflows/",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "RWA·스테이블코인이 '결제·정산 인프라'로 본격 편입됐습니다. 머니그램이 6천만 송금망에 자체 스테이블코인 MGUSD를 탑재하고, 스트라이프·비자·마스터카드가 공동 스테이블코인 플랫폼을 추진합니다. 심비오틱은 RWA 환매 병목(최장 180일)을 즉시 현금화로 풀고, 비트겟은 토큰화 美주식을 선물 증거금으로 허용했습니다 — 토큰화가 '보유'를 넘어 '담보·결제'로 진화하는 분기점입니다.",
+      articles: [
+        {
+          title: "머니그램, 자체 스테이블코인 'MGUSD' 출시…6천만 고객 송금망에 탑재",
+          desc: "글로벌 송금기업 머니그램이 6월 2일 미 달러 스테이블코인 MGUSD를 스텔라(Stellar) 블록체인 위에 출시했습니다. 발행은 스트라이프 자회사 Bridge가 맡고 스마트컨트랙트는 M0, 지갑은 Fireblocks가 담당합니다. 6천만 활성 고객·전 세계 50만 소매 거점을 가진 송금망에 자체 디지털달러를 직접 탑재해, USDC 등 3자 의존에서 벗어나 크로스보더 송금 인프라를 내재화한 사례입니다.",
+          source: "Ledger Insights",
+          href: "https://www.ledgerinsights.com/moneygram-launches-retail-focused-stablecoin-mgusd/",
+        },
+        {
+          title: "심비오틱 '리퀴드 레인' 출시…최장 180일 걸리던 RWA 환매를 즉시 현금화",
+          desc: "패러다임·판테라·코인베이스 벤처스가 투자한 심비오틱이 6월 2일 토큰화 실물자산(RWA) 즉시 환매 상품 '리퀴드 레인'을 선보였습니다. 토큰화 펀드·사모대출 등은 환매에 수주~최장 180일이 걸렸는데, 검증된 마켓메이커를 RFQ(견적요청) 방식으로 연결해 USDC로 즉시 교환되게 합니다. RWA 시장이 330억 달러를 넘었지만 대부분 상시 환매가 불가능했던 유동성 병목을 정조준한 것입니다.",
+          source: "CoinDesk",
+          href: "https://www.coindesk.com/business/2026/06/02/symbiotic-aims-to-make-tokenized-assets-easier-to-cash-out-with-new-liquidity-network",
+        },
+        {
+          title: "스트라이프·비자·마스터카드, 공동 스테이블코인 플랫폼 추진…코인베이스도 검토",
+          desc: "6월 3일 보도에 따르면 글로벌 결제 3강 스트라이프·비자·마스터카드가 새로운 스테이블코인 플랫폼 출시를 눈앞에 두고 있으며, 코인베이스도 참여를 검토 중입니다. 약 3,250억 달러 규모로 커진 스테이블코인 시장을 '대안 화폐'가 아닌 '결제·정산 인프라'로 재편하려는 움직임입니다. 스트라이프는 Bridge를, 마스터카드는 BVNK를 인수했고, 비자는 4월 스테이블코인 정산 파일럿을 9개 블록체인으로 확대한 바 있습니다.",
+          source: "CoinDesk",
+          href: "https://www.coindesk.com/business/2026/06/03/payment-giants-stripe-visa-mastercard-said-to-be-among-backers-of-soon-to-debut-stablecoin-platform",
+        },
+        {
+          title: "비트겟, 토큰화 美주식 15종을 선물 증거금으로 허용…전통자산·크립토 담보 통합",
+          desc: "비트겟이 6월 4일부터 rAAPL·rTSLA·rNVDA·rQQQ·rSPY 등 토큰화 주식·ETF 15종을 통합거래계좌(UTA)에서 USDT-M 선물 증거금으로 사용할 수 있게 했습니다. 멀티에셋 모드를 통해 별도 자금 이체 없이 크립토와 전통자산 담보를 통합 운용하는 구조입니다. 비트겟은 이미 100종 이상의 토큰화 주식·ETF·원자재·외환을 제공 중으로, RWA가 단순 보유를 넘어 파생상품 담보로 편입되는 단계를 보여줍니다.",
+          source: "Zawya",
+          href: "https://www.zawya.com/en/press-release/companies-news/bitget-empowers-traders-to-use-tokenized-equities-as-collateral-for-futures-positions-u5tz56j3",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "국내외 부동산이 '국지적 과열'과 '건전성 경고'로 갈렸습니다. 서울 아파트값이 0.25% 오르며 동탄이 0.60%로 전국 최고를 찍는 사이, 저축은행의 부동산업 대출 연체율이 17~43%로 치솟아 PF 너머 새 뇌관으로 부상했습니다. 미국에선 시애틀 오피스 공실 36.5%가 CMBS 만기벽을 직격했습니다. 한편 렌딧 창업자의 AI 핀테크 하이퍼칼이 알토스 시드를 받으며 보험계리 자동화에 도전합니다 — 부동산금융 실무자가 양쪽 신호를 함께 읽어야 할 국면입니다.",
+      articles: [
+        {
+          title: "서울 아파트값 0.25% 또 올라…동탄 0.60% '전국 최고' 질주",
+          desc: "한국부동산원 6월 첫째 주 주간동향(6/4 발표)에서 서울 아파트 매매가가 전주와 같은 0.25% 상승했습니다. 상승세가 강남(송파 0.28%)을 넘어 동대문 0.37%·강북 0.35% 등 외곽과 경기(광명 0.43%·성남 수정 0.42%)로 확산됐습니다. 반도체 훈풍을 탄 동탄은 0.60% 올라 전주(0.49%)보다 폭을 키우며 전국 최고 상승률을 기록했습니다 — 전세 부담에 밀린 실수요가 '가성비 지역'으로 이동하는 양상입니다.",
+          source: "이투데이",
+          href: "https://www.etoday.co.kr/news/view/2590474",
+        },
+        {
+          title: "美 알토스벤처스가 점찍은 K-핀테크…렌딧 창업자 '하이퍼칼' 시드 유치",
+          desc: "렌딧 창업자 김성준 대표의 신규 AI 핀테크 스타트업 하이퍼칼(HyperCal)이 6월 5일 미국 실리콘밸리 VC 알토스벤처스로부터 시드 투자를 유치했습니다. 보험 계리(Actuarial) 영역의 수작업·레거시 시스템 문제를 AI로 푸는 것이 목표로, 현재 PoC 단계입니다 — 글로벌 초기투자가 산업 특화 핀테크로 세분화되는 흐름을 보여주는 사례입니다.",
+          source: "머니투데이",
+          href: "https://www.mt.co.kr/future/2026/06/05/2026060509224033689",
+        },
+        {
+          title: "저축은행 PF는 정리했는데…'부동산업 대출' 연체율이 새 뇌관",
+          desc: "부동산 경기 침체 장기화로 대형 저축은행의 부동산업(임대·개발 법인) 대출 연체율이 급등했습니다. 1분기 공시 기준 SBI 17.88%(전년 7.38%, +10.5%p), 한국투자 17.54%, OK 17.03%, 웰컴 43.61%입니다. PF 부실 정리로 건전성 지표는 회복됐지만, PF가 아닌 일반 부동산업 대출·신용대출이 새로운 건전성 관리 과제로 부상했습니다 — 브릿지·PF 익스포저를 둔 금융사의 거울입니다.",
+          source: "아주경제",
+          href: "https://www.ajunews.com/view/20260531145617442",
+        },
+        {
+          title: "美 오피스 공실 1위 된 시애틀…36.5% 공실에 CMBS 만기벽 직격",
+          desc: "美 부동산 벤치마크: 시애틀 다운타운 오피스 공실률이 1분기 36.5%(전분기 33%)로 치솟아 샌프란시스코를 제치고 전국 최악으로 올라섰습니다(6/5 보도). 고금리·자산가치 하락으로 만기 도래 CMBS 대출의 차환이 막히면서, 월납 연체가 아닌 '만기 디폴트'가 핵심 리스크로 부상했습니다 — 한국 오피스·대체투자 익스포저 점검의 거울입니다.",
+          source: "Commercial Real Estate Direct",
+          href: "https://crenews.com/2026/06/05/seattles-office-struggles-could-impact-maturing-cmbs-loans/",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주 정부·공공 트랙의 핵심은 글로벌 액셀러레이팅 'K-Startup Grand Challenge 2026'(마감 6/17 15:00)과, 2026년 창업지원사업 통합공고·초기창업패키지 딥테크 특화형 모집입니다. AI·딥테크 창업자는 마감 전 아래 공고를 우선 확인하시길 권합니다.",
+      items: [
+        {
+          title: "K-Startup Grand Challenge 2026 — 글로벌 스타트업 액셀러레이팅 (마감 6/17 15:00)",
+          href: "https://ksgc.global/",
+        },
+        {
+          title: "K-Startup 신규 사업 공고 — 전략기술 딥테크 창업 촉진·서울 AI 허브 등 모집 중",
+          href: "https://www.k-startup.go.kr/web/main/mainSection0.do",
+        },
+        {
+          title: "2026년 중앙부처 및 지자체 창업지원사업 통합 공고 (중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000116904",
+        },
+        {
+          title: "2026년 초기창업패키지(딥테크 특화형) 창업기업 모집 — 빅데이터·AI 등 딥테크 5대 분야",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000117173",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 포인트는 6월 1일 신규 공지된 토론토대 연계 AI 융합 교육프로그램 모집과, AI 스킬 특강·Apple 디벨로퍼 아카데미 워크숍입니다. 경영대에서는 CFA Institute Rob Langrick 초청 특강도 예정돼 있으니, AIMBA 원우는 관심 프로그램의 마감일을 우선 점검하시길 권합니다.",
+      items: [
+        {
+          title: "[AI학과] 2027년도 캐나다 University of Toronto AI 융합 교육프로그램 모집 (6/1 신규)",
+          href: "https://ai.sogang.ac.kr/front/cmsboardlist.do?siteId=ai&bbsConfigFK=6330",
+        },
+        {
+          title: "[SW중심대학] AI 시대 필요한 스킬 특강 & Apple 디벨로퍼 아카데미 소개 워크숍 (5/26)",
+          href: "https://scc.sogang.ac.kr/front/cmsboardlist.do?siteId=sweducenter&bbsConfigFK=7250",
+        },
+        {
+          title: "[경영대] CFA Institute Rob Langrick 초청 특강 안내",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do",
+        },
+        {
+          title: "[MOT] 기술경영전문대학원 공지사항 (특강·포럼 상시 모니터링)",
+          href: "https://sgmot.sogang.ac.kr/gopage/sogangmot/goboard2.jsp?bbsConfigFK=22&siteId=sogangmot",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "6월 10일", day: "수", title: "Smart Tech Korea 2026 (AI & Big Data Show, 6/10~6/12)", where: "서울 COEX Hall A", tag: "전시/컨퍼런스", link: "https://en.smarttechkorea.com/aibigdatashow" },
+    { date: "6월 22일", day: "월", title: "AAAI 2026 Summer Symposium Series (6/22~6/24)", where: "동국대학교, 서울", tag: "학술 심포지엄", link: "https://aaai.org/conference/summer-symposia/suss26/" },
+    { date: "7월 7일", day: "화", title: "ICML 2026 (International Conference on Machine Learning, 7/7~7/9)", where: "서울 COEX", tag: "국제 학술대회", link: "https://icml.cc/" },
+    { date: "8월 19일", day: "수", title: "AI Summit Seoul & Expo 2026 (8/19~8/21)", where: "서울 COEX 그랜드볼룸 & B홀", tag: "글로벌 AI 서밋", link: "https://www.aisummitseoul.com/" },
   ],
 };
 
@@ -1710,7 +2028,7 @@ const VOL7: IssueContent = {
 };
 
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL10, VOL9, VOL8, VOL7];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL11, VOL10, VOL9, VOL8];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));
