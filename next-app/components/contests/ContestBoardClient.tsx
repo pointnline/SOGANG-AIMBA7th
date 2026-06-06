@@ -15,7 +15,7 @@ const CACHE_KEY = "aimba_contests_feed_v1";
 const CACHE_TTL_MS = 1000 * 60 * 60 * 6;
 const FETCH_TIMEOUT_MS = 1000 * 10;
 
-type CategoryFilter = "ALL" | "IMAGE" | "VIDEO" | "IDEA" | "PLANNING";
+type CategoryFilter = "ALL" | "IMAGE" | "VIDEO" | "IDEA";
 type CategoryBucket = Exclude<CategoryFilter, "ALL">;
 type SortKey = "deadline" | "recent";
 
@@ -159,17 +159,12 @@ function categoryBuckets(category: string | undefined): CategoryBucket[] {
     buckets.add("IMAGE");
   }
 
-  // 아이디어: 아이디어/idea/공모(아이디어성)/발명
+  // 아이디어 x 기획: 아이디어와 기획을 한 부문으로 통합한다.
+  // 아이디어/idea/발명 + 기획/planning/plan/제안/비즈니스 모델/사업화
   if (
     text.includes("아이디어") ||
     text.includes("idea") ||
-    text.includes("발명")
-  ) {
-    buckets.add("IDEA");
-  }
-
-  // 기획: 기획/planning/plan/제안/비즈니스 모델/사업화
-  if (
+    text.includes("발명") ||
     text.includes("기획") ||
     text.includes("planning") ||
     text.includes("plan") ||
@@ -177,7 +172,7 @@ function categoryBuckets(category: string | undefined): CategoryBucket[] {
     text.includes("사업화") ||
     text.includes("비즈니스")
   ) {
-    buckets.add("PLANNING");
+    buckets.add("IDEA");
   }
 
   return Array.from(buckets);
@@ -197,8 +192,7 @@ function matchesCategory(entry: ContestEntry, filter: CategoryFilter): boolean {
 function categoryLabel(cat: CategoryFilter): string {
   if (cat === "IMAGE") return "이미지";
   if (cat === "VIDEO") return "영상";
-  if (cat === "IDEA") return "아이디어";
-  if (cat === "PLANNING") return "기획";
+  if (cat === "IDEA") return "아이디어 x 기획";
   return "전체";
 }
 
@@ -417,7 +411,7 @@ function ToolbarRow({
   stale: boolean;
   error: string | null;
 }) {
-  const cats: CategoryFilter[] = ["ALL", "IMAGE", "VIDEO", "IDEA", "PLANNING"];
+  const cats: CategoryFilter[] = ["ALL", "IMAGE", "VIDEO", "IDEA"];
   const sorts: { key: SortKey; label: string }[] = [
     { key: "deadline", label: "마감 임박순" },
     { key: "recent", label: "최신 업데이트순" },
