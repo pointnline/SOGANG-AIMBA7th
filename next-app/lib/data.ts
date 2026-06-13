@@ -18,7 +18,7 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260608.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260616.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
@@ -38,9 +38,9 @@ export const PULSE_TOPICS: PulseTopic[] = [
 ];
 
 export const PULSE_METRICS = [
-  { key: "PUBLISHED", value: "11", sub: "누적 발간 호수" },
-  { key: "CURRENT", value: "Vol.11", sub: "2026.06.08 최신호" },
-  { key: "TOP SIGNAL", value: "AI", sub: "에이전트 OS · 오픈웨이트" },
+  { key: "PUBLISHED", value: "12", sub: "누적 발간 호수" },
+  { key: "CURRENT", value: "Vol.12", sub: "2026.06.16 최신호" },
+  { key: "TOP SIGNAL", value: "AI", sub: "Fable 5 · IPO 레이스 · RWA" },
 ] as const;
 
 export interface BriefIssue {
@@ -60,6 +60,21 @@ export interface BriefIssue {
 
 export const BRIEF_ISSUES: BriefIssue[] = [
   {
+    vol: 12,
+    date: "2026.06.16",
+    shortDate: "06.16",
+    section: "BUS",
+    sectionLabel: "AI · IPO",
+    title: "AI 상장 레이스 선언 — Fable 5·S-1·역대 최대 IPO가 겹친 주",
+    headline:
+      "Claude Fable 5·Anthropic-OpenAI S-1 동시 제출·SpaceX 역대 최대 IPO가 겹치며 AI가 드디어 자본시장 심판대에 오른 주.",
+    path: "/issues/vol_20260616.html",
+    read: "14분",
+    views: "최신",
+    live: true,
+    tags: ["AI", "IPO", "Fable5", "RWA", "DBS금", "KB채권", "바이브코딩"],
+  },
+  {
     vol: 11,
     date: "2026.06.08",
     shortDate: "06.08",
@@ -70,8 +85,7 @@ export const BRIEF_ISSUES: BriefIssue[] = [
       "Snowflake·Experian·Meta가 '업무를 끝까지 자율로 처리하는' 엔터프라이즈 AI 에이전트를 내놓고, 미니맥스 M3·MS 자체모델 7종이 오픈웨이트·'AI 주권'으로 맞서며, AI 경쟁이 '모델 성능'에서 '에이전트 운영력'으로 넘어간 주.",
     path: "/issues/vol_20260608.html",
     read: "14분",
-    views: "최신",
-    live: true,
+    views: "archive",
     tags: ["AI", "엔터프라이즈에이전트", "오픈웨이트", "Snowflake", "Experian", "RWA", "부동산금융"],
   },
   {
@@ -2021,8 +2035,305 @@ const VOL7: IssueContent = {
   ],
 };
 
+const VOL12: IssueContent = {
+  vol: 12,
+  dateLabel: "2026년 6월 16일",
+  isoDate: "20260616",
+  title:
+    "AI 상장 레이스 선언 — Fable 5·S-1·역대 최대 IPO가 겹친 주",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주의 신호는 하나로 수렴합니다 — AI가 드디어 공개 자본시장으로 들어옵니다. Claude Fable 5가 6월 9일 Mythos급 최강 모델로 일반 공개됐고, Anthropic은 $965B·OpenAI는 $852B 밸류에이션으로 S-1을 기밀 제출하며 AI 상장 레이스를 공식 선언했습니다. 같은 날(6월 11일) SpaceX가 $1.77T 밸류에이션·$75B 모집으로 역대 최대 IPO를 성사시키며, 기술 자본시장이 완전히 새로운 국면으로 넘어갔습니다.",
+    "동시에 Claude Code Dynamic Workflows가 정식 출시되며 단일 세션에서 최대 1,000개 병렬 서브에이전트를 오케스트레이션하는 시대가 열렸습니다. OpenAI-Oracle Cloud 파트너십은 OCI 기존 크레딧으로 GPT 모델을 즉시 이용하는 길을 열어 엔터프라이즈 AI 조달의 장벽을 낮췄고, ChatGPT는 역대 최단기로 10억 사용자를 돌파했습니다.",
+  ],
+  conclusion:
+    "Anthropic과 OpenAI가 동시에 IPO를 향해 달리고 Claude Fable 5가 '너무 강력해 일부 기능을 제한해야 했다'는 평가를 받는 지금 — AI 기업 가치평가와 에이전트 운영 능력이 함께 공개 심판대에 오른 역사적 분기점입니다. AIMBA 원우분들에게는 AI 투자 논리를 읽는 능력이 곧 실무 역량임을 보여주는 한 주입니다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "이번 주 AI 섹션을 장악한 사건은 단연 Claude Fable 5의 공개입니다. Anthropic은 6월 9일 Mythos급 모델을 일반에 처음 공개했으며, 역대 어떤 공개 AI 모델보다 강력하다는 평가와 함께 사이버보안·생물학 등 고위험 영역에서 비밀리에 역량을 제한했다가 연구자 반발로 번복한 논란이 동시에 불거졌습니다. DeepSeek은 V4 Pro를 75% 영구 인하하며 AI 토큰 가격 전쟁을 격화시켰고, Claude Code Dynamic Workflows 정식 출시로 병렬 에이전트 오케스트레이션이 실무 표준으로 올라섰습니다.",
+      articles: [
+        {
+          title: "Claude Fable 5 공개 — Anthropic 역대 가장 강력한 Mythos급 모델을 일반 출시",
+          desc: "Anthropic이 6월 9일 Mythos급 모델 Claude Fable 5를 일반 공개했습니다. 소프트웨어 엔지니어링·지식 업무·비전에서 기존 공개 모델을 압도하며, API·Amazon Bedrock·Vertex AI·Microsoft Foundry에서 이용 가능합니다. 입력 $10/출력 $50(100만 토큰)으로 Opus 4.8의 2배 수준입니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/06/09/anthropic-released-claude-fable-5-its-most-powerful-model-publicly-days-after-warning-ai-is-getting-too-dangerous/",
+        },
+        {
+          title: "Anthropic, Fable 5 '비밀 역량 제한' 번복 — AI 안전과 성능 사이의 긴장",
+          desc: "Fortune이 보도한 바에 따르면, Anthropic은 Fable 5 출시 초기 고위험 영역(사이버보안·생물학·화학)에서 역량을 비밀리에 제한했으나 AI 연구자·개발자들의 강한 비판을 받아 이를 번복했습니다. AI 최강 모델의 안전성과 활용 가능성 사이 균형 논쟁이 본격화됐습니다.",
+          source: "Fortune",
+          href: "https://fortune.com/2026/06/10/anthropic-accu-claude-fable-5-limits-capabilities-ai-researchers-developers/",
+        },
+        {
+          title: "Claude Code Dynamic Workflows 정식 출시 — 최대 1,000 서브에이전트 병렬 오케스트레이션",
+          desc: "Anthropic이 Claude Code에 Dynamic Workflows를 정식 출시했습니다. Claude가 JavaScript 오케스트레이션 스크립트를 동적으로 작성해 단일 세션에서 수백~최대 1,000개의 서브에이전트를 병렬 실행합니다. 광범위한 버그 추적·대형 마이그레이션·보안 감사 같이 단일 에이전트로는 불가능했던 복잡 작업을 커버합니다.",
+          source: "Anthropic",
+          href: "https://claude.com/blog/introducing-dynamic-workflows-in-claude-code",
+        },
+        {
+          title: "DeepSeek V4 Pro, 75% 영구 가격 인하 — AI 토큰 가격 전쟁 본격화",
+          desc: "DeepSeek이 V4 Pro를 영구 75% 인하해 서방 프런티어 모델 전체를 가격으로 압박했습니다. 업계 전반의 AI 토큰 단가가 구조적으로 낮아지며 마진 압박이 심화되고, AI 비용의 진입장벽이 더 낮아지는 효과를 동시에 만들고 있습니다.",
+          source: "BuildFastWithAI",
+          href: "https://www.buildfastwithai.com/blogs/ai-news-today-june-11-2026",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "AI 비즈니스의 축이 '기술 경쟁'에서 '자본시장 상장 레이스'로 이동한 한 주였습니다. Anthropic($965B)과 OpenAI($852B)가 나란히 S-1을 기밀 제출하며 트릴리온 달러 AI 상장 레이스를 공식 선언했고, OpenAI-Oracle 파트너십은 기업 AI 조달의 구조적 장벽을 낮췄습니다. ChatGPT 10억 사용자 돌파는 AI 플랫폼이 '대중 인프라'임을 수치로 확정한 이정표입니다.",
+      articles: [
+        {
+          title: "Anthropic, $965B 밸류에이션 S-1 기밀 제출 — 트릴리온 AI 상장 레이스 시작",
+          desc: "Anthropic이 6월 1일 $965B 밸류에이션으로 S-1을 SEC에 기밀 제출하며 IPO를 공식화했습니다. 연환산 매출 $47B 기반, 10월 상장·$1.75~1.8T 밸류에이션 목표를 밝혔습니다. OpenAI($852B S-1, 6월 8일)와의 AI 상장 레이스가 역사상 가장 큰 스케일로 본격화됐습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/06/01/anthropic-files-to-go-public/",
+        },
+        {
+          title: "OpenAI-Oracle Cloud 파트너십 — OCI 크레딧으로 GPT 모델·Codex 즉시 이용",
+          desc: "OpenAI가 6월 11일 Oracle Cloud와 파트너십을 발표했습니다. OCI 기존 계약 크레딧으로 OpenAI 최신 모델과 Codex를 즉시 사용 가능하게 해 새 계약·법무 검토 없이 기업 AI 도입이 가능해집니다. Microsoft의 OpenAI 독점 계약이 해소된 이후 클라우드 전면 확장의 첫 성과입니다.",
+          source: "OpenAI",
+          href: "https://openai.com/index/openai-on-oracle-cloud/",
+        },
+        {
+          title: "ChatGPT, 역대 최단기 10억 사용자 돌파 — 3년 만에 인류 최대 AI 플랫폼",
+          desc: "ChatGPT가 출시 약 3년 만에 10억 사용자를 돌파하며 역대 최단기 성장 기록을 세웠습니다. Claude는 전년 대비 사용자 성장 모멘텀에서 1위를 기록 중이어서, AI 플랫폼 경쟁이 '규모'와 '성장속도' 두 축으로 나뉘고 있습니다.",
+          source: "BuildFastWithAI",
+          href: "https://www.buildfastwithai.com/blogs/ai-news-today-june-11-2026",
+        },
+        {
+          title: "SpaceX, $1.77T 밸류에이션 역대 최대 IPO — AI·우주가 자본시장을 동시에 달구다",
+          desc: "SpaceX가 6월 11일 주당 $135에 공모가를 확정하며 $75B 자금 모집, $1.77T 밸류에이션으로 역대 최대 IPO를 성사시켰습니다. Nasdaq 티커 SPCX로 6월 12일 거래를 시작했으며, 같은 주에 Anthropic·OpenAI S-1이 겹치며 기술 자본시장이 새 역사를 쓴 한 주였습니다.",
+          source: "BuildFastWithAI",
+          href: "https://www.buildfastwithai.com/blogs/ai-news-today-june-11-2026",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA",
+      code: "MBA",
+      narrative:
+        "이번 주 MBA·커리어 섹션은 '서강대 AI 전환'과 '글로벌 MBA의 AI 역량 통합'이라는 두 흐름이 맞물렸습니다. 서강대가 학제간 AI 행동과학 대학원 프로그램을 발표하며 기존 AIMBA 원우의 학습 지형이 넓어졌고, 글로벌 B스쿨들은 AI 유창성을 교과 전반에 통합하는 것을 넘어 채용 시장의 '기본값'으로 만들고 있습니다.",
+      articles: [
+        {
+          title: "서강대, 학제간 'AI 행동과학' 대학원 프로그램 발표 — 2026년 가을 개설",
+          desc: "서강대학교가 심리학·교육·미디어·기술경영을 통합한 학제간 AI 행동과학 대학원 프로그램을 2026년 가을부터 개설한다고 발표했습니다. 인간 중심 AI 시대의 연구자·실무자를 양성하는 것을 목표로 하며, AIMBA 원우에게 AI 기술과 인간 행동 연구의 교차점에서 새로운 커리어 트랙이 열리고 있습니다.",
+          source: "Sogang University",
+          href: "https://ai.sogang.ac.kr/front/cmsboardlist.do?siteId=ai&bbsConfigFK=6330",
+        },
+        {
+          title: "AI가 전 세계 MBA 프로그램을 재편하는 방식 — 커리큘럼·채용·역량 기준의 동시 변화",
+          desc: "FIND MBA의 2026년 분석에 따르면 전 세계 주요 경영대학원이 AI를 일부 선택과목이 아닌 전공 커리큘럼 전반에 통합하고 있으며, 고용주들은 AI 유창성을 이제 '기본값(baseline)'으로 요구합니다. AI를 활용해 분석·리더십·전략적 판단을 높이는 능력이 MBA 학위의 새로운 가치 기준이 됩니다.",
+          source: "FIND MBA",
+          href: "https://find-mba.com/articles/how-ai-is-reshaping-mba-programs-around-the-world",
+        },
+        {
+          title: "MBA + AI 2026: 가장 빠르게 성장하는 커리어 조합의 실전 가이드",
+          desc: "2026년 AI 기술과 경영 역량을 결합한 MBA+AI 경력이 기술·금융·컨설팅 전 분야에서 가장 빠르게 성장하는 커리어 트랙으로 부상했습니다. AI가 루틴 업무를 자동화할수록 '데이터 기반 의사결정 + 조직 실행력'을 함께 갖춘 인재의 희소성과 시장 가치가 함께 올라갑니다.",
+          source: "ipsedu.in",
+          href: "https://www.ipsedu.in/blog/mba-ai-2026-career-guide/",
+        },
+        {
+          title: "Ground Truth: AI for Business Summit 2026 — 실무 AI 적용 전략 집중 토론",
+          desc: "위스콘신대학 비즈니스스쿨이 개최하는 'Ground Truth: AI for Business Summit'에서 MBA 교수·기업 리더들이 AI 투자 ROI 측정, 에이전트 조직 설계, 윤리적 AI 거버넌스를 집중 논의합니다. 이론을 실무로 전환하는 'ground truth' 관점이 MBA 교육의 핵심 화두로 부상했습니다.",
+          source: "Wisconsin School of Business",
+          href: "https://business.wisc.edu/events/page/2",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "자본시장이 'AI + 우주'라는 두 개의 새로운 기준점을 동시에 세운 한 주였습니다. SpaceX의 $1.77T 역대 최대 IPO와 Anthropic·OpenAI의 S-1 기밀 제출이 겹치며, 기술 스타트업 생태계가 단순 '벤처'에서 '트릴리온 달러 공개 자본시장'으로 넘어가는 변곡점이 선명해졌습니다. 서울시는 유니콘 챌린지로 글로벌 스타트업을 직접 유치하고 있고, K-Startup Grand Challenge 2026은 ⏰ D-1(6/17 15:00 마감)을 앞두고 있습니다.",
+      articles: [
+        {
+          title: "SpaceX, 역대 최대 IPO 성사 — $1.77T 밸류에이션·$75B 모집·Nasdaq SPCX",
+          desc: "SpaceX가 6월 11일 주당 $135에 공모가를 확정하며 역대 최대 IPO를 성사시켰습니다. $1.77T 밸류에이션·$75B 자금 조달·Nasdaq 티커 SPCX. 같은 주 Anthropic·OpenAI S-1이 겹치며 기술 자본시장이 '트릴리온 달러 복수 상장'의 새 국면에 진입했습니다.",
+          source: "BuildFastWithAI",
+          href: "https://www.buildfastwithai.com/blogs/ai-news-today-june-11-2026",
+        },
+        {
+          title: "서울시 '2026 유니콘 챌린지' — 글로벌 스타트업 7개사 선발, 마감 6월 30일",
+          desc: "서울시가 해외 스타트업 유치를 위한 '2026 서울 유니콘 챌린지'를 개최합니다. 7개사 선발, 총 상금 1.2억원, 네이버클라우드 Greenhouse 연계 지원. 접수 마감 6월 30일이며, 글로벌 스타트업의 한국 시장 진출 전략 발판으로 주목받고 있습니다.",
+          source: "BusinessWire",
+          href: "https://www.businesswire.com/news/home/20260527551255/en/Seoul-Metropolitan-Government-Announces-Try-Everything-2026-Seoul-Unicorn-Challenge",
+        },
+        {
+          title: "K-Startup Grand Challenge 2026 ⏰ D-1(6/17) — 한국 진출 글로벌 스타트업 최대 기회",
+          desc: "한국 대표 글로벌 액셀러레이팅 프로그램 K-Startup Grand Challenge(KSGC) 2026의 메인 트랙 접수가 6월 17일(수) 15:00 KST 마감됩니다. 상위 40팀 항공·숙박 지원, 상위 8팀 최대 5,000만원 사업화 지원, 10개월 프로그램. AI·딥테크·핀테크 글로벌 창업자라면 지금 바로 확인하세요.",
+          source: "KSGC",
+          href: "https://ksgc.global/",
+        },
+        {
+          title: "한국 '딥테크 스타트업 패키지' — AI·로봇·바이오 초기기업 최대 3억원 지원",
+          desc: "중소벤처기업부가 정비한 딥테크 스타트업 패키지는 AI·로봇·바이오헬스 5대 분야 초기기업에 최대 1.5억원, 스케일업 기업에 최대 3억원을 지원합니다. K-Startup과 연계해 연중 상시 모집 방식으로 전환했으며, AIMBA 창업 트랙 원우에게 실질적 창업 인프라를 제공합니다.",
+          source: "KoreaTechDesk",
+          href: "https://koreatechdesk.com/korea-startup-policy-2026-growth-ladder",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "이번 호 Vibe Coding은 '실제로 프로덕션에 배포되는 코드'를 만드는 워크플로에 초점을 맞췄습니다. Claude Code Dynamic Workflows가 정식 출시되며 병렬 서브에이전트 오케스트레이션이 가능해졌고, dev.to에서는 264개 프로덕션 프레임워크를 직접 빌드한 경험에서 나온 '실제로 배포되는 5가지 워크플로'가 큰 반향을 일으켰습니다. 데모가 아니라 스프린트를 버텨내는 코드를 만들려면 무엇이 달라야 하는지를 보여주는 가이드들입니다.",
+      articles: [
+        {
+          title: "Claude Code Dynamic Workflows 실전 가이드 — 병렬 서브에이전트로 '불가능한 작업' 위임하기",
+          desc: "Anthropic이 공식 출시한 Claude Code Dynamic Workflows 가이드입니다. Claude가 직접 JavaScript 오케스트레이션 스크립트를 작성해 수백 개의 병렬 서브에이전트를 조율하며, 결과가 검증된 뒤 하나의 통합 답변으로 돌아옵니다. 💡 핵심: 넓은 코드베이스 버그 추적·대형 마이그레이션·보안 감사 같은 '너무 큰 작업'은 Dynamic Workflows로 위임하세요.",
+          source: "Anthropic (Claude Blog)",
+          href: "https://claude.com/blog/introducing-dynamic-workflows-in-claude-code",
+        },
+        {
+          title: "실제로 배포되는 바이브코딩 워크플로 5가지 — 데모용이 아닌 프로덕션 레벨",
+          desc: "264개 프로덕션 프레임워크를 직접 빌드한 저자가 '살아남는 워크플로'를 정리했습니다. Claude Code(Opus + 200k context)의 Plan 모드로 나쁜 접근을 미리 걸러내고, Cursor automation rules로 반복을 자동화합니다. 💡 핵심: 스펙을 먼저 합의하고, 컨텍스트를 과제 단위로 좁히고, 테스트를 통과 게이트로 써야 데모가 아닌 코드가 나옵니다.",
+          source: "DEV Community (dohkoai)",
+          href: "https://dev.to/dohkoai/5-vibe-coding-workflows-that-actually-ship-production-code-in-2026-1nmn",
+        },
+        {
+          title: "Claude Code vs Cursor vs Codex 2026 — 바이브코딩 도구 선택 가이드",
+          desc: "직접 비교에 따르면 Claude Code는 복잡한 멀티파일 작업·장기 플래닝, Cursor는 에디터 내 즉각적 속도, Codex는 심층 모델 성능 비교 기준이 필요할 때 각각 강점을 발휘합니다. 💡 핵심: 도구 선택보다 '프로토타입→프로덕션 전환 단계별 도구 조합'이 더 중요합니다.",
+          source: "Viblo.asia",
+          href: "https://viblo.asia/p/cursor-vs-claude-code-vs-codex-which-is-better-for-vibe-coding-in-2026-bA468ealLKv",
+        },
+        {
+          title: "바이브코딩으로 AI 에이전트 프로덕션 배포까지 — 2026 실전 가이드",
+          desc: "프로토타입 → 스테이징 → 프로덕션 전 단계를 다루며, AI 에이전트를 배포 가능한 형태로 패키징하는 체크리스트를 제공합니다. 💡 핵심: 바이브코딩 결과물은 반드시 '환경 분리 + 에러 모니터링 + 롤백 계획'과 함께 배포하세요.",
+          source: "devops.com",
+          href: "https://devops.com/claude-codes-dynamic-workflows-take-on-the-tasks-that-were-too-big-to-automate/",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "RWA 토큰화가 '투자상품 보유'를 넘어 '소매 접근성 확대'와 '기관 채권 인프라 혁신'으로 동시에 진화했습니다. DBS Bank가 소매 고객 대상 토큰화 실물 금을 발표했고, KB국민은행이 한국 금융사 최초로 $100M 블록체인 디지털 채권을 발행했습니다. 토큰화 RWA 시장은 589% 급성장하며 $30B를 넘어섰고, 일본 3대 은행은 공동 스테이블코인 발행을 추진 중입니다.",
+      articles: [
+        {
+          title: "DBS Bank, 소매 고객 대상 토큰화 실물 금 출시 발표 — 1토큰=금 1g",
+          desc: "싱가포르 DBS Bank가 6월 11일 소매 고객을 위한 'DBS Physical Gold Tokens'를 2026년 하반기 출시한다고 발표했습니다. 토큰 1개는 싱가포르 전용 금고의 실물 금 1g에 완전 대응됩니다. 발행·유통·보관 전 과정을 DBS가 내부 처리하며, DBS Digital Exchange에서 기관 투자자용 추가 상장도 검토 중입니다.",
+          source: "CoinDesk",
+          href: "https://www.coindesk.com/business/2026/06/11/singapore-bank-dbs-to-offer-tokenized-gold-to-retail-customers",
+        },
+        {
+          title: "KB국민은행, 한국 최초 블록체인 디지털 채권 $100M 발행 — HSBC Orion 플랫폼",
+          desc: "KB국민은행이 한국 금융사 최초로 HSBC Orion 디지털자산 플랫폼을 통해 $100M(만기 2년) 블록체인 기반 디지털 채권을 발행했습니다. HSBC가 단독 주관사를 맡았으며, 전통 채권 발행 프로세스를 블록체인으로 혁신한 한국 기관금융의 첫 사례입니다.",
+          source: "crypto.news",
+          href: "https://crypto.news/kb-kookmin-bank-raises-100m-through-blockchain-powered-digital-bond-sale/",
+        },
+        {
+          title: "토큰화 RWA 시장 589% 급성장 — 주식·채권·원자재 전선 동시 확장",
+          desc: "2025년 초부터 2026년 6월까지 토큰화 RWA 시장이 589% 급성장해 $30B를 돌파했습니다. 토큰화 채권·MMF가 83%(+$6.5B) 성장한 가운데, 토큰화 주식은 422% 급증하며 가장 빠른 신규 카테고리로 부상했습니다. 기관 보유자 수 898,800명으로 역대 최대 단월 증가를 기록하며 소매 확산 신호도 뚜렷합니다.",
+          source: "blockchain.news",
+          href: "https://blockchain.news/news/tokenized-rwa-growth-2026",
+        },
+        {
+          title: "일본 3대 은행, 스테이블코인 공동 발행 추진 — 2027년 3월 목표",
+          desc: "일본 3대 메가뱅크가 2027년 3월 이전 엔화 스테이블코인을 공동 발행하는 계획을 추진 중입니다. 홍콩 규제형 스테이블코인 하반기 출시, 한국 STO 법제화와 맞물려 아시아 주요 금융시장의 토큰화 인프라가 동시에 구축되는 흐름입니다.",
+          source: "PANews",
+          href: "https://www.panewslab.com/en/articles/019ebb26-7902-757f-a88f-f651269b80af",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "국내 부동산이 전세 수급 불균형으로 10년 6개월 만의 최대 주간 상승을 기록했고, 핀테크 자본은 '명확한 업무 병목을 푸는 버티컬'에 집중되고 있습니다. 글로벌에서는 GENIUS Act 통과 이후 스테이블코인이 결제 레일로 기관금융에 본격 편입되며 핀테크·부동산금융의 교차점이 빠르게 확장되고 있습니다.",
+      articles: [
+        {
+          title: "서울 아파트 전세 0.29% 급등 — 10년 6개월 만에 최고 주간 상승",
+          desc: "한국부동산원 주간 조사에 따르면 서울 아파트 전세 가격이 0.29% 급등해 10년 6개월 이후 최고 주간 상승폭을 기록했습니다. 입주 물량 감소·매매 관망 전환이 맞물리며 주거 불안 우려가 커지고 있습니다. 부동산금융 실무자 관점에서 전세 부채 확대가 수요층 이동을 어떻게 바꾸는지 주목할 국면입니다.",
+          source: "한국부동산원",
+          href: "https://www.reb.or.kr/r-one/",
+        },
+        {
+          title: "2026 한국 VC 시장 서울 중심 개편 — AI·핀테크 시리즈A $3B 돌파",
+          desc: "2026년 한국 스타트업 시리즈A 투자가 $3B를 돌파했습니다. 전통 부동산금융 채널의 디지털화(embedded finance·대출심사 자동화·보험계리 AI)를 겨냥한 AI 핀테크가 초기 자금을 흡수하는 흐름이 뚜렷하며, 글로벌 VC의 한국 딥테크 투자 관심도 높아지고 있습니다.",
+          source: "KoreaTechDesk",
+          href: "https://koreatechdesk.com/korea-startup-policy-2026-growth-ladder",
+        },
+        {
+          title: "GENIUS Act 통과 이후 스테이블코인이 핀테크 결제 레일로 기관금융에 진입",
+          desc: "a16z crypto의 2026년 트렌드 분석에 따르면, GENIUS Act(2025.7)가 연방 프레임워크를 세운 이후 스테이블코인이 결제·정산 인프라로 금융권에 빠르게 편입되고 있습니다. 스트라이프·비자·마스터카드가 공동 스테이블코인 플랫폼을 추진하는 사이, 한국 원화 스테이블코인 발행 주체 논쟁도 본격화됩니다.",
+          source: "a16z Crypto",
+          href: "https://a16zcrypto.com/posts/article/trends-stablecoins-rwa-tokenization-payments-finance/",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주 최대 임박 공고는 K-Startup Grand Challenge 2026 메인 트랙(⏰ D-1, 마감 6/17 15:00)입니다. 한국 딥테크 스타트업 패키지(AI·로봇·바이오, 최대 3억원)와 서울시 유니콘 챌린지(마감 6/30, 7개사 선발) 모집도 진행 중이니, 창업 트랙 원우분들은 우선순위를 정해 즉시 확인하시길 권합니다.",
+      items: [
+        {
+          title: "K-Startup Grand Challenge 2026 메인 트랙 접수 ⏰ D-1 (마감 6/17 15:00 KST)",
+          href: "https://ksgc.global/",
+        },
+        {
+          title: "한국 딥테크 스타트업 패키지 — AI·로봇·바이오 5대 분야, 최대 3억원",
+          href: "https://koreatechdesk.com/korea-startup-policy-2026-growth-ladder",
+        },
+        {
+          title: "2026 서울 유니콘 챌린지 — 글로벌 스타트업 7개사, 마감 6/30",
+          href: "https://www.businesswire.com/news/home/20260527551255/en/Seoul-Metropolitan-Government-Announces-Try-Everything-2026-Seoul-Unicorn-Challenge",
+        },
+        {
+          title: "2026년 중앙부처 및 지자체 창업지원사업 통합 공고 (중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000116904",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 포인트는 서강대의 학제간 AI 행동과학 대학원 프로그램 발표와, 인공지능학과·SW중심대학 하계 프로그램 모집입니다. 서강대 'AI 중심대학' 선정(연 30억원, 8년 총 240억원) 이후 AI 관련 학과·프로그램이 빠르게 확장되고 있으니, AIMBA 원우는 교내 AI 프로그램을 적극 활용하시길 권합니다.",
+      items: [
+        {
+          title: "[AI학과] 학제간 AI 행동과학 대학원 프로그램 (2026 가을 개설 예정)",
+          href: "https://ai.sogang.ac.kr/front/cmsboardlist.do?siteId=ai&bbsConfigFK=6330",
+        },
+        {
+          title: "[SW중심대학] 하계 AI·SW 특강 및 프로그램 모니터링",
+          href: "https://scc.sogang.ac.kr/front/cmsboardlist.do?siteId=sweducenter&bbsConfigFK=7250",
+        },
+        {
+          title: "[경영대] 서강대 경영대학원 MBA 공지사항",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do",
+        },
+        {
+          title: "[MOT] 기술경영전문대학원 공지사항 (특강·포럼 상시 모니터링)",
+          href: "https://sgmot.sogang.ac.kr/gopage/sogangmot/goboard2.jsp?bbsConfigFK=22&siteId=sogangmot",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "6월 22일", day: "월", title: "AAAI 2026 Summer Symposium Series (6/22~6/24)", where: "동국대학교, 서울", tag: "학술 심포지엄", link: "https://aaai.org/conference/summer-symposia/suss26/" },
+    { date: "7월 7일", day: "화", title: "ICML 2026 (International Conference on Machine Learning, 7/7~7/9)", where: "서울 COEX", tag: "국제 학술대회", link: "https://icml.cc/" },
+    { date: "8월 19일", day: "수", title: "AI Summit Seoul & Expo 2026 (8/19~8/21)", where: "서울 COEX 그랜드볼룸 & B홀", tag: "글로벌 AI 서밋", link: "https://www.aisummitseoul.com/" },
+  ],
+};
+
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL11, VOL10, VOL9, VOL8];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL12, VOL11, VOL10, VOL9];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));

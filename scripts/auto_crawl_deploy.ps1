@@ -77,19 +77,31 @@ try {
   if ($push.Code -ne 0) { Log "[5/6] git push 실패(code=$($push.Code)) — 중단"; exit 5 }
   Log "[5/6] GitHub Pages 푸시 완료"
 
-  # 6) Vercel 미러 배포 + alias (push로 자동 재빌드되지 않음 → 항상 살려둔다)
-  Log "[6/6] Vercel 미러 배포"
-  Push-Location (Join-Path $repo "next-app")
-  $dep = Run-Native "vercel" @("--prod", "--yes", "--scope", "pointnlines-projects")
-  Pop-Location
-  if ($dep.Code -ne 0) { Log "[6/6] Vercel 배포 실패(code=$($dep.Code)) — GH Pages는 갱신됨, 미러 stale"; exit 6 }
-  $m = [regex]::Match($dep.Out, "sogang-aimba7th-[a-z0-9]+-pointnlines-projects\.vercel\.app")
-  if ($m.Success) {
-    $alias = Run-Native "vercel" @("alias", "set", $m.Value, "sogang-aimba7th.vercel.app", "--scope", "pointnlines-projects")
-    if ($alias.Code -eq 0) { Log "[6/6] Vercel 미러 alias 갱신 → $($m.Value)" }
-    else { Log "[6/6] alias 갱신 실패(code=$($alias.Code))" }
+  # 6) Vercel 미러 배포 + alias — 타임아웃 가드(8분). Vercel 간헐적 hang이
+  #    작업 전체를 30분 타임아웃 강제종료(0xC000013A)시키던 버그 차단.
+  #    GH Pages가 메인 채널이므로 Vercel은 best-effort(실패/타임아웃=하드락 아님 → exit 0).
+  Log "[6/6] Vercel 미러 배포 (8분 타임아웃 가드)"
+  $vercelSb = {
+    param($repo)
+    Set-Location (Join-Path $repo "next-app")
+    $dep = (& vercel --prod --yes --scope pointnlines-projects 2>&1 | Out-String)
+    $depCode = $LASTEXITCODE
+    $m = [regex]::Match($dep, "sogang-aimba7th-[a-z0-9]+-pointnlines-projects\.vercel\.app")
+    $aliasOut = ""
+    if ($depCode -eq 0 -and $m.Success) {
+      $aliasOut = (& vercel alias set $m.Value sogang-aimba7th.vercel.app --scope pointnlines-projects 2>&1 | Out-String)
+    }
+    [pscustomobject]@{ Code = $depCode; Url = $(if ($m.Success) { $m.Value } else { "" }); Out = ($dep + "`n" + $aliasOut) }
+  }
+  $job = Start-Job -ScriptBlock $vercelSb -ArgumentList $repo
+  if (Wait-Job $job -Timeout 480) {
+    $vr = Receive-Job $job; Remove-Job $job -Force
+    if ($vr.Out -and $vr.Out.Trim()) { Add-Content -LiteralPath $log -Value $vr.Out.TrimEnd() -Encoding utf8 }
+    if ($vr.Code -eq 0 -and $vr.Url) { Log "[6/6] Vercel 미러 갱신 완료 → $($vr.Url)" }
+    else { Log "[6/6] Vercel 배포/alias 미완(code=$($vr.Code)) — GH Pages는 갱신됨(미러 stale, 하드락 아님)" }
   } else {
-    Log "[6/6] 경고: Vercel deployment URL 추출 실패 — alias 미갱신(미러 stale 가능)"
+    Stop-Job $job; Remove-Job $job -Force
+    Log "[6/6] Vercel 타임아웃(8분 초과) 강제중단 — GH Pages는 갱신됨(미러 stale, 하드락 아님)"
   }
 
   Log "================ 완료 ================"
