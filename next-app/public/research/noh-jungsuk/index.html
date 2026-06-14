@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>노정석 사고 OS 관측소 — AI Frontier EP45–99</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#07090f; --bg2:#0b0e17; --panel:rgba(255,255,255,.028); --panel2:rgba(255,255,255,.05);
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.14);
+  --ink:#e9e5da; --mut:#8e96a8; --dim:#5c6477;
+  --amber:#e3a14e; --amber2:#f0c277; --fact:#5fb381; --infer:#e0b34f; --risk:#d97f6e; --cy:#7fb4d9;
+  --serif:'Noto Serif KR',serif; --sans:'Pretendard Variable',Pretendard,sans-serif; --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(1100px 500px at 75% -5%,rgba(227,161,78,.07),transparent 60%),
+             radial-gradient(800px 500px at 10% 25%,rgba(127,180,217,.045),transparent 55%)}
+::selection{background:rgba(227,161,78,.3)}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:#252b3a;border-radius:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+a{color:var(--amber2);text-decoration:none}
+
+/* ── progress + nav ── */
+#prog{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--cy));width:0;z-index:99}
+nav{position:fixed;top:0;width:100%;z-index:90;backdrop-filter:blur(14px);
+  background:rgba(7,9,15,.78);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:13px 28px}
+.nav-brand{font-family:var(--serif);font-weight:700;font-size:15px;letter-spacing:.04em;white-space:nowrap}
+.nav-brand b{color:var(--amber)}
+.nav-links{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{font-family:var(--mono);font-size:10.5px;color:var(--mut);padding:5px 9px;border-radius:5px;white-space:nowrap;transition:.18s}
+.nav-links a:hover,.nav-links a.on{color:var(--amber2);background:var(--panel2)}
+.nav-links a i{font-style:normal;color:var(--dim);margin-right:3px}
+
+main{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 28px}
+section{padding:86px 0 30px;scroll-margin-top:50px}
+.sec-tag{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.22em;margin-bottom:14px}
+.sec-tag::before{content:"";display:inline-block;width:26px;height:1px;background:var(--amber);vertical-align:middle;margin-right:10px;opacity:.6}
+h2{font-family:var(--serif);font-weight:900;font-size:clamp(26px,3.4vw,38px);line-height:1.3;margin-bottom:10px}
+.sec-sub{color:var(--mut);font-size:14.5px;max-width:720px;margin-bottom:36px}
+.lbl{display:inline-block;font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:4px;border:1px solid var(--line2);color:var(--mut)}
+
+/* ── hero ── */
+#hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:120px}
+.hero-kicker{font-family:var(--mono);font-size:12px;color:var(--amber);letter-spacing:.3em;margin-bottom:22px}
+#hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(40px,6.5vw,76px);line-height:1.18;letter-spacing:-.01em}
+#hero h1 em{font-style:normal;color:var(--amber);position:relative}
+.hero-sub{margin-top:22px;font-size:16.5px;color:var(--mut);max-width:680px}
+.journey{display:flex;align-items:center;gap:20px;margin-top:48px;flex-wrap:wrap}
+.jcell .jy{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.jcell .jt{font-family:var(--serif);font-weight:700;font-size:21px;margin:2px 0}
+.jcell .jd{font-size:12px;color:var(--mut)}
+.jarrow{color:var(--amber);font-size:22px;opacity:.7}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:56px}
+.kpi{background:var(--bg2);padding:20px 22px}
+.kpi b{display:block;font-family:var(--serif);font-size:30px;font-weight:700;color:var(--amber2)}
+.kpi span{font-size:12px;color:var(--mut)}
+.hero-quote{margin-top:54px;border-left:2px solid var(--amber);padding:6px 0 6px 22px;min-height:74px;cursor:pointer}
+.hero-quote p{font-family:var(--serif);font-size:17px;font-style:italic;color:var(--ink);transition:opacity .4s}
+.hero-quote cite{display:block;margin-top:6px;font-family:var(--mono);font-style:normal;font-size:11px;color:var(--dim)}
+
+/* ── OS / axioms ── */
+.layers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:46px}
+.layer{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:24px}
+.layer-t{font-family:var(--mono);font-size:12px;color:var(--amber);margin-bottom:10px}
+.layer p{font-size:13.5px;color:var(--mut)}
+.axioms{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.axiom{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:28px;transition:.25s}
+.axiom:hover{border-color:rgba(227,161,78,.4);transform:translateY(-2px)}
+.axiom-num{font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:.15em;margin-bottom:10px}
+.axiom h3{font-family:var(--serif);font-size:19.5px;font-weight:700;margin-bottom:14px}
+.axiom blockquote{font-size:13.5px;font-style:italic;color:var(--cy);border-left:2px solid rgba(127,180,217,.35);padding-left:14px;margin-bottom:13px}
+.axiom blockquote cite{display:block;font-family:var(--mono);font-style:normal;font-size:10.5px;color:var(--dim);margin-top:5px}
+.axiom p{font-size:13.5px;color:var(--mut)}
+
+/* ── timeline ── */
+.timeline{position:relative;margin-left:8px;padding-left:34px;border-left:1px solid var(--line2)}
+.phase{position:relative;padding-bottom:34px}
+.ph-marker{position:absolute;left:-46px;top:2px;width:24px;text-align:center}
+.ph-marker .dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--dim);margin-top:6px}
+.inf-badge{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;border-radius:50%;
+  background:rgba(227,161,78,.14);border:1px solid var(--amber);color:var(--amber2);font-family:var(--mono);font-size:10px;font-weight:600}
+.ph-meta{display:flex;gap:12px;align-items:baseline;margin-bottom:4px}
+.ph-ep{font-family:var(--mono);font-size:12px;color:var(--amber2)}
+.ph-date{font-family:var(--mono);font-size:11px;color:var(--dim)}
+.phase h4{font-family:var(--serif);font-size:18.5px;font-weight:700;margin-bottom:6px}
+.phase p{font-size:13.5px;color:var(--mut);max-width:780px}
+.phase.has-inf h4{color:var(--amber2)}
+.tracks{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:44px}
+.track{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px}
+.track h4{font-family:var(--mono);font-size:12.5px;color:var(--cy);margin-bottom:14px;letter-spacing:.08em}
+.track ol{list-style:none;counter-reset:s}
+.track li{counter-increment:s;font-size:12.5px;color:var(--mut);padding:7px 0 7px 30px;position:relative;border-top:1px dashed var(--line)}
+.track li:first-child{border-top:none}
+.track li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:8px;font-family:var(--mono);font-size:10px;color:var(--amber)}
+.track li:last-child{color:var(--ink)}
+
+/* ── mental models ── */
+.mms{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:13px}
+.mm{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:20px 22px;transition:.22s}
+.mm:hover{border-color:var(--line2);background:var(--panel2)}
+.mm-head{display:flex;justify-content:space-between;margin-bottom:8px}
+.mm-id{font-family:var(--mono);font-size:10.5px;color:var(--amber)}
+.mm-ep{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
+.mm h4{font-size:15.5px;font-weight:700;margin-bottom:7px}
+.mm p{font-size:12.8px;color:var(--mut)}
+
+/* ── quote band ── */
+.qband{margin:80px -28px 0;padding:54px 28px;background:linear-gradient(180deg,transparent,rgba(227,161,78,.05),transparent);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+.qband p{font-family:var(--serif);font-size:clamp(17px,2.4vw,23px);font-style:italic;max-width:860px;margin:0 auto;transition:opacity .45s}
+.qband cite{display:block;margin-top:14px;font-family:var(--mono);font-style:normal;font-size:11.5px;color:var(--dim)}
+.qctl{margin-top:20px;display:flex;gap:8px;justify-content:center}
+.qctl button{background:none;border:1px solid var(--line2);color:var(--mut);font-family:var(--mono);font-size:11px;padding:5px 14px;border-radius:20px;cursor:pointer;transition:.2s}
+.qctl button:hover{color:var(--amber2);border-color:var(--amber)}
+
+/* ── predictions ── */
+.pred-top{display:grid;grid-template-columns:300px 1fr;gap:24px;margin-bottom:34px;align-items:center}
+.pred-donut{position:relative;height:240px}
+.pred-donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.pred-donut .center b{font-family:var(--serif);font-size:34px;color:var(--amber2)}
+.pred-donut .center span{font-size:11px;color:var(--mut)}
+.doms{display:flex;flex-direction:column;gap:7px}
+.dom{display:grid;grid-template-columns:170px 130px 70px 1fr;gap:12px;align-items:center;font-size:12px}
+.dom-t{color:var(--ink)}
+.dom-bar{height:5px;background:var(--panel2);border-radius:3px;overflow:hidden}
+.dom-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--amber),var(--amber2));border-radius:3px}
+.dom-s{font-size:9px;color:var(--amber);letter-spacing:2px}
+.dom-n{color:var(--dim);font-size:11px}
+.pfilter{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px}
+.pfilter button{background:var(--panel);border:1px solid var(--line);color:var(--mut);font-size:12px;padding:6px 14px;border-radius:18px;cursor:pointer;transition:.18s;font-family:var(--sans)}
+.pfilter button.on{border-color:var(--amber);color:var(--amber2);background:rgba(227,161,78,.08)}
+.ptable{border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.prow{display:grid;grid-template-columns:54px 1fr 86px 110px;gap:14px;padding:13px 18px;border-top:1px solid var(--line);font-size:13px;align-items:start}
+.prow:first-child{border-top:none}
+.prow:hover{background:var(--panel)}
+.prow .pep{font-family:var(--mono);font-size:11px;color:var(--cy);padding-top:2px}
+.prow .pc b{display:block;font-weight:600;font-size:13.5px}
+.prow .pc span{font-size:11.5px;color:var(--dim)}
+.prow .ph{font-family:var(--mono);font-size:11px;color:var(--mut);padding-top:2px}
+.pst{font-family:var(--mono);font-size:10.5px;padding:3px 9px;border-radius:11px;text-align:center;white-space:nowrap;justify-self:start}
+.pst.hit{background:rgba(95,179,129,.13);color:var(--fact);border:1px solid rgba(95,179,129,.35)}
+.pst.ontrack{background:rgba(127,180,217,.11);color:var(--cy);border:1px solid rgba(127,180,217,.3)}
+.pst.progress{background:rgba(224,179,79,.1);color:var(--infer);border:1px solid rgba(224,179,79,.3)}
+.pst.unknown{background:rgba(140,148,168,.1);color:var(--mut);border:1px solid var(--line2)}
+.pst.risky{background:rgba(217,127,110,.12);color:var(--risk);border:1px solid rgba(217,127,110,.35)}
+
+/* ── heuristics / language ── */
+.heurs{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-bottom:44px}
+.heur{display:flex;gap:16px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:20px 22px}
+.heur-n{font-family:var(--mono);font-size:12px;color:var(--amber);padding-top:3px}
+.heur h4{font-family:var(--serif);font-size:16px;font-weight:700;margin-bottom:6px}
+.heur .hep{font-family:var(--mono);font-size:10px;color:var(--dim);margin-left:8px;font-weight:400}
+.heur p{font-size:12.8px;color:var(--mut)}
+.langs{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.lang{background:var(--bg2);padding:15px 20px;display:flex;gap:14px;align-items:baseline}
+.lang-t{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--amber2);white-space:nowrap}
+.lang-d{font-size:12.3px;color:var(--mut)}
+
+/* ── critiques ── */
+.crits{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.crit{display:flex;gap:16px;background:rgba(224,179,79,.04);border:1px solid rgba(224,179,79,.18);border-radius:11px;padding:20px 22px}
+.crit-n{font-family:var(--mono);font-size:12px;color:var(--infer);padding-top:2px}
+.crit h4{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--infer)}
+.crit p{font-size:12.8px;color:var(--mut)}
+.crit-note{font-size:12px;color:var(--dim);margin-top:18px}
+
+/* ── theme chart ── */
+.chart-wrap{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px;height:380px}
+.sent-strip{display:flex;gap:18px;margin-top:18px;font-size:12px;color:var(--mut);flex-wrap:wrap}
+.sent-strip b{color:var(--ink)}
+
+/* ── explorer ── */
+.explorer-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+#epSearch{flex:1;min-width:240px;background:var(--panel);border:1px solid var(--line2);border-radius:9px;color:var(--ink);
+  font-family:var(--sans);font-size:13.5px;padding:11px 16px;outline:none}
+#epSearch:focus{border-color:var(--amber)}
+#epSearch::placeholder{color:var(--dim)}
+.cfilter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:22px}
+.cfilter button{background:var(--panel);border:1px solid var(--line);color:var(--mut);font-size:11.5px;padding:5px 12px;border-radius:16px;cursor:pointer;font-family:var(--sans);transition:.18s}
+.cfilter button.on{border-color:var(--amber);color:var(--amber2);background:rgba(227,161,78,.08)}
+.eps{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:13px}
+.epc{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:21px 23px;cursor:pointer;transition:.22s}
+.epc:hover{border-color:rgba(227,161,78,.4);transform:translateY(-2px)}
+.epc-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.epc-ep{font-family:var(--mono);font-size:12px;color:var(--amber)}
+.epc-date{font-family:var(--mono);font-size:10.5px;color:var(--dim)}
+.epc h4{font-family:var(--serif);font-size:15.5px;font-weight:700;line-height:1.45;margin-bottom:8px}
+.epc .one{font-size:12.6px;color:var(--mut);margin-bottom:12px}
+.epc-foot{display:flex;justify-content:space-between;align-items:center}
+.epc-themes{display:flex;gap:5px;flex-wrap:wrap}
+.epc-themes span{font-size:10px;color:var(--dim);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+.depth{font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:1px}
+.epc-detail{display:none;margin-top:14px;border-top:1px dashed var(--line);padding-top:13px}
+.epc.open .epc-detail{display:block}
+.epc-detail ul{list-style:none;margin-bottom:12px}
+.epc-detail li{font-size:12.3px;color:var(--mut);padding:3px 0 3px 16px;position:relative}
+.epc-detail li::before{content:"·";position:absolute;left:2px;color:var(--amber)}
+.epc-links{display:flex;gap:14px}
+.epc-links a{font-family:var(--mono);font-size:11px}
+.count-note{font-family:var(--mono);font-size:11px;color:var(--dim);margin:14px 2px}
+
+/* ── coverage ── */
+.cov{margin-top:50px}
+.cov h3{font-family:var(--serif);font-size:18px;margin-bottom:6px}
+.cov-sub{font-size:12.5px;color:var(--mut);margin-bottom:18px}
+.grid99{display:grid;grid-template-columns:repeat(auto-fill,minmax(34px,1fr));gap:5px}
+.cell{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:9.5px;border:1px solid var(--line);color:var(--dim);background:var(--panel);transition:.16s}
+.cell.on{background:rgba(227,161,78,.15);border-color:rgba(227,161,78,.5);color:var(--amber2);cursor:pointer;font-weight:600}
+.cell.on:hover{background:rgba(227,161,78,.32);transform:scale(1.1)}
+.cov-legend{display:flex;gap:18px;margin-top:14px;font-size:11.5px;color:var(--mut)}
+.cov-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* ── playbook ── */
+.lessons{display:flex;flex-direction:column;gap:13px}
+.lesson{display:flex;gap:22px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:26px 28px;transition:.22s}
+.lesson:hover{border-color:rgba(227,161,78,.35)}
+.ls-n{font-family:var(--serif);font-size:30px;font-weight:900;color:rgba(227,161,78,.5);line-height:1}
+.ls-body h4{font-family:var(--serif);font-size:17.5px;font-weight:700;margin-bottom:8px}
+.ls-body p{font-size:13.2px;color:var(--mut);margin-bottom:11px;max-width:840px}
+.ls-action{font-size:12.5px;color:var(--amber2);background:rgba(227,161,78,.07);border:1px solid rgba(227,161,78,.2);border-radius:8px;padding:8px 14px;display:inline-block}
+
+footer{margin-top:90px;border-top:1px solid var(--line);padding:36px 0 50px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer .f-l{font-size:12px;color:var(--dim);line-height:2}
+footer .f-l b{color:var(--mut)}
+.f-trigger{font-family:var(--mono);font-size:11px;color:var(--amber2);background:rgba(227,161,78,.07);border:1px solid rgba(227,161,78,.25);border-radius:8px;padding:10px 16px;height:fit-content}
+
+@media(max-width:880px){
+  .axioms,.tracks,.heurs,.crits,.langs{grid-template-columns:1fr}
+  .layers{grid-template-columns:1fr}
+  .pred-top{grid-template-columns:1fr}
+  .dom{grid-template-columns:140px 1fr 60px;gap:8px}
+  .dom-n{display:none}
+  .prow{grid-template-columns:44px 1fr;row-gap:6px}
+  .prow .ph,.prow .pst{grid-column:2}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<nav><div class="nav-in">
+  <div class="nav-brand">노정석 <b>사고 OS</b> 관측소</div>
+  <div class="nav-links">
+    <a href="#os"><i>01</i>사고 OS</a><a href="#evo"><i>02</i>사상 진화</a><a href="#mm"><i>03</i>멘탈모델</a>
+    <a href="#pred"><i>04</i>예측 추적</a><a href="#rules"><i>05</i>판단 룰</a><a href="#crit"><i>06</i>맹점</a>
+    <a href="#themes"><i>07</i>테마 흐름</a><a href="#explore"><i>08</i>탐색기</a><a href="#play"><i>09</i>플레이북</a>
+  </div>
+</div></nav>
+
+<main>
+<!-- 00 HERO -->
+<section id="hero">
+  <div class="hero-kicker">AI FRONTIER · EP45 — EP99 · 2025.03 → 2026.06</div>
+  <h1>도망치던 전략가는 어떻게<br><em>의도를 가진 인간</em>이 되었나</h1>
+  <p class="hero-sub">노정석(Chester Roh)의 15개월 — 26개 에피소드 전수 딥리딩으로 복원한 한 시리얼 앙트레프레너의 인식론적 기계. 요약이 아니라 사고의 OS를 해부한 기록이다.</p>
+  <div class="journey"><div class="jcell"><div class="jy">2025-03</div><div class="jt">어떻게 도망갈까</div><div class="jd">EP45 — 도피 전략의 출발</div></div><div class="jarrow">→</div><div class="jcell"><div class="jy">2026-03</div><div class="jt">도망갈 곳이 없다</div><div class="jd">EP91 — 모든 문제의 Search Problem 수렴</div></div><div class="jarrow">→</div><div class="jcell"><div class="jy">2026-06</div><div class="jt">의도를 가져라</div><div class="jd">EP99 — 인간에게 남는 마지막 자산</div></div></div>
+  <div class="kpis">
+    <div class="kpi"><b>26</b><span>딥리딩 에피소드 (블로그 전수)</span></div>
+    <div class="kpi"><b>15개월</b><span>2025-03 → 2026-06 사상 궤적</span></div>
+    <div class="kpi"><b id="kpiPred">39</b><span>추적 예측 · 방향 적중 <b style="display:inline;font-size:13px" id="kpiHitRate"></b></span></div>
+    <div class="kpi"><b>14</b><span>명명된 멘탈모델</span></div>
+    <div class="kpi"><b>7</b><span>사상 변곡점</span></div>
+  </div>
+  <div class="hero-quote" id="heroQuote" title="클릭하면 다음 인용구">
+    <p id="hqText"></p><cite id="hqCite"></cite>
+  </div>
+</section>
+
+<!-- 01 사고 OS -->
+<section id="os">
+  <div class="sec-tag">01 — THINKING OS</div>
+  <h2>사고 OS — 3개의 레이어, 4개의 공리</h2>
+  <p class="sec-sub">15개월간 변한 것은 세계관의 외곽이고, 변하지 않은 것은 핵심 인식론이다. 모든 주장은 아래 구조 위에 세워진다.</p>
+  <div class="layers"><div class="layer"><div class="layer-t">레이어 1 — 인식론</div><p>Verifiable / Non-Verifiable 이분법. 세상의 모든 문제를 이 단 하나의 렌즈로 분류한다. 산업 분석·비즈니스 전략·개인 역량 설계를 모두 관통한다.</p></div><div class="layer"><div class="layer-t">레이어 2 — 방법론</div><p>Evaluation-First + Closed-Loop + 동형성 렌즈. 무엇을 만들지, 어떻게 설계할지, 새 현상을 기존 앎에 어떻게 연결할지를 처리하는 운영 체계.</p></div><div class="layer"><div class="layer-t">레이어 3 — 존재론</div><p>의도를 가진 주권적 존재. 실행은 에이전트에게 넘어갔고, 의도 있는 100시간이 의도 없는 1만 시간을 이긴다. 인간에게 남는 마지막 자산은 의도다.</p></div></div>
+  <div class="axioms"><div class="axiom"><div class="axiom-num">공리 1</div>
+    <h3>Verifiability가 곧 점령 가능성이다</h3>
+    <blockquote>“Non-verifiable을 verifiable로 바꿔주는 closed-loop system. 이렇게 정의하고 세상을 바라보니까 판단의 기준이 되더라.”<cite>EP45 · 20:39</cite></blockquote>
+    <p>Verifiable reward 설계가 가능한 모든 도메인은 AI가 RL 자동 데이터 생성으로 정복한다. EP45에서 선언, EP80(과학)·EP92(오토리서치)·EP99(에르되시)까지 15개월간 반복 실증된 제1공리.</p></div><div class="axiom"><div class="axiom-num">공리 2</div>
+    <h3>AGI는 변수가 아닌 상수다</h3>
+    <blockquote>“AGI가 정말 나와요? 라고 질문하시는 분들 있으면 그냥 '네' 하고 바로 뒤돌아서거든요.”<cite>EP79 · 38:06</cite></blockquote>
+    <p>AGI 달성 여부는 전략 변수가 아니라 상수다. 에너지를 'AGI가 될까'가 아니라 'AGI 이후의 세계에서 어디에 설 것인가'에 쓴다. EP45 이후 단 한 번도 흔들리지 않았다.</p></div><div class="axiom"><div class="axiom-num">공리 3</div>
+    <h3>우리는 지수 곡선 위에 있다</h3>
+    <blockquote>“로그로 바꿔 보면 지금 linear하니까, 이거 엄청 exponential한 거죠.”<cite>EP45 · 31:10</cite></blockquote>
+    <p>선형으로 느껴지는 것은 지수 곡선 위에서 관찰하기 때문이다. '200년이 2년에'(EP77) → '2주가 1년'(EP79) → '싱귤래리티 수렴 중'(EP99)으로 반복 강화된 행동 촉구의 인식론적 근거.</p></div><div class="axiom"><div class="axiom-num">공리 4</div>
+    <h3>Evaluation Metric 없는 프로젝트는 시작하지 마라</h3>
+    <blockquote>“처음에 evaluation 틀이 명확하게 상상 안 되는 프로젝트는 시작하면 안 된다.”<cite>EP45 · 22:12</cite></blockquote>
+    <p>EP45부터 EP99까지 단 하나도 변하지 않은 유일한 실천 원칙. EP92에서 'OKR로 모든 업무를 verifiable scalar로 환원하는 것이 AI 시대 핵심 역량'으로 재확인됐다. 공리 1의 실천 버전.</p></div></div>
+</section>
+
+<!-- 02 사상 진화 -->
+<section id="evo">
+  <div class="sec-tag">02 — EVOLUTION</div>
+  <h2>사상 진화 — 12국면 · 7변곡점</h2>
+  <p class="sec-sub">"어떻게 도망갈까"(EP45)에서 "도망갈 곳이 없다, 의도를 가져라"(EP99)까지. 황색 배지가 변곡점이다.</p>
+  <div class="timeline"><div class="phase has-inf">
+    <div class="ph-marker"><span class="inf-badge">I</span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP45</span><span class="ph-date">2025-03</span></div>
+    <h4>도피 일기의 출발</h4><p>"어디로 도망칠 것인가." Verifiable/Non-Verifiable 이분법으로 전략 공간을 재정의하고 AGI를 상수로 선언. Closed-Loop 시스템만이 생존 공간이라는 결론.</p></div></div><div class="phase has-inf">
+    <div class="ph-marker"><span class="inf-badge">II</span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP75</span><span class="ph-date">2025-11</span></div>
+    <h4>RL의 해부</h4><p>RL은 능력 주입이 아니라 잠재 패턴의 기하급수적 증폭이다. "우리네 인생 자체가 on-policy RL" — 기술 분석이 인생 철학으로 스며드는 첫 신호.</p></div></div><div class="phase has-inf">
+    <div class="ph-marker"><span class="inf-badge">III</span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP78–79</span><span class="ph-date">2025-11~12</span></div>
+    <h4>Strange Loop과 공생 선언</h4><p>AGI의 마지막 조건은 자기참조 구조. AI는 도구가 아니라 exocortex 공생 파트너다. '괴델의 계단' 이론과 Superintelligence 2년 내 65% 추정 공개.</p></div></div><div class="phase">
+    <div class="ph-marker"><span class="dot"></span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP80–81</span><span class="ph-date">2025-12~26-01</span></div>
+    <h4>과학의 해 선언</h4><p>"2025년은 코딩의 해, 2026년은 과학의 해." RLHF가 챗봇용이라면 RLVR은 에이전트용 포스트트레이닝 — 에이전트 시대론의 토대 완성.</p></div></div><div class="phase">
+    <div class="ph-marker"><span class="dot"></span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP77·82–83</span><span class="ph-date">2026-01</span></div>
+    <h4>Harness와 의도의 시대</h4><p>하네스가 새로운 소스 코드다. '에너지가 가장 높은 세 줄' 결정화 능력이 희소 역량. 소프트웨어 생산비 0의 시대 선언.</p></div></div><div class="phase has-inf">
+    <div class="ph-marker"><span class="inf-badge">IV</span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP84–86</span><span class="ph-date">2026-02</span></div>
+    <h4>Physical AI와 에이전트 개막</h4><p>OpenClaw 대중 임계점 돌파 — 기술 혁신이 아닌 인지 임계점 이벤트. "frontier 모델이 95%를 커버, 나머지 5% 암묵지만 경쟁 우위로 남는다."</p></div></div><div class="phase has-inf">
+    <div class="ph-marker"><span class="inf-badge">V</span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP87–89</span><span class="ph-date">2026-02~03</span></div>
+    <h4>딸깍의 시대, 슬픔과 기쁨</h4><p>"딸깍이 내가 아니니까." AI 우울·번아웃의 실존 구간. 딸깍/덜컹/덜컥 프레임 정립, 문제 정의 능력이 최후의 인간 역량으로 확정.</p></div></div><div class="phase">
+    <div class="ph-marker"><span class="dot"></span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP88·90</span><span class="ph-date">2026-03</span></div>
+    <h4>비밀 레시피 없음</h4><p>혁신은 점진적·예상 가능 궤적 위에 있다. AlphaGo의 레시피(모방→추론→RL)가 10년 뒤 추론 모델에 그대로 재현 — 기본기 게임의 시대.</p></div></div><div class="phase has-inf">
+    <div class="ph-marker"><span class="inf-badge">V</span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP91–92</span><span class="ph-date">2026-03</span></div>
+    <h4>모든 문제는 Search Problem이다</h4><p>compute로 모든 문제를 search problem으로 치환. RLVR=Ralph Loop=딥러닝=진화 알고리즘 동형 선언. "팀을 통째로 없애라"는 AX론, OKR의 verifiable scalar 환원.</p></div></div><div class="phase">
+    <div class="ph-marker"><span class="dot"></span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP93</span><span class="ph-date">2026-04</span></div>
+    <h4>코드 유출과 IP 해체</h4><p>Claude Code 유출은 보안 사고가 아니라 시대 신호. 소스코드 가치 0 수렴, '모델=semantic CPU / 하네스=OS / 비즈니스 로직=앱' 3계층 확정.</p></div></div><div class="phase has-inf">
+    <div class="ph-marker"><span class="inf-badge">VI</span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP94</span><span class="ph-date">2026-04</span></div>
+    <h4>낮게 열린 과실들과 Alien Science</h4><p>Capability Overhang 전면화 — 모든 발견은 모델 잠재력 추출 경쟁이다. "인간이 verifier로 개입할 수 없는 지점이 온다. 그래서 Alien Science."</p></div></div><div class="phase">
+    <div class="ph-marker"><span class="dot"></span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP95–96</span><span class="ph-date">2026-04~05</span></div>
+    <h4>인프라 해부와 토큰 경제학</h4><p>"AI 모델은 하드웨어의 그림자다." API 가격표는 내부 token economics의 역산 지도. 중국 pre-training 동등 이상 확인 — "프론티어가 항저우 카페에 있다."</p></div></div><div class="phase has-inf">
+    <div class="ph-marker"><span class="inf-badge">VII</span></div>
+    <div class="ph-body"><div class="ph-meta"><span class="ph-ep">EP97–99</span><span class="ph-date">2026-05~06</span></div>
+    <h4>의도만 남는다</h4><p>AI Psychosis 도입과 공개 자기 수정. "의도를 가진 100시간이 의도 없는 1만 시간을 이긴다." 그리고 마지막 질문 — "생각하는 게 인간의 일이라는 것도 통념인 거죠."</p></div></div></div>
+  <h2 style="font-size:22px;margin-top:60px">4개 축의 진화</h2>
+  <div class="tracks"><div class="track" data-track="0"><h4>모델 인식</h4><ol><li>EP45 프론티어 모델 = 위협, 빅테크 독점</li><li>EP75–78 모델은 잠재 패턴의 증폭기</li><li>EP81–83 비밀 레시피 없음 — 포스트트레이닝 게임</li><li>EP94–96 모델 = semantic CPU, 하드웨어의 그림자</li><li>EP99 출시 주기 43일, 싱귤래리티 수렴 선언</li></ol></div><div class="track" data-track="1"><h4>에이전트·인프라</h4><ol><li>EP45 에이전트 미언급 — Closed-Loop 전략 프레임</li><li>EP78–79 외재화(harness)가 continual learning 우회책</li><li>EP82–86 하네스 = 새로운 소스 코드</li><li>EP89–92 루프를 닫아라 — verifiable 도메인만 자율 루프</li><li>EP97–99 하네스 = 컨트롤 레이어, code as harness</li></ol></div><div class="track" data-track="2"><h4>인간의 일·의도</h4><ol><li>EP45 인간 = 전략적 행위자</li><li>EP77 "엔지니어임을 내려놓고 사업가로 전환하라"</li><li>EP85–87 95/5 암묵지 법칙, 취향·태도가 우위</li><li>EP89–91 문제 정의 = 최후 역량, entrepreneur만 생존</li><li>EP97–99 의도만 남는다 — "생각도 통념"</li></ol></div><div class="track" data-track="3"><h4>공동체·세계관</h4><ol><li>EP45 감정 없는 포지셔닝 언어</li><li>EP79 도망자 연합 140명 — Great Reset 선언</li><li>EP87–88 Fog of Progress, AI 우울 첫 언급</li><li>EP93 IP·저작권 개념 해체</li><li>EP97–99 AI Psychosis, "최고보다 유일한 것이 되어라"</li></ol></div></div>
+</section>
+
+<!-- 03 멘탈모델 -->
+<section id="mm">
+  <div class="sec-tag">03 — MENTAL MODELS</div>
+  <h2>멘탈모델 카탈로그 14</h2>
+  <p class="sec-sub">노정석이 직접 이름 붙였거나 반복 사용으로 굳어진 사고 프레임. 새 현상 앞에서 그가 꺼내 드는 도구들이다.</p>
+  <div class="mms"><div class="mm"><div class="mm-head"><span class="mm-id">MM-1</span><span class="mm-ep">EP45</span></div>
+    <h4>3-레이어 세계관</h4><p>AI 산업을 Compute(최고 가치 포획) / Algorithm(빅테크 독점) / Service(스타트업의 유일한 층)로 분해. 모든 회사 분석의 출발 질문: "이 회사는 어느 레이어인가?"</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-2</span><span class="mm-ep">EP45→99</span></div>
+    <h4>Verifiable / Non-Verifiable 이분법</h4><p>알고리즘으로 참/거짓 판별 가능하면 AI가 정복. 스타트업의 생존 공간은 non-verifiable 도메인에 closed-loop을 구축하는 것뿐. 15개월간 가장 내구성 있는 분류 도구.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-3</span><span class="mm-ep">EP45·92</span></div>
+    <h4>Closed-Loop = Proprietary Data Engine</h4><p>나만 가진 데이터가 아니라 '비검증→검증 변환 환경'이 진짜 proprietary data 원천. 테슬라 Autopilot 루프가 원형. 모델이 강해질수록 루프 보유 기업의 데이터 가치도 동반 상승.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-4</span><span class="mm-ep">EP77</span></div>
+    <h4>Vintage 이론</h4><p>같은 knowledge cutoff의 모델들은 같은 수확물의 파생물. Vintage가 같으면 성능 차이는 post-training에서 나온다 — 모델 세대 독해의 기준.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-5</span><span class="mm-ep">EP79</span></div>
+    <h4>괴델의 계단</h4><p>복잡도가 임계점을 넘으면 모순이 창발하고 상위 레이어가 출현한다 — 비즈니스·학습·물리·우주에 반복되는 패턴. 🟡 반증 가능성이 낮다는 한계도 함께 기록한다.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-6</span><span class="mm-ep">EP78</span></div>
+    <h4>Strange Loop + AGI 조건</h4><p>AGI의 필요충분 조건 = 충분한 스케일 + 자기참조 구조. 'IQ 테스트 통과 = AGI'라는 주류 정의를 거부하는 구조적 판별 기준.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-7</span><span class="mm-ep">EP89</span></div>
+    <h4>딸깍–덜컹–덜컥</h4><p>AI 협업의 3구간 — 즉각 해결(딸깍), 반복해도 안 됨(덜컹), 올바른 가설에 갑자기 풀림(덜컥). '될 일/안 될 일'이 아니라 '언젠가 덜컥이 될 일'의 연속체로 본다.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-8</span><span class="mm-ep">EP87</span></div>
+    <h4>9의 행진 (March of Nines)</h4><p>90→99→99.9%로 갈 때마다 동일한 노력이 든다(Karpathy). AI는 90~99를 빠르게 채우고, 가치는 나머지 구간의 상단으로 극단 집중된다.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-9</span><span class="mm-ep">EP79·85·91</span></div>
+    <h4>동형성(Isomorphism) 렌즈</h4><p>🟡 가장 강력한 무명(無名)의 분석 도구. 딥러닝=Ralph Loop=RLVR=진화 알고리즘이 동형이라는 선언처럼, 서로 다른 영역에서 같은 구조를 발견해 기존 이해를 즉시 이식한다.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-10</span><span class="mm-ep">EP77→93</span></div>
+    <h4>하네스 OS 프레임</h4><p>하네스 최소화 → '하네스가 새로운 소스 코드' → '모델=semantic CPU, 하네스=OS'로 진화. 모델 성능 경쟁보다 하네스 설계 경쟁이 더 중요한 싸움이라는 선언.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-11</span><span class="mm-ep">EP89</span></div>
+    <h4>인캡슐레이션 계층 이동</h4><p>TCP/IP가 인프라가 되자 웹이 떠올랐듯, 소프트웨어 엔지니어링이 아래 레이어로 내려가면 인간은 도메인 지식·문제 정의 레이어로 올라가야 한다.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-12</span><span class="mm-ep">EP91</span></div>
+    <h4>요트 경기 비유</h4><p>자동차 경주(자본력)·자전거 경기(노력+눈치)·요트 경기(외부 바람 지배) — 지금은 요트 경기다. 바람(AI 기술 변화)이 너무 강해 후발이 코스를 바꾸면 선두도 바꿔야 한다.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-13</span><span class="mm-ep">EP91</span></div>
+    <h4>Uroboros — 하네스·모델 선순환</h4><p>하네스 개선 → 더 좋은 데이터 → 모델 향상 → 기존 하네스 흡수 → 새 하네스 등장 → 무한 반복. '하네스가 모델에 흡수된다'는 예측 위에 다시 새 하네스가 나온다.</p></div><div class="mm"><div class="mm-head"><span class="mm-id">MM-14</span><span class="mm-ep">EP45·79</span></div>
+    <h4>도망자 연합</h4><p>🟡 반어적 정체성 — 'AI가 지우는 기존 가치에서 탈출해 다음 가치로 전력 질주하는 사람들'. 불안·외로움·방향 상실을 공유하는 공동체 감각이 이 팟캐스트를 기술 채널과 구별 짓는다.</p></div></div>
+</section>
+
+<div class="qband">
+  <p id="qbText"></p><cite id="qbCite"></cite>
+  <div class="qctl"><button onclick="qPrev()">← 이전</button><button onclick="qShuffle()">⤮ 셔플</button><button onclick="qNext()">다음 →</button></div>
+</div>
+
+<!-- 04 예측 추적 -->
+<section id="pred">
+  <div class="sec-tag">04 — PREDICTION TRACKER</div>
+  <h2>예측 추적기 — 39건의 검증</h2>
+  <p class="sec-sub">corpus 내부 증거 기준의 판정이다(외부 실세계 검증과 다를 수 있음 🟡). 그는 전망가라기보다 프레임 설계자다 — 개별 사건보다 '어떤 구조로 일이 일어날 것인가'에서 강하다.</p>
+  <div class="pred-top">
+    <div class="pred-donut"><canvas id="donut"></canvas><div class="center"><b id="hitPct"></b><span>방향 적중률</span></div></div>
+    <div class="doms"><div class="dom"><span class="dom-t">Verifiable 도메인 정복</span>
+    <span class="dom-bar"><i style="width:100%"></i></span>
+    <span class="dom-s">●●●●●</span><span class="dom-n">핵심 메타-프레임, corpus 전체 반복 실증</span></div><div class="dom"><span class="dom-t">하드웨어·토큰 비용</span>
+    <span class="dom-bar"><i style="width:100%"></i></span>
+    <span class="dom-s">●●●●●</span><span class="dom-n">구조적 이해 기반 — 장단기 모두 정확</span></div><div class="dom"><span class="dom-t">중국 AI 논문 타이밍</span>
+    <span class="dom-bar"><i style="width:80%"></i></span>
+    <span class="dom-s">●●●●○</span><span class="dom-n">중국어 팟캐스트 청취라는 정보 우위</span></div><div class="dom"><span class="dom-t">빅테크 발표 일정</span>
+    <span class="dom-bar"><i style="width:80%"></i></span>
+    <span class="dom-s">●●●●○</span><span class="dom-n">업계 정보망 기반 단기 예측 강점</span></div><div class="dom"><span class="dom-t">에이전트 하네스 구조</span>
+    <span class="dom-bar"><i style="width:80%"></i></span>
+    <span class="dom-s">●●●●○</span><span class="dom-n">직접 운영 경험 기반 현장 우위</span></div><div class="dom"><span class="dom-t">METR·벤치마크 수치</span>
+    <span class="dom-bar"><i style="width:60%"></i></span>
+    <span class="dom-s">●●●○○</span><span class="dom-n">방향 정확, 속도는 반복 과소추정</span></div><div class="dom"><span class="dom-t">아키텍처 기술 선택</span>
+    <span class="dom-bar"><i style="width:40%"></i></span>
+    <span class="dom-s">●●○○○</span><span class="dom-n">거시 방향은 맞으나 세부 선택 오류</span></div><div class="dom"><span class="dom-t">Continual Learning 타이밍</span>
+    <span class="dom-bar"><i style="width:40%"></i></span>
+    <span class="dom-s">●●○○○</span><span class="dom-n">집단 기대 재전달 — 계속 미해결</span></div><div class="dom"><span class="dom-t">Physical AI 타이밍</span>
+    <span class="dom-bar"><i style="width:40%"></i></span>
+    <span class="dom-s">●●○○○</span><span class="dom-n">전문가 추정보다 앞서는 낙관 편향</span></div><div class="dom"><span class="dom-t">사회·정책 예측</span>
+    <span class="dom-bar"><i style="width:20%"></i></span>
+    <span class="dom-s">●○○○○</span><span class="dom-n">방향은 논리적이나 구체성 부재</span></div></div>
+  </div>
+  <div class="pfilter" id="pfilter">
+    <button data-f="all" class="on">전체 <span id="cAll"></span></button>
+    <button data-f="hit">🟢 적중</button><button data-f="ontrack">🔵 적중·진행중</button>
+    <button data-f="progress">🟡 진행중</button><button data-f="unknown">⚪ 미확정</button><button data-f="risky">🔴 불확실</button>
+  </div>
+  <div class="ptable" id="ptable"></div>
+</section>
+
+<!-- 05 판단 룰 -->
+<section id="rules">
+  <div class="sec-tag">05 — HEURISTICS & LANGUAGE</div>
+  <h2>의사결정 휴리스틱 6 · 언어 습관 8</h2>
+  <p class="sec-sub">판단의 룰과, 그 판단을 운반하는 언어. "딸깍" 한 단어에 AI 시대의 소외감이 압축돼 있다.</p>
+  <div class="heurs"><div class="heur"><div class="heur-n">H1</div><div><h4>“6개월 뒤 모델을 상대로 만들어라”<span class="hep">EP88</span></h4><p>지금 안 되는 문제는 6개월 후의 모델이 될 거라 가정하고 설계한다. 복잡한 하네스를 조기에 쌓기보다 기다려서 단순하게 만드는 것이 낫다.</p></div></div><div class="heur"><div class="heur-n">H2</div><div><h4>“안 만드는 게 베스트”<span class="hep">EP91</span></h4><p>4년 실험의 결론 — 프론티어 모델 + 깔끔한 데이터 커넥터 + 도메인 프롬프트(바닐라)가 복잡한 프레임워크를 항상 이겼다.</p></div></div><div class="heur"><div class="heur-n">H3</div><div><h4>“될 것 같은 일은 하지 마라”<span class="hep">EP89</span></h4><p>AI가 잘하는 구간의 가치는 0으로 수렴한다. 지금 '덜컹'이거나 불가능해 보이는 문제를 공략하는 것이 진짜 부가가치다.</p></div></div><div class="heur"><div class="heur-n">H4</div><div><h4>“팀을 도와주지 말고 통째로 없애라”<span class="hep">EP91</span></h4><p>AX 팀이 현업을 돌며 요건을 받는 방식은 인센티브 구조상 실패한다. '저 팀을 통째로 없애세요'가 성공하는 AX의 출발점.</p></div></div><div class="heur"><div class="heur-n">H5</div><div><h4>“죄수의 딜레마는 풀리지 않는다”<span class="hep">EP79·93</span></h4><p>착한 플레이어 한 명이 있어도 경쟁은 멈추지 않는다. AI 경쟁은 비가역 — 그래서 질문은 '멈출 것인가'가 아니라 '어떻게 공존할 것인가'다.</p></div></div><div class="heur"><div class="heur-n">H6</div><div><h4>“10x 효율과 10x 신사업은 orthogonal하다”<span class="hep">EP91</span></h4><p>효율(metric 명확)은 AI 루프로 처리되지만 신사업(metric 부재)은 루프가 작동하지 않는다. 두 게임을 혼동하면 효율화를 잘해도 혁신은 없다.</p></div></div></div>
+  <div class="langs"><div class="lang"><span class="lang-t">딸깍</span><span class="lang-d">AI가 즉각 해결하는 것. "그 딸깍이 내가 아니니까." 소외감·자동화·정체성 위기를 압축한 가장 성공한 조어 (EP87)</span></div><div class="lang"><span class="lang-t">도망자</span><span class="lang-d">반어 정체성 — 퇴각이 아니라 다음 가치로의 선점 질주 (EP45·79)</span></div><div class="lang"><span class="lang-t">루프를 닫는다</span><span class="lang-d">모든 문제를 '검증 지표가 있는가, 루프가 닫혔는가'로 환원하는 핵심 어휘 (전 에피소드)</span></div><div class="lang"><span class="lang-t">로그 스케일로 보면</span><span class="lang-d">지수 곡선 인식의 레토릭 — "지금 보이는 것보다 훨씬 빠르다" (EP45~)</span></div><div class="lang"><span class="lang-t">이건 되는 게임이야</span><span class="lang-d">불확실성을 제거하고 행동을 유도하는 단언 언어 (EP89)</span></div><div class="lang"><span class="lang-t">에너지가 가장 높은 세 줄</span><span class="lang-d">고밀도 의도를 압축해 AI에 전달하는 방식의 명명 (EP77)</span></div><div class="lang"><span class="lang-t">2주가 1년 같은 세상</span><span class="lang-d">체감 시간 압축의 반복 — '지금 당장 움직여야 한다'는 행동 촉구 장치 (EP77·79·94)</span></div><div class="lang"><span class="lang-t">공개 자기 수정</span><span class="lang-d">"두 달 전 최선이라 믿던 하네스를 이틀 만에 걷어냈다"(EP77) 등 3회의 공개 정정이 신뢰를 만든다</span></div></div>
+</section>
+
+<!-- 06 비판 -->
+<section id="crit">
+  <div class="sec-tag">06 — BLIND SPOTS</div>
+  <h2>비판적 검토 — 편향과 맹점 7</h2>
+  <p class="sec-sub">🟡 전 항목 분석자의 독립 판단이다. flattery가 아닌 교차검증 — 그의 OS가 강력한 이유와 맹점은 동전의 양면이다.</p>
+  <div class="crits"><div class="crit"><div class="crit-n">01</div><div><h4>속도의 구조적 과소추정</h4><p>METR 예측이 일관되게 초과 달성됐다(3~4시간 예측 → 실제 14.5시간). '2년이 20년'이라는 본인의 가속 명제를 정작 본인의 예측 모델에 내면화하지 못하는 선형 외삽 습관.</p></div></div><div class="crit"><div class="crit-n">02</div><div><h4>Continual Learning 집단 기대 재전달</h4><p>EP75·79·81·88에서 '곧 해결된다'가 반복됐으나 EP99까지 미해결. 커뮤니티 전체의 기대를 독립 예측처럼 승격시키는 패턴.</p></div></div><div class="crit"><div class="crit-n">03</div><div><h4>Physical AI 낙관 편향</h4><p>전문 게스트가 'GPT-2~3 사이'라고 신중하게 평가한 것을 'GPT-3 모먼트 임박'으로 해석. 직접 다루지 않는 하드웨어·물리 영역에서 낙관 편향이 강하다.</p></div></div><div class="crit"><div class="crit-n">04</div><div><h4>아키텍처 세부 예측의 반복 오류</h4><p>'Hybrid Mamba+Transformer 표준' 예측은 DeepSeek V4의 Sparse Attention으로 빗나갔다. 메타-프레임 예측자이지 기술 세부 예측자가 아니다.</p></div></div><div class="crit"><div class="crit-n">05</div><div><h4>사회·정책 레이어의 구체성 부재</h4><p>기술 예측은 정밀하지만 재정정책·고용 등 제도 레이어로 넘어가면 구체성이 급락한다. 분석 강점이 기술-비즈니스 교차점에 갇혀 있다.</p></div></div><div class="crit"><div class="crit-n">06</div><div><h4>Self-fulfilling Prophecy 위험</h4><p>팟캐스트가 세계관을 검증하는 커뮤니티를 만들고, 그 커뮤니티가 팟캐스트의 예측을 실증하는 폐쇄 루프. 외부 환경 예측인지 자기실현인지 구별이 어려워진다.</p></div></div><div class="crit"><div class="crit-n">07</div><div><h4>디스토피아 인정, 처방 부재</h4><p>'AI 하네스에 인간이 들어가는 세상이 될 확률이 훨씬 높다'고 인정하면서도 corpus 전체에 구조적 처방이 없다. 개인 차원(entrepreneur로 살아라)의 답만 존재.</p></div></div></div>
+  <p class="crit-note">※ 가장 깊은 맹점: "모든 문제는 verifiable reward 설계 문제"라는 전제가 워낙 강력해서, 그 전제 자체를 의심하는 질문이 corpus 전체에서 제기되지 않는다.</p>
+</section>
+
+<!-- 07 테마 흐름 -->
+<section id="themes">
+  <div class="sec-tag">07 — THEME RIVER</div>
+  <h2>테마 흐름 — 무엇을 말해왔나</h2>
+  <p class="sec-sub">26편의 테마 태그를 7개 클러스터로 자동 분류해 월별로 쌓았다. 발행월 기준(EP75~83은 2026-01 일괄 발행).</p>
+  <div class="chart-wrap"><canvas id="themeChart"></canvas></div>
+  <div class="sent-strip" id="sentStrip"></div>
+</section>
+
+<!-- 08 탐색기 -->
+<section id="explore">
+  <div class="sec-tag">08 — EPISODE EXPLORER</div>
+  <h2>에피소드 탐색기</h2>
+  <p class="sec-sub">제목·한줄·주장·키워드 전체를 검색한다. 카드를 클릭하면 핵심 주장과 원문 링크가 열린다.</p>
+  <div class="explorer-bar"><input id="epSearch" placeholder="검색 — 예: 하네스, DeepSeek, 의도, 딸깍, RLVR…"></div>
+  <div class="cfilter" id="cfilter"></div>
+  <div class="count-note" id="epCount"></div>
+  <div class="eps" id="eps"></div>
+  <div class="cov">
+    <h3>커버리지 맵 — EP1~99</h3>
+    <p class="cov-sub">블로그 발행분은 26편(EP45·75~99). 나머지 번호는 유튜브(@chester_roh, 총 117영상)에만 존재한다.</p>
+    <div class="grid99" id="grid99"></div>
+    <div class="cov-legend">
+      <span><i style="background:rgba(227,161,78,.4)"></i>딥리딩 완료 (클릭 → 카드)</span>
+      <span><i style="background:var(--panel);border:1px solid var(--line)"></i>유튜브 전용 (미스크립트)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 09 플레이북 -->
+<section id="play">
+  <div class="sec-tag">09 — PLAYBOOK</div>
+  <h2>조장군 플레이북 — 가져갈 교훈 5</h2>
+  <p class="sec-sub">🟡 부동산금융/PE 10년차 · 500건+ 딜 · AI MBA 입학 예정 — 노정석의 OS에서 직접 전이 가능한 것들.</p>
+  <div class="lessons"><div class="lesson"><div class="ls-n">01</div><div class="ls-body"><h4>딜 업무를 Verifiable / Non-Verifiable로 분해하라</h4><p>LTV·DSCR 계산, 계약서 검토, 유사 딜 비교 = verifiable → AI 완전 위임. 차주의 상환 의지, 현장 분위기, 딜 성사 감각 = non-verifiable → 조장군 10년 암묵지의 가치가 오히려 천 배 올라가는 영역.</p>
+    <div class="ls-action">⚡ 딜 검토를 2단으로 분리 — 1단(verifiable)은 에이전트에게, 확보된 시간은 더 많은 딜 미팅과 현장에</div></div></div><div class="lesson"><div class="ls-n">02</div><div class="ls-body"><h4>'6개월 뒤 모델' 휴리스틱으로 자동화 투자 타이밍을 정하라</h4><p>지금 2주 이상 걸리는 자동화라면 '6개월 뒤 모델로 3일 만에 만들 수 있는가'를 먼저 묻는다. 단, 그 과정에서 쌓이는 도메인 데이터·프로세스 이해가 재활용된다면 지금 만드는 것이 맞다.</p>
+    <div class="ls-action">⚡ 자동화 백로그에 '지금 vs 6개월 뒤' 칼럼 추가 — proprietary 지식이 쌓이는 것만 지금 착수</div></div></div><div class="lesson"><div class="ls-n">03</div><div class="ls-body"><h4>Evaluation Metric으로 업무를 재설계하라</h4><p>"평가 틀이 상상 안 되는 프로젝트는 시작하지 마라." PF 초벌 보고서 자동화의 지표는 '팀장 수정 요청 3개 이하', 딜 뉴스 수집은 '24시간 내 소스 5개 이상'.</p>
+    <div class="ls-action">⚡ 모든 자동화 아이디어 앞에 '이것의 성공 지표는 무엇인가' 한 줄을 강제</div></div></div><div class="lesson"><div class="ls-n">04</div><div class="ls-body"><h4>AI MBA 18개월은 '의도 있는 100시간'으로 설계하라</h4><p>학점을 따는 경로가 아니라 '부동산금융 10년 암묵지를 AI와 결합하는 closed-loop 시스템을 설계하는 18개월'로 정의한다. 의도로 모든 과목을 필터링하고 관련 교수·동기·프로젝트에 에너지를 집중한다.</p>
+    <div class="ls-action">⚡ 입학 전 '무엇을 가지고 나갈 것인가'의 evaluation metric부터 정의</div></div></div><div class="lesson"><div class="ls-n">05</div><div class="ls-body"><h4>AX는 팀을 돕는 것이 아니라 업무를 소멸시키는 것이다</h4><p>초벌 보고서·뉴스 수집·비교 딜 분석은 업무 자체를 AI로 소멸시키고, 그 시간에 차주를 만나고 현장을 본다. '더 잘하는 도구'가 아니라 '더 높은 레이어 게임'으로의 이동이 진짜 AX다.</p>
+    <div class="ls-action">⚡ 팀 업무 목록에서 'AI에게 통째로 넘길 업무'를 분기마다 공격적으로 재정의</div></div></div></div>
+</section>
+
+<footer>
+  <div class="f-l">
+    <b>노정석 사고 OS 관측소 v2.0</b> · 2026-06-10 빌드<br>
+    소스: aifrontier.kr 26편 전문 딥리딩 + 합성 4종 (테마 클러스터 · 사상진화 타임라인 · 예측 추적 · 사상 OS 딥다이브)<br>
+    🟢 사실 = 트랜스크립트 직접 근거 · 🟡 추론 = 분석자 독립 판단 · 볼트: 360-Research/367-노정석-AIFrontier
+  </div>
+  <div class="f-trigger">신규 에피소드 추적 → 코중령에게 "체스터 업데이트"</div>
+</footer>
+</main>
+
+<script>
+const D = {"months": ["2025-03", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06"], "clusterNames": ["모델·아키텍처", "RL·검증가능성", "에이전트·하네스", "토큰경제·인프라", "인간·의도·일", "과학·Physical AI", "심리·공동체·세계관"], "themeMatrix": {"모델·아키텍처": [0, 11, 1, 2, 6, 3, 1], "RL·검증가능성": [3, 4, 2, 4, 0, 0, 0], "에이전트·하네스": [0, 5, 5, 3, 1, 2, 1], "토큰경제·인프라": [0, 2, 2, 2, 1, 4, 1], "인간·의도·일": [4, 34, 15, 24, 11, 11, 2], "과학·Physical AI": [0, 2, 2, 0, 0, 0, 0], "심리·공동체·세계관": [0, 5, 1, 0, 2, 1, 2]}, "episodes": [{"ep": 45, "title": "AI 비즈니스 생존전략 — 어디에 AI 비즈니스를 세울 것인가", "date": "2025-03-29", "one": "프론티어 모델이 점령할 수 없는 유일한 영역은 비검증 도메인을 검증 가능하게 바꾸는 폐쇄 루프 시스템이다.", "themes": ["Non-Verifiable Data Domain", "Closed-Loop System", "Data Flywheel", "Proprietary Data 재정의", "AGI 임박 전략", "버티컬 수직통합", "Evaluation-First 사고"], "clusters": ["RL·검증가능성", "인간·의도·일"], "claims": ["AI 세계에서 돈 버는 축은 AGI 인프라와 수직 통합 버티컬 단 두 개뿐이다", "Verifiable reward function이 가능한 영역(수학·코딩·과학)은 빅테크가 RL 자동 데이터 생성으로 모두 점령한다", "Proprietary data의 진짜 정의는 알고리즘으로 만들 수 없는 0/1 라벨을 생성하는 closed-loop 환경이다", "인간 취향·주관 판단은 기계가 모호하게 답하지만 인간은 명확히 선호를 가지며 이것이 진정한 proprietary data 원천이다", "Evaluation metric을 처음부터 상상할 수 없는 프로젝트는 시작하면 안 된다 — evaluation 가능성과 라벨 0/1 존재 여부는 동치다", "AGI 달성 여부 고민은 무의미하다. '된다'는 전제로 전략을 짜야 한다"], "kw": ["Non-Verifiable Data Domain", "Verifiable Reward Function", "Closed-Loop System", "Test-Time Compute", "Distillation", "Data Flywheel", "VLA (Vision-Language-Action)", "Reinforcement Learning", "SFT (Supervised Fine-Tuning)", "NVIDIA Omniverse"], "sent": "경계", "depth": 4, "url": "https://aifrontier.kr/ko/episodes/ep45", "yt": {}}, {"ep": 75, "title": "(수학 공식 없는) 강화 학습 이야기", "date": "2026-01-30", "one": "RL은 새 능력 주입이 아니라, 프리트레이닝에서 잠든 일반화 가능 추론 패턴을 기하급수적으로 증폭시키는 메커니즘이다.", "themes": ["강화학습(RL) 원리", "포스트트레이닝 레시피", "On-Policy vs Off-Policy", "추론 모델 CoT 창발", "일반화 vs 암기", "MoE 양자화 효율화", "인생과 On-Policy"], "clusters": ["RL·검증가능성", "모델·아키텍처", "인간·의도·일"], "claims": ["포스트트레이닝은 데이터를 '창조'하는 시대 — 프리트레이닝보다 빠른 주기로 모델 품질을 개선하며 레시피가 핵심 경쟁력", "강화 학습은 머신러닝에서 인간을 초월하는 유일한 경로다", "SFT의 할루시네이션 근본 원인은 Off-Policy 학습 — 모를 때도 대답하는 행동 양식을 함께 학습", "프리트레이닝은 탐색 공간을 163,840개 → 3.7개로 압축하는 바벨의 도서관 필터", "추론 분기점은 수식 토큰이 아니라 'maybe', '생각을 바꿔볼까' 같은 사고 전환 토큰이다", "RL의 CoT 증폭은 비대칭 보상 메커니즘 — 낮은 등장 확률에도 높은 정답률이 기하급수적 강화를 만든다"], "kw": ["Reinforcement Learning(RL)", "RLHF", "RLVR", "SFT", "On-Policy", "Off-Policy", "CoT(Chain of Thought)", "Credit Assignment Problem", "MoE(Mixture of Experts)", "Quantization-aware Training"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep75", "yt": {"yt_title": "EP 75. Reinforcement Learning (Without Math Formulas)", "yt_id": "7pGfU6AC4XY", "duration": 3880.0}}, {"ep": 76, "title": "교육과 AI: 한미유치원 설립자 최승준의 생각과 실천", "date": "2026-01-28", "one": "AI 시대의 교육 혁신은 첨단 기술이 아니라 1970년대부터 알려진 탐구 기반 철학을 AI로 스케일업하는 문제다 — 한미유치원은 그 미래를 현재에 구현한 살아있는 실험실이다.", "themes": ["예언적교육학비판", "탐구기반학습", "레지오에밀리아", "AI교육스케일업", "바이브코딩확산", "직업교란과교육재정초", "유아교육철학"], "clusters": ["모델·아키텍처", "에이전트·하네스", "인간·의도·일"], "claims": ["지식 보유 자체가 이미 교란됐다 — LLM이 사실상 무한 지식 저장소인 시대에 암기 중심 교육의 ROI는 0에 수렴한다", "직업 교란은 교육 재정초(再定礎)의 기회 — 기존 best practice 붕괴 시 예언적 교육학 반대 세력이 주도권을 잡을 수 있다", "오늘의 뿌듯함이 불확실한 미래 대비 최선의 헤지 — 내적 동기 기반 학습은 외부 보상 구조 붕괴에도 작동하는 anti-fragile 전략이다", "10개월 영아도 가설을 세우고 실험한다 — 학습은 주입이 아니라 검증의 반복이며 이것이 레지오 에밀리아 철학의 핵심 증거다", "AI는 탐구 기반 교육의 노력 집약성을 줄여 스케일업 가능케 한다 — 지금까지 보편화를 막던 장벽이 AI로 제거된다", "AX는 내적 동기가 발화한 자에게만 전파된다 — 단체 강의로 AI 교육은 작동하지 않고 맥락 기반 지원만 작동한다"], "kw": ["Google Veo", "NotebookLM", "Claude Artifacts", "바이브 코딩", "Google Docs 탭", "Trello", "Scaling Law", "컴퓨테이셔널 씽킹", "AX (AI Transformation)", "Progettazione"], "sent": "낙관", "depth": 4, "url": "https://aifrontier.kr/ko/episodes/ep76", "yt": {"yt_title": "EP 76. Education and AI: Thoughts and Practices of Choi Seung-jun, Founder of Hanmi Kindergarten", "yt_id": "6VYVFylK-Cc", "duration": 3046.0}}, {"ep": 77, "title": "Gemini 3와 Antigravity: 너무도 가파른 변화의 곡선", "date": "2026-01-28", "one": "지능이 싸지고 의도가 곧 현실이 되는 시대, 엔지니어의 harness가 아니라 문제를 보유한 인간의 판단력이 가치의 원천이 된다.", "themes": ["Gemini3 출시", "Scaling Law 지속", "Vintage 이론", "Unlearn-Learn 사이클", "harness 경량화", "의도가 현실로", "엔지니어의 사업가 전환"], "clusters": ["모델·아키텍처", "에이전트·하네스", "인간·의도·일"], "claims": ["Gemini 3는 pre-training과 post-training 모두를 개선했으며 scaling law가 끝나지 않았음을 실증했다 — Oriol Vinyals: 2.5→3.0 델타가 역대 최대", "knowledge cutoff가 같은 모델은 같은 vintage(수확물)에서 나온 파생 산출물이다 — Gemini 2.5와 3.0 모두 2025년 1월 cutoff", "AI 기술 선두의 재현 시차는 약 5~6개월이다 — o1(9월) → DeepSeek R1(1월) 패턴 반복 예상", "harness를 두껍게 하던 시대는 끝났다 — 최소 가드레일 + 모델 자율이 산출물 품질 더 높다", "와트(Watt)가 GPU 개수를 대체하는 AI 컴퓨팅 지표가 됐다 — 와트당 토큰이 수익성 지표", "아이디어의 본질을 세 줄로 결정화하는 능력이 AI 시대의 핵심 희소 역량이다"], "kw": ["Gemini 3", "Nano Banana Pro", "Antigravity", "Claude Code", "Scaling Law", "pre-training", "post-training", "knowledge cutoff", "vintage theory", "harness"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep77", "yt": {"yt_title": "EP 77. Gemini 3 & Antigravity: The Insanely Steep Curve of Innovation", "yt_id": "iphkBknRyjo", "duration": 4544.0}}, {"ep": 78, "title": "Ilya Sutskever의 설명", "date": "2026-01-28", "one": "스케일링은 끝나지 않았다. 그러나 스케일만으로는 AGI에 닿지 못한다. Strange Loop이 마지막 열쇠다.", "themes": ["pre-training 스케일링 한계", "연구의 시대 선언", "Strange Loop과 AGI 조건", "continual learning", "감정과 가치함수", "AI 담론의 자본시장 연동", "취향(Taste)과 연구 안목"], "clusters": ["RL·검증가능성", "과학·Physical AI", "모델·아키텍처", "심리·공동체·세계관", "인간·의도·일"], "claims": ["pre-training scaling은 성능 향상을 가져오지만 AGI로의 점프에는 추가 연구 돌파구 필요 — Ilya 본인이 트윗으로 수정 보완", "RL 스케일링의 핵심 한계는 환경(environment) 설계의 어려움이다 — 실제 사용 환경과의 갭이 bench-maxxing 문제를 낳는다", "감정은 불확실성 속 의사결정을 가능케 하는 가치 함수(value function)다 — 감정 없는 인간은 결정 자체를 못 한다", "AGI 탄생 조건은 스케일 + Strange Loop(자기참조 구조) 두 가지다 — Hofstadter GEB 기반 Chester 이론", "진정한 지능은 모델이 아니라 모델과 RL 시스템 전체가 결합한 시스템이다", "Ilya가 원하는 것은 spiky AI가 아니라 현장에서 스스로 학습하는 범용 씨앗이다"], "kw": ["pre-training scaling", "post-training", "continual learning", "Strange Loop", "RL (Reinforcement Learning)", "inductive bias", "bench-maxxing", "Solomonoff induction", "value function", "generalization"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep78", "yt": {"yt_title": "EP 78. Ilya Sutskever Explains", "yt_id": "Tm-rxPN2XWo", "duration": 3369.0}}, {"ep": 79, "title": "도망자 연합 회고 & GPT 5.2", "date": "2026-01-28", "one": "지적 노동의 상품화가 완성 단계에 진입했고, AI와의 공생을 선택한 entrepreneur만이 살아남는 Great Reset이 시작됐다.", "themes": ["지적노동상품화", "괴델의계단창발이론", "AI공생vs도구", "도망자연합커뮤니티", "Great Reset의지기반생존", "AGI임박선언", "AI entrepreneur"], "clusters": ["심리·공동체·세계관", "인간·의도·일"], "claims": ["GDPVal 39→70점: 실무 지적 노동을 AI가 인간 대비 비용 1%, 속도 11배로 수행", "벤치마크를 만들면 곧 달성된다 — verifiable 목적 설정이 곧 AI 달성 보장", "AGI/ASI 논쟁은 끝난 게임 — superintelligence 2년 내 65% 확률 개인 추정(노정석)", "괴델의 계단: 시스템 복잡도 임계점 초과 → 모순 창발 → 상위 레이어 출현의 우주적 반복 패턴", "공생은 도구와 다르다 — 예측 불가능한 통찰(exocortex)이 발생하는 관계", "Great Reset: 능력 격차 소멸, 의지(will)와 미션만이 유일한 차별화"], "kw": ["GDPVal", "GPT-5.2", "Gemini 3 Pro", "METR task horizon", "continual learning", "in-context learning", "emergent abilities", "Strange Loop", "Tangled Hierarchy", "exocortex"], "sent": "경계", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep79", "yt": {"yt_title": "EP 79. AI Frontier: The Runaways' Alliance Retrospective & GPT 5.2", "yt_id": "CwP1Ly_0zM4", "duration": 3925.0}}, {"ep": 80, "title": "2026년은 과학의 해가 될까? AI와 과학", "date": "2026-01-28", "one": "AI는 2025년 코딩을 정복했고 2026년에는 과학 자체를 정복 대상으로 삼는다 — verifiable reward 설계 가능 도메인은 모두 AI 게임이 된다.", "themes": ["AI×과학", "Genesis Mission", "Demis Hassabis", "Hybrid Mamba 아키텍처", "반도체 슈퍼사이클", "verifiable reward", "세대 압축 실업"], "clusters": ["RL·검증가능성", "과학·Physical AI", "모델·아키텍처", "심리·공동체·세계관", "인간·의도·일", "토큰경제·인프라"], "claims": ["2025 = 코딩의 해, 2026 = 과학의 해 — verifiable reward가 설계 가능한 모든 도메인은 AI가 정복한다", "Wet lab 병목 돌파: 분자 클로닝 79배 향상, 로봇 실험 인간 2.5배 속도 달성으로 실험실 자동화 루프 완성", "Terence Tao + AlphaEvolve + 집단지성 = 1975년 Erdős 미해결 문제 해결, 인간-AI 초협업 모델 현실화", "Genesis Mission = 현대판 Manhattan Project, OpenAI·Google DeepMind·Anthropic 3사 참여", "Demis Hassabis Sentiment 전환: '이건 무조건 되는 게임, 언제 되느냐만 남았다'", "산업혁명 대비 10배 크고 10배 빠른 전환 — 부모와 자녀가 동시에 실업자가 되는 세대 압축"], "kw": ["verifiable reward", "RLVR", "Hybrid Mamba", "SSM (State Space Model)", "NVIDIA Nemotron", "AlphaEvolve", "Genie", "SIMA", "World Model", "GRPO"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep80", "yt": {"yt_title": "EP 80. Will 2026 Be the Year of Science? AI and Science", "yt_id": "P8hjiB709gY", "duration": 3447.0}}, {"ep": 81, "title": "DeepSeek이 바꿔버린 모든 것 MoE와 RLVR, 2025년 AI 회고", "date": "2026-01-28", "one": "DeepSeek이 MoE 레시피와 RLVR을 동시에 공개하며 2025년 AI 판도를 재편했고, 2026년은 스케일업·자율 에이전트·지속학습이라는 세 축의 질적 도약을 기다리고 있다.", "themes": ["MoE 아키텍처 표준화", "RLVR 패러다임", "에이전트 포스트트레이닝", "중국 오픈 프런티어", "2025년 AI 회고", "2026년 전망", "continual learning"], "clusters": ["RL·검증가능성", "모델·아키텍처", "에이전트·하네스", "인간·의도·일"], "claims": ["2025년 오픈 프런티어 모델은 100% 중국 기업이 주도했다 — DeepSeek, MiniMax, Kimi, Z.ai 등", "MoE는 동일 연산량 기준 dense 대비 7배 이상 성능 우위이며 배수가 스케일과 함께 증가한다", "DeepSeek은 800~2000대 GPU로 프런티어 도달이 가능함을 증명해 중국 전체의 패러다임을 전환시켰다", "RLVR은 o1의 방법론을 사실상 공개하며 에이전트 포스트트레이닝 패러다임을 열었다", "RL은 pre-training의 atomic skill을 더 길고 복잡하게 조합하는 능력을 새로 부여한다", "데이터 제조 능력이 진짜 병목이자 프런티어 기업의 핵심 해자다 — 자율주행 롱테일 비유"], "kw": ["MoE", "RLVR", "sparsity", "compute multiplier", "agent post-training", "atomic skill", "mid-training", "continual learning", "self-play", "dense model"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep81", "yt": {"yt_title": "EP 81. Everything DeepSeek Changed: MoE and RLVR, 2025 AI Year in Review", "yt_id": "iDd-7trU3VE", "duration": 4300.0}}, {"ep": 82, "title": "원리를 생각하는 프롬프팅", "date": "2026-01-28", "one": "모델의 능력은 이미 충분하다 — 적확한 토큰으로 그 공간을 여는 것이 프롬프팅의 본질이다.", "themes": ["토큰 프라이밍", "스킬 시스템", "CoT 충실성", "Harness 설계", "멀티 에이전트", "기초 복습", "모델-사용자 협력"], "clusters": ["모델·아키텍처", "에이전트·하네스", "인간·의도·일", "토큰경제·인프라"], "claims": ["Claude Opus 4.5는 METR 50%-time horizon 약 5시간으로 질적 전환점을 통과했다", "적확한 토큰의 유무가 모델 응답 품질을 결정한다 — 전문가 페르소나 설정보다 실제 전문 용어 주입이 더 효과적이다", "arXiv 초록 주입, 무작위 두문자어, A-Z 인물 소환은 모두 비전문가도 전문 토큰을 조달하는 방법이다", "CoT가 내부 표현과 다를 수 있지만, test-time compute 자체가 내부 계산을 촉진한다", "Harness가 새로운 소스 코드다 — Harness 설계 능력이 기업의 핵심 역량이 된다", "스킬은 정확하게 실행되는 코드와 확률적으로 실행되는 지시문의 패키지다"], "kw": ["METR 50%-time horizon", "Claude Opus 4.5", "Claude Code", "Sparse MoE", "CoT Faithfulness", "Monitorability tax", "Pareidolia", "arXiv API", "KV cache", "QKV attention"], "sent": "낙관", "depth": 4, "url": "https://aifrontier.kr/ko/episodes/ep82", "yt": {"yt_title": "EP 82. Prompting with Transformer Mechanics in Mind", "yt_id": "Q43tbLNx21A", "duration": 3038.0}}, {"ep": 83, "title": "이야기로 읽는 트랜스포머: 윤회하는 토큰의 순례", "date": "2026-01-28", "one": "토큰 한 개의 32층 순례를 이야기로 음미하며, 생산비 0의 시대에 진짜 차별화는 원리 이해 기반의 에너지 레벨 높은 질문을 손에 쥐는 것임을 설파한다.", "themes": ["트랜스포머 원리", "10x 뉴노멀", "Minimum Viable Knowledge", "soft lookup", "MoE 아키텍처", "양질 전환", "autoregressive 뇌"], "clusters": ["모델·아키텍처", "인간·의도·일"], "claims": ["10x 생산성이 뉴노멀이 되면 10x는 새로운 1x가 된다 — 기준에 못 맞추면 0.1x", "소프트웨어 생산비 0의 시대 — 공급 폭발로 대부분은 AI slop, 경쟁은 추상 레벨로 이동", "인간의 뇌도 autoregressive machine이다 — speech jammer 실험이 증거", "KV cache는 자라나는 기억의 궁전, 파라미터는 고정된 지형, 토큰은 그 사이의 순례자", "어텐션·FFN·MoE는 모두 soft lookup — 하나를 고르는 게 아니라 비율로 섞는 일", "MoE는 FLOPs 대비 파라미터 극대화 전략 — DeepSeek 256/384 experts, Kimi K2 384 experts"], "kw": ["트랜스포머", "autoregressive", "KV cache", "soft lookup", "MoE (Mixture of Experts)", "GQA (Group Query Attention)", "RoPE", "residual connection", "induction head", "DeepSeek MHC"], "sent": "낙관", "depth": 4, "url": "https://aifrontier.kr/ko/episodes/ep83", "yt": {"yt_title": "EP 83. Transformers: The Pilgrimage of the Reincarnated Token", "yt_id": "AuF7V7bqsrQ", "duration": 3236.0}}, {"ep": 84, "title": "Physical AI를 알아보자 (sudoremove 박종현 대표)", "date": "2026-02-11", "one": "Physical AI는 Cognitive Intelligence와 본질적으로 다른 지능이며, VLA 아키텍처가 수렴 진화한 지금 최대 병목은 action 데이터 부재이고 2025~2026년이 GPT-3 모먼트 진입 시점이다.", "themes": ["Physical AI", "VLA", "Robot Foundation Model", "데이터 스케일링", "수렴 진화", "Moravec의 역설", "텔레오퍼레이션"], "clusters": ["과학·Physical AI", "모델·아키텍처", "인간·의도·일"], "claims": ["Physical Intelligence는 Cognitive Intelligence(LLM)와 차원·속도·데이터 성격이 근본적으로 다르다", "VLA 모델 구조가 VLM + Diffusion action head(System 1/2) 구조로 수렴 진화 완료됐다", "Action 데이터는 인터넷에 존재하지 않아 스케일링이 핵심 병목이다", "현재 VLA 수준은 GPT-2~GPT-3 사이이며 올해~내년이 GPT-3 모먼트다", "end-to-end 모델이 rule-based 10만 줄 C++ 로직 전체를 대체하고 있다", "로봇 배포 flywheel이 Tesla FSD와 동일한 데이터 선순환 구조를 만든다"], "kw": ["VLA", "Vision-Language-Action", "Robot Foundation Model", "Diffusion Transformer", "Flow Matching", "System 1/2", "teleoperation", "sim-to-real gap", "NVIDIA Cosmos", "NVIDIA GR00T"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep84", "yt": {"yt_title": "EP 84. Let's Explore Physical AI: with Jong Hyun Park (sudoremove)", "yt_id": "MZdhBBvUmvU", "duration": 5042.0}}, {"ep": 85, "title": "OpenClaw와 2026년 2월의 신호들", "date": "2026-02-11", "one": "2026년 2월 OpenClaw가 대중 임계점을 돌파하면서 에이전트 시대가 공식 개막됐고, 도메인 해자는 소멸했으며 암묵지와 비즈니스 감각만이 남은 경쟁 우위임이 확인됐다.", "themes": ["OpenClaw 대중 임계점 돌파", "에이전트 철학 양분 (자율 vs Human-in-the-Loop)", "직교적 설계 원칙", "암묵지만 남은 경쟁 우위", "SaaS 붕괴와 타임 갭 압축", "에이전트-조직 동형성", "AI 경제 양극화와 재정정책"], "clusters": ["RL·검증가능성", "에이전트·하네스", "인간·의도·일", "토큰경제·인프라"], "claims": ["OpenClaw는 기술 혁신이 아니라 대중 인지 임계점 돌파 이벤트다 — 이미 존재하던 에이전트 루프가 갑자기 생겨난 것처럼 느껴지게 만들었다", "에이전트 설계 철학은 완전 자율(Ralph Loop)과 Human-in-the-Loop(OpenClaw)로 양분되며, 직교적 최소 기능 설계(Pi)가 제3의 철학으로 존재한다", "Anthropic Agent Teams는 메인 에이전트 오케스트레이터 모델에서 Shared Task List 기반 팀 협업 모델로 전환됐다 — 인간 조직 관리론과 동형", "대부분의 도메인에서 frontier 모델이 95%를 커버하며, 나머지 5% 암묵지만이 실질적 경쟁 우위로 남는다", "AI 시대 1위 수혜자는 20~30년 엔지니어링 경력 + 비즈니스 감각 보유자, 2위는 도메인 문제의식만 있는 비개발자(문과), 피해자는 절대 다수의 엔지니어", "SaaS 주가 급락(2026-02-04~05)은 타임 갭이 이제 주 단위로 압축됐음을 보여주는 증거다"], "kw": ["OpenClaw", "Pi", "VibeTunnel", "Moltbook", "Ralph Loop", "Claude Opus 4.6", "GPT-5.3-Codex", "Agent Teams", "Shared Task List", "Context Graph"], "sent": "경계", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep85", "yt": {"yt_title": "EP 85. OpenClaw and the Signals of February 2026", "yt_id": "bRsZH4CbhB4", "duration": 3128.0}}, {"ep": 86, "title": "진짜 내 일을 위한 Agentic Workflow", "date": "2026-02-18", "one": "AI 에이전트 코딩의 진입로는 결과물이 아니라 결과물을 만드는 장치를 직접 설계하는 것이다 — 130억 토큰·100만 라인·40일의 실전 해부.", "themes": ["에이전트코딩실전", "harness설계철학", "토큰경쟁력", "소프트웨어재정의", "고속inference", "스타트업해자전략", "인간AI공진화"], "clusters": ["에이전트·하네스", "인간·의도·일", "토큰경제·인프라"], "claims": ["토큰 사용 가능량이 IT 기업의 핵심 경쟁력과 직결된다", "병목은 merge queue에서 고속 inference와 adaptive thinking budget으로 이동했다", "Claude Code의 경쟁력은 Opus/Sonnet 엔진이 아닌 harness 자체다", "코드 가치는 0에 수렴하고 소프트웨어는 AI 모델+결정론적 래퍼+인터페이스 구조로 재정의된다", "자동화의 핵심은 결과물이 아니라 결과물을 만드는 장치(메타 레이어)를 만드는 것이다", "인지 부하는 AI 위임과 무관하게 줄지 않으며 도파민 루프가 삶을 피폐하게 만든다"], "kw": ["Backend.AI:GO", "Claude Code harness", "llama.cpp", "고속 inference", "thinking budget", "adaptive thinking", "soul document (CLAUDE.md)", "cron + claude -p", "sub-agent 병렬 처리", "MCP / A2A"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep86", "yt": {"yt_title": "EP 86. Agentic Workflow for Your Real Work(Lablup CEO Shin Jeong-gyu)", "yt_id": "EQ-Rnx-k-Ec", "duration": 5152.0}}, {"ep": 87, "title": "'딸깍'의 시대, 슬픔과 기쁨 사이", "date": "2026-02-24", "one": "딸깍이 배경이 된 세상에서 경쟁 우위는 하네스 설계력·도메인 취향·탐색 태도로 수렴한다.", "themes": ["METR벤치마크포화", "하네스엔지니어링", "AI우울증FOMO", "켄타우로스시대", "취향과태도", "human-in-the-loop", "9의행진"], "clusters": ["RL·검증가능성", "심리·공동체·세계관", "에이전트·하네스", "인간·의도·일"], "claims": ["Claude Opus 4.6의 METR 50% 타임 호라이즌이 14.5시간을 기록하며 현존 벤치마크 스위트가 포화됐다", "가장 general한 지능이 가장 specific한 것이다 (Boris Cherny)", "Chris Lattner: AI는 알려진 추상화를 구현하지만 새 추상화를 발명하지 못한다", "Karpathy의 9의 행진 — 90→99→99.9 각 스텝 노력량이 동일하다", "코딩은 켄타우로스 너머, 과학은 켄타우로스 진입 단계", "모델의 내삽이 인간 눈에 외삽처럼 보이는 것 — sparse 공간의 보간"], "kw": ["METR 타임 호라이즌", "하네스 엔지니어링", "scaffolding", "human-in-the-loop", "ralph loop", "Claude Code", "Claude Opus 4.6", "Gemini 3.1 Pro", "Grok 4.2 Swarm", "microgpt"], "sent": "중립", "depth": 4, "url": "https://aifrontier.kr/ko/episodes/ep87", "yt": {"yt_title": "EP 87. The Age of One Click — Between Grief and Joy", "yt_id": "k3pZRrSmrtk", "duration": 3067.0}}, {"ep": 88, "title": "비결은 없다", "date": "2026-03-04", "one": "비밀 레시피는 없다. AI 2026년 경쟁의 본질은 RL 환경 스케일링을 얼마나 잘 실행하느냐의 기본기 게임이다.", "themes": ["RL 환경 스케일링", "비밀 레시피 부재", "기본기의 시대", "모델-하네스 융합", "지속 학습", "Fog of Progress", "포스트 트레이닝 경쟁"], "clusters": ["모델·아키텍처", "인간·의도·일"], "claims": ["GPT-3.5 이후 대부분의 기술 혁신은 점진적·예상 가능한 궤적 위에 있었으며 비밀 레시피는 실질적으로 존재하지 않는다. RLVR만이 그나마 예외였다.", "2026년 모델 capability 도약의 핵심은 RL 환경 스케일링이다. 방법(RL)은 이미 공개됐으며 이제는 실행력과 환경 설계의 싸움이다.", "기본기(좋은 데이터, 안정적 인프라, 연산 스케일링)가 지금 모델 성능 차이를 지배한다. 창조적 방법론보다 실행 숙련도가 결정적이다.", "프리트레이닝은 Gemini가 최강이지만, Claude·Codex 등의 성향 차이는 포스트 트레이닝에서 만들어진다. 두 영역은 질적으로 다른 게임이다.", "하네스 자체가 RL 환경의 구성요소가 됨으로써 모델과 하네스의 경계가 소멸하고 있다. 모델 개발사의 자체 하네스 보유가 학습 선순환을 만든다.", "지속 학습이 풀리면 모델이 스스로 환경을 부트스트래핑하며 발전 궤적이 지수적으로 전환될 수 있다. 모든 프런티어 랩이 이미 주목 중이다."], "kw": ["RLVR", "RL 환경 스케일링", "Continual Learning", "GLM 5", "Sparse Attention", "Async RL", "Context Compaction", "Multi-Agent Chain", "Constitutional AI", "MoE"], "sent": "중립", "depth": 4, "url": "https://aifrontier.kr/ko/episodes/ep88", "yt": {"yt_title": "EP 88. There Is No Secret", "yt_id": "D_l1PQ3hIOg", "duration": 2953.0}}, {"ep": 89, "title": "딸깍과 덜컹", "date": "2026-03-15", "one": "AI가 즉각 해결하는 딸깍 구간과 막히는 덜컹 구간을 구분하는 감각, 그리고 덜컹 속에서 문제를 정의하고 밀어붙이는 능력이 AI 시대 인간의 핵심 역량이다.", "themes": ["딸깍-덜컹-덜컥 프레임", "하네스 엔지니어링", "문제 정의 능력", "스킬 형성 딜레마", "도메인 탐험 가속", "소프트웨어 황금기 종말", "AI 인프라 의존"], "clusters": ["에이전트·하네스", "인간·의도·일", "토큰경제·인프라"], "claims": ["GPT-5.4는 실생활 업무에서 표준적 인간을 넘어선 실용 기준점이 됐다 — RL 환경 스케일링이 CUA 품질의 원천", "하네스 엔지니어링: 에이전트의 실수를 구조적으로 봉쇄하는 설계 능력이 AI 시대 핵심 운영 역량", "누군가 이미 성공한 일이면 될 일이다 — 성공 케이스 공개 자체가 AI 역방향 복제를 가능케 하는 최강 힌트", "딸깍(자동 해결) / 덜컹(막힘) / 덜컥(갑작스러운 돌파)의 3단계 구조가 AI 협업 현실을 설명한다", "Anthropic 스킬 형성 논문: AI에 위임한 작업에 대해서는 인간의 스킬이 형성되지 않는다", "소프트웨어 엔지니어링 황금기 종료 — Claude Code 출시 1년 만에 1인+AI가 100만 라인 코드베이스 처리"], "kw": ["GPT-5.4", "Claude Code", "Computer Use Agent (CUA)", "하네스 엔지니어링", "스캐폴딩", "RL 환경 스케일링", "Alloy (형식 명세)", "Three.js", "비메쉬 알고리즘", "아이소서피스"], "sent": "낙관", "depth": 4, "url": "https://aifrontier.kr/ko/episodes/ep89", "yt": {"yt_title": "EP89. Click and Clunk", "yt_id": "E-19gxHeBRU", "duration": 2643.0}}, {"ep": 90, "title": "알파고 이후, 10년 (feat. HyperAccel 이진원 CTO)", "date": "2026-03-15", "one": "AlphaGo의 레시피(모방→추론 확대→RL)가 10년 후 LLM 추론 모델에 그대로 재현됐고, verifiable signal만 있으면 어떤 도메인에서든 자율 루프가 돌아간다는 원칙이 Autoresearch·Ralphthon·Ralph loop로 동시 검증되는 2026년 3월이다.", "themes": ["AlphaGo 10주년", "Autoresearch", "Verifiable Signal", "추론 반도체", "플랫폼 시프트", "AI 자기 증강", "딥러닝 10년 역사"], "clusters": ["RL·검증가능성", "인간·의도·일", "토큰경제·인프라"], "claims": ["AlphaGo의 3단계 레시피(대규모 인간 데이터 모방 → 추론 시 연산 확대 → RL 초월)가 오늘날 추론 모델에 그대로 반복된다(Noam Brown)", "Evaluation metric을 명확히 정의할 수 있는 도메인이면 자율 루프(Ralph loop)는 반드시 작동한다", "Ralphthon 1등·2등은 모두 하네스 설계자 — 무한 반복보다 계획·평가 설계 능력이 승패를 가른다", "GPT 디코더가 BERT 인코더를 이긴 이유: KV cache 구조의 확장성 비대칭 — Bitter Lesson의 재확인", "Vision Transformer 성공 비결은 알고리즘 혁신이 아닌 Google의 JFT 데이터 규모", "HyperAccel: HBM 대신 LPDDR로 추론 서버 단가 1/10, AI 서비스 월 3만원 → 5천원 목표"], "kw": ["AlphaGo", "AlphaZero", "Autoresearch", "RLVR", "Ralph loop", "Chain of Thought", "MCTS", "Vision Transformer", "BERT", "GPT decoder"], "sent": "낙관", "depth": 4, "url": "https://aifrontier.kr/ko/episodes/ep90", "yt": {"yt_title": "EP 90. 10 Years After AlphaGo (feat. Jinwon Lee, CTO of HyperAccel)", "yt_id": "oxbFDE-Z2vw", "duration": 3949.0}}, {"ep": 91, "title": "26.1Q 비즈니스 관점에서의 AI", "date": "2026-03-21", "one": "모든 문제는 Compute 기반 Search Problem으로 수렴하고, 그 루프를 비즈니스에 올리는 자가 다음 시대를 지배한다.", "themes": ["Search Problem 수렴", "Bundle-Unbundle 진화", "에이전트 게이트키퍼 해체", "AX 조직 변혁", "Capability Overhang", "바닐라 전략", "Entrepreneur 생존"], "clusters": ["RL·검증가능성", "에이전트·하네스", "인간·의도·일"], "claims": ["모든 문제는 compute 자원을 투입한 search problem으로 치환된다 — RLVR·Ralph Loop·딥러닝·진화 알고리즘 모두 동형", "해자(Moat)의 본질은 non-verifiable을 verifiable로 전환하는 환경 구축 능력이다 (Periodic Labs 사례)", "Capability overhang — 모델은 이미 우리 생각보다 훨씬 똑똑하며, 독점 데이터도 이미 모델이 알고 있다", "OpenClaw 류 개인 에이전트가 ChatGPT·네이버·배민 등 기존 게이트키퍼를 분화·해체한다", "기존 플랫폼 UX 마찰 = 마진 = 에이전트의 먹잇감, disintermediation은 기술적으로 막을 수 없다", "AX 성공 방향은 팀을 도와주는 것이 아니라 팀을 통째로 없애는 것이다"], "kw": ["RLVR", "Ralph Loop", "OpenClaw", "CUA(Computer Use Agent)", "GPT-5.4", "MiMo V2 Pro", "Nemotron", "Meta Cascading", "Uroboros 프레임워크", "Capability Overhang"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep91", "yt": {"yt_title": "EP 91. AI from the Business Perspective — 26.Q1 Update", "yt_id": "FPYOVt2B5EM", "duration": 4616.0}}, {"ep": 92, "title": "루프를 닫아라", "date": "2026-03-29", "one": "검증 가능한 것은 루프로 정복되고, 검증 불가능한 것은 표류한다 — OKR로 모든 업무를 scalar로 환원하는 사람이 AI 시대의 승자다.", "themes": ["오토리서치", "루프닫기", "verifiable평가", "AI for Science", "딸깍전략", "하네스철학", "암묵지형식화"], "clusters": ["RL·검증가능성", "에이전트·하네스", "인간·의도·일"], "claims": ["딸깍 되는 일과 딸깍 안 되는 일의 구분이 새로운 전략 기준이다 — ephemeral software vs. 소거법으로 남은 일", "오토 리서치는 검증 가능한 영역에서만 작동하고 그 외에서는 drift한다 — 농담·미감은 현재 RL 범위 밖", "Karpathy가 20년간 빠뜨린 것을 모델이 잡아냈다 — validation loss 실제 감소 확인", "교육 패러다임이 사람에게 가르치기에서 에이전트에게 가르치기로 전환 — Karpathy의 유튜브 포기 선언", "march of nines — AI는 90→99→99.9%로 수렴 중이며 이미 많은 섹터에서 99% 영역", "Terence Tao: semi-formal 언어로 수학자의 암묵지를 형식화하는 것이 현재 프론티어 과제"], "kw": ["오토리서치", "루프닫기", "manifest", "ATD 인수조건주도", "verifiable reward", "scalar metric", "OKR", "하네스", "Ralph Loop", "GAN 멀티에이전트"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep92", "yt": {"yt_title": "EP 92. Close the Loop", "yt_id": "xTYTA8dLTko", "duration": 3902.0}}, {"ep": 93, "title": "Claude Code 소스코드 유출 이후", "date": "2026-04-07", "one": "Claude Code 소스코드 유출 사태는 단순 보안 사고가 아니라 AI 시대에 소스 코드·IP·저작권이라는 인간 중심 개념 자체가 붕괴하고 있음을 드러낸 시대적 신호다.", "themes": ["소스코드유출", "하네스엔지니어링", "AI저작권", "클린룸논쟁", "공급망보안", "코드가치붕괴", "AI네이티브세대"], "clusters": ["심리·공동체·세계관", "에이전트·하네스", "인간·의도·일"], "claims": ["유출은 사람 실수(npm 배포 시 소스맵 포함)이며 GitHub에 수천 개 레포로 순식간에 확산됐다", "Sigrid Jin 등 3인이 2시간 만에 50만 줄을 Python/Rust로 재작성한 Claw Code가 Kubernetes·Node.js보다 GitHub 스타가 많아졌다", "유출 코드는 human interpretability 낮은 AI 생성 코드의 실체를 적나라하게 드러냈다", "Anthropic이 'AI 재작성은 저작권 침해 아니다'를 주장해왔으나 DMCA를 발송한 것은 자가당착이다", "소스 코드 가치는 빠르게 0에 수렴하고 PMF와 유저 생태계가 유일한 자산이 된다", "모델은 시맨틱 CPU, 하네스는 OS, 비즈니스 로직은 앱 스택이라는 새로운 프레임이 확립됐다"], "kw": ["Claude Code", "Claw Code", "하네스엔지니어링", "DMCA", "클린룸", "공급망공격", "supply chain attack", "zero-day", "npm", "소스맵"], "sent": "경계", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep93", "yt": {"yt_title": "EP93. After the Claude Code Source Code Leak (ft. Noah Ko, Sionic CEO)", "yt_id": "jH3IzdDamcM", "duration": 3818.0}}, {"ep": 94, "title": "Anthropic과 낮게 열린 과실들", "date": "2026-04-21", "one": "Anthropic이 텍스트·코딩 집중 전략으로 2주 만에 모델·툴·디자인 3각 영토를 확장하는 동안, 인간에게 남은 과실은 capability overhang 꺼내기와 취향 기반 의사결정 두 갈래뿐이다.", "themes": ["Capability Overhang", "Wrapper 비즈니스 딸깍", "AI for Science", "Knowledge Distillation", "개인화 정밀의료", "Attention Business", "Unbundling ChatGPT"], "clusters": ["모델·아키텍처", "인간·의도·일"], "claims": ["Claude Opus 릴리스 주기가 70일로 수렴 — 70일마다 프롬프트 재조정 작업 필요", "Anthropic의 텍스트+코딩 집중 전략이 B2B 유스케이스를 선점 — OpenAI는 뒤늦게, Google은 Science에 집중", "Mythos 10T 파라미터 추정, GPU 쇼티지 + 사이버보안 우려로 출시 지연", "KD 통합 파이프라인 추정: 하나의 big model(Mythos)에서 Opus/Sonnet/Haiku를 knowledge distillation으로 찍어냄", "Capability Overhang — 모든 발견의 본질은 모델의 잠재 능력을 꺼내는 경쟁", "Claude Design은 인앱 브라우저 피드백 루프 완성의 산물 — Figma 주가 7% 급락"], "kw": ["Capability Overhang", "Knowledge Distillation", "BPE tokenizer", "Continual Pre-Training", "Adaptive Thinking", "Managed Agent", "Epigenetics", "Evo 2", "AlphaGenome", "mRNA 개인화 백신"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep94", "yt": {"yt_title": "EP 94. Claude Opus 4.7 and the low-hanging fruit", "yt_id": "DU6gHtt8UZM", "duration": 3737.0}}, {"ep": 95, "title": "DeepSeek-V4 논문 읽기", "date": "2026-04-28", "one": "DeepSeek-V4는 1년의 고통 끝에 Sparse Attention from-scratch 학습에 근접 성공한 아키텍처 혁신이며, 중국이 pre-training에서 미국과 동등 이상임을 입증한 분수령이다.", "themes": ["DeepSeek-V4", "Sparse Attention", "MoE 아키텍처", "중국 AI 프론티어", "pre-training vs post-training", "long-context", "AI 인프라"], "clusters": ["모델·아키텍처", "인간·의도·일", "토큰경제·인프라"], "claims": ["V3 600B에서 V4 1.6T MoE로 확장, Pro 기준 연산량 27%·KV cache 메모리 10%로 감소", "Sparse Attention을 초반 1T 토큰 dense 후 30T 이상 sparse로 near-from-scratch 학습 성공", "Sparse Attention 3요소: Sliding Window / Heavily Compressed / Compressed Sparse + Lightning Indexer top-k", "top-k 미분 불가능성이 sparse attention 학습 난이도의 근본 원인, 왜 됐는지는 미해명", "MLA 제거, Multi-Query Attention + Muon Optimizer + mHC(Manifold-Constrained Hyper-Connections) 도입", "Anticipatory Routing: 과거 weight로 MoE routing, 이유 불명의 학습 불안정성 해소책"], "kw": ["Sparse Attention", "Lightning Indexer", "mHC", "Muon Optimizer", "MoE", "Anticipatory Routing", "FP4 Quantization", "Mega-kernel", "TileLang", "On-Policy Distillation"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep95", "yt": {"yt_title": "EP 95. Reading the DeepSeek-V4 Paper", "yt_id": "rJEMaldMyLE", "duration": 3894.0}}, {"ep": 96, "title": "LLM 추론 인프라와 토큰 경제학", "date": "2026-05-08", "one": "LLM 경쟁의 진짜 전장은 모델 크기가 아니라 t_compute vs t_memory 게임—sparsity·배치·캐시 전략이 토큰 단가를 결정한다.", "themes": ["추론인프라", "토큰경제학", "KV캐시", "MoE스파시티", "하드웨어아키텍처", "서빙최적화", "DeepSeek"], "clusters": ["모델·아키텍처", "인간·의도·일", "토큰경제·인프라"], "claims": ["추론(Inference)이 학습(Training)을 능가하는 시대 도래—agentic 워크로드가 inference 수요를 폭발시켰다", "AI 모델 아키텍처는 하드웨어의 그림자—NVL72 출하 후 5T~10T 모델이 가능해졌다", "latency = max(t_compute, t_memory)—이 두 변수가 모든 가격표와 컨텍스트 티어를 결정한다", "최적 배치 B = (FLOPs/대역폭) × (1/sparsity) ≈ 300 × 8 = 2400 (DeepSeek V3 기준)", "GB300 drain time ≈ 20ms—이것이 추론 사이클의 기본 단위가 된다", "200K 컨텍스트 가격 티어는 memory-bound 전환점의 경제학적 반영이다"], "kw": ["KV Cache", "PagedAttention", "Prefill", "Decode", "Chunked Prefill", "MoE (Mixture of Experts)", "Sparse Attention", "MLA (Multi-head Latent Attention)", "Roofline Analysis", "HBM"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep96", "yt": {"yt_title": "EP 96. LLM Inference Infrastructure and Token Economics", "yt_id": "V_Z-ydQJ54c", "duration": 6033.0}}, {"ep": 97, "title": "AI Psychosis 시대의 사람들", "date": "2026-05-21", "one": "AI 하네스가 모든 지식 노동자의 기본 인프라가 된 시점에서, 다음 AI 애플리케이션의 승자는 UX가 아닌 독점 데이터×전용 툴의 컨트롤 레이어를 장악하는 자이며, AI Psychosis라는 도파민 과몰입 속에서도 도메인 지식+불확실성 관리 능력이 진짜 인재 기준이다.", "themes": ["AI 하네스 경쟁", "AI Psychosis·번아웃", "버티컬 AI 애플리케이션", "컨트롤 레이어 전략", "AI 인재상 재정의", "AI Native vs AI Assisted", "Unbundling Oracle 동형 반복"], "clusters": ["심리·공동체·세계관", "에이전트·하네스", "인간·의도·일"], "claims": ["하네스 경쟁은 모델↔하네스 선순환 구조이며 이미 모든 지식 노동자의 것이 됐다", "Codex는 슈퍼 앱이자 미래 AI 애플리케이션의 원형 — GPT-5.5 + computer use + 툴 + 맥락 관리", "다음 AI 앱의 핵심은 UX가 아닌 task completion 자체의 상품화", "버티컬 차별화 공식: 배타적 데이터 × 전용 툴 = 컨트롤 레이어", "AI Native vs AI Assisted 착각 — 대부분 기업이 Assisted이면서 Native라 선언", "AX 컨설팅 단가 구조적 하락 — 남의 마진은 나의 기회(AI Native 창업으로 전환)"], "kw": ["Claude Code", "Codex (OpenAI)", "GPT-5.5", "Claude Mythos", "Gemini 3.5 Flash", "METR 벤치마크", "DeepSeek V4", "화웨이 Ascend", "Lablup", "vLLM / SGLang"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep97", "yt": {"yt_title": "EP 97. People in the Age of AI Psychosis", "yt_id": "cUc8iK6LG0k", "duration": 4623.0}}, {"ep": 98, "title": "AI가 실행하는 시대, 인간에게 남는 건 '의도' (Hashed 김서준 대표)", "date": "2026-05-26", "one": "실행은 에이전트에게 넘어갔다 — 인간에게 남는 마지막 자산은 '의도'이며, 의도의 질이 곧 경쟁력의 전부가 된다.", "themes": ["의도와실행분리", "에이전틱조직", "바이브코딩", "AI블록체인융합", "인스퍼레이션경제", "대학언번들링", "TCG투자"], "clusters": ["에이전트·하네스", "인간·의도·일", "토큰경제·인프라"], "claims": ["의도(Intent)가 인간 고유의 마지막 자산이다. AI는 실행 레이어이고 인간이 줄 수 있는 것은 의도뿐이다.", "바이브 코딩의 실질적 퀀텀 점프는 2025년 11월 Gemini 3 + Claude Opus 4.5 동시 출시로 일어났다.", "비개발자 1인이 LLM 역공학으로 기술 서비스를 혼자 만들고 수익을 내는 새로운 창업자 종이 출현했다.", "에이전트 경제의 신원·평판·결제 인프라는 퍼블릭 블록체인(ERC-8004 표준)이 담당하게 된다.", "에이전트 이코노미는 아직 1%도 실현되지 않았으나, 온보딩 시 이더리움 스테이블코인 네트워크가 재평가된다.", "AI 이후 최후로 남는 산업은 취향·내러티브·IP 기반의 인스퍼레이션 경제다."], "kw": ["바이브코딩", "AEO", "GEO", "ERC-8004", "x402", "Claude Opus 4.5", "Gemini 3", "에이전트신원표준", "스테이블코인", "퍼블릭블록체인"], "sent": "낙관", "depth": 5, "url": "https://aifrontier.kr/ko/episodes/ep98", "yt": {"yt_title": "EP 98. In the Age When AI Executes, What Remains for Humans Is 'Intent' (Hashed CEO Seojoon Kim)", "yt_id": "Wx0C42-S5z4", "duration": 5278.0}}, {"ep": 99, "title": "Opus 4.8 출시, 요즘 AI 경쟁과 인간의 일", "date": "2026-06-07", "one": "모델 성능 경쟁은 끝나가고 harness·latency 경쟁이 시작됐다. 인간의 일은 '생각'에서 '문제 정의'로 레이어가 이동하고 있다.", "themes": ["모델출시주기가속", "sinularity수렴", "harness경쟁", "AI인지저하", "엔지니어개념해체", "토큰경제학", "AIProductMarketFit"], "clusters": ["모델·아키텍처", "심리·공동체·세계관", "에이전트·하네스", "인간·의도·일", "토큰경제·인프라"], "claims": ["Opus 4.8 출시 주기 43일 — 이전 70일에서 급격히 단축. 싱귤래리티를 향한 수렴 중", "Anthropic Mythos급 모델 수 주 내 공개 예고 — Opus→Sonnet 격하, 체급 구조 리셋", "모델 성능 경쟁에서 harness·latency 경쟁으로 국면 전환 진행 중", "Dynamic Workflows = code as harness — 모델 자기평가 부패를 결정적 코드로 방지", "AI가 에르되시 문제 해결 후 수학자들이 방법론 전이해 새 문제 해결 — AlphaGo 패턴 재현", "생성형 인지 저하(Generative Cognitive Decline) 실제 체감 — 사고 offloading이 사고 근육을 위축시킨다"], "kw": ["Opus 4.8", "Mythos", "Dynamic Workflows", "code as harness", "Gemini 3.5 Flash", "DSPy", "TextGrad", "RLM", "Recursive Language Models", "long-horizon task"], "sent": "낙관", "depth": 4, "url": "https://aifrontier.kr/ko/episodes/ep99", "yt": {"yt_title": "EP 99. Opus 4.8 Launch, Today's AI Competition, and Human Work", "yt_id": "5CaOXPstq_8", "duration": 3037.0}}], "quotes": [{"ep": 45, "q": "non-verifiable을 verifiable로 바꿔주는 이 closed-loop system이구나라고 저는 이렇게 정의했어요 (20:39)"}, {"ep": 45, "q": "처음에 evaluation 틀이 명확하게 상상 안 되는 프로젝트는 시작하면 안 된다 (22:12)"}, {"ep": 75, "q": "프리트레이닝이 있는 데이터를 잘 쓴다에 가깝다면, 포스트트레이닝은 데이터를 창조한다는 느낌에 더 가깝다. — 김성현 01:19"}, {"ep": 75, "q": "머신러닝 관련 방법 중에서 초인적인, 즉 인간을 뛰어넘는 성능에 도달할 수 있는 유일한 방법이라고도 볼 수 있습니다. — 김성현 약 11:00"}, {"ep": 76, "q": "지식을 많이 가지고 있는 거는 이미 교란됐다고 보거든요. (최승준, 05:56)"}, {"ep": 76, "q": "현재 유치원입니다. 이미 와 있는. (최승준, 29:19)"}, {"ep": 77, "q": "2025년 1월 vintage인 거죠. 지금 2.5, 3.0 다요. (노정석, 13:10)"}, {"ep": 77, "q": "200년 동안 일어난 일이 앞으로 2년 동안 일어날 거라고 보는 게 어쩌면 맞고, 저희 회사 안에서도 앞으로 2년이 20년이라고 봐야 된다. (노정석, 37:15)"}, {"ep": 78, "q": "현재의 pre-training은 벽에 도달했다. 무언가 새로운 생각이 필요하다. 이제 스케일링의 시대는 가고 연구의 시대가 다시 도래했다. — 노정석 인용 (Ilya 발언)"}, {"ep": 78, "q": "컴퓨테이션이 생명의 soup이라는 얘기인 거죠. — 최승준 (Chester 이론 압축)"}, {"ep": 79, "q": "GPT-5.1이 되면서 한 39점, 5.2가 되면서 70점이 됐단 말이에요. 비용이에요. 사람에게 저 일을 처리하는 데 주었을 거라고 추정되던 비용의 1%밖에 들지 않고... 처리하는 속도는 무려 11배나 빨랐다. — 노정석 (00:35)"}, {"ep": 79, "q": "괴델의 계단이라고 저는 개인적으로 제 이름 붙여서 생각하는 건데 이 패턴이 비즈니스에서 존재하고, 우리 학습에도 존재하고, 물리에도 존재하고, 우주 전체에 다 반복되는 패턴이구나라고 저는 생각하죠. — 노정석 (약 45분대)"}, {"ep": 80, "q": "2026년은 코딩은 이미 끝난 일이고 이제 과학이 또 끝나는 그런 한 해가 될 것이다 — 노정석 (00:00)"}, {"ep": 80, "q": "verifiable reward를 만들 수만 있다면 이건 그냥 모델이 풀 수 있는 게임이다 — 노정석 (05:40)"}, {"ep": 81, "q": "DeepSeek의 영향력은 오히려 과소평가된 것 같기도 합니다. 이거 자체가 패러다임과 시장의 상황을 너무 크게 바꾼 것 같아요. — 김성현 (12:38)"}, {"ep": 81, "q": "RLHF가 챗봇을 만들기 위한 post-training이었다면 RLVR은 에이전트를 만들기 위한 post-training이다. — 최승준 (14:27)"}, {"ep": 82, "q": "지난 30일 동안만이라도 따라가지 않은 사람들은 이 주제에 대해 이미 deprecated된 세계관을 가지고 있는 거다. (최승준, Karpathy 인용, 03:22)"}, {"ep": 82, "q": "이 Harness가 사실은 이제 새로운 소스 코드가 됐습니다. (노정석, 09:25)"}, {"ep": 83, "q": "10x가 뉴노멀이 되어서 1x가 되면 어떻게 되는 건가 — 최승준 01:11"}, {"ep": 83, "q": "그 생산에 들어가는 가격이 0이 된 거잖아요 — 노정석 05:55"}, {"ep": 84, "q": "action이라는 거는 인터넷에 존재하지가 않아요. — 박종현, 24:05"}, {"ep": 84, "q": "10만 줄 되는 C++로 짜져 있는 low-level한 control이 다 그냥 end-to-end로 모델이 다 대체를 해버렸다. — 박종현, 07:56"}, {"ep": 85, "q": "OpenClaw가 훨씬 그거를 좀 대중적이고 쉽고, 마치 없었던 건데 갑자기 생겨난 것 같은 그런 이미지를 이 시장에는 좀 주는 것 같더라고요. — 노정석 (05:37)"}, {"ep": 85, "q": "에이전트의 사회에서 잘 작동하는 게 뭔가가 확인되잖아요. 그럼 그건 다시 인간의 사회로 피드백될 것 같다는 생각을 하게 되거든요. — 최승준 (15:37)"}, {"ep": 86, "q": "토큰을 사용할 수 있는 양이 그 회사, 특히 IT 회사의 경쟁력과 직결될 수 있다 — 신정규 (~13:07)"}, {"ep": 86, "q": "인지 부하가 줄지 않습니다. 아무리 AI에게 뭔가를 맡긴다고 해도 오히려 끊임없이 피드백이 들어오기 때문에 사람이 되게 삶이 피폐해집니다 — 신정규 (~16:17)"}, {"ep": 87, "q": "그 딸깍이 내가 아니니까. 그 딸깍이 내가 하는 사람들은 지금 신나죠. (노정석, 27:15)"}, {"ep": 87, "q": "모든 문제가 탐색 문제로 바뀌고 있는 것 같아요. 전기와 더 많은 연산을 투입해서 가보지 않은 곳들을 지금 추론 토큰이 다 가보고 있는 거잖아요. (노정석, 13:15)"}, {"ep": 88, "q": "그나마 비밀 레시피에 가장 가까웠던 것은 RLVR인 것 같기는 합니다. 그 외에는 상당수가 중요한 혁신들이지만 절대 따라잡을 수 없는 그런 형태의 비밀 레시피는 아니었던 것 같다. — 김성현 05:41"}, {"ep": 88, "q": "기본에 충실한 것이 지금 굉장히 관건이라는 생각을 합니다. — 김성현 07:14 구간"}, {"ep": 89, "q": "실생활에서 쓰는 업무는 표준적인 인간보다는 훨씬 잘한다라는 부분은 너무 자연스럽게 받아들여야 되는 그런 순간이 왔습니다. — 노정석 03:59"}, {"ep": 89, "q": "될 것 같은 일은 하지 마라. 왜냐하면 가치가 없는 일이니까. — 정규 (노정석 인용) 30:22"}, {"ep": 90, "q": "소프트웨어가 끝나는 게 아니라 소프트웨어의 시대가 진짜 활짝 열리는 건데, 소프트웨어를 만들던 사람의 시대가 끝난 거죠. — 노정석 (1:01:00)"}, {"ep": 90, "q": "기술은 걱정할 게 별로 없을 것 같아요. 사람이 걱정이니까. — 최승준 (1:01:35)"}, {"ep": 91, "q": "compute를 이용해서 계산 자원을 투입해서 모든 문제를 search problem으로 치환해 버린 겁니다. (노정석, 17:23)"}, {"ep": 91, "q": "the most general one is the most specific one — Boris Cherny, (노정석 인용, 20:28)"}, {"ep": 92, "q": "에이전트가 못하는 것이 이제 당신의 일이다. 에이전트가 할 수 있는 것은 아마 당신보다 더 잘하거나 곧 그렇게 될 것이다. — Karpathy(14:45 최승준 인용)"}, {"ep": 92, "q": "검증 가능한 영역에서는 너무 잘 작동하지만 검증하기 어려운 것에서는 다 drift한다. — 최승준(10:24)"}, {"ep": 93, "q": "모델이 이제 semantic CPU인 거고, 하네스는 그거를 어떻게 처리해야 되는지에 대한 운영 체제인 거고 — 노정석 (20:44)"}, {"ep": 93, "q": "본인은 이걸 밈이라고 생각한다. 실제로 코드는 거의 동작하지 않았다 — 고석현, 진형 언급 (12:28)"}, {"ep": 94, "q": "저희가 이제는 한 달이 1년 같은 세상을 살고 있다고 생각이 들고, 2주라고 하면 반년이잖아요. 그야말로 반년의 임팩트예요. — 노정석 (00:56)"}, {"ep": 94, "q": "지금 일어나는 모든 일들의 본질을 보면 사람의 기여분이 거의 없어요. 대부분 다 모델이 이미 가지고 있을 거라고 추정하는 모델의 과잉 능력, 그 능력을 누가 빨리 잘 꺼내 쓰느냐의 지금 싸움이거든요. — 노정석 (14:28)"}, {"ep": 95, "q": "기술적으로도 경이롭고요. 세상에 이런 구조들을 만들어내고 동시에 구현을 해냈다는 것 자체가 놀랍기도 하고요. — 김성현 16:16"}, {"ep": 95, "q": "안 되는 것 같은데 약간 자포자기 심정도 있었던 것 같거든요. 그런데 어떻게든 되게 만든 거죠. — 김성현 25:14"}, {"ep": 96, "q": "AI 모델은 이 하드웨어의 그림자다. — 노정석 (09:24)"}, {"ep": 96, "q": "프론티어 랩들의 진짜 어떤 그들의 자산, moat라고 볼 수 있는 것들은 이런 엔지니어링 인프라 능력인 것 같아요. — 노정석 (1:26:34)"}, {"ep": 97, "q": "저는 하네스 = 컨트롤 레이어라고 생각하는데, 그 컨트롤을 얼마나 잡을 수 있느냐가 이제 그 회사들의 새로운 가치가 될 거라는 생각이 들어요. (노정석, 28:27)"}, {"ep": 97, "q": "그냥 그 워크플로우를 네가 새로 써서 네가 저 회사를 공격해 봐. 이게 다음 창업의 거대한 파도인 거죠. 남의 마진은 나의 기회. (노정석, ~38:02)"}, {"ep": 98, "q": "한 5년 뒤, 10년 뒤에 우리의 삶을 생각했을 때 저는 거의 의도만 남는다고 생각하거든요. (김서준, 00:00)"}, {"ep": 98, "q": "의도를 가지고 100시간을 고민한 사람이 의도를 가지지 않고 1만 시간을 고민했던 사람들보다 더 아웃퍼포밍할 수 있는 환경이 된 것 같다. (김서준, 1:26:00)"}, {"ep": 99, "q": "발전 속도는 계속 증가하기 시작해서 어느 시점이 되면 이게 무한히 증가하는 그 시점이 된다. 그 지점을 향해 가고 있는 거죠. — 노정석"}, {"ep": 99, "q": "token economics에서 살아남기 위한 처절한 몸부림 아니겠습니까. — 최승준"}], "predictions": [{"c": "2027년 이전 전 영역 인간 초월 AI (Dario 인용)", "ep": 45, "h": "2027", "s": "progress", "n": "코딩·수학은 초월, 전 영역은 미확인"}, {"c": "Verifiable 도메인은 빅테크가 자동 데이터 생성으로 완전 정복", "ep": 45, "h": "25~26", "s": "hit", "n": "EP80 과학·EP92 오토리서치·EP99 에르되시로 반복 실증"}, {"c": "Non-verifiable closed-loop 버티컬만 장기 생존", "ep": 45, "h": "3~5년", "s": "progress", "n": "95/5 암묵지 법칙으로 구조 보강 중"}, {"c": "Physical AI 시뮬 비용 하락 → 로봇 데이터 경쟁 심화", "ep": 45, "h": "25~27", "s": "hit", "n": "NVIDIA Cosmos·GR00T·SmolVLA로 확인"}, {"c": "포스트트레이닝 레시피가 프론티어 랩 핵심 경쟁력", "ep": 75, "h": "25~26", "s": "hit", "n": "'비밀 레시피 없다'(EP88)와 역설적 긴장"}, {"c": "MoE+4bit 양자화로 1조 모델 온프레미스 구동", "ep": 75, "h": "2026", "s": "hit", "n": "8-GPU 서버 1대 수치로 자체 실증"}, {"c": "on-policy RL만으로 복잡한 tool-use 창발", "ep": 75, "h": "2026", "s": "hit", "n": "200~300개 tool-use 창발 확인"}, {"c": "1년 내 AGI/ASI 담론 주류화", "ep": 76, "h": "26 하반기", "s": "hit", "n": "EP79~99 전 에피소드 핵심 의제로 조기 적중"}, {"c": "DeepSeek/Kimi가 2026년 봄 돌파 방법론 논문 공개", "ep": 77, "h": "26.4~5", "s": "hit", "n": "EP95 DeepSeek-V4 논문으로 정확히 적중"}, {"c": "Opus 4.5 출시 임박", "ep": 77, "h": "25.11~12", "s": "hit", "n": "EP78에서 출시 확인"}, {"c": "Antigravity Desktop 12월 내 출시", "ep": 77, "h": "2025-12", "s": "risky", "n": "corpus 미확인 — 가장 취약한 제품 출시 예측"}, {"c": "앞으로 2년이 20년 — 인지 노동 대체 가속", "ep": 77, "h": "25~27", "s": "ontrack", "n": "GDPVal 도약·SaaS 붕괴·출시주기 43일로 지속 실증"}, {"c": "METR 3~4시간 도달 (26년 3~5월)", "ep": 77, "h": "26.3~5", "s": "hit", "n": "실제 5→14.5시간, 예측의 4배 초과 (과소추정)"}, {"c": "Superintelligence 2년 내 65% 확률", "ep": 79, "h": "27년 말", "s": "progress", "n": "시한 미도달, 일부 도메인만 초월 확인"}, {"c": "2026년 AI Intern Researcher 등장", "ep": 79, "h": "2026", "s": "progress", "n": "OpenAI 로드맵 재인용 — 독립 예측 아님"}, {"c": "METR 8시간 달성 (26년 말)", "ep": 79, "h": "26년 말", "s": "hit", "n": "9개월 이상 조기 달성 (2월에 14.5h)"}, {"c": "2026년은 과학의 해 — AI의 과학 정복 시작", "ep": 80, "h": "2026", "s": "ontrack", "n": "양자장론 공동저작·에르되시 해결로 반복 실증"}, {"c": "Hybrid Mamba+Transformer가 차세대 표준", "ep": 80, "h": "26~27", "s": "risky", "n": "DeepSeek V4는 Sparse Attention — 방향 오류"}, {"c": "White-collar 대량 해고 2026년 현실화", "ep": 80, "h": "2026", "s": "progress", "n": "SaaS 주가는 선행지표, 해고 통계는 corpus에 없음"}, {"c": "2026 Q1 빅테크 대형 발표 연쇄", "ep": 82, "h": "26 Q1", "s": "hit", "n": "EP84~90 연속 대형 뉴스로 현실화"}, {"c": "3월 알파고 주간 전후 주요 모델 발표", "ep": 85, "h": "2026-03", "s": "hit", "n": "EP90 알파고 10주년 주간 집중 확인"}, {"c": "5월 I/O·Build에서 주요 모델 발표", "ep": 85, "h": "2026-05", "s": "hit", "n": "Gemini 3.5 Flash 확인, 여름 삼파전으로 연결"}, {"c": "전통 SaaS 구조적 주가 재평가 지속", "ep": 85, "h": "26 연중", "s": "hit", "n": "corpus에서 가장 일관되게 실증된 예측"}, {"c": "AI 해고 물결 → 재정정책 강화·엔터 고용 흡수", "ep": 85, "h": "26~28", "s": "unknown", "n": "사회·정책 예측은 약점 영역 — 근거 없음"}, {"c": "AI 리서치 2028년 완전 자동화 (OpenAI 인용)", "ep": 85, "h": "2028", "s": "unknown", "n": "시한 미도달, 재인용 구조"}, {"c": "고속 inference가 기업 AI 경쟁력 핵심 인프라", "ep": 86, "h": "26~27", "s": "ontrack", "n": "EP96 전담 심화, EP99 'latency 경쟁 개막' 선언"}, {"c": "소프트웨어 = 모델+결정론적 래퍼+인터페이스로 재편", "ep": 86, "h": "27~30", "s": "ontrack", "n": "모델=CPU/하네스=OS 프레임 확립으로 진행"}, {"c": "METR 에이전트 벤치마크 포화·개편", "ep": 87, "h": "26 상반기", "s": "hit", "n": "14.5시간으로 기존 스위트 상한 돌파"}, {"c": "Continual learning 핵심 컴포넌트 공개 (50%)", "ep": 81, "h": "2026", "s": "unknown", "n": "3년째 '곧 온다' — 집단 기대와 현실의 gap"}, {"c": "자율 에이전트 — 지시 없이 코드 자기 개선", "ep": 81, "h": "2026+", "s": "ontrack", "n": "Ralph loop·오토리서치로 human-in-loop 자율 현실화"}, {"c": "로봇 GPT-3 모먼트 도달", "ep": 84, "h": "25~26", "s": "risky", "n": "게스트 본인은 'GPT-2~3 사이'로 더 신중"}, {"c": "개인 에이전트가 기존 게이트키퍼 disintermediation", "ep": 91, "h": "3~7년", "s": "progress", "n": "방향 확인, 플랫폼 해체는 시작 단계"}, {"c": "Pre-train 비용 앞자리 수십억 원대로 하락", "ep": 91, "h": "1~2년", "s": "hit", "n": "800~2000대 GPU로 프론티어 도달 실증"}, {"c": "카피바라(Mythos) 모델 획기적 성능 공개", "ep": 92, "h": "26 상반기", "s": "hit", "n": "코드명 추론 적중 — 내부 정보망 기반"}, {"c": "유출 후 모든 하네스/CLI 품질 급상승", "ep": 93, "h": "26 내", "s": "hit", "n": "Claw Code가 Kubernetes 스타 추월로 즉각 실증"}, {"c": "차기 Opus 2026년 6~7월 출시", "ep": 94, "h": "26.6~7", "s": "ontrack", "n": "Mythos '수 주 내 공개 예고'로 경로 현실화"}, {"c": "에이전트 경제 → 이더리움 스테이블코인 리레이팅", "ep": 98, "h": "3~7년", "s": "unknown", "n": "게스트(김서준) 주도 — Chester 독자 영역 밖"}, {"c": "토큰 가격 중장기 구조적 하락", "ep": 99, "h": "2~3년", "s": "ontrack", "n": "본인이 가장 자신 있는 베팅 — 구조 근거 충분"}, {"c": "여름 Gemini 3.5 Pro·Mythos·GPT-5.6 삼파전", "ep": 99, "h": "26 여름", "s": "progress", "n": "2/3 확인 (Flash·Mythos), GPT-5.6 미확인"}], "covered": [45, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99], "ytTotal": 117};
+
+/* ── progress + nav highlight ── */
+const prog = document.getElementById('prog');
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+}, {passive: true});
+const navLinks = [...document.querySelectorAll('.nav-links a')];
+const secs = navLinks.map(a => document.querySelector(a.getAttribute('href')));
+new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), {rootMargin: '-30% 0px -60% 0px'}).observe && secs.forEach(s => s && new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+}), {rootMargin: '-25% 0px -65% 0px'}).observe(s));
+
+/* ── quotes ── */
+let qi = Math.floor(D.quotes.length / 3);
+function renderQ(elT, elC, i) {
+  const q = D.quotes[((i % D.quotes.length) + D.quotes.length) % D.quotes.length];
+  elT.style.opacity = 0;
+  setTimeout(() => { elT.textContent = '“' + q.q.replace(/\s*\([^)]*\)\s*$/, '') + '”';
+    elC.textContent = '— EP' + q.ep + (q.q.match(/\(([^)]*)\)\s*$/) ? ' · ' + q.q.match(/\(([^)]*)\)\s*$/)[1] : '');
+    elT.style.opacity = 1; }, 200);
+}
+const hqT = document.getElementById('hqText'), hqC = document.getElementById('hqCite');
+let hqi = 0; renderQ(hqT, hqC, hqi);
+setInterval(() => renderQ(hqT, hqC, ++hqi), 9000);
+document.getElementById('heroQuote').onclick = () => renderQ(hqT, hqC, ++hqi);
+const qbT = document.getElementById('qbText'), qbC = document.getElementById('qbCite');
+renderQ(qbT, qbC, qi);
+function qNext() { renderQ(qbT, qbC, ++qi); }
+function qPrev() { renderQ(qbT, qbC, --qi); }
+function qShuffle() { qi = Math.floor(Math.random() * D.quotes.length); renderQ(qbT, qbC, qi); }
+
+/* ── predictions ── */
+const SLBL = {hit: '🟢 적중', ontrack: '🔵 적중·진행중', progress: '🟡 진행중', unknown: '⚪ 미확정', risky: '🔴 불확실'};
+const P = D.predictions;
+const counts = {};
+P.forEach(p => counts[p.s] = (counts[p.s] || 0) + 1);
+const hitRate = Math.round((counts.hit + (counts.ontrack || 0)) / P.length * 100);
+document.getElementById('hitPct').textContent = hitRate + '%';
+document.getElementById('kpiHitRate').textContent = hitRate + '%';
+document.getElementById('kpiPred').textContent = P.length;
+document.getElementById('cAll').textContent = P.length;
+document.querySelectorAll('#pfilter button').forEach(b => {
+  const f = b.dataset.f;
+  if (f !== 'all') b.innerHTML = SLBL[f].split(' ')[0] + ' ' + SLBL[f].split(' ')[1] + ' <span style="opacity:.6">' + (counts[f] || 0) + '</span>';
+});
+function renderP(f) {
+  document.getElementById('ptable').innerHTML = P.filter(p => f === 'all' || p.s === f).map(p =>
+    `<div class="prow"><span class="pep">EP${p.ep}</span>
+     <span class="pc"><b>${p.c}</b><span>${p.n}</span></span>
+     <span class="ph">${p.h}</span><span class="pst ${p.s}">${SLBL[p.s]}</span></div>`).join('');
+}
+renderP('all');
+document.getElementById('pfilter').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  document.querySelectorAll('#pfilter button').forEach(x => x.classList.remove('on'));
+  b.classList.add('on'); renderP(b.dataset.f);
+};
+new Chart(document.getElementById('donut'), {
+  type: 'doughnut',
+  data: { labels: Object.keys(SLBL).map(k => SLBL[k]),
+    datasets: [{ data: ['hit','ontrack','progress','unknown','risky'].map(k => counts[k] || 0),
+      backgroundColor: ['#5fb381','#7fb4d9','#e0b34f','#5c6477','#d97f6e'], borderColor: '#07090f', borderWidth: 3 }] },
+  options: { cutout: '68%', plugins: { legend: { display: false } },
+    onClick: (e, els) => { if (els.length) { const k = ['hit','ontrack','progress','unknown','risky'][els[0].index];
+      document.querySelectorAll('#pfilter button').forEach(x => x.classList.toggle('on', x.dataset.f === k)); renderP(k); } } }
+});
+
+/* ── theme chart ── */
+const TC = ['#e3a14e','#5fb381','#7fb4d9','#b48ad6','#d97f6e','#e0d24f','#8e96a8'];
+new Chart(document.getElementById('themeChart'), {
+  type: 'bar',
+  data: { labels: D.months,
+    datasets: D.clusterNames.map((c, i) => ({ label: c, data: D.themeMatrix[c], backgroundColor: TC[i] + 'cc', borderRadius: 3, stack: 's' })) },
+  options: { responsive: true, maintainAspectRatio: false,
+    scales: { x: { stacked: true, grid: { display: false }, ticks: { color: '#8e96a8', font: { family: 'JetBrains Mono', size: 10 } } },
+      y: { stacked: true, grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: '#5c6477' } } },
+    plugins: { legend: { labels: { color: '#b9bfce', font: { size: 11 }, boxWidth: 10, boxHeight: 10 } } } }
+});
+const sents = {};
+D.episodes.forEach(e => sents[e.sent] = (sents[e.sent] || 0) + 1);
+document.getElementById('sentStrip').innerHTML =
+  '<span>정서 분포 — </span>' + Object.entries(sents).map(([k, v]) => `<span><b>${k}</b> ${v}편</span>`).join('') +
+  `<span style="margin-left:auto">평균 깊이 <b>${(D.episodes.reduce((a, e) => a + e.depth, 0) / D.episodes.length).toFixed(1)} / 5</b></span>`;
+
+/* ── explorer ── */
+let cf = 'all';
+const cfEl = document.getElementById('cfilter');
+cfEl.innerHTML = '<button data-c="all" class="on">전체</button>' +
+  D.clusterNames.map(c => `<button data-c="${c}">${c}</button>`).join('');
+cfEl.onclick = e => { const b = e.target.closest('button'); if (!b) return;
+  cfEl.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on');
+  cf = b.dataset.c; renderEps(); };
+document.getElementById('epSearch').oninput = renderEps;
+function renderEps() {
+  const q = document.getElementById('epSearch').value.trim().toLowerCase();
+  const list = D.episodes.filter(e => {
+    if (cf !== 'all' && !e.clusters.includes(cf)) return false;
+    if (!q) return true;
+    return (e.title + ' ' + e.one + ' ' + e.themes.join(' ') + ' ' + e.kw.join(' ') + ' ' + e.claims.join(' ')).toLowerCase().includes(q);
+  });
+  document.getElementById('epCount').textContent = list.length + ' / ' + D.episodes.length + ' episodes';
+  document.getElementById('eps').innerHTML = list.map(e =>
+    `<div class="epc" id="epc${e.ep}" onclick="this.classList.toggle('open')">
+      <div class="epc-head"><span class="epc-ep">EP${e.ep}</span><span class="epc-date">${e.date}</span></div>
+      <h4>${e.title}</h4><div class="one">${e.one}</div>
+      <div class="epc-foot"><div class="epc-themes">${e.themes.slice(0, 3).map(t => `<span>${t}</span>`).join('')}</div>
+        <span class="depth">${'◆'.repeat(e.depth)}${'◇'.repeat(5 - e.depth)}</span></div>
+      <div class="epc-detail"><ul>${e.claims.slice(0, 5).map(c => `<li>${c}</li>`).join('')}</ul>
+        <div class="epc-links"><a href="${e.url}" target="_blank" onclick="event.stopPropagation()">블로그 원문 ↗</a>
+        ${e.yt ? `<a href="${e.yt}" target="_blank" onclick="event.stopPropagation()">유튜브 ↗</a>` : ''}</div></div>
+    </div>`).join('');
+}
+renderEps();
+
+/* ── coverage grid ── */
+const covSet = new Set(D.covered);
+document.getElementById('grid99').innerHTML = Array.from({length: 99}, (_, i) => {
+  const n = i + 1;
+  return covSet.has(n)
+    ? `<div class="cell on" title="EP${n} — 딥리딩 완료" onclick="jumpEp(${n})">${n}</div>`
+    : `<div class="cell" title="EP${n} — 유튜브 전용">${n}</div>`;
+}).join('');
+function jumpEp(n) {
+  document.getElementById('epSearch').value = '';
+  cf = 'all';
+  cfEl.querySelectorAll('button').forEach(x => x.classList.toggle('on', x.dataset.c === 'all'));
+  renderEps();
+  const el = document.getElementById('epc' + n);
+  if (el) { el.classList.add('open'); el.scrollIntoView({behavior: 'smooth', block: 'center'});
+    el.style.borderColor = 'var(--amber)'; setTimeout(() => el.style.borderColor = '', 2200); }
+}
+</script>
+</body>
+</html>

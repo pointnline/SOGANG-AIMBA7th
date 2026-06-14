@@ -80,6 +80,13 @@ if (Test-Path -LiteralPath $dataDir) {
   Replace-Directory $dataDir (Join-Path $repoRoot "data")
 }
 
+# public/research/* (노정석 사고OS 관측소 등 외부 리서치 정적 HTML) → 루트 /research 로 동기화.
+# 자체완결형 HTML(인라인 CSS + CDN 차트/폰트)이라 basePath 영향 없음. /SOGANG-AIMBA7th/research/<slug>/ 서빙.
+$researchDir = Join-Path $outDir "research"
+if (Test-Path -LiteralPath $researchDir) {
+  Replace-Directory $researchDir (Join-Path $repoRoot "research")
+}
+
 Write-Host "Updated GitHub Pages files from next-app export:"
 Write-Host " - index.html"
 Write-Host " - brief/index.html"

@@ -241,6 +241,25 @@ export function HomeSidebar() {
         >
           ↗ 토픽 아카이브
         </a>
+        {/* 노정석 사고OS 관측소 — 외부 리서치(딥리딩) 정적 페이지 */}
+        <a
+          href={sitePath("/research/noh-jungsuk/")}
+          style={{
+            padding: "12px 14px",
+            background: "#fff",
+            color: T.ink,
+            border: `1px solid ${T.wineSoft}`,
+            boxShadow: `0 0 0 3px ${T.wineSoft}1a`,
+            borderRadius: 4,
+            fontFamily: "var(--korean)",
+            fontSize: 13,
+            fontWeight: 600,
+            textAlign: "left",
+            display: "block",
+          }}
+        >
+          ↗ 노정석 사고OS 관측소
+        </a>
       </div>
 
       {/* 힐링 노트 — 사이드바 하단에 작게. 들어올 때마다 잠언 1개 랜덤 */}

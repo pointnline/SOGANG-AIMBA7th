@@ -2,6 +2,7 @@ import { HomeHeader } from "@/components/home/HomeHeader";
 import { HomeSidebar } from "@/components/home/HomeSidebar";
 import { HomeArchiveTimeline } from "@/components/home/HomeArchiveTimeline";
 import { HomeMuseumTeaser } from "@/components/home/HomeMuseumTeaser";
+import { HomeNohTeaser } from "@/components/home/HomeNohTeaser";
 import { HomeContestsTeaser } from "@/components/home/HomeContestsTeaser";
 import { HomeInterviewRoom } from "@/components/home/HomeInterviewRoom";
 import { HomeCalendarBooks } from "@/components/home/HomeCalendarBooks";
@@ -36,6 +37,7 @@ export default function HomePage() {
           <HomeArchiveTimeline />
           <SubscribeCTA />
           <HomeMuseumTeaser />
+          <HomeNohTeaser />
           <HomeCalendarBooks />
           <HomeAimbaPulse />
           <HomeContestsTeaser />
