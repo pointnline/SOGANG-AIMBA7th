@@ -48,6 +48,27 @@ h2{font-family:var(--serif);font-weight:900;font-size:clamp(26px,3.4vw,38px);lin
 .sec-sub{color:var(--mut);font-size:14.5px;max-width:720px;margin-bottom:36px}
 .lbl{display:inline-block;font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:4px;border:1px solid var(--line2);color:var(--mut)}
 
+/* ── 00 WHO (인물 소개) ── */
+.who-wrap{margin-top:4px}
+.who-lead{font-family:var(--serif);font-size:clamp(17px,2vw,22px);line-height:1.62;font-weight:400;border-left:2px solid var(--amber);padding-left:20px;max-width:840px;margin-bottom:28px}
+.who-lead b{color:var(--amber2);font-weight:700}
+.who-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:13px}
+.who-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:17px 17px 15px;transition:.18s}
+.who-card:hover{border-color:var(--line2);background:var(--panel2)}
+.wc-year{font-family:var(--mono);font-size:10.5px;color:var(--dim);letter-spacing:.06em}
+.wc-name{font-family:var(--serif);font-weight:700;font-size:16.5px;margin:5px 0 6px;line-height:1.3}
+.wc-name b{color:var(--amber)}
+.wc-desc{font-size:12.6px;color:var(--mut);line-height:1.6}
+.wc-exit{display:inline-block;font-family:var(--mono);font-size:9px;margin-top:10px;padding:2px 8px;border-radius:999px;border:1px solid rgba(95,179,129,.4);color:var(--fact);letter-spacing:.05em}
+.who-card.now{border-color:rgba(227,161,78,.45);background:rgba(227,161,78,.05)}
+.who-card.now .wc-exit{border-color:rgba(227,161,78,.5);color:var(--amber2)}
+.who-meta{font-size:12.8px;color:var(--mut);margin-top:16px;line-height:1.7}
+.who-meta b{color:var(--ink)}
+.who-note{margin-top:24px;background:linear-gradient(180deg,rgba(227,161,78,.06),transparent);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:12px;padding:20px 24px}
+.who-note .wn-tag{font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:.2em;margin-bottom:9px}
+.who-note p{font-size:14.3px;line-height:1.75}
+.who-note b{color:var(--amber2)}
+
 /* ── hero ── */
 #hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding-top:120px}
 .hero-kicker{font-family:var(--mono);font-size:12px;color:var(--amber);letter-spacing:.3em;margin-bottom:22px}
@@ -250,7 +271,7 @@ footer .f-l b{color:var(--mut)}
 <nav><div class="nav-in">
   <div class="nav-brand">노정석 <b>사고 OS</b> 관측소</div>
   <div class="nav-links">
-    <a href="#os"><i>01</i>사고 OS</a><a href="#evo"><i>02</i>사상 진화</a><a href="#mm"><i>03</i>멘탈모델</a>
+    <a href="#who"><i>00</i>인물</a><a href="#os"><i>01</i>사고 OS</a><a href="#evo"><i>02</i>사상 진화</a><a href="#mm"><i>03</i>멘탈모델</a>
     <a href="#pred"><i>04</i>예측 추적</a><a href="#rules"><i>05</i>판단 룰</a><a href="#crit"><i>06</i>맹점</a>
     <a href="#themes"><i>07</i>테마 흐름</a><a href="#explore"><i>08</i>탐색기</a><a href="#play"><i>09</i>플레이북</a>
   </div>
@@ -272,6 +293,29 @@ footer .f-l b{color:var(--mut)}
   </div>
   <div class="hero-quote" id="heroQuote" title="클릭하면 다음 인용구">
     <p id="hqText"></p><cite id="hqCite"></cite>
+  </div>
+</section>
+
+<!-- 00 인물 소개 -->
+<section id="who">
+  <div class="sec-tag">00 — WHO</div>
+  <h2>노정석 — 두 번 엑싯한 창업가,<br>AI 시대의 인식론 설계자</h2>
+  <p class="sec-sub">사고 OS를 해부하기 전에, 그 OS를 빚어낸 사람부터. <span class="lbl" style="color:var(--fact);border-color:rgba(95,179,129,.4)">🟢 사실</span> 공개 출처 검증 · <span class="lbl" style="color:var(--infer);border-color:rgba(224,179,79,.4)">🟡 추론</span> 분석자 판단.</p>
+  <div class="who-wrap">
+    <p class="who-lead">블로그 플랫폼을 <b>구글에 판</b> 한국 1호 창업가, 모바일 분석툴을 <b>Tapjoy에 판</b> 두 번의 엑싯 보유자. 지금은 AI 담론 채널 <b>AI Frontier</b>로 “AGI 이후의 세계에서 어디에 설 것인가”를 설파하는 시리얼 앙트레프레너.</p>
+    <div class="who-grid">
+      <div class="who-card"><div class="wc-year">~2003</div><div class="wc-name">초기 창업</div><div class="wc-desc">창업 DNA의 출발. 학생 시절부터 회사를 세웠고, 그중 한 곳은 코스닥 상장까지 갔다.</div><span class="wc-exit">IPO</span></div>
+      <div class="who-card"><div class="wc-year">2005 → 2008</div><div class="wc-name"><b>Tatter and Company</b></div><div class="wc-desc">태터툴즈·티스토리 블로그 플랫폼. 구글의 첫(그리고 당시 유일한) 한국 스타트업 인수.</div><span class="wc-exit">EXIT · Google</span></div>
+      <div class="who-card"><div class="wc-year">2008–09</div><div class="wc-name">Google Korea</div><div class="wc-desc">인수 후 약 1년간 PM. 실리콘밸리 빅테크의 내부 작동을 직접 통과했다.</div></div>
+      <div class="who-card"><div class="wc-year">모바일기</div><div class="wc-name"><b>5Rocks</b></div><div class="wc-desc">앱 데이터 분석·인게이지먼트 스타트업. Tapjoy에 매각 — 두 번째 엑싯.</div><span class="wc-exit">EXIT · Tapjoy</span></div>
+      <div class="who-card"><div class="wc-year">이후</div><div class="wc-name">Reality Reflection · Mossland</div><div class="wc-desc">VR 휴먼 스캐닝 스튜디오, 블록체인/AR 프로젝트(공동창업). 기술의 최전선을 계속 옮겨 다녔다.</div></div>
+      <div class="who-card now"><div class="wc-year">현재</div><div class="wc-name"><b>B*Factory</b></div><div class="wc-desc">AI 기반 뷰티/소비재. “소수 인원의 AI 기업도 거대해질 수 있다”는 명제의 실증 무대.</div><span class="wc-exit">NOW</span></div>
+    </div>
+    <p class="who-meta">🟢 <b>KAIST 경영공학</b> 출신 · 엔젤투자·스타트업 멘토 다수 · 현재 활동 채널 <b>AI Frontier</b>(블로그 aifrontier.kr / 유튜브). 이 관측소가 해부하는 EP45–EP99가 모두 그 채널의 사고 기록이다.</p>
+  </div>
+  <div class="who-note">
+    <div class="wn-tag">🟡 분석자 노트 — 왜 지금 그를 읽나</div>
+    <p>노정석은 ‘기술’이 아니라 <b>‘태도’</b>를 판다. 두 번의 엑싯으로 검증된 창업가가, AI 인식론 전도사로 무대를 옮겨 휘두르는 단 하나의 칼 — <b>Verifiable / Non-Verifiable 이분법</b>. 검증 가능한 일은 AI에 넘기고, 검증 불가능한 영역(취향·판단·의도)에 인간의 자리를 두라는 렌즈다. 아래 아홉 개 섹션은 그 렌즈가 15개월간 어떻게 단련됐는지의 해부다.</p>
   </div>
 </section>
 
