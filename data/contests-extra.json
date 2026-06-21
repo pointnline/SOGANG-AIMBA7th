@@ -1,10 +1,24 @@
 {
-  "generated_at": "2026-06-17T06:35:25+09:00",
+  "generated_at": "2026-06-21T10:37:27+09:00",
   "notice": "위비티 기획/아이디어 분야 자체 크롤 — AIMBA 보드 보강 소스",
   "source": "wevity.com (cidx=1 기획/아이디어)",
   "sections": {
     "starting_today": [],
     "ongoing": [
+      {
+        "title": "2026 CHAI 대학생 AI 광고 공모전",
+        "category": "기획/아이디어, 광고/마케팅, 영상/UCC/사진, 웹/모바일/IT, 대외활동/서포터즈, 취업/창업",
+        "organizer": "차이커뮤니케이션",
+        "submission_start": "2026-07-08",
+        "submission_end": "2026-07-30",
+        "result_date": null,
+        "url": "https://aichallenge.artistchai.co.kr",
+        "source_type": "crawl",
+        "discovery_source": "위비티",
+        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108417",
+        "status": "접수예정",
+        "source_checked_at": "2026-06-21T10:34:21+09:00"
+      },
       {
         "title": "2026년 임업통계 활용 경진대회",
         "category": "기획/아이디어, 논문/리포트, 웹/모바일/IT, 게임/소프트웨어, 과학/공학",
@@ -17,7 +31,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108288",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:32:50+09:00"
+        "source_checked_at": "2026-06-21T10:34:23+09:00"
       },
       {
         "title": "제4회 대한민국 청년 인재양성 프로젝트 참가자 모집",
@@ -31,7 +45,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108287",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:32:54+09:00"
+        "source_checked_at": "2026-06-21T10:34:27+09:00"
       },
       {
         "title": "2026년 상반기 삼성생명 금융캠퍼스 모집",
@@ -44,8 +58,8 @@
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108256",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:32:57+09:00"
+        "status": "마감임박",
+        "source_checked_at": "2026-06-21T10:34:29+09:00"
       },
       {
         "title": "[김대중노벨평화상기념관] 2026 전국 대학생 스피치 대회 공모전",
@@ -59,7 +73,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108147",
         "status": "접수예정",
-        "source_checked_at": "2026-06-17T06:32:59+09:00"
+        "source_checked_at": "2026-06-21T10:34:33+09:00"
       },
       {
         "title": "[무료] 2026년 7월 삼성생명 Special 금융아카데미 모집",
@@ -72,8 +86,8 @@
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107932",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:02+09:00"
+        "status": "마감임박",
+        "source_checked_at": "2026-06-21T10:34:35+09:00"
       },
       {
         "title": "제7회 계룡장학재단 건축 아이디어 공모전",
@@ -87,7 +101,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107651",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:04+09:00"
+        "source_checked_at": "2026-06-21T10:34:38+09:00"
       },
       {
         "title": "2026 부산광역시 공공데이터•AI 활용 창업경진대회",
@@ -100,8 +114,8 @@
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107424",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:06+09:00"
+        "status": "마감임박",
+        "source_checked_at": "2026-06-21T10:34:40+09:00"
       },
       {
         "title": "2026 제15회 협성독서왕 독후감 공모전",
@@ -115,7 +129,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=106999",
         "status": "접수예정",
-        "source_checked_at": "2026-06-17T06:33:09+09:00"
+        "source_checked_at": "2026-06-21T10:34:43+09:00"
       },
       {
         "title": "제4회 문화체육관광 인공지능·데이터 활용 공모전",
@@ -128,8 +142,8 @@
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=106965",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:11+09:00"
+        "status": "마감임박",
+        "source_checked_at": "2026-06-21T10:34:45+09:00"
       },
       {
         "title": "2026년 전주MBC K-하이테크 플랫폼 제2회 가상현실 공간 창작 공모전",
@@ -143,7 +157,105 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=106656",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:13+09:00"
+        "source_checked_at": "2026-06-21T10:34:47+09:00"
+      },
+      {
+        "title": "2026년 신보혁신 국민생각 공모",
+        "category": "기획/아이디어",
+        "organizer": "신용보증기금",
+        "submission_start": "2026-06-19",
+        "submission_end": "2026-07-24",
+        "result_date": null,
+        "url": "https://blog.naver.com/hopekodit/224320838511",
+        "source_type": "crawl",
+        "discovery_source": "위비티",
+        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108480",
+        "status": "접수중",
+        "source_checked_at": "2026-06-21T10:34:51+09:00"
+      },
+      {
+        "title": "2026년 시흥시의회 입법정책 아이디어 공모전",
+        "category": "기획/아이디어",
+        "organizer": "시흥시의회",
+        "submission_start": "2026-06-17",
+        "submission_end": "2026-07-20",
+        "result_date": null,
+        "url": "https://www.siheungcouncil.go.kr/content/news/notice.html?fidx=36265&pg=vv",
+        "source_type": "crawl",
+        "discovery_source": "위비티",
+        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108464",
+        "status": "접수중",
+        "source_checked_at": "2026-06-21T10:34:54+09:00"
+      },
+      {
+        "title": "제20회 도서관 혁신 아이디어 및 우수 현장사례 공모",
+        "category": "기획/아이디어",
+        "organizer": "국립중앙도서관",
+        "submission_start": "2026-07-06",
+        "submission_end": "2026-08-06",
+        "result_date": null,
+        "url": "https://www.nl.go.kr/NL/contents/N50601000000.do?schM=view&id=57417&schBcid=normal0202",
+        "source_type": "crawl",
+        "discovery_source": "위비티",
+        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108428",
+        "status": "접수예정",
+        "source_checked_at": "2026-06-21T10:34:56+09:00"
+      },
+      {
+        "title": "제12회 과학치안 아이디어 공모전",
+        "category": "기획/아이디어",
+        "organizer": "과학기술정보통신부,경찰청",
+        "submission_start": "2026-06-15",
+        "submission_end": "2026-07-24",
+        "result_date": null,
+        "url": "http://kipot.or.kr",
+        "source_type": "crawl",
+        "discovery_source": "위비티",
+        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108391",
+        "status": "접수중",
+        "source_checked_at": "2026-06-21T10:34:58+09:00"
+      },
+      {
+        "title": "2026년 제21회 금융공모전",
+        "category": "기획/아이디어",
+        "organizer": "금융감독원",
+        "submission_start": "2026-06-17",
+        "submission_end": "2026-09-02",
+        "result_date": null,
+        "url": "https://www.fss.or.kr/edu/pam/contest/index.do?menuNo=300069",
+        "source_type": "crawl",
+        "discovery_source": "위비티",
+        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108377",
+        "status": "접수중",
+        "source_checked_at": "2026-06-21T10:35:04+09:00"
+      },
+      {
+        "title": "용인특례시 고향사랑기금사업 아이디어 공모전",
+        "category": "기획/아이디어",
+        "organizer": "용인특례시",
+        "submission_start": "2026-06-12",
+        "submission_end": "2026-06-26",
+        "result_date": null,
+        "url": "https://blog.naver.com/govlrodtnr/224310713031",
+        "source_type": "crawl",
+        "discovery_source": "위비티",
+        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108331",
+        "status": "마감임박",
+        "source_checked_at": "2026-06-21T10:35:06+09:00"
+      },
+      {
+        "title": "2026년 의왕시 규제혁신 아이디어 공모전",
+        "category": "기획/아이디어",
+        "organizer": "의왕시",
+        "submission_start": "2026-06-11",
+        "submission_end": "2026-06-30",
+        "result_date": null,
+        "url": "https://www.uiwang.go.kr/index",
+        "source_type": "crawl",
+        "discovery_source": "위비티",
+        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108330",
+        "status": "접수중",
+        "source_checked_at": "2026-06-21T10:35:14+09:00"
       },
       {
         "title": "[성평등가족부] 2026년 성별균형 국민제안 정책 아이디어 공모전",
@@ -157,7 +269,21 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108326",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:15+09:00"
+        "source_checked_at": "2026-06-21T10:35:25+09:00"
+      },
+      {
+        "title": "2026년 시민참여 아이디어 제안공모",
+        "category": "기획/아이디어",
+        "organizer": "여주도시공사",
+        "submission_start": "2026-06-04",
+        "submission_end": "2026-07-03",
+        "result_date": null,
+        "url": "https://yeojuuc.or.kr/board/view.do?nttId=7923&bbsId=BBSMSTR_000000000001",
+        "source_type": "crawl",
+        "discovery_source": "위비티",
+        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108312",
+        "status": "접수중",
+        "source_checked_at": "2026-06-21T10:35:38+09:00"
       },
       {
         "title": "우리 동네 AI 안심 히어로즈",
@@ -171,7 +297,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108300",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:17+09:00"
+        "source_checked_at": "2026-06-21T10:35:41+09:00"
       },
       {
         "title": "[수원시] 모두의 청년친화도시 조성을 위한 시민 정책 제안 공모전",
@@ -184,8 +310,8 @@
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108285",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:20+09:00"
+        "status": "마감임박",
+        "source_checked_at": "2026-06-21T10:35:44+09:00"
       },
       {
         "title": "2026년 김해시 정책 제안 공모전",
@@ -199,7 +325,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108262",
         "status": "접수예정",
-        "source_checked_at": "2026-06-17T06:33:22+09:00"
+        "source_checked_at": "2026-06-21T10:35:46+09:00"
       },
       {
         "title": "2026년 경상북도 청년 정신건강·자살예방 정책 공모전",
@@ -213,7 +339,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108251",
         "status": "접수예정",
-        "source_checked_at": "2026-06-17T06:33:25+09:00"
+        "source_checked_at": "2026-06-21T10:35:48+09:00"
       },
       {
         "title": "2026년 서울특별시농수산식품공사 혁신아이디어 공모전",
@@ -227,21 +353,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108243",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:29+09:00"
-      },
-      {
-        "title": "2026제천한방천연물산업박람회 아이디어 공모전",
-        "category": "기획/아이디어",
-        "organizer": "제천시",
-        "submission_start": "2026-06-15",
-        "submission_end": "2026-06-17",
-        "result_date": null,
-        "url": "http://www.jcbio.or.kr/bbs/board.php?bo_table=snotice&wr_id=607",
-        "source_type": "crawl",
-        "discovery_source": "위비티",
-        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108220",
-        "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:33:32+09:00"
+        "source_checked_at": "2026-06-21T10:35:51+09:00"
       },
       {
         "title": "공항 네트워크 혁신 아이디어 공모전",
@@ -255,7 +367,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108213",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:34+09:00"
+        "source_checked_at": "2026-06-21T10:35:54+09:00"
       },
       {
         "title": "통영시 시정발전 아이디어 공모전 [통영.zip]",
@@ -269,7 +381,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108210",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:37+09:00"
+        "source_checked_at": "2026-06-21T10:35:56+09:00"
       },
       {
         "title": "2026년 제2회 안성시 시정발전 제안공모전",
@@ -282,22 +394,8 @@
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108206",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:39+09:00"
-      },
-      {
-        "title": "2026년 안양도시공사 시민 아이디어 공모전",
-        "category": "기획/아이디어",
-        "organizer": "안양도시공사",
-        "submission_start": "2026-06-04",
-        "submission_end": "2026-06-17",
-        "result_date": null,
-        "url": "https://www.auc.or.kr/base/board/read?boardManagementNo=9&boardNo=37559&searchCategory=&page=1&searchType=&searchWord=&menuLevel=2&menuNo=12",
-        "source_type": "crawl",
-        "discovery_source": "위비티",
-        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108199",
         "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:33:41+09:00"
+        "source_checked_at": "2026-06-21T10:35:58+09:00"
       },
       {
         "title": "2026년 한국문화예술교육진흥원 공공데이터 활용 아이디어 공모전",
@@ -311,7 +409,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108185",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:43+09:00"
+        "source_checked_at": "2026-06-21T10:36:01+09:00"
       },
       {
         "title": "진주시 중앙지구 도시재생 뉴딜사업 전통시장 마을방송국 운영 아이디어 공모전",
@@ -325,7 +423,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108152",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:45+09:00"
+        "source_checked_at": "2026-06-21T10:36:03+09:00"
       },
       {
         "title": "[경기평택항만공사] 2026년 ESG·혁신 아이디어 공모전",
@@ -339,7 +437,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108136",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:48+09:00"
+        "source_checked_at": "2026-06-21T10:36:10+09:00"
       },
       {
         "title": "2026년 창의융합 캠퍼스 용인시 메이커톤 Y-MAKER 챌린지 모집",
@@ -353,7 +451,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108133",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:51+09:00"
+        "source_checked_at": "2026-06-21T10:36:12+09:00"
       },
       {
         "title": "2026년 국립대전현충원 혁신 아이디어 공모전",
@@ -367,7 +465,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108126",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:53+09:00"
+        "source_checked_at": "2026-06-21T10:36:14+09:00"
       },
       {
         "title": "2026년 천안시 AI·데이터 기반 정책 아이디어 경진대회",
@@ -381,7 +479,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108102",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:56+09:00"
+        "source_checked_at": "2026-06-21T10:36:19+09:00"
       },
       {
         "title": "2026 강원특별자치도 청소년정책 제언대회 참가자 모집",
@@ -395,7 +493,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108074",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:33:58+09:00"
+        "source_checked_at": "2026-06-21T10:36:22+09:00"
       },
       {
         "title": "2026년 제4회 경기도 푸드테크 아이디어 공모전",
@@ -409,7 +507,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108072",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:01+09:00"
+        "source_checked_at": "2026-06-21T10:36:24+09:00"
       },
       {
         "title": "2026년 제5회 금연공감문화제 - 전자담배로부터 미래 세대 보호를 위한 아이디어 공모전",
@@ -423,7 +521,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108059",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:06+09:00"
+        "source_checked_at": "2026-06-21T10:36:28+09:00"
       },
       {
         "title": "2026 선거운동복 업사이클링 아이디어 공모전",
@@ -437,7 +535,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108038",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:12+09:00"
+        "source_checked_at": "2026-06-21T10:36:30+09:00"
       },
       {
         "title": "2026 K-FOOD 제품개발 공모전 및 동아리 박람회",
@@ -451,21 +549,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108033",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:15+09:00"
-      },
-      {
-        "title": "순천 SAT 관측 아이디어 공모전",
-        "category": "기획/아이디어",
-        "organizer": "순천시",
-        "submission_start": "2026-05-18",
-        "submission_end": "2026-06-19",
-        "result_date": null,
-        "url": "https://www.scnu.ac.kr/SCNU/na/ntt/selectNttInfo.do?nttSn=281310120&mi=1187&currPage=1",
-        "source_type": "crawl",
-        "discovery_source": "위비티",
-        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108027",
-        "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:34:20+09:00"
+        "source_checked_at": "2026-06-21T10:36:33+09:00"
       },
       {
         "title": "2026년 상반기 이천시 정책 제안 공모전",
@@ -478,8 +562,8 @@
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108020",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:22+09:00"
+        "status": "마감임박",
+        "source_checked_at": "2026-06-21T10:36:36+09:00"
       },
       {
         "title": "[대구광역시 중구] 2026년 희망중구 주민 아이디어 공모",
@@ -493,7 +577,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108018",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:25+09:00"
+        "source_checked_at": "2026-06-21T10:36:38+09:00"
       },
       {
         "title": "[수원시] 민선9기 약속이야기 시민 아이디어 공모",
@@ -506,8 +590,8 @@
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=108010",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:27+09:00"
+        "status": "마감임박",
+        "source_checked_at": "2026-06-21T10:36:40+09:00"
       },
       {
         "title": "제6회 소방안전 빅데이터 활용 및 아이디어 경진대회",
@@ -521,7 +605,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107973",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:30+09:00"
+        "source_checked_at": "2026-06-21T10:36:43+09:00"
       },
       {
         "title": "제2회 원주시 공공데이터·AI 활용 아이디어 공모전",
@@ -535,21 +619,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107946",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:32+09:00"
-      },
-      {
-        "title": "제 13회 해양수산 비즈니스･공공서비스 공모전",
-        "category": "기획/아이디어",
-        "organizer": "해양수산부",
-        "submission_start": "2026-04-30",
-        "submission_end": "2026-06-19",
-        "result_date": null,
-        "url": "https://www.mof.go.kr/contest",
-        "source_type": "crawl",
-        "discovery_source": "위비티",
-        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107934",
-        "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:34:34+09:00"
+        "source_checked_at": "2026-06-21T10:36:45+09:00"
       },
       {
         "title": "2026년 안산시 공공데이터·AI 활용 아이디어 공모전",
@@ -563,7 +633,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107916",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:36+09:00"
+        "source_checked_at": "2026-06-21T10:36:47+09:00"
       },
       {
         "title": "2026년 축평원 서비스 MEET YOUR IDEA 공모전",
@@ -577,21 +647,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107907",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:38+09:00"
-      },
-      {
-        "title": "2026년 여수시도시관리공단 지역상생 아이디어 공모전",
-        "category": "기획/아이디어",
-        "organizer": "여수시도시관리공단",
-        "submission_start": "2026-06-01",
-        "submission_end": "2026-06-19",
-        "result_date": null,
-        "url": "https://www.yumcorp.or.kr/www/notify/notice?idx=5868&mode=view",
-        "source_type": "crawl",
-        "discovery_source": "위비티",
-        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107895",
-        "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:34:41+09:00"
+        "source_checked_at": "2026-06-21T10:36:52+09:00"
       },
       {
         "title": "[국민경제자문회의] 청년 정책 아이디어 공모전",
@@ -605,21 +661,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107855",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:43+09:00"
-      },
-      {
-        "title": "2026 PoSID 우체국금융 혁신아이디어톤",
-        "category": "기획/아이디어",
-        "organizer": "우체국금융개발원",
-        "submission_start": "2026-06-01",
-        "submission_end": "2026-06-19",
-        "result_date": null,
-        "url": "https://www.posid.or.kr/",
-        "source_type": "crawl",
-        "discovery_source": "위비티",
-        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107852",
-        "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:34:45+09:00"
+        "source_checked_at": "2026-06-21T10:36:55+09:00"
       },
       {
         "title": "2026 방사선안전문화확산 우수사례 ·아이디어 공모전",
@@ -633,7 +675,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107849",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:47+09:00"
+        "source_checked_at": "2026-06-21T10:36:57+09:00"
       },
       {
         "title": "천안시 농촌마을만들기 아이디어 공모전 - 제11회 대학생이 간다",
@@ -647,7 +689,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107843",
         "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:34:52+09:00"
+        "source_checked_at": "2026-06-21T10:37:00+09:00"
       },
       {
         "title": "2026년 백암재단 청소년‧청년 사회문제해결 아이디어 공모전",
@@ -661,7 +703,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107834",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:54+09:00"
+        "source_checked_at": "2026-06-21T10:37:02+09:00"
       },
       {
         "title": "2026 문화예술 아이디어 공모전(AI 전환 시대 문화예술생태계 대응 아이디어 공모전)",
@@ -675,7 +717,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107815",
         "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:34:56+09:00"
+        "source_checked_at": "2026-06-21T10:37:04+09:00"
       },
       {
         "title": "100년 서울 미래공간 아이디어 공모전",
@@ -689,7 +731,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107808",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:34:59+09:00"
+        "source_checked_at": "2026-06-21T10:37:07+09:00"
       },
       {
         "title": "2026년 전북 자치경찰 정책공모",
@@ -703,7 +745,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107757",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:35:01+09:00"
+        "source_checked_at": "2026-06-21T10:37:09+09:00"
       },
       {
         "title": "2026년 제주시 정책 아이디어 공모전",
@@ -717,21 +759,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107743",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:35:04+09:00"
-      },
-      {
-        "title": "2026제천한방천연물산업박람회 아이디어 공모전",
-        "category": "기획/아이디어",
-        "organizer": "제천한방천연물산업진흥재단",
-        "submission_start": "2026-06-15",
-        "submission_end": "2026-06-17",
-        "result_date": null,
-        "url": "https://hanbangbiofair.org/bbs/board.php?bo_table=w4_1&wr_id=163",
-        "source_type": "crawl",
-        "discovery_source": "위비티",
-        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107739",
-        "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:35:06+09:00"
+        "source_checked_at": "2026-06-21T10:37:11+09:00"
       },
       {
         "title": "[기획예산처] 중장기 국가발전전략 공모전",
@@ -745,7 +773,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107682",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:35:08+09:00"
+        "source_checked_at": "2026-06-21T10:37:14+09:00"
       },
       {
         "title": "2026년 해양수산 규제합리화 과제 대국민 공모전",
@@ -758,8 +786,8 @@
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107574",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:35:10+09:00"
+        "status": "마감임박",
+        "source_checked_at": "2026-06-21T10:37:16+09:00"
       },
       {
         "title": "2026년 장흥군 정책제안 공모전",
@@ -773,21 +801,21 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107526",
         "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:35:12+09:00"
+        "source_checked_at": "2026-06-21T10:37:19+09:00"
       },
       {
-        "title": "[기획예산처] 재정데이터 분석 대학(원)생 경진대회",
+        "title": "[기획예산처] 재정데이터 분석 대학(원)생 경진대회  (기간연장)",
         "category": "기획/아이디어",
         "organizer": "기획예산처",
         "submission_start": "2026-05-18",
-        "submission_end": "2026-06-21",
+        "submission_end": "2026-06-24",
         "result_date": null,
         "url": "https://www.wevity.com/?c=find&s=1&gbn=view&gp=1&ix=107510",
         "source_type": "crawl",
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107510",
         "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:35:14+09:00"
+        "source_checked_at": "2026-06-21T10:37:21+09:00"
       },
       {
         "title": "2026 보훈문화교육 수업안 경진대회",
@@ -801,21 +829,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107374",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:35:17+09:00"
-      },
-      {
-        "title": "고령군 2026 군정정책 제안 공모전",
-        "category": "기획/아이디어",
-        "organizer": "고령군",
-        "submission_start": "2026-03-18",
-        "submission_end": "2026-06-19",
-        "result_date": null,
-        "url": "https://www.goryeong.go.kr/kor/contents.do?IDX=85",
-        "source_type": "crawl",
-        "discovery_source": "위비티",
-        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107368",
-        "status": "마감임박",
-        "source_checked_at": "2026-06-17T06:35:19+09:00"
+        "source_checked_at": "2026-06-21T10:37:23+09:00"
       },
       {
         "title": "기술보증기금 2026년도 대국민 혁신 아이디어 공모전",
@@ -829,21 +843,7 @@
         "discovery_source": "위비티",
         "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107356",
         "status": "접수중",
-        "source_checked_at": "2026-06-17T06:35:21+09:00"
-      },
-      {
-        "title": "2026년 상반기 부산도시공사 고객제안",
-        "category": "기획/아이디어",
-        "organizer": "부산도시공사",
-        "submission_start": "2026-05-12",
-        "submission_end": "2026-06-30",
-        "result_date": null,
-        "url": "https://bmc.busan.kr/index.do?menuCd=DOM_000000104006002000",
-        "source_type": "crawl",
-        "discovery_source": "위비티",
-        "discovery_url": "https://www.wevity.com/?c=find&s=1&gub=1&cidx=1&gbn=view&gp=1&ix=107297",
-        "status": "접수중",
-        "source_checked_at": "2026-06-17T06:35:24+09:00"
+        "source_checked_at": "2026-06-21T10:37:26+09:00"
       }
     ],
     "awaiting_result": []
