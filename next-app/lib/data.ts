@@ -18,7 +18,7 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260616.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260622.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
@@ -38,9 +38,9 @@ export const PULSE_TOPICS: PulseTopic[] = [
 ];
 
 export const PULSE_METRICS = [
-  { key: "PUBLISHED", value: "12", sub: "누적 발간 호수" },
-  { key: "CURRENT", value: "Vol.12", sub: "2026.06.16 최신호" },
-  { key: "TOP SIGNAL", value: "AI", sub: "Fable 5 · IPO 레이스 · RWA" },
+  { key: "PUBLISHED", value: "13", sub: "누적 발간 호수" },
+  { key: "CURRENT", value: "Vol.13", sub: "2026.06.22 최신호" },
+  { key: "TOP SIGNAL", value: "AI", sub: "에이전트 프로덕션 · 올트먼 방한연기 · STO" },
 ] as const;
 
 export interface BriefIssue {
@@ -60,6 +60,21 @@ export interface BriefIssue {
 
 export const BRIEF_ISSUES: BriefIssue[] = [
   {
+    vol: 13,
+    date: "2026.06.22",
+    shortDate: "06.22",
+    section: "BUS",
+    sectionLabel: "AI · 에이전트",
+    title: "에이전트가 '데모'에서 '프로덕션'으로 — 올트먼 방한 연기에도 견고한 한·미 AI 동맹",
+    headline:
+      "엔터프라이즈 AI 에이전트가 72% 프로덕션에 진입하고, 올트먼 방한은 연기됐지만 한·미 AI 동맹은 견고하며, 한국 STO 무게추가 부동산에서 IP·콘텐츠로 옮겨간 주.",
+    path: "/issues/vol_20260622.html",
+    read: "14분",
+    views: "최신",
+    live: true,
+    tags: ["AI에이전트", "엔터프라이즈", "STO", "올트먼", "RWA", "MBA", "바이브코딩"],
+  },
+  {
     vol: 12,
     date: "2026.06.16",
     shortDate: "06.16",
@@ -70,8 +85,7 @@ export const BRIEF_ISSUES: BriefIssue[] = [
       "Claude Fable 5·Anthropic-OpenAI S-1 동시 제출·SpaceX 역대 최대 IPO가 겹치며 AI가 드디어 자본시장 심판대에 오른 주.",
     path: "/issues/vol_20260616.html",
     read: "14분",
-    views: "최신",
-    live: true,
+    views: "archive",
     tags: ["AI", "IPO", "Fable5", "RWA", "DBS금", "KB채권", "바이브코딩"],
   },
   {
@@ -2035,6 +2049,310 @@ const VOL7: IssueContent = {
   ],
 };
 
+const VOL13: IssueContent = {
+  vol: 13,
+  dateLabel: "2026년 6월 22일",
+  isoDate: "20260622",
+  title:
+    "에이전트가 '데모'에서 '프로덕션'으로 — 엔터프라이즈 72% 도입·올트먼 방한 연기에도 견고한 한·미 AI 동맹",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주의 신호는 '발표'에서 '도입의 현실'로 옮겨갔습니다. 지난주 AI가 자본시장(IPO 레이스)에 올랐다면, 이번 주는 그 AI가 실제 기업 현장에서 어떻게 작동하는지가 드러났습니다. 에이전틱 AI 엔터프라이즈 도입률이 72% 프로덕션 수준에 도달했지만, 동시에 60%의 거버넌스 공백과 79%의 도입 난항이 함께 보고되며 'AI는 깔았는데 ROI는 어디 있나'라는 질문이 본격화됐습니다.",
+    "지정학 측면에서는 샘 올트먼의 방한이 출발 이틀 전 돌연 연기됐지만, OpenAI는 삼성·카카오·네이버와의 파트너십은 유효하다고 못 박았습니다. 한편 한국 STO(토큰증권) 시장은 제도화 6개월 만에 무게추가 부동산에서 IP·콘텐츠로 빠르게 이동하며, '제도는 열렸지만 유동성이라는 첫 시험대'를 통과해야 하는 국면에 들어섰습니다.",
+  ],
+  conclusion:
+    "모델 발표 경쟁이 정점을 찍은 뒤, 시장은 이제 '누가 더 강한 모델을 내놓는가'가 아니라 '그 모델을 누가 실제 손익계산서에 반영하는가'를 묻기 시작했습니다. 에이전트는 프로덕션에 들어왔지만 ROI·거버넌스·인력 재배치라는 숙제를 동시에 던졌고, 한국 STO는 '제도 통과'와 '시장 생존'이 다른 문제임을 보여주고 있습니다. AIMBA 원우분들에게는 'AI를 도입하는 법'을 넘어 'AI 도입의 ROI를 증명하고 거버넌스를 설계하는 능력'이 다음 단계의 핵심 역량임을 일러주는 한 주입니다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "프런티어 모델 경쟁은 6월 들어 '수렴' 국면에 접어들었습니다. 2주 사이 앤트로픽·OpenAI·구글·알리바바·딥시크 등에서 12종 안팎의 프런티어급 모델이 쏟아지며 성능 격차가 좁혀졌고, 경쟁의 무게중심은 '벤치마크 1위'에서 '코딩·에이전트 실행력'으로 이동했습니다. 마이크로소프트·구글이 앤트로픽·OpenAI의 코딩 모델 아성에 도전장을 냈고, 구글 클라우드 넥스트에서 공개된 A2A(Agent2Agent) 프로토콜로 '에이전트끼리 협업하는' 인프라 표준화가 본격화됐습니다.",
+      articles: [
+        {
+          title: "MS·구글, 앤트로픽·OpenAI에 '코딩 모델' 도전장 — AI 군비경쟁의 다음 전선은 개발자",
+          desc: "CNBC 보도에 따르면 마이크로소프트와 구글이 앤트로픽 Claude Code·OpenAI Codex가 주도해온 AI 코딩 모델 시장에 본격 진입했습니다. 코딩·에이전트 실행 능력이 프런티어 모델의 핵심 차별점으로 굳어지며, 'AI로 코드를 짜는 도구'가 빅테크 전면전의 새 전장으로 떠올랐습니다.",
+          source: "CNBC",
+          href: "https://www.cnbc.com/2026/06/01/microsoft-and-google-take-on-anthropic-and-openai-in-ai-coding-models.html",
+        },
+        {
+          title: "구글 클라우드 넥스트 2026 — A2A 프로토콜·Workspace Studio로 '에이전트 협업' 표준 선점",
+          desc: "구글이 클라우드 넥스트 2026에서 200개 이상 모델(앤트로픽 Claude 포함)을 품은 개발자 플랫폼, 노코드 에이전트 빌더, 그리고 에이전트 간 통신용 프로덕션급 A2A(Agent2Agent) 프로토콜을 공개했습니다. 단일 에이전트를 넘어 '여러 에이전트가 서로 일을 주고받는' 인프라가 표준화되는 신호입니다.",
+          source: "The Next Web",
+          href: "https://thenextweb.com/news/google-cloud-next-ai-agents-agentic-era",
+        },
+        {
+          title: "6월 프런티어 모델 '수렴' — 2주 새 12종 쏟아지며 경쟁축이 코딩·실행력으로 이동",
+          desc: "LLM 트래커 집계 기준, 6월 초 2주 동안 앤트로픽·OpenAI·구글·알리바바·딥시크·텐센트 등에서 프런티어/준프런티어급 모델 12종이 출시됐습니다. 추론 벤치마크 상단이 촘촘해지는 가운데 일부 중국 오픈모델(GLM 계열)이 소프트웨어 엔지니어링·터미널 실행 벤치마크에서 서구 최상위 모델을 앞서며, 경쟁축이 '지능'에서 '실행'으로 옮겨갔습니다.",
+          source: "LLM Stats",
+          href: "https://llm-stats.com/llm-updates",
+        },
+        {
+          title: "2026년 6월 'AI 출시 러시'를 읽는 빌더의 의사결정 지도",
+          desc: "한 달 사이 쏟아진 모델·에이전트 출시를 실무 도입 관점에서 정리한 가이드입니다. '최신 모델로 갈아탈지'보다 '어떤 작업에 어떤 모델·에이전트 조합을 쓸지'가 더 중요해졌다는 것이 핵심으로, 빠른 모델 교체보다 워크플로 설계가 ROI를 가른다는 메시지입니다.",
+          source: "WaveSpeed",
+          href: "https://wavespeed.ai/blog/posts/june-2026-ai-launch-wave/",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "AI 비즈니스의 화두가 '도입할 것인가'에서 '도입했는데 성과가 있는가'로 넘어갔습니다. 에이전틱 AI가 72% 프로덕션 수준까지 올라왔지만, 거버넌스 공백·ROI 미달·조직 갈등이 동시에 보고되며 'AI 도입의 두 번째 골짜기'가 드러난 한 주입니다. 지정학적으로는 샘 올트먼의 방한이 연기됐지만 한·미 AI 동맹의 구조는 흔들리지 않았습니다.",
+      articles: [
+        {
+          title: "샘 올트먼 방한 돌연 연기 — 그러나 OpenAI '삼성·카카오·네이버 파트너십은 유효'",
+          desc: "OpenAI가 6월 12일 샘 올트먼의 방한(6/14~15 예정)을 개인 사정을 이유로 출발 이틀 전 연기한다고 밝혔습니다. 올트먼은 삼성전자 수원 디지털시티 임직원 강연과 사장단, 네이버 최수연·카카오 정신아 CEO 면담을 앞두고 있었습니다. 방한은 미뤄졌지만 OpenAI는 AI 인프라·업무 도입·소비자 서비스 협력은 그대로 진행된다고 강조했습니다.",
+          source: "Korea Herald · TechTimes",
+          href: "https://www.techtimes.com/articles/318309/20260614/sam-altman-postpones-his-korea-visit-openai-says-partnerships-stand.htm",
+        },
+        {
+          title: "엔터프라이즈 에이전틱 AI 72% 프로덕션 도입 — 그러나 거버넌스 공백 60%",
+          desc: "에이전틱 AI 엔터프라이즈 도입이 72% 프로덕션 단계에 도달했고, 가트너는 2026년 말까지 기업 애플리케이션의 40%가 작업특화 AI 에이전트를 내장할 것으로 전망합니다. 다만 60%에 이르는 거버넌스 공백이 동시에 보고돼, '에이전트를 깔았지만 누가 어떻게 통제하는가'가 다음 과제로 떠올랐습니다.",
+          source: "Agentic AI Institute",
+          href: "https://agenticaiinstitute.org/agentic-ai-enterprise-adoption-2026-governance-gap/",
+        },
+        {
+          title: "기업 79%가 AI 도입에 난항 — 투자는 늘었는데 ROI는 어디에",
+          desc: "엔터프라이즈 AI 도입 조사에서 79%의 조직이 어려움을 겪고 있으며(전년 대비 두 자릿수 증가), C-suite의 54%가 'AI 도입이 회사를 분열시키고 있다'고 답했습니다. 생성형 AI에서 유의미한 ROI를 본 조직은 29%, AI 에이전트는 23%에 그쳐, 'AI 슈퍼유저'의 5배 생산성을 조직 전체 성과로 옮기는 것이 핵심 병목으로 지목됐습니다.",
+          source: "Writer",
+          href: "https://writer.com/blog/enterprise-ai-adoption-2026/",
+        },
+        {
+          title: "딜로이트 '엔터프라이즈 AI 현황 2026' — 도입의 다음 골짜기는 '실행과 신뢰'",
+          desc: "딜로이트의 2026 엔터프라이즈 AI 리포트는 기업들이 파일럿을 넘어 '전사 확산' 단계에서 가장 크게 좌초한다고 분석합니다. 모델 성능보다 데이터 거버넌스·워크플로 재설계·인력 재배치가 ROI를 가르며, 'AI를 신뢰 가능한 운영 시스템으로 만드는 능력'이 경쟁우위의 핵심으로 제시됩니다.",
+          source: "Deloitte",
+          href: "https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/content/state-of-ai-in-the-enterprise.html",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA",
+      code: "MBA",
+      narrative:
+        "이번 주 MBA·커리어 섹션의 메시지는 명확합니다 — 'AI 유창성'은 더 이상 차별화 요소가 아니라 채용의 기본값(baseline)이 됐습니다. 글로벌 비즈니스스쿨은 AI를 핵심 커리큘럼 전반에 녹이고 있고, 고용주는 'AI를 쓸 줄 아는가'를 넘어 'AI로 비즈니스 임팩트를 정량화할 수 있는가'를 묻기 시작했습니다.",
+      articles: [
+        {
+          title: "2026 채용 시장 전망 — 'AI + 인간 고유 역량'이 MBA의 새 통화",
+          desc: "BusinessBecause의 2026 일터 전망에 따르면, 고용주는 AI 유창성과 함께 문제해결·전략적 사고·적응력 같은 인간 고유 역량을 동시에 요구합니다. AI가 초급·반복 업무를 흡수할수록, 이를 감독·설계하는 관리자급 역량을 갖춘 MBA 인재의 가치가 오히려 부각됩니다.",
+          source: "BusinessBecause",
+          href: "https://www.businessbecause.com/news/mba-jobs/9981/workplace-trends-job-market-predictons-2026",
+        },
+        {
+          title: "고용주 'AI 유창성은 이제 기본값' — 2026 MBA 채용 늘지만 기준이 달라졌다",
+          desc: "2026년 고용주의 MBA 채용 1순위는 AI 유창성(35%), 비즈니스 임팩트 정량화 능력(31%), 실무 포트폴리오(25%) 순입니다. 응답자 4명 중 1명꼴로 'AI 능숙도는 차별화가 아닌 최소 기대치'라고 답했고, AI 역량을 갖춘 직무는 같은 일자리에서 56% 더 높은 보수를 받는 것으로 나타났습니다.",
+          source: "Concordia (CSP)",
+          href: "https://online.csp.edu/resources/article/more-employers-plan-to-hire-mbas-in-2026-and-ai-fluency-is-now-the-baseline/",
+        },
+        {
+          title: "AI가 2026 비즈니스스쿨 강의실을 바꾸는 법 — 도구가 아니라 '사고 파트너'로",
+          desc: "GMAC 분석에 따르면 비즈니스스쿨은 AI를 단순 도구가 아닌 '분석·의사결정의 사고 파트너'로 교육에 통합하고 있습니다. AI와 협업해 분석의 폭과 속도를 높이되, 최종 판단·윤리·전략은 인간이 책임지는 'human-AI 오케스트레이터' 역량이 MBA 교육의 새 표준으로 자리잡고 있습니다.",
+          source: "GMAC",
+          href: "https://www.gmac.com/resources/learners/business-careers/assess-grow-skills/artificial-intelligence-business-school-classroom",
+        },
+        {
+          title: "2026 MBA 커리큘럼의 AI 통합 — AI 전략·데이터 거버넌스·인간-AI 협업이 코어로",
+          desc: "2026년 전 세계 MBA 프로그램이 AI 전략, 머신러닝 기초, 데이터 거버넌스, 인간-AI 협업, AI 윤리를 핵심 과목으로 편입하고 있습니다. 선택과목 한두 개가 아니라 재무·마케팅·운영 등 기존 코어 전반에 AI가 스며드는 방식이며, AIMBA 원우의 학습 로드맵에도 직접적인 시사점을 줍니다.",
+          source: "Exeed College",
+          href: "https://exeedcollege.com/blog/ai-in-mba-curriculum-2026/",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "AI가 벤처 자본을 빨아들이는 흐름이 더 선명해졌습니다. 2026년 1분기 글로벌 벤처투자는 3,000억 달러를 돌파해 사상 최대를 기록했고, 그중 약 80%가 AI로 향했습니다. 6월에도 'AI 에이전트를 감시하는' 모니터링 레이어, 로보틱스(피지컬 AI), GPU 인프라로 메가라운드가 이어지며, 투자 무게추가 소프트웨어를 넘어 자율주행·로봇·제조로 확장되고 있습니다.",
+      articles: [
+        {
+          title: "1분기 글로벌 벤처투자 3,000억 달러 사상 최대 — 80%가 AI로",
+          desc: "크런치베이스 집계에 따르면 2026년 1분기 글로벌 벤처 펀딩이 3,000억 달러를 돌파해 역대 최고를 기록했고, 이 중 약 2,420억 달러(약 80%)가 AI에 집중됐습니다. 자본이 소프트웨어를 넘어 자율주행·로보틱스·제조로 흘러가며 'AI = 벤처시장 그 자체'가 된 국면입니다.",
+          source: "Crunchbase News",
+          href: "https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/",
+        },
+        {
+          title: "코랄로직스 2억 달러 시리즈F — 'AI 에이전트를 감시하는' 모니터링 레이어에 베팅",
+          desc: "옵저버빌리티 기업 코랄로직스가 2억 달러 시리즈F(포스트머니 16억 달러)를 유치했습니다. 자율 AI 에이전트가 프로덕션에 늘어날수록 '에이전트가 무슨 일을 하는지 지켜보는' 모니터링 인프라 수요가 급증한다는 베팅으로, 에이전트 시대의 '관제탑' 시장이 새로 열리고 있습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/06/03/coralogix-raises-200m-in-race-to-build-the-monitoring-layer-for-ai-agents/",
+        },
+        {
+          title: "제너럴리스트 AI 4억 달러·밸류 20억 달러 — 로봇이 복잡한 작업을 배우는 '피지컬 AI' 대형 라운드",
+          desc: "로봇이 복잡한 실물 작업을 수행하도록 하는 제너럴리스트 AI가 20억 달러 밸류에이션에 4억 달러를 유치했습니다. Figure AI·Skild AI 등과 함께 '피지컬 AI(로보틱스 파운데이션 모델)'가 2026년 벤처 자본의 최대 격전지로 부상하고 있습니다.",
+          source: "Crunchbase News",
+          href: "https://news.crunchbase.com/venture/biggest-funding-rounds-june-5-2026/",
+        },
+        {
+          title: "모달 랩스 3.55억 달러 시리즈C — 'AI를 돌릴 GPU'를 파는 서버리스 인프라 메가라운드",
+          desc: "서버리스 GPU 컴퓨팅 기업 모달 랩스가 3.55억 달러 시리즈C를 유치했습니다. 모델을 만드는 회사만큼 '모델을 실행할 GPU 용량을 손쉽게 빌려주는' 인프라 기업에 자본이 몰리며, AI 가치사슬의 '연료·엔진' 레이어가 별도의 거대 시장으로 자리잡고 있습니다.",
+          source: "Crunchbase News",
+          href: "https://news.crunchbase.com/venture/biggest-funding-rounds-june-5-2026/",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "이번 호 Vibe Coding은 '컨텍스트 엔지니어링'과 '스펙 주도 개발'에 초점을 맞췄습니다. 모델이 강해질수록 차이를 만드는 건 프롬프트가 아니라 '무엇을 컨텍스트에 넣고 무엇을 빼는가'라는 설계 역량입니다. 앤트로픽 공식 가이드 두 편과 검증된 실무 튜토리얼을 통해, 데모가 아니라 프로덕션을 버티는 워크플로의 공통 원칙을 정리했습니다.",
+      articles: [
+        {
+          title: "Anthropic 공식 — 'Effective Context Engineering for AI Agents'",
+          desc: "앤트로픽 엔지니어링 블로그의 핵심 가이드입니다. 컨텍스트 창은 빠르게 차고, 차오를수록 성능이 떨어진다는 단 하나의 제약에서 출발해 '필요한 것만 적시에 로드하는(just-in-time)' 설계를 제시합니다. 💡 핵심: 프롬프트를 길게 쓰지 말고, glob·grep 같은 도구로 런타임에 맥락을 끌어오도록 시스템을 설계하라.",
+          source: "Anthropic",
+          href: "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+        },
+        {
+          title: "Claude Code 공식 베스트 프랙티스 — 계획·컨텍스트 관리·TDD",
+          desc: "Claude Code 공식 문서의 베스트 프랙티스 모음입니다. CLAUDE.md를 '프로젝트 헌법'으로 삼고, /clear로 컨텍스트를 적극 비우며, 테스트를 명확한 통과 게이트로 쓰는 워크플로가 핵심입니다. 💡 핵심: TDD의 red→green 사이클이 에이전트에게 '명확한 피드백'을 주는 가장 강력한 단일 패턴이다.",
+          source: "Claude Code Docs",
+          href: "https://code.claude.com/docs/en/best-practices",
+        },
+        {
+          title: "Claude Code로 하는 스펙 주도 개발(SDD) — 가능성과 한계",
+          desc: "코드를 짜기 전에 마크다운으로 요구사항·규칙·제약을 먼저 합의하는 '스펙 주도 개발'을 Claude Code 관점에서 정리했습니다. 💡 핵심: 좋은 스펙은 자동화의 출력 품질을 결정하지만, 스펙이 모호하면 에이전트도 모호하게 일한다 — 스펙 작성 능력 자체가 새로운 개발 역량이다.",
+          source: "Augment Code",
+          href: "https://www.augmentcode.com/guides/claude-code-spec-driven-development",
+        },
+        {
+          title: "실전 Claude Code 베스트 프랙티스 — 계획·컨텍스트 전달·TDD를 코드로",
+          desc: "DataCamp의 실습형 튜토리얼로, 계획 모드로 나쁜 접근을 미리 거르고 세션 간 컨텍스트를 전달하는 구체적 절차를 단계별로 보여줍니다. 💡 핵심: '한 번에 다 시키기'보다 작업을 잘게 쪼개 각 단계를 검증 가능한 형태로 위임하는 것이 프로덕션 품질의 갈림길이다.",
+          source: "DataCamp",
+          href: "https://www.datacamp.com/tutorial/claude-code-best-practices",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "RWA(실물자산 토큰화) 시장이 규모와 제도 양쪽에서 동시에 전진했습니다. 온체인 RWA가 6월 기준 317.6억 달러로 전년 대비 300% 급증했고, 토큰화 미국채가 그 중심에 섰습니다. 토큰화 '주식'은 온도(Ondo)가 60% 이상 점유율로 선두를 굳혔고, 한국에서는 기관들이 디지털자산 시장에 본격 진입하며 규제 정비가 빨라지고 있습니다.",
+      articles: [
+        {
+          title: "온체인 RWA 317.6억 달러·전년比 +300% — 토큰화 미국채가 견인",
+          desc: "코인게코 RWA 리포트 2026 기준 온체인 RWA가 317.6억 달러로 전년 대비 약 300% 급증했습니다. 토큰화 미국채가 약 147.9억 달러로 가장 큰 카테고리이며 6.5만 명 이상이 보유, 7일 APY 3.35% 수준입니다. '국채를 블록체인에서 사고파는' 인프라가 RWA의 기축으로 자리잡았습니다.",
+          source: "CoinGecko Research",
+          href: "https://www.coingecko.com/research/publications/rwa-report-2026",
+        },
+        {
+          title: "토큰화 '주식' 시대 개막 — 온도(Ondo), 231개 자산·점유율 63%로 선두",
+          desc: "온도 글로벌마켓이 애플·엔비디아·테슬라·QQQ·SPY 등 100개 이상 미국 주식·ETF를 토큰화하며, 6월 1일 기준 231개 상장 자산·약 11억 달러로 토큰화 주식 시장의 약 63%를 점유했습니다. 토큰화 주식 규모는 1년 만에 200만 달러대에서 수억 달러대로 폭증하며 가장 빠른 신규 카테고리가 됐습니다.",
+          source: "MetaMask",
+          href: "https://metamask.io/news/types-of-tokenized-real-world-assets-rwa-categories",
+        },
+        {
+          title: "타이거리서치 '2026 한국 기관들의 디지털자산 시장 진출 총정리'",
+          desc: "타이거리서치 분석에 따르면 2026년 한국 주요 금융기관·증권사가 STO·스테이블코인·커스터디 세 전선에서 디지털자산 시장에 동시 진입하고 있습니다. 제도 정비와 맞물려 '실험'에서 '사업'으로 넘어가는 전환점이며, 부동산금융·대체투자 실무자에게도 새로운 상품 설계 여지를 엽니다.",
+          source: "Tiger Research (블록미디어)",
+          href: "https://www.blockmedia.co.kr/archives/1099479",
+        },
+        {
+          title: "2026 가상자산산업 10대 핵심 이슈 — STO 법제화 이후의 진검승부",
+          desc: "법무법인 화우의 2026 전망은 STO 법제화 마무리 이후 토큰증권 유통·장외시장·투자자 보호가 본격 쟁점이 된다고 짚습니다. '제도는 열렸지만 누가 유동성과 신뢰를 만드는가'가 시장 성패를 가르며, 금융·부동산 실무자에게 규제 리스크와 기회를 동시에 던집니다.",
+          source: "법률신문 (화우)",
+          href: "https://www.lawtimes.co.kr/news/articleView.html?idxno=215219",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "한국 STO(토큰증권) 시장이 제도화 약 6개월 만에 '첫 시험대'에 올랐습니다. 무게추가 부동산 조각투자에서 IP·콘텐츠 등 비정형 자산으로 빠르게 옮겨가고, STO 거래소 예비인가를 둘러싸고 증권가의 전략이 갈리고 있습니다. '제도 통과'와 '시장 생존'이 다른 문제임을 보여주는 국면입니다.",
+      articles: [
+        {
+          title: "부동산 STO 힘 빠진다 — 무게추가 지식재산권·콘텐츠로 이동",
+          desc: "마켓인(이데일리) 보도에 따르면 STO 시장 초기 성장을 이끌던 부동산 조각투자 플랫폼들이 잇따라 사업을 종료하거나 방향을 트는 가운데, 무게중심이 IP·콘텐츠 등 비정형 자산으로 옮겨가고 있습니다. 상장 리츠 대비 세제(배당소득세 15.4% vs 분리과세 9.9%) 불리가 부동산 STO의 구조적 한계로 지목됩니다.",
+          source: "마켓인 (이데일리)",
+          href: "https://marketin.edaily.co.kr/News/Read?newsId=04598566645447936",
+        },
+        {
+          title: "STO 거래소 예비인가 — 빅5 중 한투증권만 이탈, 증권가 전략 명암",
+          desc: "파이낸셜투데이 보도에 따르면 STO 장외거래소 예비인가를 앞두고 대형 증권사 5곳 중 한국투자증권만 컨소시엄에서 이탈하는 등 전략이 엇갈리고 있습니다. 토큰증권 인프라 주도권을 둘러싼 증권가의 베팅이 본격화되며, 누가 '제도화된 STO'의 표준을 쥘지 윤곽이 잡히는 중입니다.",
+          source: "파이낸셜투데이",
+          href: "https://www.ftoday.co.kr/news/articleView.html?idxno=353245",
+        },
+        {
+          title: "STO 성패 가를 첫 시험대는 '유동성' — 리츠 사례의 시사점",
+          desc: "이투데이 분석은 토큰증권 시장의 진짜 관문이 발행이 아니라 '유통 유동성'이라고 짚습니다. 앞서 상장 리츠가 겪은 거래 부진 사례를 들어, 제도가 열려도 사고팔 사람이 충분치 않으면 시장이 작동하지 않는다는 점을 경고합니다 — 부동산금융 실무자가 반드시 따져야 할 리스크입니다.",
+          source: "이투데이",
+          href: "https://www.etoday.co.kr/news/view/2543188",
+        },
+        {
+          title: "2026 부동산 스타트업 투자 트렌드 — 프롭테크가 다시 주목받는 이유",
+          desc: "뉴스N연합 정리에 따르면 2026년 부동산 스타트업은 시드(140만~1,000만 달러)부터 시리즈B(1,200만~8,600만 달러)까지 자금이 다시 유입되고 있습니다. 거래·관리·유지보수 전 영역에 AI·디지털 기술이 침투하며, 기존 방식으로 풀기 어렵던 부동산 병목을 실제 서비스로 푸는 프롭테크가 투자 우선순위로 복귀했습니다.",
+          source: "뉴스N연합",
+          href: "https://newsyonhap.com/news/109288",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주는 신규 개별 마감 공고보다, 연중 상시 모집으로 전환된 핵심 창업지원 채널을 점검할 시점입니다. 중기부·창업진흥원(KISED)의 예비·초기창업패키지와 K-Startup 신규 공고를 우선 확인하시고, 2026년 중앙부처·지자체 통합공고로 전체 라인업을 한눈에 파악하시길 권합니다. AI·딥테크 창업 트랙 원우는 상시 모집 사업의 접수 타이밍을 미리 잡아두는 것이 유리합니다.",
+      items: [
+        {
+          title: "2026년 중앙부처·지자체 창업지원사업 통합공고 (중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000116904",
+        },
+        {
+          title: "예비창업패키지 — 예비창업자 사업화 지원 (창업진흥원·KISED)",
+          href: "https://www.kised.or.kr/menu.es?mid=a10205010000",
+        },
+        {
+          title: "초기창업패키지(일반형) — 3년 이내 초기 창업기업 (창업진흥원·KISED)",
+          href: "https://www.kised.or.kr/menu.es?mid=a10205020000",
+        },
+        {
+          title: "K-Startup 창업지원포털 — 신규 사업 공고 상시 확인",
+          href: "https://www.k-startup.go.kr/web/main/index.do",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 포인트는 AI학과의 '2027 캐나다 토론토대 AI 융합 교육프로그램' 모집과 경영대학원 하계 학사 일정입니다. 서강대가 'AI 중심대학'으로 AI 학과·프로그램을 빠르게 확장하는 흐름 속에서, AIMBA 원우는 교내 AI 특강·국제 융합 프로그램을 적극 활용하시길 권합니다.",
+      items: [
+        {
+          title: "[AI학과] 2027년도 캐나다 University of Toronto AI 융합 교육프로그램 모집 (6/1 공고)",
+          href: "https://ai.sogang.ac.kr/front/cmsboardlist.do?siteId=ai&bbsConfigFK=6330",
+        },
+        {
+          title: "[경영대] 2026-2학기 'Knowledge, Character and Management' 사전수강신청 (6/18 공고)",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do",
+        },
+        {
+          title: "[SW중심대학] 하계 AI·SW 특강·프로그램 모니터링",
+          href: "https://scc.sogang.ac.kr/front/cmsboardlist.do?siteId=sweducenter&bbsConfigFK=7250",
+        },
+        {
+          title: "[MOT] 기술경영전문대학원 특강·포럼 상시 모니터링",
+          href: "https://sgmot.sogang.ac.kr/gopage/sogangmot/goboard2.jsp?bbsConfigFK=22&siteId=sogangmot",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "6월 22일", day: "월", title: "AAAI 2026 Summer Symposium Series (6/22~6/24)", where: "동국대학교, 서울", tag: "학술 심포지엄", link: "https://aaai.org/conference/summer-symposia/suss26/" },
+    { date: "6월 25일", day: "목", title: "AAiCON 2026 (6/25~6/26)", where: "서울", tag: "AI 컨퍼런스", link: "https://aifrenz.org/aaicon26-registration" },
+    { date: "7월 7일", day: "화", title: "ICML 2026 (International Conference on Machine Learning, 7/7~7/9)", where: "서울 COEX", tag: "국제 학술대회", link: "https://icml.cc/" },
+    { date: "8월 19일", day: "수", title: "AI Summit Seoul & Expo 2026 (8/19~8/21)", where: "서울 COEX 그랜드볼룸 & B홀", tag: "글로벌 AI 서밋", link: "https://www.aisummitseoul.com/" },
+  ],
+};
+
 const VOL12: IssueContent = {
   vol: 12,
   dateLabel: "2026년 6월 16일",
@@ -2333,7 +2651,7 @@ const VOL12: IssueContent = {
 };
 
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL12, VOL11, VOL10, VOL9];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL13, VOL12, VOL11, VOL10];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));

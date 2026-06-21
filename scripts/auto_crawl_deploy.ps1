@@ -13,6 +13,9 @@
 # 로그: scripts/logs/auto_crawl.log (회차별 누적, 단계별, 일관 UTF-8)
 # =====================================================================
 $ErrorActionPreference = "Stop"
+# 파이썬 절대경로 고정 — 스케줄러 PATH가 Hermes venv(bs4/requests 없음)를 잡아
+# ModuleNotFoundError로 죽던 문제 차단. miniconda엔 requests/bs4 구비.
+$PY      = "C:\Users\jun16\miniconda3\python.exe"
 $repo    = "C:\Users\jun16\Desktop\sogang\SOGANG-AIMBA7th"
 $logDir  = Join-Path $repo "scripts\logs"
 if (-not (Test-Path -LiteralPath $logDir)) { New-Item -ItemType Directory -Force -Path $logDir | Out-Null }
@@ -44,7 +47,7 @@ try {
   # 1) 크롤 — scripts/ 에서 실행(홈 inspect.py shadow 회피)
   Log "[1/6] 크롤 시작"
   Push-Location (Join-Path $repo "scripts")
-  $r = Run-Native "python" @("crawl_contests.py", "--pages", "4")
+  $r = Run-Native $PY @("crawl_contests.py", "--pages", "4")
   Pop-Location
   $rc = $r.Code
   Log "[1/6] crawler exit code = $rc"
