@@ -18,7 +18,7 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260622.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260629.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
@@ -38,9 +38,9 @@ export const PULSE_TOPICS: PulseTopic[] = [
 ];
 
 export const PULSE_METRICS = [
-  { key: "PUBLISHED", value: "13", sub: "누적 발간 호수" },
-  { key: "CURRENT", value: "Vol.13", sub: "2026.06.22 최신호" },
-  { key: "TOP SIGNAL", value: "AI", sub: "에이전트 프로덕션 · 올트먼 방한연기 · STO" },
+  { key: "PUBLISHED", value: "14", sub: "누적 발간 호수" },
+  { key: "CURRENT", value: "Vol.14", sub: "2026.06.29 최신호" },
+  { key: "TOP SIGNAL", value: "AI", sub: "인재 쟁탈전 · 실무 벤치 47% · ROI 5% · STO" },
 ] as const;
 
 export interface BriefIssue {
@@ -59,6 +59,21 @@ export interface BriefIssue {
 }
 
 export const BRIEF_ISSUES: BriefIssue[] = [
+  {
+    vol: 14,
+    date: "2026.06.29",
+    shortDate: "06.29",
+    section: "AI-LLM",
+    sectionLabel: "AI · 인재·실무",
+    title: "AI 인재·모델은 폭주하는데 실무 벤치마크는 47% — '도입'과 '성과'의 괴리가 드러난 주",
+    headline:
+      "구글 핵심 연구진의 앤트로픽 이탈과 6월 후반 모델 러시로 AI 공급은 정점에 올랐지만, 기업 IT 에이전트 벤치마크 47%·국내 ROI 입증 5%가 '도입과 성과의 괴리'를 드러내고, 제도 시행을 앞둔 한국에서 1세대 부동산 조각투자가 먼저 무너진 주.",
+    path: "/issues/vol_20260629.html",
+    read: "14분",
+    views: "최신",
+    live: true,
+    tags: ["AI인재전쟁", "ITBench", "ROI괴리", "STO", "RWA", "MBA", "바이브코딩"],
+  },
   {
     vol: 13,
     date: "2026.06.22",
@@ -2049,6 +2064,298 @@ const VOL7: IssueContent = {
   ],
 };
 
+const VOL14: IssueContent = {
+  vol: 14,
+  dateLabel: "2026년 6월 29일",
+  isoDate: "20260629",
+  title:
+    "AI 인재·모델은 폭주하는데 실무 벤치마크는 47% — '도입'과 '성과'의 괴리가 드러난 주",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주의 신호는 'AI 공급은 정점, 성과는 미답'입니다. 구글 핵심 AI 연구진이 잇따라 앤트로픽으로 옮겨가고(노엄 셰이저·존 점퍼에 이은 행렬), 6월 후반 바이트댄스·Zhipu·문샷이 프런티어급 모델을 쏟아내며 'AI 공급'은 정점에 올랐습니다. 그러나 IBM·Artificial Analysis의 기업 IT 에이전트 벤치마크(ITBench)에서 최상위 모델조차 47%에 그쳐, 추론 벤치마크는 포화하는데 실무 격차는 그대로라는 역설이 드러났습니다.",
+    "한국 현장의 숫자는 더 냉정합니다. 국내 기업 88%가 AI를 쓰지만 ROI를 입증한 곳은 5%뿐이고, 5월 청년 취업자는 25만5천 명 줄어 한국은행이 'AI 충격'을 지목했습니다. RWA·STO에선 미래에셋이 글로벌 1위 온도파이낸스와 손잡고 상장 ETF 토큰화에 나서며 전진하는 한편, 제도 시행을 앞두고 펀블·카사코리아 등 1세대 부동산 조각투자 플랫폼이 먼저 문을 닫는 역설이 함께 나타났습니다.",
+  ],
+  conclusion:
+    "모델과 인재의 공급은 폭발하지만, 시장은 이제 '누가 더 좋은 모델을 갖느냐'가 아니라 '그 모델로 손익을 증명하느냐'를 묻습니다. 실무 벤치마크 47%·국내 ROI 입증 5%는 병목이 기술이 아니라 운영·거버넌스·인력 재배치에 있음을 보여줍니다. 한국 STO 역시 '제도 시행'과 '시장 생존'이 별개임을 1세대 플랫폼의 줄폐업으로 증명하고 있습니다. AIMBA 원우분들에게 이번 주가 남기는 질문은 'AI를 도입했는가'가 아니라 'AI 도입의 ROI를 숫자로 증명하고, 그 위에 거버넌스를 설계할 수 있는가'입니다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "프런티어 모델 경쟁이 '공급 정점'에 이르렀습니다. 구글 핵심 연구진이 잇따라 앤트로픽으로 이동하며 인재 쟁탈전이 격화됐고, 6월 후반 바이트댄스·Zhipu·문샷 등이 프런티어급 모델을 연이어 내놓으며 출시 러시가 이어졌습니다. 그러나 기업 IT 운영 현장을 본뜬 ITBench에서 최상위 모델조차 절반을 넘지 못해, 경쟁의 무게중심이 '벤치마크 점수'에서 '실무에서 끝까지 일을 처리하는 실행력'으로 옮겨갔습니다.",
+      articles: [
+        {
+          title: "구글 핵심 AI 연구진, 잇따라 앤트로픽으로 이탈 — AI 인재 쟁탈전 격화",
+          desc: "테크크런치에 따르면 구글의 핵심 연구자 요나스 아들러와 알렉산더 프리츨이 앤트로픽으로 자리를 옮겼습니다. 앞서 노엄 셰이저(→OpenAI), 존 점퍼(→앤트로픽)의 이동에 이은 행렬로, 모델 성능이 수렴할수록 '누가 핵심 두뇌를 데려가느냐'가 경쟁의 실질 변수로 떠올랐습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/06/24/ai-researchers-continue-to-leave-google-for-its-rivals/",
+        },
+        {
+          title: "기업 IT 에이전트 벤치마크 'ITBench', 프런티어 모델 전원 50% 미만 — 최고가 47%",
+          desc: "IBM 리서치와 Artificial Analysis의 ITBench는 쿠버네티스 장애 대응 등 실제 기업 IT 운영 과제로 모델을 평가합니다. 'Claude Opus 4.7'이 47%로 선두였지만 어떤 프런티어 모델도 50%를 넘지 못해, 추론 벤치마크의 포화와 실무 격차가 동시에 드러났습니다.",
+          source: "Hugging Face (IBM Research)",
+          href: "https://huggingface.co/blog/ibm-research/itbench-aa",
+        },
+        {
+          title: "6월 후반 프런티어 모델 출시 러시 — 바이트댄스·Zhipu·문샷 가세",
+          desc: "LLM 트래커 집계 기준, 6월 후반에도 바이트댄스·Zhipu(즈푸)·문샷 등 중국발 프런티어급 모델이 연이어 출시되며 공급 경쟁이 이어졌습니다. 추론 벤치마크 상단이 촘촘해지는 가운데, 차별점은 점수가 아니라 코딩·에이전트 실행력으로 좁혀지고 있습니다.",
+          source: "LLM Stats",
+          href: "https://llm-stats.com/llm-updates",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "AI 비즈니스의 화두가 '도입'에서 '성과 증명'으로 굳어졌습니다. AI 에이전트가 여신심사까지 파고드는 성공 사례(IBK 1000개 에이전트)가 나오는 한편, 도입 기업의 88% 중 ROI를 입증한 곳은 5%에 그친다는 경고가 함께 나왔습니다. '1인 창업 혁명'처럼 진입장벽은 낮아지지만, 결국 도메인 전문성과 성과 측정이 승부를 가른다는 메시지가 뚜렷합니다.",
+      articles: [
+        {
+          title: "[AI 워크 서밋] '2026년 이후 경쟁력은 AI가 결정'… 기업 실무 패러다임 바꾸는 'AI 에이전트'",
+          desc: "스스로 목표를 설정하고 실행하는 AI 에이전트가 기업 업무 방식을 근본적으로 바꾸고 있다고 진단합니다. 기업들이 맞춤형 AI 솔루션을 개발해 효율을 극대화하고 새로운 성장 기회를 창출하는 흐름을 전합니다.",
+          source: "전자신문",
+          href: "https://www.etnews.com/20260611000335",
+        },
+        {
+          title: "[포럼] AI 시대, 1인 창업 혁명",
+          desc: "생성형 AI가 초기 창업 비용을 획기적으로 낮추고 1인 창업가가 빠르게 MVP를 만들 수 있게 하면서 창업 생태계를 바꾸고 있다고 봅니다. 다만 AI 기술 자체보다 도메인 전문성이 더 중요하다는 점을 강조합니다.",
+          source: "파이낸셜뉴스",
+          href: "https://www.fnnews.com/news/202606181817596116",
+        },
+        {
+          title: "[성장 사다리, IBK기업은행] 기업은행 AI 에이전트 1000개 돌파…여신심사·신용장까지 바꾼다",
+          desc: "IBK기업은행이 자체 플랫폼 'IBK GenAI(제니)' 기반 AI 에이전트를 1000개 이상 도입해 여신심사·신용장 등 핵심 업무에 투입했습니다. 12만 건의 내부 문서로 학습시켜 실무 의사결정을 자동화·고도화한 사례입니다.",
+          source: "아주경제",
+          href: "https://www.ajunews.com/view/20260625150404908",
+        },
+        {
+          title: "AI 도입 기업 88%, ROI 입증은 단 5%…성과 측정 없는 AI 투자 경고",
+          desc: "기업의 88%가 AI를 업무에 활용하지만 실질적 ROI를 입증한 곳은 5%에 불과하다는 조사 결과를 다룹니다. 거버넌스 부재와 섀도 AI 관리 실패가 '도입과 성과의 괴리'를 만든다고 경고합니다.",
+          source: "지티티코리아",
+          href: "https://www.gttkorea.com/news/articleView.html?idxno=25922",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA",
+      code: "MBA",
+      narrative:
+        "이번 주 MBA·커리어 섹션은 'AI가 채용 시장의 구조를 바꾼다'는 한 줄로 모입니다. 5월 청년 취업자가 25만5천 명 줄고 한국은행이 AI 도입과의 상관관계를 지목하는 가운데, 기업은 신입 채용을 줄이고 '스펙보다 실무·AI 역량'으로 기준을 옮기고 있습니다. AI가 초급 업무를 흡수할수록, 이를 감독·설계하는 역량과 재교육이 커리어 방어선이 됩니다.",
+      articles: [
+        {
+          title: "청년 취업자 25만명 '증발'⋯한은 'AI 출시 후 감소 패턴' [고용 없는 성장]",
+          desc: "5월 청년 취업자가 25만5000명 줄어 코로나 이후 최대 감소폭을 기록했습니다. 한국은행은 생성형 AI 도입과 청년층 고용 감소 사이의 상관관계를 지목하며 'AI 충격'을 분석합니다.",
+          source: "이투데이",
+          href: "https://www.etoday.co.kr/news/view/2592662",
+        },
+        {
+          title: "AI가 한국 노동시장에 미칠 영향",
+          desc: "AI가 2030년까지 전 세계 9200만 개 일자리를 대체하지만 1억7000만 개 신규 일자리를 만들어 순증이 가능하다고 전망합니다. 다만 AI 역량 보유자가 약 25% 높은 임금을 받아 격차가 커질 수 있어 재교육 정책이 필요하다고 지적합니다.",
+          source: "유스연합",
+          href: "https://www.youthassembly.kr/news/954824",
+        },
+        {
+          title: "AI 자동화 확산에 신입 일자리 감소…기업 채용 전략 구조적 변화",
+          desc: "기업의 21%가 AI 도입으로 이미 신입 채용을 동결했고 2027년까지 47%가 신입 직책을 없앨 것이라는 조사를 전합니다. 동시에 기술·AI 역량 인력 채용은 늘어 인력 구성의 구조적 재편이 진행 중이라고 분석합니다.",
+          source: "지티티코리아",
+          href: "https://www.gttkorea.com/news/articleView.html?idxno=24776",
+        },
+        {
+          title: "[청년 취업 대란]⑪ '스펙보다 인적성'…대기업 채용 기준 재편",
+          desc: "대기업들이 학점·시험점수 같은 전통적 스펙 대신 조직 적합성과 실무 역량 중심으로 채용 기준을 옮기고 있다고 보도합니다. 무경력 신입보다 '중고 신입'을 선호하는 경향도 함께 다룹니다.",
+          source: "뉴스핌",
+          href: "https://www.newspim.com/news/view/20260423000947",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "벤처 자본의 'AI 쏠림'이 6월에도 이어졌습니다. VC 펀딩 라운드업에서 신규 투자 10건 중 9건이 AI로 향했고, 게임으로 AI를 가르치는 제너럴인튜이션이 3억2천만 달러 시리즈A를 유치하는 등 메가라운드가 계속됐습니다. 다만 초기투자가 딥테크로 편중·양극화되는 흐름도 함께 나타나, '대학발 딥테크가 유니콘 산실로' 부상하는 구조 변화가 관전 포인트입니다.",
+      articles: [
+        {
+          title: "게임으로 AI를 가르친다 — 제너럴인튜이션, 3억2천만 달러 시리즈A 유치",
+          desc: "와우테일에 따르면 제너럴인튜이션이 게임 환경에서 AI를 학습시키는 접근으로 3억2천만 달러 규모의 시리즈A를 유치했습니다. 시뮬레이션·강화학습 기반 'AI 학습 인프라'에 대형 자본이 몰리는 흐름을 보여주는 라운드입니다.",
+          source: "와우테일",
+          href: "https://wowtale.net/2026/06/26/260689/",
+        },
+        {
+          title: "초기 스타트업 투자 양극화·딥테크 편중 심화",
+          desc: "와우테일 분석에 따르면 상반기 초기 스타트업 투자가 소수 유망 딜과 딥테크로 쏠리며 양극화가 뚜렷해졌습니다. 자금이 '검증된 팀·기술 우위'로 집중되면서, 아이디어 단계 창업의 자금 조달 문턱은 더 높아지고 있습니다.",
+          source: "와우테일",
+          href: "https://wowtale.net/2026/06/24/260584/",
+        },
+        {
+          title: "VC 펀딩 라운드업(6/24) — 신규 투자 10건 중 9건이 'AI'",
+          desc: "테크스타트업스 집계에 따르면 6월 24일 주요 벤처 펀딩 라운드의 약 90%가 AI 관련 기업에 집중됐습니다. 인프라·에이전트·응용 전 영역에 자본이 흐르며 'AI = 벤처시장 그 자체'라는 흐름이 이어지고 있습니다.",
+          source: "Tech Startups",
+          href: "https://techstartups.com/2026/06/24/venture-capital-startup-funding-roundup-june-24-2026/",
+        },
+        {
+          title: "[혁신창업국가 국제포럼] '대학발 딥테크'가 유니콘 산실로",
+          desc: "미주중앙일보 보도에 따르면 2026 혁신창업국가 국제포럼에서 대학 연구·기술을 기반으로 한 딥테크 창업이 차세대 유니콘의 핵심 경로로 제시됐습니다. AIMBA 원우의 산학·기술창업 트랙에도 직접적인 시사점을 주는 흐름입니다.",
+          source: "미주중앙일보",
+          href: "https://www.koreadaily.com/article/20260616133037894",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "이번 호 Vibe Coding은 '에이전트 네이티브 개발 환경'으로 무게추가 옮겨간 흐름을 담았습니다. 커서와 깃허브 코파일럿이 단순 자동완성을 넘어 에이전트가 작업을 주도하는 워크플로로 재편되고, Claude Code는 최대 1,000개 서브에이전트를 오케스트레이션하는 '다이내믹 워크플로'를 선보였습니다. 핵심은 '코드를 빨리 짜는 것'이 아니라 '에이전트에게 일을 어떻게 위임·검증하는가'입니다.",
+      articles: [
+        {
+          title: "커서 3.7~3.9 체인지로그 — 에이전트 워크플로우 신규 명령어",
+          desc: "커서의 최신 체인지로그는 에이전트가 멀티스텝 작업을 주도하도록 하는 신규 명령어·워크플로를 정리합니다. 💡 핵심: 자동완성에서 '작업 위임'으로 무게추가 옮겨가며, 무엇을 어떤 단위로 맡길지 설계하는 능력이 생산성을 가른다.",
+          source: "Cursor",
+          href: "https://cursor.com/changelog",
+        },
+        {
+          title: "깃허브 코파일럿 앱 — '에이전트 네이티브' 데스크톱 환경 공개",
+          desc: "깃허브가 코파일럿을 에이전트 중심으로 재설계한 데스크톱 앱을 공개했습니다. 💡 핵심: IDE 보조도구를 넘어 '에이전트가 상주하는 작업 환경'으로 진화하며, 사람은 지시·검수, 에이전트는 실행이라는 분업이 표준이 되고 있다.",
+          source: "The GitHub Blog",
+          href: "https://github.blog/news-insights/product-news/github-copilot-app-the-agent-native-desktop-experience/",
+        },
+        {
+          title: "Claude Code '다이내믹 워크플로' — 최대 1,000개 서브에이전트 오케스트레이션",
+          desc: "마크테크포스트 정리에 따르면 앤트로픽이 Opus 4.8과 함께 최대 1,000개 서브에이전트를 조율하는 '다이내믹 워크플로'와 더 저렴한 패스트 모드를 공개했습니다. 💡 핵심: 단일 에이전트가 아니라 '여러 에이전트를 병렬로 부리는 오케스트레이션'이 대규모 작업의 새 단위가 된다.",
+          source: "MarkTechPost",
+          href: "https://www.marktechpost.com/2026/05/28/anthropic-ships-claude-opus-4-8-alongside-dynamic-workflows-and-cheaper-fast-mode-with-workflows-capped-at-1000-subagents/",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "RWA(실물자산 토큰화)가 한국에서 '제도'와 '플레이어' 양쪽에서 전진했습니다. 미래에셋이 글로벌 1위 RWA 플랫폼 온도파이낸스와 손잡고 상장 ETF 토큰화에 나서며 아시아 운용사 최초로 통합 플랫폼 전략을 띄웠고, 리플의 RLUSD는 일본 승인에 이어 유럽 MiCA 예비 인가를 확보했습니다. 발행을 넘어 '유통'이 화두로 떠오른 국면입니다.",
+      articles: [
+        {
+          title: "미래에셋자산운용, 글로벌 RWA 1위 온도파이낸스와 손잡고 ETF 토큰화 시동",
+          desc: "더페어 보도에 따르면 미래에셋자산운용이 글로벌 RWA 선두 온도파이낸스와 협력해 기존 상장 ETF 라인업의 토큰화에 나섭니다. 이미 상장된 ETF를 토큰화하는 아시아 첫 운용사로, 미국·캐나다·유럽 등으로 확장을 계획하고 있습니다.",
+          source: "더페어",
+          href: "https://www.thefairnews.co.kr/news/articleView.html?idxno=79607",
+        },
+        {
+          title: "[현장] '발행보다 유통'…맨틀이 제시한 RWA 온체인 전략",
+          desc: "게임뷰 현장 취재에 따르면 맨틀(Mantle)은 RWA의 승부처가 '발행'이 아니라 '온체인 유통·유동성'에 있다고 강조했습니다. 토큰을 찍어내는 단계를 넘어, 실제로 사고팔리는 시장을 만드는 인프라가 관건이라는 메시지입니다.",
+          source: "게임뷰",
+          href: "https://www.gamevu.co.kr/news/articleView.html?idxno=58885",
+        },
+        {
+          title: "리플 RLUSD, 일본 승인 이어 유럽 MiCA 예비 인가 확보",
+          desc: "디지털투데이에 따르면 리플의 스테이블코인 RLUSD가 일본 승인에 이어 유럽 MiCA 예비 인가를 확보했습니다. 주요 규제권에서 잇따라 제도권 통과를 받으며, 스테이블코인이 RWA·결제 인프라의 기축으로 자리잡는 흐름이 빨라지고 있습니다.",
+          source: "디지털투데이",
+          href: "https://www.digitaltoday.co.kr/news/articleView.html?idxno=678451",
+        },
+        {
+          title: "[STO 시대] 전통·디지털 자산 '통합 플랫폼'…'로빈후드' 길 걷는 미래에셋",
+          desc: "뉴스1 보도에 따르면 미래에셋이 전통 금융자산과 디지털 자산을 한 곳에서 다루는 '통합 플랫폼' 전략으로 '한국판 로빈후드'를 지향하고 있습니다. STO·토큰화가 증권사의 사업 모델 자체를 재편하는 신호입니다.",
+          source: "뉴스1",
+          href: "https://v.daum.net/v/20260625060252627",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "한국 부동산·핀테크는 'STO 제도 시행 전 1세대 붕괴'와 '실물 시장 과열'이 엇갈렸습니다. 펀블에 이어 카사코리아까지 부동산 조각투자 1세대가 제도 시행을 앞두고 문을 닫는 한편, 서울 아파트값은 1년 만에 15% 뛰며 과열 신호를 보냈습니다. '제도는 다가오는데 발행 생태계는 무너지는' 역설이 부동산금융 실무자에게 던지는 함의가 큽니다.",
+      articles: [
+        {
+          title: "펀블 이어 카사코리아까지 — STO 시행도 전에 문 닫는 부동산 조각투자",
+          desc: "서울경제 보도에 따르면 부동산 조각투자 1세대인 펀블이 사업을 접은 데 이어 카사코리아도 신규 사업을 멈추고 자산을 정리합니다. '발행 생태계가 무너지면 STO 시장이 열려도 증권사 중심의 제한된 상품만 유통될 것'이라는 우려가 나옵니다.",
+          source: "서울경제",
+          href: "https://www.sedaily.com/article/20058199",
+        },
+        {
+          title: "재테크 플랫폼 '구해줘내집', 평균 부동산 거래 기간 14.9일 기록",
+          desc: "핀테크경제신문에 따르면 부동산 거래 플랫폼 '구해줘내집'이 평균 거래 소요 기간 14.9일을 기록했습니다. 데이터·매칭 기반 프롭테크가 전통적 중개 대비 거래 속도를 단축하는 사례로, 핀테크의 부동산 침투를 보여줍니다.",
+          source: "핀테크경제신문",
+          href: "https://www.fintechtimes.co.kr/news/article.html?no=56980",
+        },
+        {
+          title: "[AI 부동산] 서울 아파트값 1년 만에 15%↑ — 과열 신호",
+          desc: "뉴스핌 분석에 따르면 서울 아파트 가격이 1년 만에 약 15% 상승하며 과열 신호를 보이고 있습니다. 금리·공급·정책 변수가 얽힌 가운데, 부동산금융 실무자에게는 익스포저·LTV 관리의 긴장도가 높아지는 국면입니다.",
+          source: "뉴스핌",
+          href: "https://www.newspim.com/news/view/20260626000915",
+        },
+        {
+          title: "[AI 비즈부동산] 2026년 6월 2주차 서울 부동산 실거래 동향",
+          desc: "비즈한국의 실거래 동향 정리에 따르면 6월 2주차 서울 부동산 거래가 지역별로 온도차를 보이며 움직였습니다. 실거래 데이터 기반 모니터링이 시장 판단의 기본 도구로 자리잡는 흐름을 보여줍니다.",
+          source: "비즈한국",
+          href: "https://www.bizhankook.com/bk/article/32536",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주는 연중 상시·통합 채널을 점검할 시점입니다. 2026년 중앙부처·지자체 창업지원 통합공고로 전체 라인업을 한눈에 보고, 창업진흥원(KISED)의 예비창업패키지와 NIPA의 AI바우처 지원사업을 우선 확인하시길 권합니다. AI·딥테크 창업 트랙 원우는 상시 모집 사업의 접수 타이밍을 미리 잡아두는 것이 유리합니다.",
+      items: [
+        {
+          title: "2026년 중앙부처·지자체 창업지원사업 통합공고 (중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000116904",
+        },
+        {
+          title: "예비창업패키지 — 예비창업자 사업화 지원 (창업진흥원·KISED)",
+          href: "https://www.kised.or.kr/menu.es?mid=a10205010000",
+        },
+        {
+          title: "AI바우처 지원사업 — AI 솔루션 도입 바우처 (NIPA)",
+          href: "https://www.nipa.kr/home/bsnsAll/1/detail?bsnsDtlsIemNo=580",
+        },
+        {
+          title: "사업공고 — 창업진흥원 알림마당 신규 공고 상시 확인 (KISED)",
+          href: "https://www.kised.or.kr/menu.es?mid=a10302000000",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 포인트는 SW중심대학의 AI 전문가 양성과정입니다. 코디세이 올인원 2기(~7/12)와 LG AI연구원 'LG Aimers' 9기 모집이 열려 있어, AIMBA 원우는 실무형 AI 교육 트랙을 적극 활용하시길 권합니다. 경영대·AI학과 공지 보드도 특강·세미나 일정을 함께 모니터링하시기 바랍니다.",
+      items: [
+        {
+          title: "[SW중심대학] 코디세이 올인원 제2기 교육생 모집 — AI 전문가 양성과정 (~7/12)",
+          href: "https://scc.sogang.ac.kr/front/cmsboardview.do?siteId=sweducenter&bbsConfigFK=7250&pkid=937681",
+        },
+        {
+          title: "[SW중심대학] LG AI연구원 'LG Aimers' 9기 교육 프로그램 안내",
+          href: "https://scc.sogang.ac.kr/front/cmsboardview.do?siteId=sweducenter&bbsConfigFK=7250&pkid=937290",
+        },
+        {
+          title: "[경영대] 서강대 경영대학 공지사항 — 특강·세미나 모니터링",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do",
+        },
+        {
+          title: "[AI학과] 서강대 인공지능학과 공지 — 콜로퀴엄·강연 모니터링",
+          href: "https://ai.sogang.ac.kr/front/cmsboardlist.do?siteId=ai&bbsConfigFK=6330",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "6월 30일", day: "화", title: "KCGS 2026 한국컴퓨터그래픽스학회 학술대회 (6/30~7/3, AI Creative Showcase 신설)", where: "여수 디오션리조트", tag: "학술대회", link: "https://cg-korea.org/" },
+    { date: "7월 6일", day: "월", title: "ICML 2026 (International Conference on Machine Learning, 7/6~7/11)", where: "서울 COEX", tag: "국제 학술대회", link: "https://icml.cc/Conferences/2026/index.html" },
+    { date: "8월 19일", day: "수", title: "AI Summit Seoul & Expo 2026 (8/19~8/21)", where: "서울 COEX B홀·그랜드볼룸", tag: "글로벌 AI 서밋", link: "https://www.aisummit.co.kr/" },
+    { date: "10월 21일", day: "수", title: "산업 AI EXPO 2026 (10/21~10/23, Embodied AI)", where: "일산 KINTEX 제1전시장", tag: "AI 컨퍼런스·전시", link: "https://industrialaiexpo.or.kr/" },
+  ],
+};
+
 const VOL13: IssueContent = {
   vol: 13,
   dateLabel: "2026년 6월 22일",
@@ -2651,7 +2958,7 @@ const VOL12: IssueContent = {
 };
 
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL13, VOL12, VOL11, VOL10];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL14, VOL13, VOL12, VOL11];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));
