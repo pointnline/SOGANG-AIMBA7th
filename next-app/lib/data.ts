@@ -18,7 +18,7 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260629.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260706.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
@@ -38,9 +38,9 @@ export const PULSE_TOPICS: PulseTopic[] = [
 ];
 
 export const PULSE_METRICS = [
-  { key: "PUBLISHED", value: "14", sub: "누적 발간 호수" },
-  { key: "CURRENT", value: "Vol.14", sub: "2026.06.29 최신호" },
-  { key: "TOP SIGNAL", value: "AI", sub: "인재 쟁탈전 · 실무 벤치 47% · ROI 5% · STO" },
+  { key: "PUBLISHED", value: "15", sub: "누적 발간 호수" },
+  { key: "CURRENT", value: "Vol.15", sub: "2026.07.06 최신호" },
+  { key: "TOP SIGNAL", value: "AI", sub: "클로드 소넷5 · 내재화 6.7% · 벤처 의무보유 5년 · STO" },
 ] as const;
 
 export interface BriefIssue {
@@ -60,6 +60,21 @@ export interface BriefIssue {
 
 export const BRIEF_ISSUES: BriefIssue[] = [
   {
+    vol: 15,
+    date: "2026.07.06",
+    shortDate: "07.06",
+    section: "AI-LLM",
+    sectionLabel: "AI · 에이전트",
+    title: "'저비용 에이전트' 시대 개막 — 클로드 소넷5, 도입률 61% vs 조직 내재화 6.7%의 간극을 되묻다",
+    headline:
+      "앤트로픽이 오푸스급 성능·저가형 '클로드 소넷5'를 출시하며 에이전트 실행 비용을 낮췄지만, 국내 AI 도입률 61% 대비 조직 내재화는 6.7%에 그치고, 벤처투자 의무보유 5년 연장·STO 하위법규 예고와 부동산 규제 강화가 겹친 주.",
+    path: "/issues/vol_20260706.html",
+    read: "14분",
+    views: "최신",
+    live: true,
+    tags: ["Claude Sonnet5", "AI에이전트 내재화", "STO 하위법규", "벤처투자 의무보유 5년", "토지거래허가제", "바이브코딩", "서강 경영대"],
+  },
+  {
     vol: 14,
     date: "2026.06.29",
     shortDate: "06.29",
@@ -71,7 +86,7 @@ export const BRIEF_ISSUES: BriefIssue[] = [
     path: "/issues/vol_20260629.html",
     read: "14분",
     views: "최신",
-    live: true,
+    live: false,
     tags: ["AI인재전쟁", "ITBench", "ROI괴리", "STO", "RWA", "MBA", "바이브코딩"],
   },
   {
@@ -2064,6 +2079,225 @@ const VOL7: IssueContent = {
   ],
 };
 
+const VOL15: IssueContent = {
+  vol: 15,
+  dateLabel: "2026년 7월 6일",
+  isoDate: "20260706",
+  title:
+    "'저비용 에이전트' 시대 개막 — 클로드 소넷5, 도입률 61% vs 조직 내재화 6.7%의 간극을 되묻다",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주 가장 큰 변화는 앤트로픽이 6월 30일 '클로드 소넷5'를 오푸스 4.8에 근접한 성능에 대폭 낮춘 가격으로 출시하며 에이전트 실행 비용의 기준선을 다시 낮췄다는 점입니다. 동시에 고위험 사이버공격 능력은 의도적으로 제한해, 에이전트가 강력해질수록 안전장치 설계가 함께 가야 한다는 메시지도 던졌습니다. 국내에서는 생성형 AI 도입률이 61%에 달하지만 조직적 내재화는 6.7%에 그쳐, '쓰기'와 '체화' 사이의 간극이 이번 학기 커리어·창업 전략의 핵심 질문으로 떠올랐습니다.",
+    "정책 축에서는 정부가 벤처투자 의무보유 기한을 3년에서 5년으로 늘리며 딥테크·AI 분야 장기 자금 흐름을 유도했고, 토큰증권(STO) 하위법규는 7월 중 거래한도·풀링 범위를 두고 윤곽을 드러낼 예정입니다. 반대로 부동산 시장은 '은행대출 규제가 더 이상 수요를 못 누른다'는 진단과 함께 토지거래허가제 확대라는 규제 강화가 동시에 나타나며, 기술은 문턱이 낮아지고 자산은 문턱이 높아지는 비대칭이 뚜렷해졌습니다.",
+  ],
+  conclusion:
+    "AIMBA 원우분들, 이번 호는 '가격이 무너진 에이전트'와 '문턱이 높아진 부동산·자산시장'이 동시에 움직인 한 주였습니다. 클로드 소넷5의 등장으로 에이전트를 '쓰는 것'의 장벽은 사실상 사라졌지만, 조직 내재화율 6.7%가 보여주듯 진짜 승부는 여전히 '어떻게 체화하느냐'에 있습니다. 벤처투자 의무보유 5년 연장과 STO 하위법규 윤곽이라는 두 제도 변화가 겹치는 지금, 각자의 포지션을 어떤 시간축으로 재설계할지 함께 고민해봅시다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "앤트로픽이 '클로드 소넷5'를 오푸스급 성능·더 낮은 가격으로 출시하며 에이전트 실행 비용의 기준선을 다시 낮췄습니다. 8월 31일까지 한시적으로 입력 100만 토큰당 2달러·출력 10달러라는 파격 가격이 적용되는 한편, 고위험 사이버공격에 악용될 수 있는 능력은 별도로 제한해 '강력해질수록 안전장치도 함께'라는 메시지를 남겼습니다.",
+      articles: [
+        {
+          title: "앤트로픽, '클로드 소넷5' 출시 — 오푸스급 성능을 더 싼 값에",
+          desc: "테크크런치에 따르면 앤트로픽이 6월 30일 '클로드 소넷5'를 공개했습니다. 계획 수립·도구 활용·다단계 작업을 스스로 이어가는 에이전트 능력이 소넷 계열 중 가장 강화됐고, 성능은 오푸스 4.8에 근접하면서 가격은 8월 31일까지 입력 100만 토큰당 2달러·출력 10달러로 책정됐습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/",
+        },
+        {
+          title: "클로드 소넷5, 고위험 사이버공격 능력은 의도적으로 제한",
+          desc: "데일리시큐 보도에 따르면 앤트로픽은 소넷5의 에이전트 성능을 강화하면서도 고위험 사이버 공격에 악용될 수 있는 능력은 별도로 제한했습니다. 에이전트가 강력해질수록 안전장치를 함께 설계해야 한다는 점을 보여주는 사례입니다.",
+          source: "데일리시큐",
+          href: "https://www.dailysecu.com/news/articleView.html?idxno=207391",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "AI 비즈니스의 화두는 여전히 '도입'에서 '체화'로 옮겨가는 중입니다. 국내 기업 74%가 자율적으로 업무를 수행하는 AI 에이전트 확보를 최우선 순위로 꼽지만 조직적 내재화는 6.7%에 그치고, 생성형 AI 앱 시장은 인앱구매 수익이 전년 대비 232% 급증한 61억 달러를 기록하며 소비자향 AI 비즈니스 모델의 수익화는 이미 궤도에 올랐습니다.",
+      articles: [
+        {
+          title: "\"이제는 에이전트\"…2026년 'AI 대전환' 가속화",
+          desc: "천지일보 보도에 따르면 국내 685개 기업 중 37.1%가 AI를 실제 업무에 활용 중이고 대기업 도입률은 65.1%에 달하지만, 생성형 AI 도입률 61%에 비해 조직적 내재화는 6.7%에 그친다는 진단이 나왔습니다. 응답 기업의 74%는 자율적으로 업무를 수행하는 AI 에이전트 확보를 최우선 순위로 꼽았습니다.",
+          source: "천지일보",
+          href: "https://www.newscj.com/news/articleView.html?idxno=3409834",
+        },
+        {
+          title: "생성형 AI 수익 232% 급증한 61억 달러 기록",
+          desc: "이비즈타임즈에 따르면 센서타워 보고서 기준 생성형 AI 앱 시장의 인앱구매 수익이 전년 대비 232% 증가한 61억 달러를 기록했습니다. 국내 스캐터랩의 AI 컴패니언 '제타'는 일본 시장에서 AI 컴패니언 부문 매출 1위를 차지했습니다.",
+          source: "이비즈타임즈",
+          href: "https://www.e-biztimes.com/news/440629",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA",
+      code: "MBA",
+      narrative:
+        "MBA·커리어 섹션은 'AI 역량이 연봉과 채용 기준을 다시 그린다'는 메시지로 모입니다. 미국에서는 AI·머신러닝 엔지니어 수요가 최우선 채용 과제로 꼽히며 고연봉 직무로 자리잡았고, 국내에서도 AI 키워드 채용 공고가 5년간 112% 늘었지만 국내 AI 엔지니어 최고 연봉은 미국의 약 37% 수준에 그쳐 글로벌 격차가 뚜렷합니다.",
+      articles: [
+        {
+          title: "AI 엔지니어 17만 달러 시대…2026년 미국 IT 채용·연봉 트렌드",
+          desc: "CIO코리아에 따르면 로버트하프테크놀로지의 2026년 IT 연봉 보고서에서 AI·머신러닝 엔지니어가 최상위 연봉 직무로 꼽혔습니다. 기업 리더의 45%가 AI·머신러닝을 최우선 채용 과제로 지목하며 관련 인재 수요가 지속 증가하고 있습니다.",
+          source: "CIO Korea",
+          href: "https://www.cio.com/article/4146291/ai-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4-17%EB%A7%8C-%EB%8B%AC%EB%9F%AC-%EC%8B%9C%EB%8C%80%C2%B7%C2%B7%C2%B72026%EB%85%84-%EB%AF%B8%EA%B5%AD-it-%EC%B1%84%EC%9A%A9%C2%B7%EC%97%B0%EB%B4%89-%ED%8A%B8.html",
+        },
+        {
+          title: "[데이터로 읽는 채용시장] 5년간 112% 증가한 AI 채용 공고, 연봉의 지도를 다시 그리다",
+          desc: "한국데이터경제신문에 따르면 AI 키워드 채용 공고가 5년간 112% 증가했고 AI·개발·데이터 직무 평균 연봉이 21개 주요 직무 중 1위(4,947만 원)를 기록했습니다. 다만 국내 AI 엔지니어 최고 연봉은 약 8,600만 원으로 미국(약 2억3,300만 원)의 약 37% 수준에 그쳐, 2026년까지 약 30만 명의 AI 전문 인력 부족이 예상됩니다.",
+          source: "한국데이터경제신문",
+          href: "https://www.dataeconomy.co.kr/news/articleView.html?idxno=35824",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "벤처 정책과 스타트업 생태계에 동시에 변화가 있었습니다. 정부가 벤처투자 의무보유 기한을 3년에서 5년으로 늘리며 AI·딥테크 분야의 장기 자금 공급 구조를 유도했고, 포브스코리아가 선정한 2026 고속성장 스타트업 50은 누적 투자 3조2,485억 원·매출 2조3,822억 원을 기록하며 '기술력과 시장성의 결합'을 증명했습니다.",
+      articles: [
+        {
+          title: "벤처투자 의무보유 5년의 파장",
+          desc: "전국인력신문에 따르면 정부가 벤처투자 의무보유 기한을 기존 3년에서 5년으로 연장하는 정책을 발표했습니다. 투자자들의 장기 전략 전환을 유도해 AI·딥테크 등 데이터 축적과 현장 검증이 필요한 분야에 장기 자금이 공급되는 효과가 기대됩니다.",
+          source: "전국인력신문",
+          href: "https://www.kjob.news/news/500920",
+        },
+        {
+          title: "2026 대한민국 고속성장 스타트업 50",
+          desc: "포브스코리아가 선정한 '2026 고속성장 스타트업 50'은 시장성과 기술력의 결합으로 본궤도에 오른 정예 기업들을 소개합니다. 선정 기업들은 누적 투자 3조2,485억 원, 연간 매출 2조3,822억 원을 기록하며 지속 가능한 수익성을 갖췄습니다.",
+          source: "포브스코리아",
+          href: "https://www.forbeskorea.co.kr/news/articleView.html?idxno=402216",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "바이브 코딩은 '몸값 논쟁'과 '교육 확산'이 동시에 진행 중입니다. 스페이스X가 AI 개발 툴 스타트업 커서를 600억 달러에 인수하는 방안을 검토한다는 보도로 코딩 AI의 몸값 논쟁이 재점화됐고, 구글은 5일 과정의 'AI 에이전트 집중 바이브코딩' 강의를 캐글에 무료 공개해 실무 학습 저변을 넓혔습니다.",
+      articles: [
+        {
+          title: "일론 머스크, 600억 달러에 '커서' 인수 고려…AI 개발 툴 시장 입성할까",
+          desc: "디일렉에 따르면 스페이스X가 AI 개발 툴 스타트업 커서를 600억 달러에 인수할 가능성을 내비쳤습니다. 💡 핵심: 커서 기업가치는 5분기 만에 20배 상승했고, xAI 합병에 이은 이번 인수 검토는 LLM·개발도구 확보로 경쟁사와 격차를 좁히려는 전략으로 해석된다.",
+          source: "디일렉(THE ELEC)",
+          href: "https://www.thelec.kr/news/articleView.html?idxno=55499",
+        },
+        {
+          title: "구글·캐글, 'AI 에이전트 집중 바이브코딩' 과정 무료 공개",
+          desc: "구글 공식 블로그에 따르면 6월 15~19일 라이브로 진행된 '5일 AI 에이전트 집중 바이브코딩' 과정이 7월 1일부터 캐글에서 자기주도형 무료 강의로 공개됐습니다. 💡 핵심: 에이전트 툴링·MCP·이식 가능한 'Agent Skills'·명세 기반 개발(Spec-Driven Development)까지 다뤄, 프로토타입을 거버넌스 갖춘 프로덕션으로 옮기는 실무 역량을 겨냥한다.",
+          source: "Google Blog",
+          href: "https://blog.google/innovation-and-ai/technology/developers-tools/kaggle-genai-intensive-course-vibe-coding-june-2026/",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "RWA·토큰증권은 '제도 정비'와 '시장 성장'이 함께 갔습니다. 온체인 RWA 시장은 전년 대비 300% 성장하고 스테이블코인 시가총액은 3,080억 달러를 넘어서며 전통 금융 인프라의 축이 옮겨가는 가운데, 국내에서는 금융위원회가 7월 중 토큰증권 하위법규를 통해 거래한도·풀링 허용 범위의 윤곽을 제시할 예정입니다.",
+      articles: [
+        {
+          title: "RWA·스테이블코인 중심 글로벌 금융시장 구조 재편",
+          desc: "토크노미 코리아 2026 관련 보도에 따르면 실물자산토큰화(RWA)와 스테이블코인이 금융 인프라를 바꾸며 글로벌 금융사들이 차세대 주도권 확보에 나섰습니다. 온체인 RWA 시장이 전년 대비 300% 성장하고 스테이블코인 시가총액이 3,080억 달러를 넘어서는 등 전통 금융기관 본업의 핵심 인프라가 블록체인으로 옮겨가고 있습니다.",
+          source: "파이낸셜뉴스",
+          href: "https://www.fnnews.com/news/202606111900422187",
+        },
+        {
+          title: "토큰증권 하위법규 7월 윤곽…거래한도·풀링 범위 관건",
+          desc: "전자신문에 따르면 금융위원회가 7월 중 토큰증권(STO) 시행령과 가이드라인을 발표할 예정이며, 투자자 거래한도와 기초자산 풀링 허용 범위가 시장 규모를 좌우할 핵심 쟁점으로 꼽힙니다. 업계는 상품별 한도 설계와 특허권·콘텐츠 등 비정형 자산의 포트폴리오화가 시장 활성화의 관건이라고 보고 있습니다.",
+          source: "전자신문",
+          href: "https://www.etnews.com/20260624000060",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "부동산·핀테크는 '규제 무력화'와 '규제 강화'가 엇갈렸습니다. 은행대출 규제가 더 이상 수요를 억제하지 못하는 가운데 증여·성과급 등 새로운 구매력이 집값 상승 압력을 키우는 반면, 정부는 토지거래허가제를 확대하며 공급 부족 속 풍선효과를 막으려 하고 있어 민간 공급 확대 없이는 근본 해법이 어렵다는 지적이 나옵니다.",
+      articles: [
+        {
+          title: "\"은행대출 시대 끝났다\"…증여·성과급에 집값 상승 불가피",
+          desc: "서울경제 '머니트렌드 2026' 보도에 따르면 은행 대출 규제가 더 이상 부동산 수요를 억제하지 못하는 시대가 도래했습니다. 주식 평가차익·가족 간 자금 이전·반도체 기업 성과급 등 새 구매력 원천이 수도권 40만호 이상 누적 공급 부족과 겹치며 집값 상승 압력이 불가피하다는 분석입니다.",
+          source: "서울경제",
+          href: "https://www.sedaily.com/article/20062520",
+        },
+        {
+          title: "토지거래허가제 확대, '규제 폭탄'이 부른 풍선효과",
+          desc: "메트로신문에 따르면 정부의 토지거래허가제 확대가 공급 부족 상황에서 오히려 풍선효과만 야기할 수 있다는 우려가 제기됐습니다. 근본적 해법은 규제 확대가 아니라 민간 아파트 공급 확대에 있다는 지적입니다.",
+          source: "메트로신문",
+          href: "https://www.mhns.co.kr/news/articleView.html?idxno=751890",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주는 AI 인력양성·응용제품 상용화 두 축의 신규 공고를 챙길 시점입니다. 고용노동부의 AI특화 공동훈련센터 신규 모집과 중소벤처기업부의 AI응용제품 신속상용화 통합공고가 함께 열려 있어, AI·딥테크 창업 트랙 원우는 접수 일정을 미리 확인해두시길 권합니다.",
+      items: [
+        {
+          title: "AI특화 공동훈련센터 신규 20개소 모집 안내 (고용노동부)",
+          href: "https://www.moel.go.kr/news/enews/report/enewsView.do?news_seq=18864",
+        },
+        {
+          title: "AI응용제품 신속상용화·스마트제조혁신 지원사업 통합공고 (중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/view.do?pblancId=PBLN_000000000116014",
+        },
+        {
+          title: "예비창업패키지 — 예비창업자 사업화 지원 (창업진흥원·KISED)",
+          href: "https://www.kised.or.kr/menu.es?mid=a10205010000",
+        },
+        {
+          title: "사업공고 — 창업진흥원 알림마당 신규 공고 상시 확인 (KISED)",
+          href: "https://www.kised.or.kr/menu.es?mid=a10302000000",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 포인트는 경영대·AI학과 두 보드의 신규 공지입니다. 경영대는 CFA Institute Research Challenge 2026-2027 참가 안내와 2026-2학기 '지식, 인성 그리고 경영' 사전 수강신청을 열었고, AI학과는 정보보호 민간자격·통계아카데미 2026년 제2회 프로그램을 공지했습니다. 관심 트랙 원우는 마감 전 신청을 권합니다.",
+      items: [
+        {
+          title: "[경영대] CFA Institute Research Challenge 2026-2027 참가 안내",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/231099/artclView.do",
+        },
+        {
+          title: "[경영대] 2026-2학기 '지식, 인성 그리고 경영' 사전 수강신청",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/230972/artclView.do",
+        },
+        {
+          title: "[AI학과] 2026년도 제2회 정보보호 분야 민간자격 시행 안내",
+          href: "https://ai.sogang.ac.kr/front/cmsboardview.do?currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=6330&siteId=ai&pkid=937948",
+        },
+        {
+          title: "[AI학과] 2026년 제2회 통계아카데미 개최 안내",
+          href: "https://ai.sogang.ac.kr/front/cmsboardview.do?currentPage=1&searchField=ALL&searchValue=&searchLowItem=ALL&bbsConfigFK=6330&siteId=ai&pkid=937894",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "7월 6일", day: "월", title: "ICML 2026 (International Conference on Machine Learning, 7/6~7/11)", where: "서울 COEX", tag: "국제 학술대회", link: "https://icml.cc/Conferences/2026/index.html" },
+    { date: "8월 19일", day: "수", title: "AI Summit Seoul & Expo 2026 (8/19~8/21)", where: "서울 COEX B홀·그랜드볼룸", tag: "글로벌 AI 서밋", link: "https://www.aisummit.co.kr/" },
+    { date: "10월 21일", day: "수", title: "산업 AI EXPO 2026 (10/21~10/23, Embodied AI)", where: "일산 KINTEX 제1전시장", tag: "AI 컨퍼런스·전시", link: "https://industrialaiexpo.or.kr/" },
+  ],
+};
+
 const VOL14: IssueContent = {
   vol: 14,
   dateLabel: "2026년 6월 29일",
@@ -2958,7 +3192,7 @@ const VOL12: IssueContent = {
 };
 
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL14, VOL13, VOL12, VOL11];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL15, VOL14, VOL13, VOL12];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));

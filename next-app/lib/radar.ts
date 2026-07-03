@@ -417,7 +417,7 @@ const pickCount = RADAR_EVENTS.filter((e) => e.curate === "pick").length;
 const excludeCount = RADAR_EVENTS.filter((e) => e.curate === "exclude").length;
 
 export const RADAR_META: RadarMeta = {
-  generated: "2026-06-29",
+  generated: "2026-07-06",
   baseDate: "2026-06-29",
   rangeDays: 30,
   source: "2026-06-29 /radar --deploy 풀스캔 — WebSearch+Road to ICML 허브(luma.com/7iiqamt2) 교차수집. 전 링크 17/17 HTTP 200 재검증(curl GET). ICML 2026(7/6~11 COEX) 코로케이션 사이드이벤트 클러스터(7/3~8)가 핵심. 신규 5건 추가: Ralphthon@ICML(에이전트 자율코딩 해커톤)·VESSL AI ICML Dinner·FAR.AI Open Social·Liner×VESSL Happy Hour·Math×MIT(E14 Fund·Axiom VC 드링크)·Trillion Frontier Night. Push to Prod(Anthropic×Replit×한국투자, 06-17 종료)는 윈도우 밖이라 제외. 허브에 Cantina/Turing/Goodfire 등 중복 해피아워 다수 — 저밀도 중복분은 미반영(신호 우선). 윈도우 2026-06-29~07-29. ⚠️ 7/12~7/29 구간은 신규 확정 행사 없음 — 매주 금 Seoul Tech Mixer(07-17·07-24)만 커버, 다음 사이클 재스캔 권장. ProbML은 공식 기준 KIAS·무료 확정.",
