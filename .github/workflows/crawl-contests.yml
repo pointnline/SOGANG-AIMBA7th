@@ -1,0 +1,102 @@
+name: Crawl Contests (위비티 기획/아이디어 보강)
+
+# AI Contest Board의 '기획·아이디어' 부문을 위비티에서 매일 자동 수집한다.
+# 핵심: 라이브(GitHub Pages)는 루트 /data/contests-extra.json 을 런타임에 fetch하므로
+# 크롤러 출력(next-app/public/data)을 루트 /data 에도 동기화해야 실제로 갱신된다.
+# 페이지 HTML/JS는 그대로 두고 JSON 파일만 갱신 → 별도 Next 빌드 불필요.
+
+on:
+  schedule:
+    # 매일 21:00 UTC = 06:00 KST (한국 아침에 갱신)
+    - cron: "0 21 * * *"
+  workflow_dispatch: # 수동 실행 허용
+
+permissions:
+  contents: write
+
+concurrency:
+  group: crawl-contests
+  cancel-in-progress: false
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install "requests>=2.31,<3" "beautifulsoup4>=4.12,<5"
+
+      # 크롤러는 안정성 가드 내장:
+      #   exit 0 = 정상 수집·기록, exit 2 = 급감/빈약 가드로 보존(=갱신 없음),
+      #   그 외 = 비정상 종료(스텝 실패로 알림).
+      - name: Run crawler
+        id: crawl
+        working-directory: scripts
+        run: |
+          set +e
+          python crawl_contests.py --pages 4
+          rc=$?
+          echo "rc=$rc"
+          if [ "$rc" -eq 0 ]; then
+            echo "updated=true" >> "$GITHUB_OUTPUT"
+          elif [ "$rc" -eq 2 ]; then
+            echo "updated=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::안정성 가드로 기존 데이터 보존 — 이번 회차 갱신 없음"
+          else
+            echo "::error::크롤러 비정상 종료 (rc=$rc)"
+            exit "$rc"
+          fi
+
+      # 라이브(GH Pages)가 읽는 루트 /data 로 동기화 + 무결성 재검증.
+      - name: Sync to root /data and validate
+        if: steps.crawl.outputs.updated == 'true'
+        run: |
+          set -e
+          mkdir -p data
+          cp next-app/public/data/contests-extra.json data/contests-extra.json
+          python - <<'PY'
+          import json, sys
+          for p in ("next-app/public/data/contests-extra.json", "data/contests-extra.json"):
+              d = json.load(open(p, encoding="utf-8"))
+              secs = d.get("sections", {})
+              n = sum(len(v) for v in secs.values() if isinstance(v, list))
+              bad = [1 for v in secs.values() if isinstance(v, list) for e in v if not e.get("title")]
+              assert n >= 5, f"{p}: 항목 {n}건(<5) — 비정상"
+              assert not bad, f"{p}: title 누락 항목 존재"
+              print(f"OK {p}: {n}건")
+          PY
+
+      - name: Commit & push
+        if: steps.crawl.outputs.updated == 'true'
+        run: |
+          set -e
+          if git diff --quiet -- next-app/public/data/contests-extra.json data/contests-extra.json; then
+            echo "변경 없음 — 커밋 생략"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add next-app/public/data/contests-extra.json data/contests-extra.json
+          git commit -m "chore(contests): 위비티 기획/아이디어 일일 자동 갱신"
+          git push
+
+      # Vercel 미러는 git push로 자동 재빌드되지 않으므로(수동 배포 구조),
+      # Deploy Hook URL을 시크릿으로 넣으면 함께 갱신한다. 없으면 조용히 생략.
+      - name: Trigger Vercel mirror rebuild (optional)
+        if: steps.crawl.outputs.updated == 'true'
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK 미설정 — Vercel 미러 갱신 생략(GH Pages만 갱신)"
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK" >/dev/null && echo "Vercel 재빌드 트리거됨"

@@ -1,0 +1,630 @@
+// SOGANG AIMBA 7th — AI 이벤트 레이더 데이터 소스 (독립 파일)
+//
+// ⚠️ 이 파일은 /radar 커맨드(크론)가 통째로 재생성하는 "생성물"이다.
+//    수기 편집보다, 다음 수집 사이클에서 자동 갱신되는 것을 기본으로 한다.
+//    스키마(인터페이스)만 안정적으로 유지하고, RADAR_EVENTS 배열은 교체된다.
+//
+// 검증 상태(verified):
+//   "verified"  = 링크 HTTP 200 + 날짜·장소·주최 교차확인 완료 (풀검증 통과)
+//   "link-ok"   = 링크 도달 확인, 메타 교차검증 일부 미완
+//   "seed"      = 베리해피독 수집분, 자동검증 전 (초기 시드)
+//   "failed"    = 검증 실패 — 화면에 [미검증] 경고와 함께 노출
+//
+// 큐레이션(curate):  pick=추천 / watch=관심 / exclude=제외(저품질·홍보성)
+// 조전무 시간대(jjFlag): weekday-work=평일 업무시간(⚠️) / weekday-eve=평일 저녁 / weekend=주말
+
+export type RadarTier = 1 | 2 | 3 | 4;
+export type RadarVerified = "verified" | "link-ok" | "seed" | "failed";
+export type RadarCurate = "pick" | "watch" | "exclude";
+export type RadarRegion = "서울" | "수도권" | "온라인";
+export type RadarPriceType = "free" | "paid" | "approval" | "split" | "unknown";
+export type RadarLinkType = "official" | "registration" | "partner" | "community";
+export type RadarJjFlag = "weekday-work" | "weekday-eve" | "weekend" | "multi";
+
+export interface RadarEvent {
+  id: string;
+  title: string;
+  date: string; // ISO 시작일 YYYY-MM-DD
+  dateEnd?: string; // 다일 행사 종료일
+  dateLabel: string; // 화면 표기 "2026-06-06(토) 10:00"
+  recurring?: string; // 반복 행사 표기 "매주 금 19:00"
+  venue: string; // 장소
+  region: RadarRegion;
+  host: string; // 주최
+  price: string; // 화면 표기 "무료" / "20,000원" / "유료(승인제)"
+  priceType: RadarPriceType;
+  link: string;
+  linkType: RadarLinkType;
+  point: string; // 한 줄 포인트
+  tier: RadarTier; // 실무가치 1(최상)~4
+  category: string; // 에이전트 / 빅테크 / 정책 / 전시 / 네트워킹 / 교육
+  verified: RadarVerified;
+  verifyNote?: string;
+  jjFlag: RadarJjFlag; // 조전무 참석 시간대
+  curate: RadarCurate;
+  excludeReason?: string;
+}
+
+export interface RadarMeta {
+  generated: string; // 생성일
+  baseDate: string; // 기준일(향후 N일의 시작점)
+  rangeDays: number; // 탐색 범위(일)
+  source: string;
+  total: number;
+  pickCount: number;
+  excludeCount: number;
+}
+
+// 실무가치 티어 정의 (정렬·뱃지에 사용)
+export const RADAR_TIERS: Record<RadarTier, { label: string; desc: string; color: string }> = {
+  1: { label: "T1 · 에이전트/개발", desc: "AI 에이전트·개발자동화 직접 관련", color: "#8B0029" },
+  2: { label: "T2 · 빅테크/모델사", desc: "빅테크·모델사·클라우드 공식 행사", color: "#a07f47" },
+  3: { label: "T3 · 투자/정책/산업", desc: "투자·정책·산업 인사이트 가치", color: "#3d342d" },
+  4: { label: "T4 · 네트워킹", desc: "커뮤니티 네트워킹 가치", color: "#6b5e54" },
+};
+
+export const RADAR_EVENTS: RadarEvent[] = [
+  // ───────────── TIER 1 · 에이전트/개발자동화 ─────────────
+  {
+    id: "push-to-prod-seoul-0618",
+    title: "Push to Prod SEOUL [Anthropic × Replit × 한국투자파트너스 × 한국투자액셀러레이터]",
+    date: "2026-06-18",
+    dateLabel: "2026-06-18(목) 13:00–17:30",
+    venue: "코엑스 3층 컨퍼런스룸(남) 308호",
+    region: "서울",
+    host: "Anthropic · Replit · 한국투자파트너스 · 한국투자액셀러레이터",
+    price: "무료(승인제)",
+    priceType: "approval",
+    link: "https://www.nextrise.co.kr/event/view?id=178&p=2&cf=0&type=Title",
+    linkType: "official",
+    point: "Claude Code·Replit 기반 실전 프로덕션 해커톤 + 투자사 동석 — 빌드와 자본이 한자리에.",
+    tier: 1,
+    category: "빌드·투자",
+    verified: "seed",
+    jjFlag: "weekday-work",
+    curate: "pick",
+  },
+  {
+    id: "claude-build-day-seoul-0616",
+    title: "Claude Build Day: Seoul",
+    date: "2026-06-16",
+    dateLabel: "2026-06-16(화) 14:30–18:00",
+    venue: "서울 (상세 비공개)",
+    region: "서울",
+    host: "Anthropic Startup Events (APAC)",
+    price: "무료(매진)",
+    priceType: "free",
+    link: "https://luma.com/ht1jlnwy",
+    linkType: "official",
+    point: "Anthropic이 직접 주관하는 Claude 빌드데이 — 매진이나 대기/취소표 노릴 가치.",
+    tier: 1,
+    category: "빌드",
+    verified: "seed",
+    verifyNote: "매진 상태 — 좌석 재오픈 여부 재확인 필요",
+    jjFlag: "weekday-work",
+    curate: "pick",
+  },
+  {
+    id: "agentic-ai-hermes-openclaw-0611",
+    title: "Agentic AI의 시대: 헤르메스, 오픈클로 실제 업무적용 세션",
+    date: "2026-06-11",
+    dateLabel: "2026-06-11(목) 18:30–22:00",
+    venue: "서울 (상세 비공개)",
+    region: "서울",
+    host: "Ryot",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/wpsgshqn",
+    linkType: "registration",
+    point: "Agentic AI를 실제 업무 자동화에 붙인 적용 사례 중심 — 딜 업무 자동화에 직결.",
+    tier: 1,
+    category: "에이전트",
+    verified: "seed",
+    jjFlag: "weekday-eve",
+    curate: "pick",
+  },
+  {
+    id: "awskrug-aieng-0622",
+    title: "AWSKRUG #AIEngineering 소모임 — 터미널부터 엣지까지",
+    date: "2026-06-22",
+    dateLabel: "2026-06-22(월) 19:00–21:00",
+    venue: "서울 강남구 테헤란로 231 센터필드 EAST 18층",
+    region: "서울",
+    host: "AWSKRUG AI Engineering",
+    price: "5,000원",
+    priceType: "paid",
+    link: "https://www.meetup.com/awskrug/events/315009322/",
+    linkType: "community",
+    point: "팀용 CLI 설계 + Edge-Cloud AI 운영 실사례 2세션 — 실무 엔지니어링 밀도 높음.",
+    tier: 1,
+    category: "개발",
+    verified: "seed",
+    jjFlag: "weekday-eve",
+    curate: "pick",
+  },
+  {
+    id: "ai-engineer-night-channeldev-0610",
+    title: "AI ENGINEER NIGHT @ 채널데브밋업",
+    date: "2026-06-10",
+    dateLabel: "2026-06-10(수) 18:30–21:30",
+    venue: "서울 강남구 논현로 508",
+    region: "서울",
+    host: "채널데브밋업",
+    price: "무료",
+    priceType: "free",
+    link: "https://onoffmix.com/event/343124",
+    linkType: "registration",
+    point: "AI 엔지니어 실무자 중심 밋업 — 현업 개발 흐름 파악과 인적 네트워크에 유효.",
+    tier: 1,
+    category: "개발",
+    verified: "seed",
+    jjFlag: "weekday-eve",
+    curate: "pick",
+  },
+  {
+    id: "ai-agent-masterclass-5-0610",
+    title: "AI Agent 마스터 클래스 5기 (입문~중급)",
+    date: "2026-06-10",
+    dateEnd: "2026-06-11",
+    dateLabel: "2026-06-10(수) 10:00 ~ 06-11(목) 17:30",
+    venue: "서울 서대문구 충정로 29 동아일보사",
+    region: "서울",
+    host: "DBR경영교육센터",
+    price: "유료",
+    priceType: "paid",
+    link: "https://onoffmix.com/event/342255",
+    linkType: "registration",
+    point: "생성형 AI에서 Agent 단계로 넘어가는 2일 실전 교육 — 체계적 입문엔 유효하나 유료.",
+    tier: 1,
+    category: "교육",
+    verified: "seed",
+    jjFlag: "multi",
+    curate: "watch",
+  },
+  {
+    id: "build-localhost-seoul-0625",
+    title: "Build //localhost:Seoul",
+    date: "2026-06-25",
+    dateLabel: "2026-06-25(목) — 시간 미정",
+    venue: "서울 (상세 미정)",
+    region: "서울",
+    host: "Global AI Community / DOT4",
+    price: "확인 필요",
+    priceType: "unknown",
+    link: "https://globalai.community/events/build-localhost/196mp3zw/",
+    linkType: "official",
+    point: "Microsoft Build 핵심 업데이트 + AI/개발 최신 기술 로컬 리캡.",
+    tier: 1,
+    category: "개발",
+    verified: "seed",
+    verifyNote: "시간·참가비 미정 — 풀검증 시 확정 필요(미확정 시 제외 후보)",
+    jjFlag: "weekday-work",
+    curate: "watch",
+  },
+
+  // ───────────── TIER 2 · 빅테크/모델사 공식 ─────────────
+  {
+    id: "claude-bloom-yonsei-samsung-0612",
+    title: "Claude Bloom × Yonsei MBA × Samsung Electronics × 법령 MCP × Cliwant × SpaceY × K-Skill × ABLD",
+    date: "2026-06-12",
+    dateLabel: "2026-06-12(금) 19:00–20:40",
+    venue: "연세대학교 신촌캠퍼스",
+    region: "서울",
+    host: "Cliwant",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/k5q2ib49",
+    linkType: "partner",
+    point: "Claude·MCP·기업 실무 활용 + Yonsei MBA 연계 — AIMBA 관점 직접 매칭.",
+    tier: 2,
+    category: "빅테크",
+    verified: "seed",
+    jjFlag: "weekday-eve",
+    curate: "pick",
+  },
+  {
+    id: "claude-bloom-aws-lguplus-0609",
+    title: "Claude Bloom × AWS × LG U+ × 클라이원트 × DREAMPLUS",
+    date: "2026-06-09",
+    dateLabel: "2026-06-09(화) 19:00–21:00",
+    venue: "드림플러스 강남",
+    region: "서울",
+    host: "Cliwant",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/81w75jaz",
+    linkType: "partner",
+    point: "Claude 생태계 × 대기업(AWS·LG U+) 실무 세션 — 엔터프라이즈 도입 시그널.",
+    tier: 2,
+    category: "빅테크",
+    verified: "seed",
+    jjFlag: "weekday-eve",
+    curate: "pick",
+  },
+  {
+    id: "claude-bloom-ef-playco-0611",
+    title: "Claude Bloom × EF × Playco (Sequoia 투자, 실리콘밸리 유니콘) × Tiro",
+    date: "2026-06-11",
+    dateLabel: "2026-06-11(목) 19:00–21:00",
+    venue: "새롬빌딩",
+    region: "서울",
+    host: "Cliwant",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/ik8gy7y9",
+    linkType: "partner",
+    point: "Claude 활용 스타트업/유니콘(Sequoia 포트폴리오) 실무 네트워킹.",
+    tier: 2,
+    category: "빅테크",
+    verified: "seed",
+    jjFlag: "weekday-eve",
+    curate: "pick",
+  },
+  {
+    id: "claude-bloom-maru-paloalto-0625",
+    title: "Claude Bloom × MARU × 래퍼 팔로알토",
+    date: "2026-06-25",
+    dateLabel: "2026-06-25(목) 19:00–21:00",
+    venue: "마루360",
+    region: "서울",
+    host: "Cliwant",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/r1fiimea",
+    linkType: "partner",
+    point: "Claude 커뮤니티 세션 + 브랜드형 콜라보 네트워킹.",
+    tier: 2,
+    category: "네트워킹",
+    verified: "seed",
+    jjFlag: "weekday-eve",
+    curate: "watch",
+  },
+  {
+    id: "ai-experience-lab-openai-0613",
+    title: "AI Experience Lab | Seoul | 13–14 June",
+    date: "2026-06-13",
+    dateEnd: "2026-06-14",
+    dateLabel: "2026-06-13(토)~06-14(일) 09:00",
+    venue: "서울 (상세 비공개)",
+    region: "서울",
+    host: "AI Experience Lab / OpenAI 후원",
+    price: "무료(사전신청)",
+    priceType: "free",
+    link: "https://www.meetup.com/ai-experience-lab-seoul-13-14-june/events/314797511/",
+    linkType: "community",
+    point: "OpenAI 팀 참여 — 한국 사용자 피드백을 직접 전달하는 실험형 이벤트(주말).",
+    tier: 2,
+    category: "빅테크",
+    verified: "seed",
+    jjFlag: "weekend",
+    curate: "pick",
+  },
+
+  // ───────────── TIER 3 · 투자/정책/산업 ─────────────
+  {
+    id: "seoul-ai-policy-conf-0616",
+    title: "Seoul AI Policy Conference 2026 (SAIPCON 2026)",
+    date: "2026-06-16",
+    dateEnd: "2026-06-17",
+    dateLabel: "2026-06-16(화)~06-17(수) 08:00–18:30",
+    venue: "더플라자호텔 서울, 중구 소공로 119",
+    region: "서울",
+    host: "SAIPCON 2026 / SAPI 사무국",
+    price: "무료",
+    priceType: "free",
+    link: "https://www.eventbrite.com/e/seoul-ai-policy-conference-2026-registration-1990064691062",
+    linkType: "registration",
+    point: "AI 에이전트 시대 거버넌스 — 금융·교육·안보·인권 정책 총망라(무료 컨퍼런스).",
+    tier: 3,
+    category: "정책",
+    verified: "seed",
+    jjFlag: "multi",
+    curate: "pick",
+  },
+  {
+    id: "ai-innovation-forum-kakao-kt-lgcns-0616",
+    title: "[AI 혁신포럼] AI 교육의 치트키 — 카카오·KT·LG CNS",
+    date: "2026-06-16",
+    dateLabel: "2026-06-16(화) 13:00–18:00",
+    venue: "서울 영등포구 여의대로 24 FKI 컨퍼런스센터 그랜드볼룸(1F)",
+    region: "서울",
+    host: "한경협국제경영원",
+    price: "유료",
+    priceType: "paid",
+    link: "https://onoffmix.com/event/342241",
+    linkType: "registration",
+    point: "AI 에이전트 적용 사례 + AI 거버넌스 전략을 대기업 실무 관점에서 — 여의도 개최(이동 0).",
+    tier: 3,
+    category: "산업",
+    verified: "seed",
+    jjFlag: "weekday-work",
+    curate: "pick",
+  },
+  {
+    id: "aibigdata-show-2026-0610",
+    title: "2026 인공지능 & 빅데이터쇼",
+    date: "2026-06-10",
+    dateEnd: "2026-06-12",
+    dateLabel: "2026-06-10(수)~06-12(금) 10:00–17:00",
+    venue: "코엑스 Hall A",
+    region: "서울",
+    host: "한국인공지능산업협회 · AI타임스 · 엑스포럼",
+    price: "20,000원",
+    priceType: "paid",
+    link: "https://smarttechkorea.com/aibigdatashow",
+    linkType: "official",
+    point: "AI·빅데이터·SaaS·클라우드 중심 대형 전시/컨퍼런스 — 시장 지형 일별엔 효율적.",
+    tier: 3,
+    category: "전시",
+    verified: "seed",
+    jjFlag: "weekday-work",
+    curate: "pick",
+  },
+  {
+    id: "decoding-ai-israel-0618",
+    title: "Decoding AI: Insights from Israel",
+    date: "2026-06-18",
+    dateLabel: "2026-06-18(목) 14:00–16:00",
+    venue: "코엑스",
+    region: "서울",
+    host: "TradeIL Korea",
+    price: "무료",
+    priceType: "free",
+    link: "https://www.nextrise.co.kr/event/view?id=189&p=1&cf=0&type=Title",
+    linkType: "official",
+    point: "이스라엘 AI·딥테크 스타트업 5개사 사례 — 해외 딥테크 동향 스캔.",
+    tier: 3,
+    category: "산업",
+    verified: "seed",
+    jjFlag: "weekday-work",
+    curate: "watch",
+  },
+
+  {
+    id: "aaai-summer-symposia-0622",
+    title: "AAAI 2026 Summer Symposium Series",
+    date: "2026-06-22",
+    dateEnd: "2026-06-24",
+    dateLabel: "2026-06-22(월)~06-24(수)",
+    venue: "동국대학교, 서울",
+    region: "서울",
+    host: "AAAI",
+    price: "유료",
+    priceType: "paid",
+    link: "https://aaai.org/conference/summer-symposia/suss26/",
+    linkType: "official",
+    point: "AI 최신 연구 국제 학술 심포지엄 — 프런티어 연구 동향을 직접 접하는 채널.",
+    tier: 3,
+    category: "학술",
+    verified: "seed",
+    jjFlag: "weekday-work",
+    curate: "watch",
+  },
+  {
+    id: "aaicon-2026-0625",
+    title: "AAiCON 2026",
+    date: "2026-06-25",
+    dateEnd: "2026-06-26",
+    dateLabel: "2026-06-25(목)~06-26(금)",
+    venue: "장소 미정 (서울 추정)",
+    region: "서울",
+    host: "AI Frenz",
+    price: "유료",
+    priceType: "paid",
+    link: "https://aifrenz.org/aaicon26-registration",
+    linkType: "official",
+    point: "국내 AI 실무·연구 커뮤니티(AI Frenz) 연례 컨퍼런스.",
+    tier: 3,
+    category: "학술",
+    verified: "seed",
+    verifyNote: "장소 미정 — 풀검증 시 확정 필요",
+    jjFlag: "multi",
+    curate: "watch",
+  },
+
+  // ───────────── TIER 4 · 네트워킹 ─────────────
+  {
+    id: "seoul-tech-mixer-fri",
+    title: "Seoul Tech Mixer and Social (Tech / AI / Data / IT)",
+    date: "2026-06-12",
+    recurring: "매주 금 19:00~ (06-12 / 06-19 / 06-26 / 07-03)",
+    dateLabel: "매주 금요일 19:00~",
+    venue: "Seoul Brewery, 10 Tojeong-ro 3an-gil, Mapo-gu",
+    region: "서울",
+    host: "Seoul Tech Social",
+    price: "무료",
+    priceType: "free",
+    link: "https://www.eventbrite.com/e/seoul-tech-mixer-and-social-tech-ai-data-it-registration-1987413362868",
+    linkType: "community",
+    point: "AI·데이터·개발자 커뮤니티 애프터워크 네트워킹(매주 반복).",
+    tier: 4,
+    category: "네트워킹",
+    verified: "seed",
+    jjFlag: "weekday-eve",
+    curate: "watch",
+  },
+  {
+    id: "ax-meetup-2-0615",
+    title: "AX Meetup#2 — 오늘도 마케팅 팀장님이 AI로 뭐 좀 해보라 하신다",
+    date: "2026-06-15",
+    dateLabel: "2026-06-15(월) 18:30–21:30",
+    venue: "서울 (상세 비공개)",
+    region: "서울",
+    host: "grandeclip",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/ey0dl14g",
+    linkType: "registration",
+    point: "마케팅팀의 AI 도입 실무 고민을 다루는 AX 밋업.",
+    tier: 4,
+    category: "네트워킹",
+    verified: "seed",
+    jjFlag: "weekday-eve",
+    curate: "watch",
+  },
+
+  // ───────────── 제외(exclude) · 저품질·홍보성 ─────────────
+  {
+    id: "rapidskillup-marketing-0609",
+    title: "Harnessing AI for Marketing Innovation | Seoul",
+    date: "2026-06-09",
+    dateLabel: "2026-06-09(화) 14:00",
+    venue: "잠원동, Seoul",
+    region: "서울",
+    host: "Rapid Skill Up",
+    price: "유료",
+    priceType: "paid",
+    link: "https://www.eventbrite.com/e/harnessing-ai-for-marketing-innovation-seoul-registration-1052222183877",
+    linkType: "registration",
+    point: "AI 마케팅 자동화 워크숍.",
+    tier: 4,
+    category: "교육",
+    verified: "seed",
+    jjFlag: "weekday-work",
+    curate: "exclude",
+    excludeReason: "유료 반복형 스킬업 워크숍(Rapid Skill Up 시리즈) — 홍보성·저밀도",
+  },
+  {
+    id: "rapidskillup-hr-0616",
+    title: "Empowering Modern HR Teams with AI | Seoul",
+    date: "2026-06-16",
+    dateLabel: "2026-06-16(화) 14:00",
+    venue: "필동, Seoul",
+    region: "서울",
+    host: "Rapid Skill Up",
+    price: "유료",
+    priceType: "paid",
+    link: "https://www.eventbrite.com/e/empowering-modern-hr-teams-with-ai-seoul-registration-1979575162600",
+    linkType: "registration",
+    point: "HR 운영 자동화 워크숍.",
+    tier: 4,
+    category: "교육",
+    verified: "seed",
+    jjFlag: "weekday-work",
+    curate: "exclude",
+    excludeReason: "유료 반복형 스킬업 워크숍(Rapid Skill Up 시리즈) — 홍보성·저밀도",
+  },
+  {
+    id: "rapidskillup-implementation-0623",
+    title: "AI Implementation in Business | Seoul",
+    date: "2026-06-23",
+    dateLabel: "2026-06-23(화) 14:00",
+    venue: "잠원동, Seoul",
+    region: "서울",
+    host: "Rapid Skill Up",
+    price: "유료",
+    priceType: "paid",
+    link: "https://www.eventbrite.com/e/ai-implementation-in-business-seoul-registration-1027620128467",
+    linkType: "registration",
+    point: "기업 운영에 AI를 붙이는 워크숍.",
+    tier: 4,
+    category: "교육",
+    verified: "seed",
+    jjFlag: "weekday-work",
+    curate: "exclude",
+    excludeReason: "유료 반복형 스킬업 워크숍(Rapid Skill Up 시리즈) — 홍보성·저밀도",
+  },
+  {
+    id: "shinchulmin-knowledge-class-0613",
+    title: "신철민의 'AI 지식·협업관리' 섹션 1,2",
+    date: "2026-06-13",
+    dateEnd: "2026-07-04",
+    dateLabel: "2026-06-13(토) ~ 07-04(토)",
+    venue: "서울 강남구 테헤란로77길 11-9 삼성타워 2층",
+    region: "서울",
+    host: "한국사장학교",
+    price: "유료",
+    priceType: "paid",
+    link: "https://onoffmix.com/event/340250",
+    linkType: "registration",
+    point: "AI 기반 지식관리·협업관리 체계화 클래스.",
+    tier: 4,
+    category: "교육",
+    verified: "seed",
+    jjFlag: "weekend",
+    curate: "exclude",
+    excludeReason: "다회차 유료 교육 과정 — 단발 행사 아님, 홍보성",
+  },
+];
+
+const pickCount = RADAR_EVENTS.filter((e) => e.curate === "pick").length;
+const excludeCount = RADAR_EVENTS.filter((e) => e.curate === "exclude").length;
+
+export const RADAR_META: RadarMeta = {
+  generated: "2026-06-16",
+  baseDate: "2026-06-16",
+  rangeDays: 30,
+  source: "Vol.12 발간 시 경량 갱신(2026-06-16, 지난 행사 정리·기준일 이동). 풀검증·자동갱신은 /radar 크론에서 수행.",
+  total: RADAR_EVENTS.length,
+  pickCount,
+  excludeCount,
+};
+
+// 화면 정렬용 헬퍼: 큐레이션(pick>watch>exclude) → 티어 → 날짜
+const CURATE_ORDER: Record<RadarCurate, number> = { pick: 0, watch: 1, exclude: 2 };
+
+export function sortedRadarEvents(): RadarEvent[] {
+  return [...RADAR_EVENTS].sort((a, b) => {
+    if (CURATE_ORDER[a.curate] !== CURATE_ORDER[b.curate]) {
+      return CURATE_ORDER[a.curate] - CURATE_ORDER[b.curate];
+    }
+    if (a.tier !== b.tier) return a.tier - b.tier;
+    return a.date.localeCompare(b.date);
+  });
+}
+
+export const RADAR_PICKS = sortedRadarEvents().filter((e) => e.curate === "pick");
+export const RADAR_WATCH = sortedRadarEvents().filter((e) => e.curate === "watch");
+export const RADAR_EXCLUDED = sortedRadarEvents().filter((e) => e.curate === "exclude");
+
+// ───────────── 캘린더 어댑터 ─────────────
+// 홈 "AI 행사·모임 캘린더"가 레이더를 단일 소스로 읽도록 정규화한다.
+// exclude(저품질)는 캘린더에서 빼고, 날짜순으로 정렬한다.
+
+const DOW = ["일", "월", "화", "수", "목", "금", "토"];
+
+function isoToShort(iso: string): string {
+  const [, m, d] = iso.split("-").map(Number);
+  return `${m}.${String(d).padStart(2, "0")}`;
+}
+
+function isoToDay(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  // 빌드 타임 결정적 계산(UTC 고정) — TZ 흔들림 방지
+  return DOW[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
+}
+
+export interface CalendarRow {
+  shortDate: string; // "6.06"
+  day: string; // "토"
+  rangeNote?: string; // "~6.12" / "매주"
+  sortKey: string; // ISO
+  title: string;
+  where: string;
+  link?: string;
+  tag: string; // category
+  tier: RadarTier;
+  price: string;
+  priceType: RadarPriceType;
+  verified: RadarVerified;
+  jjWork: boolean; // 평일 업무시간(⚠️)
+}
+
+export const CALENDAR_ROWS: CalendarRow[] = sortedRadarEvents()
+  .filter((e) => e.curate !== "exclude")
+  .map((e) => ({
+    shortDate: isoToShort(e.date),
+    day: e.recurring ? "금" : isoToDay(e.date),
+    rangeNote: e.recurring ? "매주" : e.dateEnd ? `~${isoToShort(e.dateEnd)}` : undefined,
+    sortKey: e.date,
+    title: e.title,
+    where: e.venue,
+    link: e.link,
+    tag: e.category,
+    tier: e.tier,
+    price: e.price,
+    priceType: e.priceType,
+    verified: e.verified,
+    jjWork: e.jjFlag === "weekday-work",
+  }))
+  .sort((a, b) => a.sortKey.localeCompare(b.sortKey));
