@@ -3,361 +3,695 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AIMBA Future Report | SOGANG AIMBA 7th</title>
+<title>AIMBA Future Report 제1호 | SOGANG AIMBA 7th</title>
+<meta name="description" content="SOGANG AIMBA 7기 Weekly Brief Vol.1-15 통합 분석 리서치 덱. 15주간의 AI·비즈니스·금융 트렌드를 5대 메가 트렌드로 정리합니다.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
+/* ── Design Tokens ── */
 :root {
-  --sogang:#8B0029;
-  --sogang-dark:#5a001a;
-  --bg:#F5F0E8;
-  --panel:#FFFDF9;
-  --text:#1a1a2e;
-  --body:#555;
-  --muted:#8a8178;
-  --line:#e4ddd0;
-  --gold:#c9a84c;
-  --blue:#1a5276;
-  --green:#2d6a4f;
+  --sogang: #8B0029;
+  --sogang-dark: #5a001a;
+  --sogang-light: rgba(139,0,41,0.08);
+  --bg: #F5F0E8;
+  --panel: #FFFDF9;
+  --text: #1a1a2e;
+  --body: #3d3830;
+  --muted: #8a8178;
+  --line: #e4ddd0;
+  --gold: #c9a84c;
+  --gold-light: rgba(201,168,76,0.12);
+  --blue: #1a5276;
+  --green: #2d6a4f;
+  --serif: 'Noto Serif KR', serif;
+  --sans: 'Noto Sans KR', sans-serif;
 }
-* { box-sizing:border-box; margin:0; padding:0; }
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
 body {
-  font-family:'Noto Sans KR', sans-serif;
+  font-family: var(--sans);
   background:
-    radial-gradient(circle at 12% 8%, rgba(201,168,76,0.16), transparent 26%),
+    radial-gradient(ellipse at 10% 5%, rgba(201,168,76,0.14), transparent 40%),
+    radial-gradient(ellipse at 90% 95%, rgba(139,0,41,0.06), transparent 40%),
     linear-gradient(180deg, #f8f3eb 0%, var(--bg) 100%);
-  color:var(--text);
-  line-height:1.7;
+  color: var(--body);
+  line-height: 1.78;
+  -webkit-font-smoothing: antialiased;
 }
-.page { max-width:1120px; margin:0 auto; padding:34px 20px 64px; }
+
+/* ── Layout ── */
+.page { max-width: 860px; margin: 0 auto; padding: 32px 24px 80px; }
+
+/* ── Top Nav ── */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.topnav a {
+  color: var(--sogang);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.topnav a:hover { opacity: 0.7; }
+.topnav-right { display: flex; gap: 18px; }
+
+/* ── Hero / Cover ── */
 .hero {
-  min-height:320px;
-  display:grid;
-  align-content:end;
-  padding:34px;
-  border-radius:22px;
+  padding: 48px 40px 44px;
+  border-radius: 20px;
   background:
-    linear-gradient(135deg, rgba(139,0,41,0.92), rgba(90,0,26,0.86)),
-    radial-gradient(circle at 80% 20%, rgba(201,168,76,0.28), transparent 26%);
-  color:#fff;
-  box-shadow:0 22px 60px rgba(90,0,26,0.18);
+    linear-gradient(135deg, rgba(139,0,41,0.93), rgba(90,0,26,0.88)),
+    radial-gradient(circle at 85% 15%, rgba(201,168,76,0.3), transparent 50%);
+  color: #fff;
+  box-shadow: 0 20px 60px rgba(90,0,26,0.16);
+  margin-bottom: 48px;
 }
-.kicker {
-  font-size:0.76rem;
-  font-weight:900;
-  letter-spacing:1.4px;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.72);
-  margin-bottom:10px;
+.hero-kicker {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 14px;
 }
-h1 {
-  font-family:'Noto Serif KR', serif;
-  font-size:clamp(2rem, 5vw, 4rem);
-  line-height:1.08;
-  letter-spacing:0;
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 4.5vw, 3.2rem);
+  line-height: 1.12;
+  font-weight: 900;
+  letter-spacing: -0.01em;
 }
-.hero p {
-  margin-top:14px;
-  max-width:760px;
-  color:rgba(255,255,255,0.82);
-  font-size:0.98rem;
+.hero-sub {
+  margin-top: 16px;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.6;
+  max-width: 640px;
 }
-.hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
-.hero-actions a {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  min-height:42px;
-  padding:10px 16px;
-  border-radius:999px;
-  text-decoration:none;
-  font-size:0.84rem;
-  font-weight:900;
+.hero-meta {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.55);
+  font-weight: 500;
 }
-.hero-actions .primary { background:#fff; color:var(--sogang); }
-.hero-actions .secondary { background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.24); }
-.section-title {
-  margin:32px 0 14px;
-  font-size:0.82rem;
-  font-weight:900;
-  letter-spacing:1.2px;
-  text-transform:uppercase;
-  color:var(--sogang);
+
+/* ── Section Labels ── */
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--sogang);
+  margin: 52px 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--sogang);
+  display: inline-block;
 }
-.grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+
+/* ── Cards ── */
 .card {
-  background:rgba(255,253,249,0.88);
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 12px 34px rgba(90,0,26,0.05);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 28px 30px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 24px rgba(90,0,26,0.04);
 }
-.metric .label {
-  font-size:0.72rem;
-  font-weight:900;
-  color:var(--muted);
-  letter-spacing:0.9px;
-  text-transform:uppercase;
+
+/* ── Executive Summary ── */
+.exec-summary { margin-bottom: 12px; }
+.exec-summary h2 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 18px;
+  line-height: 1.3;
 }
-.metric .value {
-  margin-top:6px;
-  font-size:2rem;
-  font-weight:900;
-  line-height:1.1;
+.exec-list {
+  list-style: none;
+  counter-reset: exec;
 }
-.metric .hint { margin-top:6px; font-size:0.8rem; color:var(--body); }
-.wide { grid-column:span 2; }
-.list { display:grid; gap:10px; }
-.row {
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:12px;
-  align-items:center;
-  padding:12px;
-  border:1px solid rgba(139,0,41,0.10);
-  border-radius:12px;
-  background:rgba(255,255,255,0.62);
+.exec-list li {
+  counter-increment: exec;
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 14px;
+  font-size: 0.92rem;
+  line-height: 1.7;
 }
-.row strong { font-size:0.88rem; }
-.row span { color:var(--sogang); font-weight:900; font-size:0.84rem; }
-.radar {
-  display:grid;
-  gap:12px;
+.exec-list li::before {
+  content: counter(exec);
+  position: absolute;
+  left: 0; top: 2px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--sogang);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.bar-label {
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  font-size:0.82rem;
-  font-weight:800;
+.exec-list li strong { color: var(--text); }
+
+/* ── Timeline Strip ── */
+.timeline-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  overflow-x: auto;
+  display: block;
 }
-.bar {
-  height:10px;
-  border-radius:999px;
-  background:#eee6da;
-  overflow:hidden;
+.timeline-table thead th {
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 2px solid var(--sogang);
+  white-space: nowrap;
 }
-.bar div {
-  height:100%;
-  width:var(--fill, 0%);
-  background:linear-gradient(90deg, var(--sogang), var(--gold));
+.timeline-table tbody td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
 }
-.memo {
-  font-family:'Noto Serif KR', serif;
-  font-size:1.2rem;
-  line-height:1.65;
+.timeline-table tbody tr:hover { background: var(--sogang-light); }
+.vol-badge {
+  display: inline-block;
+  background: var(--sogang);
+  color: #fff;
+  font-size: 0.66rem;
+  font-weight: 900;
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
 }
-.memo small {
-  display:block;
-  margin-top:12px;
-  color:var(--muted);
-  font-family:'Noto Sans KR', sans-serif;
-  font-size:0.78rem;
+.tl-date { color: var(--muted); font-size: 0.76rem; white-space: nowrap; }
+.tl-headline { color: var(--text); font-weight: 500; line-height: 1.5; }
+.tl-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+.tl-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: var(--gold-light);
+  color: var(--gold);
+  white-space: nowrap;
 }
-.status {
-  margin-top:14px;
-  padding:10px 12px;
-  border-radius:12px;
-  background:#fff8ec;
-  color:#6d5a39;
-  font-size:0.82rem;
-  line-height:1.55;
+
+/* ── Chapter (Mega Trend) ── */
+.chapter {
+  margin-bottom: 44px;
 }
-.footer {
-  margin-top:32px;
-  color:var(--muted);
-  font-size:0.76rem;
-  text-align:center;
+.chapter-num {
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
 }
-@media (max-width: 820px) {
-  .hero { padding:26px 20px; border-radius:18px; }
-  .grid { grid-template-columns:1fr; }
-  .wide { grid-column:span 1; }
-  .hero-actions a { width:100%; }
+.chapter h3 {
+  font-family: var(--serif);
+  font-size: 1.28rem;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+.chapter p {
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+  line-height: 1.82;
+}
+.vol-ref {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--sogang);
+  background: var(--sogang-light);
+  padding: 1px 5px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.so-what {
+  margin-top: 16px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--gold);
+  background: var(--gold-light);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.6;
+}
+.so-what strong {
+  color: var(--sogang);
+  font-weight: 900;
+}
+blockquote.pull {
+  margin: 18px 0;
+  padding: 14px 20px;
+  border-left: 3px solid var(--sogang);
+  background: var(--sogang-light);
+  border-radius: 0 8px 8px 0;
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.7;
+  font-style: normal;
+}
+
+/* ── Signals ── */
+.signal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.signal-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.6);
+}
+.signal-icon {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--sogang-light);
+  color: var(--sogang);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+.signal-text { font-size: 0.84rem; line-height: 1.6; }
+.signal-text strong { color: var(--text); }
+.signal-src {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ── Tag Frequency Viz ── */
+.tag-chart { display: grid; gap: 10px; margin-top: 8px; }
+.tag-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 32px;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.78rem;
+}
+.tag-name { font-weight: 700; color: var(--text); text-align: right; }
+.tag-bar-bg {
+  height: 14px;
+  border-radius: 7px;
+  background: #ede7db;
+  overflow: hidden;
+}
+.tag-bar-fill {
+  height: 100%;
+  border-radius: 7px;
+  background: linear-gradient(90deg, var(--sogang), var(--gold));
+  transition: width 0.6s ease;
+}
+.tag-count { font-weight: 900; color: var(--sogang); font-size: 0.74rem; }
+
+/* ── Footer ── */
+.report-footer {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 2px solid var(--line);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.8;
+}
+.report-footer strong { color: var(--text); }
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .page { padding: 20px 16px 60px; }
+  .hero { padding: 32px 24px 30px; border-radius: 16px; }
+  .hero h1 { font-size: 1.6rem; }
+  .card { padding: 20px 18px; }
+  .topnav { flex-direction: column; gap: 8px; align-items: flex-start; }
+  .topnav-right { gap: 12px; }
+  .tag-row { grid-template-columns: 90px 1fr 28px; }
+  .tag-name { font-size: 0.72rem; }
+  .timeline-table { font-size: 0.74rem; }
+  .timeline-table thead th, .timeline-table tbody td { padding: 7px 6px; }
+  .chapter h3 { font-size: 1.12rem; }
 }
 </style>
 </head>
 <body>
-  <main class="page">
-    <section class="hero">
-      <div class="kicker">AIMBA Future Report</div>
-      <h1>이번 달 원우들의 관심이 만든 미래 신호</h1>
-      <p>Weekly Brief의 조회수와 좋아요·체크·Pulse 투표(GA4 집계)를 모아 미래혁신국 관점의 월간 리포트로 정리합니다. 발간 시점의 집계 스냅샷을 기준으로 합니다.</p>
-      <div class="hero-actions">
-        <a class="primary" href="../index.html#aimbaPulse">AIMBA Pulse 투표하기</a>
-        <a class="secondary" href="./vol_20260601.html#participateSection">제보·의견 남기기</a>
+<main class="page">
+
+<!-- ═══ TOP NAV ═══ -->
+<nav class="topnav">
+  <a href="../index.html">SOGANG AIMBA 7th</a>
+  <div class="topnav-right">
+    <a href="./vol_20260706.html">Latest Brief (Vol.15)</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO / COVER ═══ -->
+<section class="hero">
+  <div class="hero-kicker">AIMBA Future Report</div>
+  <h1>제1호 &mdash; 15주의 신호가 말하는 다음 분기</h1>
+  <p class="hero-sub">Weekly Brief Vol.1&ndash;15 통합 분석. 2026년 3월부터 7월까지, AIMBA 7기가 추적한 AI&middot;비즈니스&middot;금융 15주간의 흐름을 5대 메가 트렌드로 압축합니다.</p>
+  <div class="hero-meta">
+    <span>발행 2026년 7월</span>
+    <span>분석 기간 2026.03.28 &ndash; 2026.07.06</span>
+    <span>Vol.1&ndash;Vol.15 전 15호</span>
+  </div>
+</section>
+
+<!-- ═══ EXECUTIVE SUMMARY ═══ -->
+<div class="section-label">Executive Summary</div>
+<div class="card exec-summary">
+  <h2>15주를 관통하는 핵심 결론</h2>
+  <ol class="exec-list">
+    <li><strong>AI 경쟁의 축이 '모델 성능'에서 '에이전트 운영력'으로, 다시 '저비용 에이전트'로 이동했다.</strong> Vol.1의 Claude Opus 4 출시에서 시작해, Vol.15의 클로드 소넷5가 오푸스급 성능을 저가형으로 제공하기까지, 15주 만에 에이전트 비용 장벽이 사실상 사라졌다.</li>
+    <li><strong>AI는 '데모'를 넘어 '재무제표'로 말하기 시작했다.</strong> Anthropic 첫 분기 흑자(Vol.8), $965B 기업가치(Vol.10), Anthropic&middot;OpenAI 동시 S-1 제출(Vol.12)로 AI가 자본시장의 심판대에 올랐다.</li>
+    <li><strong>엔터프라이즈 도입률은 72%에 달하지만, 조직 내재화율은 6.7%에 불과하다.</strong> KPMG 27만 명 Claude 탑재(Vol.6)부터 국내 AI 도입률 61%(Vol.15)까지 '도입'은 폭발했으나, ROI 입증 5%(Vol.14)라는 숫자가 병목이 기술이 아니라 거버넌스에 있음을 보여준다.</li>
+    <li><strong>STO&middot;RWA는 제도화가 진행되지만, 1세대 플랫폼은 이미 무너지고 있다.</strong> BlackRock RWA $2B(Vol.1)에서 STO 하위법규 예고(Vol.15)까지 제도는 전진했으나, 부동산 조각투자 줄폐업(Vol.14)은 '제도 통과'와 '시장 생존'이 별개 문제임을 증명했다.</li>
+    <li><strong>바이브코딩이 실험에서 '재현 가능한 워크플로'로 표준화됐다.</strong> Vol.10에서 Vibe Coding 코너가 신설되고, 스펙 주도 개발(SDD)이 비개발자도 따라 할 수 있는 방법론으로 정리되며 MBA 원우의 직접 빌드가 현실이 됐다.</li>
+  </ol>
+</div>
+
+<!-- ═══ TIMELINE STRIP ═══ -->
+<div class="section-label">Timeline &mdash; 15 Weeks at a Glance</div>
+<div class="card" style="padding:18px 20px; overflow-x:auto;">
+  <table class="timeline-table">
+    <thead>
+      <tr><th>Vol</th><th>Date</th><th>Headline</th><th>Tags</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="vol-badge">01</span></td>
+        <td class="tl-date">03.28</td>
+        <td class="tl-headline">Claude Opus 4 출시, 1인 소프트웨어 팩토리 시대, BlackRock RWA $2B</td>
+        <td class="tl-tags"><span class="tl-tag">트렌드</span><span class="tl-tag">창업지원</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">02</span></td>
+        <td class="tl-date">04.04</td>
+        <td class="tl-headline">젬마4 공개, 에이전틱 AI 얼라이언스 출범, 글로벌 VC $2,970억 역대 최대, RWA $276억 돌파</td>
+        <td class="tl-tags"><span class="tl-tag">에이전틱AI</span><span class="tl-tag">창업지원</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">03</span></td>
+        <td class="tl-date">04.13</td>
+        <td class="tl-headline">라이너 IPO 주관사 낙점, AI 1인 유니콘 2.7조, 엘리스 AIDC 1GW</td>
+        <td class="tl-tags"><span class="tl-tag">AI</span><span class="tl-tag">창업</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">04</span></td>
+        <td class="tl-date">04.28</td>
+        <td class="tl-headline">AI 도입 경쟁, 모델 비교에서 조직 적용 속도로 이동</td>
+        <td class="tl-tags"><span class="tl-tag">AI</span><span class="tl-tag">비즈니스</span><span class="tl-tag">AIMBA</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">05</span></td>
+        <td class="tl-date">05.04</td>
+        <td class="tl-headline">에이전트형 AI가 조직 운영 레이어로 올라오고, 정부지원도 실증 구조로 재편</td>
+        <td class="tl-tags"><span class="tl-tag">에이전트</span><span class="tl-tag">창업지원</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">06</span></td>
+        <td class="tl-date">05.11</td>
+        <td class="tl-headline">OpenAI $4B 배포 자회사, KPMG 27만 6천 명 Claude 탑재, IESE&middot;Darden AI 코어 전환</td>
+        <td class="tl-tags"><span class="tl-tag">엔터프라이즈</span><span class="tl-tag">MBA</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">07</span></td>
+        <td class="tl-date">05.18</td>
+        <td class="tl-headline">Anthropic 소상공인 공략, Dell AI 팩토리 5,000곳, AlphaEvolve 실증, 국가 AI 컴퓨팅센터</td>
+        <td class="tl-tags"><span class="tl-tag">온프레미스</span><span class="tl-tag">GPU주권</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">08</span></td>
+        <td class="tl-date">05.25</td>
+        <td class="tl-headline">Anthropic 분기 흑자, Google I/O 2026, Karpathy 이적 &mdash; AI가 재무제표로 말하는 변곡점</td>
+        <td class="tl-tags"><span class="tl-tag">수익화</span><span class="tl-tag">유니콘</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">09</span></td>
+        <td class="tl-date">06.01</td>
+        <td class="tl-headline">Claude Opus 4.8 지능 지수 1위, Qwen 3.7 Max, Cognition $1B &mdash; 에이전트 실력 경쟁</td>
+        <td class="tl-tags"><span class="tl-tag">에이전트</span><span class="tl-tag">RWA</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">10</span></td>
+        <td class="tl-date">06.03</td>
+        <td class="tl-headline">Anthropic $65B 시리즈 H, $965B 질주, Opus 4.8 벤치마크 1위, 바이브코딩 창업 표준화</td>
+        <td class="tl-tags"><span class="tl-tag">바이브코딩</span><span class="tl-tag">메가라운드</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">11</span></td>
+        <td class="tl-date">06.08</td>
+        <td class="tl-headline">Snowflake&middot;Experian&middot;Meta 엔터프라이즈 에이전트, 미니맥스 M3&middot;MS 오픈웨이트 약진</td>
+        <td class="tl-tags"><span class="tl-tag">엔터프라이즈에이전트</span><span class="tl-tag">오픈웨이트</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">12</span></td>
+        <td class="tl-date">06.16</td>
+        <td class="tl-headline">Claude Fable 5 공개, Anthropic&middot;OpenAI S-1 동시 제출, SpaceX 역대 최대 IPO</td>
+        <td class="tl-tags"><span class="tl-tag">IPO</span><span class="tl-tag">Fable5</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">13</span></td>
+        <td class="tl-date">06.22</td>
+        <td class="tl-headline">엔터프라이즈 AI 에이전트 72% 프로덕션 진입, STO 무게추 부동산에서 IP&middot;콘텐츠로 이동</td>
+        <td class="tl-tags"><span class="tl-tag">엔터프라이즈</span><span class="tl-tag">STO</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">14</span></td>
+        <td class="tl-date">06.29</td>
+        <td class="tl-headline">구글 핵심 연구진 앤트로픽 이탈, 실무 벤치마크 47%, ROI 입증 5%, 부동산 조각투자 줄폐업</td>
+        <td class="tl-tags"><span class="tl-tag">ROI괴리</span><span class="tl-tag">STO</span></td>
+      </tr>
+      <tr>
+        <td><span class="vol-badge">15</span></td>
+        <td class="tl-date">07.06</td>
+        <td class="tl-headline">클로드 소넷5 출시(오푸스급&middot;저가형), 도입률 61% vs 내재화 6.7%, STO 하위법규 예고</td>
+        <td class="tl-tags"><span class="tl-tag">AI에이전트</span><span class="tl-tag">STO</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ MEGA TRENDS ═══ -->
+<div class="section-label">Mega Trends &mdash; 5 Chapters</div>
+
+<!-- Chapter 1 -->
+<article class="chapter">
+  <div class="chapter-num">Chapter 01</div>
+  <h3>모델 경쟁에서 에이전트 운영력으로, 다시 저비용 에이전트로</h3>
+  <p>
+    15주의 여정은 AI 경쟁 축이 세 단계로 이동하는 과정이었다. <span class="vol-ref">Vol.1</span>에서 Claude Opus 4가 출시되며 '1인 소프트웨어 팩토리' 시대가 열렸고, <span class="vol-ref">Vol.2</span>에서 정부가 에이전틱 AI 얼라이언스를 출범시키며 제도적 뒷받침이 시작됐다. 동시에 가트너는 "2026년 말 기업 앱 40%에 에이전트가 탑재될 것"이라 전망했다.
+  </p>
+  <p>
+    <span class="vol-ref">Vol.5</span>에 이르러 "AI 경쟁의 기준이 모델 출시 자체보다 누가 더 깊게 업무 흐름을 장악하느냐로 이동"했고, <span class="vol-ref">Vol.9</span>의 Claude Opus 4.8은 '누가 더 오래&middot;안전하게 일을 끝내는가'로 평가 기준을 바꿨다. <span class="vol-ref">Vol.11</span>에서는 Snowflake&middot;Experian&middot;Meta가 '업무를 끝까지 자율로 처리하는' 엔터프라이즈 에이전트를 내놓으며, 승부처가 모델 성능에서 '에이전트 운영력'으로 옮겨갔다.
+  </p>
+  <p>
+    그리고 <span class="vol-ref">Vol.15</span>에서 앤트로픽이 클로드 소넷5를 오푸스급 성능&middot;대폭 인하된 가격으로 출시하며 에이전트 실행 비용의 기준선 자체를 낮췄다. 고위험 사이버공격 능력은 의도적으로 제한해, "에이전트가 강력해질수록 안전장치 설계가 함께 올라와야 한다"는 원칙도 세웠다.
+  </p>
+  <blockquote class="pull">"다음 승자는 더 화려한 모델이 아니라, AI를 더 빨리 반복 가능한 업무 시스템으로 바꾸는 팀입니다." &mdash; Vol.5</blockquote>
+  <div class="so-what"><strong>So What for AIMBA 원우:</strong> '어떤 AI를 쓸까'를 넘어 '어떤 업무를 에이전트에게 맡길까'를 설계하는 훈련이 지금 필요하다. 비용 장벽이 사라진 만큼, 실행력이 곧 경쟁력이다.</div>
+</article>
+
+<!-- Chapter 2 -->
+<article class="chapter">
+  <div class="chapter-num">Chapter 02</div>
+  <h3>AI, 데모를 넘어 재무제표로 &mdash; 수익화와 자본시장 진입</h3>
+  <p>
+    <span class="vol-ref">Vol.8</span>은 역사적 변곡점이었다. "Anthropic의 분기 흑자 달성, Google I/O 2026의 에이전트 선언, Karpathy의 전격 이적이 같은 주에 터지며 업계 지형이 근본적으로 바뀌었다." AI가 기술 시위(demo)가 아닌 재무제표로 말하는 시대에 진입한 것이다.
+  </p>
+  <p>
+    불과 한 주 뒤 <span class="vol-ref">Vol.10</span>에서 Anthropic은 시리즈 H $65B을 조달해 기업가치 약 $965B으로 OpenAI를 바짝 추격했다. 자본&middot;모델&middot;개발문화 세 축이 같은 주에 임계점을 넘었다. <span class="vol-ref">Vol.12</span>에서는 Claude Fable 5가 '너무 강력해 일부 기능을 제한해야 했다'는 평가를 받으며 일반 공개됐고, Anthropic과 OpenAI가 동시에 S-1(상장신고서)을 기밀 제출했다. SpaceX의 역대 최대 규모 IPO까지 겹치며 "AI 기업 가치평가와 에이전트 운영 능력이 함께 공개 심판대에 오른 역사적 분기점"이 됐다.
+  </p>
+  <p>
+    국내에서도 <span class="vol-ref">Vol.3</span>에서 라이너가 KB&middot;대신증권을 IPO 주관사로 낙점하고, AI 1인 유니콘이 2.7조 원 규모로 등장하며 AI 스타트업의 자본시장 진입이 가속됐다.
+  </p>
+  <blockquote class="pull">"AI는 이제 기술 시위(demo)가 아닌 재무제표로 말하는 시대에 진입했으며, 이 전환을 먼저 내재화하는 경영자와 조직이 다음 5년을 지배할 것입니다." &mdash; Vol.8</blockquote>
+  <div class="so-what"><strong>So What for AIMBA 원우:</strong> AI 투자 논리를 읽는 능력이 곧 실무 역량이다. S-1 공개 이후 AI 기업의 수익 구조와 밸류에이션 방법론은 MBA 커리큘럼의 핵심 사례가 될 것이다.</div>
+</article>
+
+<!-- Chapter 3 -->
+<article class="chapter">
+  <div class="chapter-num">Chapter 03</div>
+  <h3>엔터프라이즈 72% 도입, 그러나 내재화율 6.7% &mdash; ROI 괴리의 실체</h3>
+  <p>
+    <span class="vol-ref">Vol.6</span>에서 "OpenAI가 $4B 규모 기업 배포 자회사를 전격 출범하고, Anthropic은 KPMG 27만 6천 명 전 직원에게 Claude를 탑재하며 컨설팅 빅4 전선을 열었다." AI는 더 이상 부서 프로젝트가 아니라 기업 운영체제(OS)가 되기 시작했다. <span class="vol-ref">Vol.7</span>에서는 AI가 대기업을 넘어 소상공인&middot;온프레미스 현장으로 내려갔다. Anthropic이 미국 GDP의 44%를 차지하는 소상공인 시장을 정조준한 'Claude for Small Business'를 내놓고, Dell은 온프레미스 AI 팩토리 5,000곳을 발표했다.
+  </p>
+  <p>
+    도입 속도는 빨랐다. <span class="vol-ref">Vol.13</span>에서 "에이전틱 AI 엔터프라이즈 도입률이 72% 프로덕션 수준에 도달"했다. 그러나 이면에는 괴리가 있었다. <span class="vol-ref">Vol.14</span>의 실무 벤치마크 47%, 국내 ROI 입증 5%라는 숫자가 "병목이 기술이 아니라 운영&middot;거버넌스&middot;인력 재배치에 있음"을 보여줬다. <span class="vol-ref">Vol.15</span>에 이르러 국내 AI 도입률은 61%에 달했지만, 조직 내재화율은 6.7%에 그쳤다.
+  </p>
+  <blockquote class="pull">"시장은 이제 '누가 더 좋은 모델을 갖느냐'가 아니라 '그 모델로 손익을 증명하느냐'를 묻습니다." &mdash; Vol.14</blockquote>
+  <div class="so-what"><strong>So What for AIMBA 원우:</strong> 'AI를 도입했는가'가 아니라 'AI 도입의 ROI를 숫자로 증명하고, 그 위에 거버넌스를 설계할 수 있는가'가 다음 단계의 핵심 역량이다.</div>
+</article>
+
+<!-- Chapter 4 -->
+<article class="chapter">
+  <div class="chapter-num">Chapter 04</div>
+  <h3>STO&middot;RWA &mdash; 제도는 전진하지만, 1세대는 무너진다</h3>
+  <p>
+    <span class="vol-ref">Vol.1</span>에서 BlackRock이 RWA(실물자산 토큰화) $2B을 돌파하며 전통 금융의 블록체인 진입이 시작됐고, <span class="vol-ref">Vol.2</span>에서 글로벌 RWA 시장은 $276억을 넘겼다. '토큰화'와 'AI 에이전트'의 동시 가속이 두 흐름의 교차점에서 새로운 금융 인프라를 예고했다. <span class="vol-ref">Vol.9</span>에서는 Deloitte가 부동산 토큰화 시장이 2035년 4조 달러 규모로 성장할 수 있다고 전망하며 장기 시계를 제시했다.
+  </p>
+  <p>
+    한국에서는 STO(토큰증권) 법제화가 전진했다. <span class="vol-ref">Vol.13</span>에서 STO의 무게추가 부동산에서 IP&middot;콘텐츠로 옮겨갔고, <span class="vol-ref">Vol.15</span>에서 STO 하위법규 윤곽이 잡혔다. 그러나 그 이면에서 <span class="vol-ref">Vol.14</span>는 "1세대 부동산 조각투자 플랫폼의 줄폐업"을 보도하며, '제도 통과'와 '시장 생존'이 전혀 다른 문제임을 증명했다. <span class="vol-ref">Vol.15</span>의 벤처투자 의무보유 5년 연장 역시 자본시장의 유동성 구조에 영향을 미칠 변수로 부상했다.
+  </p>
+  <blockquote class="pull">"AIMBA 원우분들에게는 'AI를 도입하는 법'을 넘어 'AI 도입의 ROI를 증명하고 거버넌스를 설계하는 능력'이 다음 단계의 핵심 역량임을 일러주는 한 주입니다." &mdash; Vol.13</blockquote>
+  <div class="so-what"><strong>So What for AIMBA 원우:</strong> STO 하위법규 시행 이후 2세대 플랫폼의 성패는 '기술 인프라'가 아니라 '규제 적합성 + 실수요 연결'에 달려 있다. 부동산금융&middot;대체투자의 토큰화 트랙을 주시할 시점이다.</div>
+</article>
+
+<!-- Chapter 5 -->
+<article class="chapter">
+  <div class="chapter-num">Chapter 05</div>
+  <h3>바이브코딩의 표준화 &mdash; 비개발자가 직접 빌드하는 시대</h3>
+  <p>
+    <span class="vol-ref">Vol.10</span>에서 "바이브코딩이 2026 스타트업의 표준 개발 방식이 된 주"라는 선언이 나왔다. Anthropic&middot;Cursor 등 핵심 도구사가 잇따라 베스트 프랙티스를 공개하고, '스펙 주도 개발(SDD)'처럼 비개발자도 따라 할 수 있는 방법론이 정리되면서, 바이브코딩이 실험에서 '재현 가능한 워크플로'로 성숙했다. 이 호부터 Weekly Brief에 'Vibe Coding' 코너가 신설됐다.
+  </p>
+  <p>
+    <span class="vol-ref">Vol.11</span>에서는 서브에이전트와 에이전틱 워크플로에 초점이 맞춰졌다. "Claude Code 서브에이전트와 GitHub Copilot 에이전트 모드가 나란히 '아키텍처부터 매핑 &rarr; 계획 &rarr; 실행' 패턴을 권하고, CLAUDE.md&middot;슬래시 명령 커스터마이징으로 반복 작업을 제거하는 실전 노하우가 정리됐다." 비개발자도 따라 할 수 있는 재현 가능한 워크플로로 바이브코딩이 성숙하고 있다.
+  </p>
+  <p>
+    이 변화의 배경에는 MBA 교육의 전환도 있었다. <span class="vol-ref">Vol.6</span>에서 IESE&middot;Darden이 AI 코어 전환을 발표했고, <span class="vol-ref">Vol.10</span>에서 CSP 글로벌의 조사에 따르면 2026년 더 많은 고용주가 AI 유창성을 채용의 '기본 전제'로 요구하기 시작했다. <span class="vol-ref">Vol.11</span>에서는 "AI 유창성이 '기본값'이 되며 변별이 더 어려워지고, 졸업생 일자리는 소기업&middot;AI 직군으로 재편되고 있다"고 진단됐다.
+  </p>
+  <blockquote class="pull">"자본&middot;모델&middot;개발문화 세 축이 같은 주에 임계점을 넘었으며, AI를 '쓰는 법(바이브코딩)'을 먼저 조직 워크플로에 체화하는 팀이 다음 분기를 가져갑니다." &mdash; Vol.10</blockquote>
+  <div class="so-what"><strong>So What for AIMBA 원우:</strong> 기술을 많이 아는 것보다 기술 변화의 조직적 의미를 해석하는 사람의 가치가 커지고 있다. 원우 경쟁력은 기술 신호를 사업 판단과 커리어 액션으로 번역하는 능력에서 벌어진다.</div>
+</article>
+
+<!-- ═══ SIGNALS TO WATCH ═══ -->
+<div class="section-label">Signals to Watch &mdash; 다음 분기 관전 포인트</div>
+<div class="card">
+  <div class="signal-grid">
+    <div class="signal-item">
+      <div class="signal-icon">1</div>
+      <div>
+        <div class="signal-text"><strong>Anthropic&middot;OpenAI IPO 결과와 AI 기업 밸류에이션 기준선.</strong> 두 회사가 동시에 S-1을 기밀 제출했다. 공개 이후 AI 기업 수익성과 밸류에이션의 시장 합의가 형성될 것이다.</div>
+        <div class="signal-src">근거: Vol.12 &mdash; S-1 동시 제출, Anthropic $965B</div>
       </div>
-    </section>
-
-    <div class="section-title">Monthly Signal</div>
-    <section class="grid">
-      <div class="card metric">
-        <div class="label">Total Views</div>
-        <div class="value" id="totalViews">0</div>
-        <div class="hint">브리프 누적 조회 (GA4)</div>
+    </div>
+    <div class="signal-item">
+      <div class="signal-icon">2</div>
+      <div>
+        <div class="signal-text"><strong>STO 하위법규 시행과 2세대 토큰증권 플랫폼의 생존 여부.</strong> 법규 윤곽이 잡힌 뒤 실제 시행 시 '규제 적합성'과 '실수요 연결'을 동시에 풀 수 있는 사업자가 나올지 주목해야 한다.</div>
+        <div class="signal-src">근거: Vol.15 &mdash; STO 하위법규 예고, Vol.14 &mdash; 1세대 줄폐업</div>
       </div>
-      <div class="card metric">
-        <div class="label">Strong Signals</div>
-        <div class="value" id="totalSignals">0</div>
-        <div class="hint">좋아요 + 체크</div>
+    </div>
+    <div class="signal-item">
+      <div class="signal-icon">3</div>
+      <div>
+        <div class="signal-text"><strong>엔터프라이즈 AI ROI 입증률의 반등 여부.</strong> 국내 ROI 입증 5%(Vol.14), 조직 내재화 6.7%(Vol.15)라는 병목이 3분기에 해소되기 시작하는지가 AI 산업의 다음 국면을 결정한다.</div>
+        <div class="signal-src">근거: Vol.14 &mdash; 실무 벤치마크 47%, Vol.15 &mdash; 도입률 61% vs 내재화 6.7%</div>
       </div>
-      <div class="card metric">
-        <div class="label">Top Brief</div>
-        <div class="value" id="topBrief">-</div>
-        <div class="hint" id="topBriefHint">데이터 수집 중</div>
+    </div>
+    <div class="signal-item">
+      <div class="signal-icon">4</div>
+      <div>
+        <div class="signal-text"><strong>서강대 AI 중심대학 프로그램 확대와 학제간 AI 행동과학 대학원 개설.</strong> 2026~2033년 총 240억 원 규모의 AI 중심대학 사업과 AI 행동과학 대학원이 AIMBA 원우의 학습 지형을 넓힐 것이다.</div>
+        <div class="signal-src">근거: Vol.7 &mdash; AI 중심대학 선정(240억), Vol.12 &mdash; AI 행동과학 대학원 발표</div>
       </div>
-      <div class="card wide">
-        <div class="section-title" style="margin-top:0;">Future Radar</div>
-        <div class="radar" id="futureRadar"></div>
+    </div>
+    <div class="signal-item">
+      <div class="signal-icon">5</div>
+      <div>
+        <div class="signal-text"><strong>벤처투자 의무보유 5년 연장의 투자 생태계 영향.</strong> 스타트업 유동성과 VC 회수 전략에 구조적 변화를 가져올 변수다. 딥테크 창업 트랙 원우는 자금 조달 전략 재설계가 필요하다.</div>
+        <div class="signal-src">근거: Vol.15 &mdash; 벤처투자 의무보유 5년 연장</div>
       </div>
-      <div class="card">
-        <div class="section-title" style="margin-top:0;">Next Brief Demand</div>
-        <div class="list" id="voteList"></div>
-      </div>
-    </section>
+    </div>
+  </div>
+</div>
 
-    <div class="section-title">Auto Narrative</div>
-    <section class="card">
-      <div class="memo" id="autoMemo">
-        데이터를 불러오는 중입니다.
-      </div>
-      <div class="status" id="dataStatus">GA4 집계 스냅샷을 표시합니다.</div>
-    </section>
+<!-- ═══ TAG FREQUENCY ═══ -->
+<div class="section-label">Keyword Radar &mdash; 15호 태그 빈도</div>
+<div class="card">
+  <p style="font-size:0.8rem; color:var(--muted); margin-bottom:16px;">Vol.1~15 manifest 기준. 동일 키워드 그룹을 통합 집계합니다.</p>
+  <div class="tag-chart">
+    <div class="tag-row">
+      <span class="tag-name">AI / 모델</span>
+      <div class="tag-bar-bg"><div class="tag-bar-fill" style="width:100%"></div></div>
+      <span class="tag-count">13</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-name">에이전트</span>
+      <div class="tag-bar-bg"><div class="tag-bar-fill" style="width:54%"></div></div>
+      <span class="tag-count">7</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-name">엔터프라이즈</span>
+      <div class="tag-bar-bg"><div class="tag-bar-fill" style="width:38%"></div></div>
+      <span class="tag-count">5</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-name">STO / RWA</span>
+      <div class="tag-bar-bg"><div class="tag-bar-fill" style="width:31%"></div></div>
+      <span class="tag-count">4</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-name">자본시장</span>
+      <div class="tag-bar-bg"><div class="tag-bar-fill" style="width:31%"></div></div>
+      <span class="tag-count">4</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-name">창업 / 지원</span>
+      <div class="tag-bar-bg"><div class="tag-bar-fill" style="width:23%"></div></div>
+      <span class="tag-count">3</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-name">MBA / AIMBA</span>
+      <div class="tag-bar-bg"><div class="tag-bar-fill" style="width:15%"></div></div>
+      <span class="tag-count">2</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-name">바이브코딩</span>
+      <div class="tag-bar-bg"><div class="tag-bar-fill" style="width:15%"></div></div>
+      <span class="tag-count">2</span>
+    </div>
+    <div class="tag-row">
+      <span class="tag-name">인프라 / GPU</span>
+      <div class="tag-bar-bg"><div class="tag-bar-fill" style="width:15%"></div></div>
+      <span class="tag-count">2</span>
+    </div>
+  </div>
+</div>
 
-    <div class="footer">SOGANG AIMBA 7th · Future Innovation Office · GA4-powered monthly snapshot</div>
-  </main>
+<!-- ═══ FOOTER ═══ -->
+<footer class="report-footer">
+  <strong>AIMBA Future Report 제1호</strong><br>
+  SOGANG AIMBA 7기 &middot; 미래혁신국<br>
+  Weekly Brief Vol.1&ndash;15 통합 분석 &middot; 2026년 7월 발행<br>
+  <span style="margin-top:6px; display:inline-block;">
+    모든 인용은 Vol.1&ndash;15 원문에 근거합니다. 외부 데이터를 별도 수집하지 않았습니다.
+  </span>
+</footer>
 
-<script>
-/* ─────────────────────────────────────────────────────────────
-   Future Report 데이터 = GA4 발간-스냅샷
-   ---------------------------------------------------------------
-   Supabase(실시간 DB) 대신, 발간 시점에 GA4 대시보드(보고서 > 참여도 >
-   이벤트)에서 확인한 수치를 아래 SNAPSHOT 에 그대로 박는다.
-
-   - views        : GA4 page_view (호별 페이지뷰 합)
-   - signals      : brief_like + brief_check 이벤트 수
-   - topBrief     : 반응이 가장 강한 호
-   - votes        : pulse_vote 이벤트의 option_id 별 count
-                    (id 는 홈 HomeAimbaPulse 의 PULSE_OPTIONS 와 동일)
-
-   ▶ 매월 발간 때 asOf 와 숫자만 갱신하면 끝. (코드 수정 불필요)
-   ───────────────────────────────────────────────────────────── */
-const SNAPSHOT = {
-  asOf: '2026-06-01',          // 스냅샷 기준일 (발간 때 갱신)
-  totalViews: 0,                // GA4 page_view 합
-  topBrief: { vol: '', hint: '집계 누적 중' },  // 예: { vol: 'Vol.009', hint: '128 views · 12 signals' }
-  votes: {                      // pulse_vote option_id 별 count
-    'ai-agent-workflow': 0,
-    'startup-funding': 0,
-    'mba-career-shift': 0,
-    'real-estate-rwa': 0
-  },
-  likes: 0,                     // brief_like 이벤트 수
-  checks: 0                     // brief_check 이벤트 수
-};
-
-const voteOptions = {
-  'ai-agent-workflow': 'AI Agent가 실제 업무를 바꾸는 방식',
-  'startup-funding': '스타트업 투자·정부지원사업 기회',
-  'mba-career-shift': 'AI 시대 MBA 커리어 전환 전략',
-  'real-estate-rwa': '부동산·RWA·금융 인프라 변화'
-};
-
-const radarLabels = [
-  { id: 'ai-agent-workflow', label: 'AI Workflow' },
-  { id: 'startup-funding', label: 'Startup Capital' },
-  { id: 'mba-career-shift', label: 'MBA Career' },
-  { id: 'real-estate-rwa', label: 'RWA / Finance' }
-];
-
-function fmt(value) {
-  return new Intl.NumberFormat('ko-KR').format(value || 0);
-}
-
-function replaceChildren(node, children) {
-  node.textContent = '';
-  children.forEach(child => node.appendChild(child));
-}
-
-function textEl(tag, text, className) {
-  const el = document.createElement(tag);
-  if (className) el.className = className;
-  el.textContent = text;
-  return el;
-}
-
-function renderReport() {
-  const totalSignals = (Number(SNAPSHOT.likes) || 0) + (Number(SNAPSHOT.checks) || 0);
-  const hasData = (Number(SNAPSHOT.totalViews) || 0) > 0 || totalSignals > 0
-    || Object.values(SNAPSHOT.votes).some(v => Number(v) > 0);
-
-  document.getElementById('totalViews').textContent = fmt(SNAPSHOT.totalViews);
-  document.getElementById('totalSignals').textContent = fmt(totalSignals);
-
-  if (SNAPSHOT.topBrief && SNAPSHOT.topBrief.vol) {
-    document.getElementById('topBrief').textContent = SNAPSHOT.topBrief.vol;
-    document.getElementById('topBriefHint').textContent = SNAPSHOT.topBrief.hint || '';
-  }
-
-  const voteCounts = SNAPSHOT.votes || {};
-  const maxVote = Math.max(1, ...Object.values(voteCounts).map(v => Number(v) || 0));
-  const sortedVotes = Object.entries(voteOptions)
-    .map(([id, label]) => ({ id, label, count: Number(voteCounts[id]) || 0 }))
-    .sort((a, b) => b.count - a.count);
-
-  replaceChildren(
-    document.getElementById('voteList'),
-    sortedVotes.map(item => {
-      const row = document.createElement('div');
-      row.className = 'row';
-      row.appendChild(textEl('strong', item.label));
-      row.appendChild(textEl('span', `${fmt(item.count)}표`));
-      return row;
-    })
-  );
-
-  replaceChildren(
-    document.getElementById('futureRadar'),
-    radarLabels.map(item => {
-      const count = Number(voteCounts[item.id]) || 0;
-      const fill = Math.round((count / maxVote) * 100);
-      const wrapper = document.createElement('div');
-      const label = document.createElement('div');
-      label.className = 'bar-label';
-      label.appendChild(textEl('span', item.label));
-      label.appendChild(textEl('span', fmt(count)));
-      const bar = document.createElement('div');
-      bar.className = 'bar';
-      const fillNode = document.createElement('div');
-      fillNode.style.setProperty('--fill', `${fill}%`);
-      bar.appendChild(fillNode);
-      wrapper.appendChild(label);
-      wrapper.appendChild(bar);
-      return wrapper;
-    })
-  );
-
-  const topVote = sortedVotes[0];
-  const topBriefText = (SNAPSHOT.topBrief && SNAPSHOT.topBrief.vol) ? SNAPSHOT.topBrief.vol : '아직 특정 브리프 없음';
-  const topTopic = (topVote && topVote.count > 0) ? topVote.label : 'AI·비즈니스·창업의 실제 적용';
-
-  const memo = document.getElementById('autoMemo');
-  memo.textContent = '';
-  memo.append(
-    '이번 달 AIMBA 7기 데이터에서 가장 강한 신호는 ',
-    textEl('strong', topTopic),
-    '입니다. 브리프 반응 기준으로는 ',
-    textEl('strong', topBriefText),
-    '가 앞서 있으며, 다음 발행은 단순 뉴스 요약보다 원우들이 자기 일에 바로 적용할 수 있는 실행 프레임으로 정리하는 편이 좋겠습니다.'
-  );
-  memo.appendChild(textEl('small', `GA4 집계 기준 · 스냅샷 ${SNAPSHOT.asOf}`));
-
-  document.getElementById('dataStatus').textContent = hasData
-    ? `GA4 집계 스냅샷(${SNAPSHOT.asOf}) 기준으로 표시 중입니다.`
-    : `아직 집계 데이터가 충분하지 않습니다. 조회·좋아요·체크·Pulse 투표가 쌓이면 다음 발간 스냅샷(${SNAPSHOT.asOf})부터 반영됩니다.`;
-}
-
-renderReport();
-</script>
+</main>
 </body>
 </html>

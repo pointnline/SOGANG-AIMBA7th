@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIMBA Future Report | SOGANG AIMBA 7th</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sogang:#8B0029;
+  --sogang-dark:#5a001a;
+  --bg:#F5F0E8;
+  --panel:#FFFDF9;
+  --text:#1a1a2e;
+  --body:#555;
+  --muted:#8a8178;
+  --line:#e4ddd0;
+  --gold:#c9a84c;
+  --blue:#1a5276;
+  --green:#2d6a4f;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family:'Noto Sans KR', sans-serif;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(201,168,76,0.16), transparent 26%),
+    linear-gradient(180deg, #f8f3eb 0%, var(--bg) 100%);
+  color:var(--text);
+  line-height:1.7;
+}
+.page { max-width:1120px; margin:0 auto; padding:34px 20px 64px; }
+.hero {
+  min-height:320px;
+  display:grid;
+  align-content:end;
+  padding:34px;
+  border-radius:22px;
+  background:
+    linear-gradient(135deg, rgba(139,0,41,0.92), rgba(90,0,26,0.86)),
+    radial-gradient(circle at 80% 20%, rgba(201,168,76,0.28), transparent 26%);
+  color:#fff;
+  box-shadow:0 22px 60px rgba(90,0,26,0.18);
+}
+.kicker {
+  font-size:0.76rem;
+  font-weight:900;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.72);
+  margin-bottom:10px;
+}
+h1 {
+  font-family:'Noto Serif KR', serif;
+  font-size:clamp(2rem, 5vw, 4rem);
+  line-height:1.08;
+  letter-spacing:0;
+}
+.hero p {
+  margin-top:14px;
+  max-width:760px;
+  color:rgba(255,255,255,0.82);
+  font-size:0.98rem;
+}
+.hero-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.hero-actions a {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:10px 16px;
+  border-radius:999px;
+  text-decoration:none;
+  font-size:0.84rem;
+  font-weight:900;
+}
+.hero-actions .primary { background:#fff; color:var(--sogang); }
+.hero-actions .secondary { background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.24); }
+.section-title {
+  margin:32px 0 14px;
+  font-size:0.82rem;
+  font-weight:900;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:var(--sogang);
+}
+.grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
+.card {
+  background:rgba(255,253,249,0.88);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 12px 34px rgba(90,0,26,0.05);
+}
+.metric .label {
+  font-size:0.72rem;
+  font-weight:900;
+  color:var(--muted);
+  letter-spacing:0.9px;
+  text-transform:uppercase;
+}
+.metric .value {
+  margin-top:6px;
+  font-size:2rem;
+  font-weight:900;
+  line-height:1.1;
+}
+.metric .hint { margin-top:6px; font-size:0.8rem; color:var(--body); }
+.wide { grid-column:span 2; }
+.list { display:grid; gap:10px; }
+.row {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border:1px solid rgba(139,0,41,0.10);
+  border-radius:12px;
+  background:rgba(255,255,255,0.62);
+}
+.row strong { font-size:0.88rem; }
+.row span { color:var(--sogang); font-weight:900; font-size:0.84rem; }
+.radar {
+  display:grid;
+  gap:12px;
+}
+.bar-label {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  font-size:0.82rem;
+  font-weight:800;
+}
+.bar {
+  height:10px;
+  border-radius:999px;
+  background:#eee6da;
+  overflow:hidden;
+}
+.bar div {
+  height:100%;
+  width:var(--fill, 0%);
+  background:linear-gradient(90deg, var(--sogang), var(--gold));
+}
+.memo {
+  font-family:'Noto Serif KR', serif;
+  font-size:1.2rem;
+  line-height:1.65;
+}
+.memo small {
+  display:block;
+  margin-top:12px;
+  color:var(--muted);
+  font-family:'Noto Sans KR', sans-serif;
+  font-size:0.78rem;
+}
+.status {
+  margin-top:14px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#fff8ec;
+  color:#6d5a39;
+  font-size:0.82rem;
+  line-height:1.55;
+}
+.footer {
+  margin-top:32px;
+  color:var(--muted);
+  font-size:0.76rem;
+  text-align:center;
+}
+@media (max-width: 820px) {
+  .hero { padding:26px 20px; border-radius:18px; }
+  .grid { grid-template-columns:1fr; }
+  .wide { grid-column:span 1; }
+  .hero-actions a { width:100%; }
+}
+</style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <div class="kicker">AIMBA Future Report</div>
+      <h1>이번 달 원우들의 관심이 만든 미래 신호</h1>
+      <p>Weekly Brief의 조회수와 좋아요·체크·Pulse 투표(GA4 집계)를 모아 미래혁신국 관점의 월간 리포트로 정리합니다. 발간 시점의 집계 스냅샷을 기준으로 합니다.</p>
+      <div class="hero-actions">
+        <a class="primary" href="../index.html#aimbaPulse">AIMBA Pulse 투표하기</a>
+        <a class="secondary" href="./vol_20260601.html#participateSection">제보·의견 남기기</a>
+      </div>
+    </section>
+
+    <div class="section-title">Monthly Signal</div>
+    <section class="grid">
+      <div class="card metric">
+        <div class="label">Total Views</div>
+        <div class="value" id="totalViews">0</div>
+        <div class="hint">브리프 누적 조회 (GA4)</div>
+      </div>
+      <div class="card metric">
+        <div class="label">Strong Signals</div>
+        <div class="value" id="totalSignals">0</div>
+        <div class="hint">좋아요 + 체크</div>
+      </div>
+      <div class="card metric">
+        <div class="label">Top Brief</div>
+        <div class="value" id="topBrief">-</div>
+        <div class="hint" id="topBriefHint">데이터 수집 중</div>
+      </div>
+      <div class="card wide">
+        <div class="section-title" style="margin-top:0;">Future Radar</div>
+        <div class="radar" id="futureRadar"></div>
+      </div>
+      <div class="card">
+        <div class="section-title" style="margin-top:0;">Next Brief Demand</div>
+        <div class="list" id="voteList"></div>
+      </div>
+    </section>
+
+    <div class="section-title">Auto Narrative</div>
+    <section class="card">
+      <div class="memo" id="autoMemo">
+        데이터를 불러오는 중입니다.
+      </div>
+      <div class="status" id="dataStatus">GA4 집계 스냅샷을 표시합니다.</div>
+    </section>
+
+    <div class="footer">SOGANG AIMBA 7th · Future Innovation Office · GA4-powered monthly snapshot</div>
+  </main>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   Future Report 데이터 = GA4 발간-스냅샷
+   ---------------------------------------------------------------
+   Supabase(실시간 DB) 대신, 발간 시점에 GA4 대시보드(보고서 > 참여도 >
+   이벤트)에서 확인한 수치를 아래 SNAPSHOT 에 그대로 박는다.
+
+   - views        : GA4 page_view (호별 페이지뷰 합)
+   - signals      : brief_like + brief_check 이벤트 수
+   - topBrief     : 반응이 가장 강한 호
+   - votes        : pulse_vote 이벤트의 option_id 별 count
+                    (id 는 홈 HomeAimbaPulse 의 PULSE_OPTIONS 와 동일)
+
+   ▶ 매월 발간 때 asOf 와 숫자만 갱신하면 끝. (코드 수정 불필요)
+   ───────────────────────────────────────────────────────────── */
+const SNAPSHOT = {
+  asOf: '2026-06-01',          // 스냅샷 기준일 (발간 때 갱신)
+  totalViews: 0,                // GA4 page_view 합
+  topBrief: { vol: '', hint: '집계 누적 중' },  // 예: { vol: 'Vol.009', hint: '128 views · 12 signals' }
+  votes: {                      // pulse_vote option_id 별 count
+    'ai-agent-workflow': 0,
+    'startup-funding': 0,
+    'mba-career-shift': 0,
+    'real-estate-rwa': 0
+  },
+  likes: 0,                     // brief_like 이벤트 수
+  checks: 0                     // brief_check 이벤트 수
+};
+
+const voteOptions = {
+  'ai-agent-workflow': 'AI Agent가 실제 업무를 바꾸는 방식',
+  'startup-funding': '스타트업 투자·정부지원사업 기회',
+  'mba-career-shift': 'AI 시대 MBA 커리어 전환 전략',
+  'real-estate-rwa': '부동산·RWA·금융 인프라 변화'
+};
+
+const radarLabels = [
+  { id: 'ai-agent-workflow', label: 'AI Workflow' },
+  { id: 'startup-funding', label: 'Startup Capital' },
+  { id: 'mba-career-shift', label: 'MBA Career' },
+  { id: 'real-estate-rwa', label: 'RWA / Finance' }
+];
+
+function fmt(value) {
+  return new Intl.NumberFormat('ko-KR').format(value || 0);
+}
+
+function replaceChildren(node, children) {
+  node.textContent = '';
+  children.forEach(child => node.appendChild(child));
+}
+
+function textEl(tag, text, className) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  el.textContent = text;
+  return el;
+}
+
+function renderReport() {
+  const totalSignals = (Number(SNAPSHOT.likes) || 0) + (Number(SNAPSHOT.checks) || 0);
+  const hasData = (Number(SNAPSHOT.totalViews) || 0) > 0 || totalSignals > 0
+    || Object.values(SNAPSHOT.votes).some(v => Number(v) > 0);
+
+  document.getElementById('totalViews').textContent = fmt(SNAPSHOT.totalViews);
+  document.getElementById('totalSignals').textContent = fmt(totalSignals);
+
+  if (SNAPSHOT.topBrief && SNAPSHOT.topBrief.vol) {
+    document.getElementById('topBrief').textContent = SNAPSHOT.topBrief.vol;
+    document.getElementById('topBriefHint').textContent = SNAPSHOT.topBrief.hint || '';
+  }
+
+  const voteCounts = SNAPSHOT.votes || {};
+  const maxVote = Math.max(1, ...Object.values(voteCounts).map(v => Number(v) || 0));
+  const sortedVotes = Object.entries(voteOptions)
+    .map(([id, label]) => ({ id, label, count: Number(voteCounts[id]) || 0 }))
+    .sort((a, b) => b.count - a.count);
+
+  replaceChildren(
+    document.getElementById('voteList'),
+    sortedVotes.map(item => {
+      const row = document.createElement('div');
+      row.className = 'row';
+      row.appendChild(textEl('strong', item.label));
+      row.appendChild(textEl('span', `${fmt(item.count)}표`));
+      return row;
+    })
+  );
+
+  replaceChildren(
+    document.getElementById('futureRadar'),
+    radarLabels.map(item => {
+      const count = Number(voteCounts[item.id]) || 0;
+      const fill = Math.round((count / maxVote) * 100);
+      const wrapper = document.createElement('div');
+      const label = document.createElement('div');
+      label.className = 'bar-label';
+      label.appendChild(textEl('span', item.label));
+      label.appendChild(textEl('span', fmt(count)));
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const fillNode = document.createElement('div');
+      fillNode.style.setProperty('--fill', `${fill}%`);
+      bar.appendChild(fillNode);
+      wrapper.appendChild(label);
+      wrapper.appendChild(bar);
+      return wrapper;
+    })
+  );
+
+  const topVote = sortedVotes[0];
+  const topBriefText = (SNAPSHOT.topBrief && SNAPSHOT.topBrief.vol) ? SNAPSHOT.topBrief.vol : '아직 특정 브리프 없음';
+  const topTopic = (topVote && topVote.count > 0) ? topVote.label : 'AI·비즈니스·창업의 실제 적용';
+
+  const memo = document.getElementById('autoMemo');
+  memo.textContent = '';
+  memo.append(
+    '이번 달 AIMBA 7기 데이터에서 가장 강한 신호는 ',
+    textEl('strong', topTopic),
+    '입니다. 브리프 반응 기준으로는 ',
+    textEl('strong', topBriefText),
+    '가 앞서 있으며, 다음 발행은 단순 뉴스 요약보다 원우들이 자기 일에 바로 적용할 수 있는 실행 프레임으로 정리하는 편이 좋겠습니다.'
+  );
+  memo.appendChild(textEl('small', `GA4 집계 기준 · 스냅샷 ${SNAPSHOT.asOf}`));
+
+  document.getElementById('dataStatus').textContent = hasData
+    ? `GA4 집계 스냅샷(${SNAPSHOT.asOf}) 기준으로 표시 중입니다.`
+    : `아직 집계 데이터가 충분하지 않습니다. 조회·좋아요·체크·Pulse 투표가 쌓이면 다음 발간 스냅샷(${SNAPSHOT.asOf})부터 반영됩니다.`;
+}
+
+renderReport();
+</script>
+</body>
+</html>
