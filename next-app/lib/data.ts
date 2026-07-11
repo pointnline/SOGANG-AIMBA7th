@@ -18,7 +18,7 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260706.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260713.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
