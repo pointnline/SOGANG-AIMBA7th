@@ -18,7 +18,7 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260713.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260712.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
@@ -38,9 +38,9 @@ export const PULSE_TOPICS: PulseTopic[] = [
 ];
 
 export const PULSE_METRICS = [
-  { key: "PUBLISHED", value: "15", sub: "누적 발간 호수" },
-  { key: "CURRENT", value: "Vol.15", sub: "2026.07.06 최신호" },
-  { key: "TOP SIGNAL", value: "AI", sub: "클로드 소넷5 · 내재화 6.7% · 벤처 의무보유 5년 · STO" },
+  { key: "PUBLISHED", value: "16", sub: "누적 발간 호수" },
+  { key: "CURRENT", value: "Vol.16", sub: "2026.07.12 최신호" },
+  { key: "TOP SIGNAL", value: "AI", sub: "GPT-5.6 사전검증 · 그록 4.5 · SK하이닉스 43조 · STO" },
 ] as const;
 
 export interface BriefIssue {
@@ -60,6 +60,21 @@ export interface BriefIssue {
 
 export const BRIEF_ISSUES: BriefIssue[] = [
   {
+    vol: 16,
+    date: "2026.07.12",
+    shortDate: "07.12",
+    section: "AI-LLM",
+    sectionLabel: "AI · 사전검증",
+    title: "'검증의 시대' 개막 — GPT-5.6 정부 사전검증 1호 출시, SK하이닉스는 나스닥 검증대에서 43조를 들었다",
+    headline:
+      "오픈AI가 행정명령에 따른 정부 사전 취약점 검증을 거친 첫 모델 'GPT-5.6'을 출시하고 xAI 그록 4.5가 가격 경쟁에 가세한 가운데, SK하이닉스는 나스닥 ADR로 43조원을 조달했지만 STO는 법 시행을 앞두고 1세대 조각투자가 먼저 문을 닫은 주.",
+    path: "/issues/vol_20260712.html",
+    read: "14분",
+    views: "최신",
+    live: true,
+    tags: ["GPT-5.6", "사전검증 출시", "Grok 4.5", "SK하이닉스 ADR 43조", "STO 조각투자", "AI채용 +10%", "바이브코딩 검증게이트"],
+  },
+  {
     vol: 15,
     date: "2026.07.06",
     shortDate: "07.06",
@@ -71,7 +86,7 @@ export const BRIEF_ISSUES: BriefIssue[] = [
     path: "/issues/vol_20260706.html",
     read: "14분",
     views: "최신",
-    live: true,
+    live: false,
     tags: ["Claude Sonnet5", "AI에이전트 내재화", "STO 하위법규", "벤처투자 의무보유 5년", "토지거래허가제", "바이브코딩", "서강 경영대"],
   },
   {
@@ -100,8 +115,8 @@ export const BRIEF_ISSUES: BriefIssue[] = [
       "엔터프라이즈 AI 에이전트가 72% 프로덕션에 진입하고, 올트먼 방한은 연기됐지만 한·미 AI 동맹은 견고하며, 한국 STO 무게추가 부동산에서 IP·콘텐츠로 옮겨간 주.",
     path: "/issues/vol_20260622.html",
     read: "14분",
-    views: "최신",
-    live: true,
+    views: "archive",
+    live: false,
     tags: ["AI에이전트", "엔터프라이즈", "STO", "올트먼", "RWA", "MBA", "바이브코딩"],
   },
   {
@@ -2079,6 +2094,221 @@ const VOL7: IssueContent = {
   ],
 };
 
+const VOL16: IssueContent = {
+  vol: 16,
+  dateLabel: "2026년 7월 12일",
+  isoDate: "20260712",
+  title:
+    "'검증의 시대' 개막 — GPT-5.6 정부 사전검증 1호 출시, SK하이닉스는 나스닥 검증대에서 43조를 들었다",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주 가장 큰 사건은 오픈AI가 7월 9일 공개한 'GPT-5.6' 3종(솔·테라·루나)입니다. 성능보다 눈에 띄는 건 출시 방식입니다. 미국 행정명령(6월 2일)에 따라 출시 전 정부 당국과 취약점 검증·협의를 거친 첫 프론티어 모델이 됐고, 오픈AI 스스로 '이런 사전 공유가 표준이 돼선 안 된다'는 우려를 남겼습니다. 모델 경쟁에 '사전검증'이라는 관문이 하나 더 생긴, 정책 선례로 기록될 만한 한 주입니다. 하루 앞선 8일에는 xAI가 '그록 4.5'를 입력 100만 토큰당 2달러라는 공격적 가격에 내놓아, 경쟁의 축이 성능에서 가격으로, 다시 신뢰로 넓어지고 있습니다.",
+    "자본과 제도의 시차도 뚜렷했습니다. SK하이닉스는 7월 10일 나스닥 ADR(미국 주식예탁증서) 상장으로 약 43조원을 조달해 HBM 투자 실탄을 채웠고, 국내에서는 특허 AI 기업 워트인텔리전스가 165억원 시리즈B로 특허·IP 시장 역대 최대 라운드를 썼습니다. 반면 토큰증권(STO)은 법이 통과돼 2027년 2월 시행이 확정됐는데도 펀블·카사 등 1세대 조각투자 서비스가 먼저 문을 닫았고, 서울 토지거래허가구역 아파트의 허가 신청 가격은 규제 이후 최고 상승률(2.67%)을 찍었습니다. 제도는 만들어지고 있지만 시장은 그보다 빠르거나 느리게 움직인다는 것이 이번 주의 두 번째 교훈입니다.",
+  ],
+  conclusion:
+    "AIMBA 원우분들, 이번 호의 키워드는 '검증'입니다. 프론티어 모델은 출시 전 정부 검증을 거쳤고, AI가 짠 코드는 커밋 전에 에이전트 4개의 검증을 받기 시작했으며, SK하이닉스는 나스닥이라는 시장의 검증대에 올라 43조원을 받아냈습니다. 반면 검증(라이선스·하위법규)을 기다리다 먼저 쓰러진 1세대 조각투자도 있었습니다. 속도가 아니라 '무엇으로 검증받을 것인가'가 경쟁력이 되는 국면 — 각자의 업무와 커리어에는 어떤 검증 게이트를 설계할지 함께 고민해봅시다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "오픈AI가 7월 9일 GPT-5.6 3종(솔·테라·루나)을 공개했습니다. 미국 행정명령에 따라 출시 전 정부 당국과 취약점 검증·협의를 거친 첫 프론티어 모델이라는 점에서, 모델 경쟁에 '사전검증'이라는 새 관문이 생겼습니다. 하루 앞선 8일에는 xAI가 그록 4.5를 입력 100만 토큰당 2달러라는 공격적인 가격에 내놓으며, 경쟁의 축이 성능→가격→신뢰로 넓어지고 있습니다.",
+      articles: [
+        {
+          title: "오픈AI GPT-5.6 공개 — '정부 사전검증을 거친 첫 모델'이 되다",
+          desc: "한국일보에 따르면 오픈AI가 7월 9일 GPT-5.6 3종 '솔(Sol)·테라(Terra)·루나(Luna)'를 정식 공개했습니다. 트럼프 행정부의 행정명령(6월 2일)에 따라 출시 전 정부 당국과 취약점 검증·협의를 거친 첫 모델로, 중간급 모델 테라는 GPT-5.5급 성능을 절반 비용에 제공합니다. 오픈AI는 '출시 전 사전 공유 절차가 표준이 돼선 안 된다'는 우려도 함께 밝혔습니다.",
+          source: "한국일보",
+          href: "https://www.hankookilbo.com/news/article/A2026070815460004662",
+        },
+        {
+          title: "xAI '그록 4.5' 출시 — 머스크 \"오퍼스급인데 더 빠르고 싸다\"",
+          desc: "테크크런치에 따르면 xAI가 7월 8일 '그록 4.5'를 출시했습니다. 일론 머스크는 '오퍼스급 성능이지만 더 빠르고 토큰 효율이 높으며 비용이 낮은 모델'이라고 소개했으며, 가격은 입력 100만 토큰당 2달러·출력 6달러로 책정됐습니다. 프론티어 모델 경쟁이 성능 못지않게 '가격 대비 성능' 싸움으로 옮겨가고 있음을 보여줍니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/07/08/spacexai-releases-grok-4-5-which-elon-describes-as-an-opus-class-model/",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "자본시장과 1인 기업이라는 양 극단이 같은 주에 움직였습니다. SK하이닉스는 나스닥 ADR 상장으로 43조원 실탄을 확보했고, 일본 최대 메신저 기업을 이끌던 53세 경영자는 회사를 떠나 'AI 1인 기업'을 차렸습니다. 조직의 크기와 무관하게 AI가 비즈니스의 지렛대가 되는 흐름입니다.",
+      articles: [
+        {
+          title: "SK하이닉스, 나스닥 ADR 데뷔 — 공모 43조원, HBM에 쏜다",
+          desc: "전자신문에 따르면 SK하이닉스가 7월 10일 나스닥에서 ADR(미국 주식예탁증서 — 한국 주식을 미국 시장에서 거래할 수 있게 만든 증서) 거래를 시작했습니다. 공모가는 149달러, 조달 규모는 약 43조원으로, 회사는 이를 HBM(고대역폭 메모리) 투자 확대에 투입합니다. 최태원 회장과 곽노정 사장이 타임스스퀘어 오프닝벨 행사에 참석했으며, 신주는 7월 29일경 한국거래소에 추가 상장됩니다.",
+          source: "전자신문",
+          href: "https://www.etnews.com/20260710000300",
+        },
+        {
+          title: "라인야후 이끌던 53세 회장, 사표 내고 'AI 1인 기업' 창업",
+          desc: "한국경제에 따르면 일본 라인야후의 가와베 겐타로 전 회장(53)이 회장직을 내려놓고 1인 AI 기업 'KKJJ'를 세웠습니다. 그는 생성 AI와의 만남을 '학생 시절 처음 인터넷을 접했을 때에 버금가는 운명적 만남'이라 표현했고, 캠핑카를 모바일 오피스 삼아 전국을 돌며 일할 계획입니다. 대기업 최고경영자가 AI 1인 기업으로 이동한 상징적 사례입니다.",
+          source: "한국경제",
+          href: "https://www.hankyung.com/article/2026070710101",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA",
+      code: "MBA",
+      narrative:
+        "'AI가 일자리를 줄인다'는 통념과 반대되는 데이터가 나왔습니다. 미국 기업 2만2,000곳을 분석했더니 AI 지출 상위 기업이 오히려 사람을 더 뽑았고, 신입 채용은 더 크게 늘렸습니다. OECD도 AI가 노동생산성을 끌어올린다고 봤습니다. 관건은 '역량 중심(Skills-First)'으로 채용·육성의 기준을 다시 짜는 일입니다.",
+      articles: [
+        {
+          title: "AI에 돈 쓰는 기업이 사람을 더 뽑았다 — 인력 +10%, 신입 +12%",
+          desc: "전국인력신문에 따르면 미국 핀테크 램프(Ramp)와 고용데이터 기업 레벨리오랩스가 미국 기업 약 2만2,000곳(2021.1~2026.2)을 함께 분석한 결과, AI 지출 상위 기업은 도입 후 2년간 인력을 평균 10% 늘렸고 신입(엔트리레벨) 채용은 12% 늘렸습니다. 'AI가 일자리를 없앤다'는 통념과 달리, AI에 투자하는 회사일수록 AI에 익숙한 신입을 더 찾는다는 구조 변화를 보여줍니다.",
+          source: "전국인력신문",
+          href: "https://www.kjob.news/news/503571",
+        },
+        {
+          title: "OECD \"AI, 10년간 노동생산성 연 0.4~0.9%p 올린다\" — 해법은 스킬 퍼스트",
+          desc: "헤럴드경제에 따르면 OECD 선임 이코노미스트는 AI가 향후 10년간 연간 노동생산성 증가율을 0.4~0.9%포인트 끌어올릴 수 있다는 연구를 소개했습니다. 싱가포르 평생학습연구원은 학벌보다 역량을 보는 '스킬 퍼스트(Skills-First)' 채용·육성을, 국내 전문가는 신입이 실무에서 전문성을 쌓아 올라가는 '숙련 사다리' 복원을 해법으로 제시했습니다.",
+          source: "헤럴드경제",
+          href: "https://biz.heraldcorp.com/article/10800970",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "한 주 동안 스타트업 24곳이 투자를 유치했고, 특허 AI 기업 워트인텔리전스는 국내 특허·IP 시장 단일 라운드 역대 최대인 165억원을 받았습니다. 여기에 금융감독원과 네이버파이낸셜이 증권사의 모험자본(성공이 불확실한 신생 기업에 들어가는 투자금)을 스타트업과 연결하는 플랫폼을 출범시키며, 자금 공급의 파이프라인 자체가 넓어지고 있습니다.",
+      articles: [
+        {
+          title: "주간 벤처투자 24곳 — 워트인텔리전스, 165억 시리즈B '역대 최대'",
+          desc: "스타트업레시피 집계(7월 6~10일)에 따르면 국내 스타트업 24곳이 투자를 유치했고, 금액을 공개한 9곳의 합계는 571억원이었습니다. 최대 딜은 특허 AI 기업 워트인텔리전스의 165억원 시리즈B로, 알토스벤처스가 이끌고 알바트로스인베스트먼트가 참여해 국내 특허·IP 솔루션 시장 단일 라운드 역대 최대 기록을 세웠습니다. 시드 단계가 37.5%로 가장 많아 초기 투자 쏠림도 이어졌습니다.",
+          source: "스타트업레시피",
+          href: "https://startuprecipe.co.kr/archives/5825400",
+        },
+        {
+          title: "금감원×네이버파이낸셜, '모험자본 투자 플랫폼' 출범",
+          desc: "머니투데이에 따르면 금융감독원과 네이버파이낸셜이 7월 7일 모험자본 공급 의무가 있는 종합투자계좌 증권사(종투사)와 자금이 필요한 중소·스타트업을 연결하는 투자 플랫폼을 출범시켰습니다. 증권사는 투자 전 기업 정보를 검색하고, 벤처캐피털은 AI 맞춤 기업 알림을 받으며, 등록 기업은 네이버 포털에 노출됩니다. 3개월 시범 운영을 거쳐 다듬어질 예정입니다.",
+          source: "머니투데이",
+          href: "https://www.mt.co.kr/amp/stock/2026/07/07/2026070713260560848",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "이번 주 바이브 코딩의 화두는 '속도'가 아니라 '안전망'입니다. 국내에서는 'AI가 짠 코드의 90% 완성이 곧 10% 결함'이라는 경계론이 나왔고, 해외에서는 코드를 합치기 전에 AI 에이전트 4개가 미리 검증하는 스타트업이 추가 투자를 받았습니다. '잘 짜는 것'에서 '잘 검증하는 것'으로 경쟁의 축이 옮겨가고 있습니다.",
+      articles: [
+        {
+          title: "[ET단상] 바이브 코딩의 환상 — \"90% 충족은 곧 10% 결함\"",
+          desc: "전자신문 기고에서 박승래 인사이트온 대표는 AI 코딩의 '요구사항 90% 충족'을 뒤집으면 '10% 결함'이라며, 검증 없는 바이브 코딩이 스파게티 코드(뒤엉켜 고치기 어려운 코드)와 기술 부채를 쌓는다고 경고했습니다. 💡 핵심: 해법은 AI를 안 쓰는 게 아니라, 하네스(테스트·검증 장치)와 루프 엔지니어링(짜고-검증하고-고치는 반복 구조), 그리고 AI 거버넌스를 갖추는 것이다.",
+          source: "전자신문",
+          href: "https://www.etnews.com/20260709000064",
+        },
+        {
+          title: "커밋 전에 AI 4개가 먼저 검증 — Baz, 시드 900만 달러 추가 유치",
+          desc: "실리콘앵글에 따르면 에이전트 코딩 스타트업 바즈(Baz)가 900만 달러 시드 연장 투자를 받아 누적 1,700만 달러를 모았습니다(배터리벤처스·볼드스타트 공동 주도). 💡 핵심: 신제품 'Baz Planner'는 스펙 검토·보안·신뢰성(SRE)·수정 담당 에이전트 4개가 코드를 합치기 전에 미리 검증하며, 초기 고객들은 머지 후 되돌리기(리버트)·핫픽스 빈도 기준으로 후속 재작업이 65% 이상 줄었다고 밝혔습니다.",
+          source: "SiliconANGLE",
+          href: "https://siliconangle.com/2026/06/29/exclusive-agentic-coding-startup-baz-brings-code-reviews-planning-stage-extends-seed-funding-17m/",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "'법은 만들어졌는데 시장은 아직'이라는 시차가 국내 토큰증권의 현주소입니다. 법 시행(2027년 2월)을 앞두고 1세대 부동산 조각투자 서비스들이 먼저 문을 닫은 반면, 미국에서는 토큰화 플랫폼 1위 시큐리타이즈가 뉴욕증권거래소에 입성하며 제도권 안착을 증명했습니다.",
+      articles: [
+        {
+          title: "STO 법은 통과됐는데…펀블·카사, 1세대 조각투자 먼저 문 닫았다",
+          desc: "전자신문에 따르면 토큰증권(STO — 부동산·미술품 같은 실물자산을 잘게 쪼개 증권처럼 사고팔 수 있게 한 제도) 법제가 1월 국회를 통과해 2027년 2월 4일 시행됩니다. 그러나 시행을 기다리지 못하고 펀블은 상반기 서비스를 종료했고, 국내 1호 부동산 조각투자 플랫폼 카사는 신규 공모를 멈추고 자산 청산에 들어갔습니다. 2026년은 하위법규·인프라를 준비하는 해로, '진짜 시장은 이제 시작'이라는 진단입니다.",
+          source: "전자신문",
+          href: "https://www.etnews.com/20260707000180",
+        },
+        {
+          title: "토큰화 1위 시큐리타이즈, NYSE 상장 — 토큰화 자산 41.4억 달러",
+          desc: "이투데이에 따르면 실물자산 토큰화 플랫폼 시큐리타이즈가 7월 2일(현지시간) 뉴욕증권거래소에 상장했습니다. 디파이라마 집계 기준 토큰화 자산 41억4,500만 달러로 전체 시장의 약 16%를 차지해, 서클·테더·온도파이낸스를 제치고 플랫폼 1위입니다. 국내 조각투자 폐업과 대비되는, RWA(실물자산 토큰화) 산업의 제도권 진입 사례입니다.",
+          source: "이투데이",
+          href: "https://www.etoday.co.kr/news/view/2599993",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "부동산은 '제도 인프라 강화'와 '시장 과열 신호'가 나란히 나왔습니다. 한국부동산원은 리츠지원센터와 PF 조정 조직을 갖추며 공급 지원 체계를 정비했고, 서울 토지거래허가구역의 아파트 신청 가격은 규제 이후 최고 상승률을 찍었습니다. 규제 안에서도 실수요의 힘이 가격을 밀어올리는 국면입니다.",
+      articles: [
+        {
+          title: "부동산원, 리츠지원센터 11월 출범 — 주택공급·PF조정·AX 조직 신설",
+          desc: "뉴스핌에 따르면 한국부동산원이 7월 1일 리츠(REITs — 여러 투자자의 돈을 모아 부동산에 투자하고 수익을 나누는 회사) 지원센터 준비단을 꾸렸고, 센터는 11월 출범 예정입니다. 정비사업 지원·공사비 검증·청약을 묶은 주택공급지원본부, 부동산 PF 조정·분쟁을 맡는 개발사업지원본부, 전사 AI 전환을 이끄는 AX추진본부도 신설해 공급 지원과 AI 전환을 동시에 겨냥했습니다.",
+          source: "뉴스핌",
+          href: "https://www.newspim.com/news/view/20260707001178",
+        },
+        {
+          title: "서울 토허구역 6월 신청가 2.67%↑ — 10·15 규제 이후 최고 상승",
+          desc: "SBS에 따르면 서울시 집계 결과 6월 토지거래허가구역 아파트의 허가 신청 가격이 전월 대비 2.67% 올라, 작년 10·15 대책으로 서울 전역이 허가구역으로 묶인 이래 가장 큰 상승폭을 기록했습니다. 강남 3구·용산이 3.1%로 상승을 이끌었고, 신청 건수는 5,382건으로 전달(6,043건)보다 10.9% 줄었습니다. 거래는 줄었는데 가격은 오르는, 규제 속 실수요 장세의 전형입니다.",
+          source: "SBS",
+          href: "https://news.sbs.co.kr/news/endPage.do?news_id=N1008651128",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주 공고는 마감이 7월 중순~하순에 몰려 있습니다. 기술거래 글로벌 역량강화(~7/15), 해양수산 창업 콘테스트(~7/17), 스마트도시 실증·구매 창업기업 모집(~7/22), 서남권 AI 융합 디자인(~7/23) 순으로 마감되니, 해당 트랙 원우분들은 이번 주 안에 접수 여부를 정하시길 권합니다.",
+      items: [
+        {
+          title: "기술거래 촉진 글로벌 역량강화 지원 ⏰ 마감 7/15 (기업마당)",
+          href: "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000124264",
+        },
+        {
+          title: "해양수산 창업 콘테스트 참가팀 모집 ⏰ 마감 7/17 (기업마당)",
+          href: "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000123062",
+        },
+        {
+          title: "스마트도시 실증·구매 지원 창업기업 모집 — 마감 7/22 (기업마당)",
+          href: "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000123819",
+        },
+        {
+          title: "[서남권] AI 융합 디자인 지원 기업 모집 — 마감 7/23 (기업마당)",
+          href: "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000124262",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 포인트는 SW중심대학사업단과 평생교육원(FLEC) 두 보드의 신규 소식입니다. SW중심대학은 AI와 미디어아트를 잇는 포럼을 열고, FLEC은 AI 웹툰 제작 강좌와 멀티미디어·AI 전공 설명회(7/25)를 준비했습니다. AI를 실무 밖 창작·교양으로 넓히고 싶은 원우분들께 권합니다.",
+      items: [
+        {
+          title: "[SW중심대학] AI×Media Art 포럼 개최 안내",
+          href: "https://scc.sogang.ac.kr/front/cmsboardview.do?bbsConfigFK=7250&siteId=sweducenter&pkid=937961",
+        },
+        {
+          title: "[평생교육원 FLEC] AI 웹툰 제작 강좌 개설",
+          href: "https://flec.sogang.ac.kr/fro_end/html/dep_05/5100.php?smode=view&bbs_idx=89601",
+        },
+        {
+          title: "[평생교육원 FLEC] 멀티미디어·AI 전공 1차 설명회 (7/25 토)",
+          href: "https://flec.sogang.ac.kr/fro_end/html/dep_05/5100.php?smode=view&bbs_idx=89594",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "7월 20일", day: "월", title: "Deeptech Innovation Gathering East Asia 2026", where: "서울 강남 d.camp", tag: "딥테크 피칭데이", link: "https://www.eventbrite.com/e/deeptech-innovation-gathering-east-asia-2026-tickets-1991347968379" },
+    { date: "7월 23일", day: "목", title: "비개발자를 위한 AX Skillathon — Codex 업무 자동화 핸즈온", where: "서울 드림플러스 강남", tag: "핸즈온 워크숍", link: "https://luma.com/1qi41s1b" },
+    { date: "7월 30일", day: "목", title: "코파톤 Cofathon: AI Native Battlegrounds (크래프톤 × CJ올리브영)", where: "서울 펍지 성수", tag: "AI 해커톤", link: "https://cofathon.getcofa.com/" },
+  ],
+};
+
 const VOL15: IssueContent = {
   vol: 15,
   dateLabel: "2026년 7월 6일",
@@ -3192,7 +3422,7 @@ const VOL12: IssueContent = {
 };
 
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL15, VOL14, VOL13, VOL12];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL16, VOL15, VOL14, VOL13];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));
