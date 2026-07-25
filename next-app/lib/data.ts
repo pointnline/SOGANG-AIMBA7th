@@ -18,7 +18,7 @@ export interface FilterItem {
   href: string;
 }
 
-export const CURRENT_ISSUE_PATH = "/issues/vol_20260712.html";
+export const CURRENT_ISSUE_PATH = "/issues/vol_20260727.html";
 export const PARTICIPATE_PATH = `${CURRENT_ISSUE_PATH}#participateSection`;
 export const FUTURE_REPORT_PATH = "/issues/future-report.html";
 
@@ -38,9 +38,9 @@ export const PULSE_TOPICS: PulseTopic[] = [
 ];
 
 export const PULSE_METRICS = [
-  { key: "PUBLISHED", value: "16", sub: "누적 발간 호수" },
-  { key: "CURRENT", value: "Vol.16", sub: "2026.07.12 최신호" },
-  { key: "TOP SIGNAL", value: "AI", sub: "GPT-5.6 사전검증 · 그록 4.5 · SK하이닉스 43조 · STO" },
+  { key: "PUBLISHED", value: "18", sub: "누적 발간 호수" },
+  { key: "CURRENT", value: "Vol.18", sub: "2026.07.27 최신호" },
+  { key: "TOP SIGNAL", value: "AI", sub: "Ode AI구현 $15억 · Gemini 3종 · Etched $103억 · RWA $335억" },
 ] as const;
 
 export interface BriefIssue {
@@ -60,6 +60,36 @@ export interface BriefIssue {
 
 export const BRIEF_ISSUES: BriefIssue[] = [
   {
+    vol: 18,
+    date: "2026.07.27",
+    shortDate: "07.27",
+    section: "AI-LLM",
+    sectionLabel: "AI · 구현의시대",
+    title: "'구현의 시대' 본격 개막 — Anthropic·블랙스톤이 $15억 구현 회사를 세우고, 구글은 하루에 모델 3종을 쏟아냈다",
+    headline:
+      "Anthropic·블랙스톤이 $15억 AI 구현 합작법인 Ode를 출범시키고, 구글이 Gemini 3종을 동시에 쏟아내며, Etched가 추론칩 $103억 가치를 인정받은 가운데, RWA 토큰화 자산 $335억 돌파와 Securitize NYSE 상장이 겹친 주.",
+    path: "/issues/vol_20260727.html",
+    read: "14분",
+    views: "최신",
+    live: true,
+    tags: ["Ode AI구현", "Gemini3.6Flash", "Etched추론칩", "RWA $335억", "Securitize NYSE", "홀리데이로보틱스", "AI코딩시장재편"],
+  },
+  {
+    vol: 17,
+    date: "2026.07.20",
+    shortDate: "07.20",
+    section: "AI-LLM",
+    sectionLabel: "AI · 에이전틱경제",
+    title: "'에이전틱 경제'의 개막 — 정부는 '1인 1 AI에이전트'를 예고했고, 월가는 토큰화 증권 실거래를 가동했다",
+    headline:
+      "하버드비즈니스리뷰가 에이전틱 AI의 '창업 대압축'을 진단하고 한국 정부가 '1인 1 AI에이전트' 로드맵을 예고한 가운데, DTCC가 토큰화 증권 첫 실거래를 가동하고 Kimi K3·Claude Code 안전장치가 함께 등장한 주.",
+    path: "/issues/vol_20260720.html",
+    read: "14분",
+    views: "최신",
+    live: false,
+    tags: ["에이전틱AI", "1인1AI에이전트", "DTCC토큰화증권", "Kimi K3", "SBI온도파이낸스", "스테이블코인법", "Claude Code안전장치"],
+  },
+  {
     vol: 16,
     date: "2026.07.12",
     shortDate: "07.12",
@@ -71,7 +101,7 @@ export const BRIEF_ISSUES: BriefIssue[] = [
     path: "/issues/vol_20260712.html",
     read: "14분",
     views: "최신",
-    live: true,
+    live: false,
     tags: ["GPT-5.6", "사전검증 출시", "Grok 4.5", "SK하이닉스 ADR 43조", "STO 조각투자", "AI채용 +10%", "바이브코딩 검증게이트"],
   },
   {
@@ -100,7 +130,7 @@ export const BRIEF_ISSUES: BriefIssue[] = [
       "구글 핵심 연구진의 앤트로픽 이탈과 6월 후반 모델 러시로 AI 공급은 정점에 올랐지만, 기업 IT 에이전트 벤치마크 47%·국내 ROI 입증 5%가 '도입과 성과의 괴리'를 드러내고, 제도 시행을 앞둔 한국에서 1세대 부동산 조각투자가 먼저 무너진 주.",
     path: "/issues/vol_20260629.html",
     read: "14분",
-    views: "최신",
+    views: "archive",
     live: false,
     tags: ["AI인재전쟁", "ITBench", "ROI괴리", "STO", "RWA", "MBA", "바이브코딩"],
   },
@@ -2094,6 +2124,225 @@ const VOL7: IssueContent = {
   ],
 };
 
+const VOL17: IssueContent = {
+  vol: 17,
+  dateLabel: "2026년 7월 20일",
+  isoDate: "20260720",
+  title:
+    "'에이전틱 경제'의 개막 — 정부는 '1인 1 AI에이전트'를 예고했고, 월가는 토큰화 증권 실거래를 가동했다",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주 가장 뚜렷한 흐름은 AI가 '도구'에서 '스스로 일하는 경제주체'로 넘어가는 조짐입니다. 하버드비즈니스리뷰는 여러 에이전트가 스스로 계획·실행·수정하는 에이전틱 AI가 창업의 비용·시간·인력을 동시에 압축하는 '두 번째 창업 대압축'을 일으키고 있다고 진단했고, 한국 정부는 7월 16일 업무보고에서 전 국민 무료 '모두의 AI'를 연내 출시하고 2027년에는 예약·결제까지 자율로 처리하는 '1인 1 AI에이전트'로 고도화하겠다고 밝혔습니다. 같은 주 중국 문샷 AI는 2.8조 파라미터 오픈웨이트 모델 Kimi K3를 공개해 에이전트 작업 벤치마크에서 오픈모델 최고 성능을 냈고, 앤스로픽은 몬조 창업자 톰 블롬필드를 컴퓨트팀에 영입하며 AI 경쟁의 병목이 '누가 칩·전력을 다룰 것인가'로 옮겨가고 있음을 보여줬습니다.",
+    "실물 자산과 제도도 같은 방향으로 움직였습니다. 미국 DTCC가 JP모건·골드만삭스·블랙록 등 20여 개 기관과 함께 토큰화 증권의 첫 실거래를 가동했고, 일본 SBI는 온도파이낸스와 손잡고 엔화 스테이블코인 결제를 붙인 주식 토큰화에 나서 2027년 2월 STO 시행을 앞둔 한국의 속도감을 다시 묻게 했습니다. 국내 정부는 하반기 경제성장전략에서 디지털자산기본법(스테이블코인법) 연내 입법과 함께 2030년까지 청년 AI 전문인력 20만명 육성을 못박았지만, 해외 채용담당자 3명 중 1명은 이미 신입 자리 일부를 AI로 대체했다고 답해 'AI를 다루는 역량'이 곧 채용의 최저선이 되고 있습니다. 코딩 도구도 예외는 아니어서 앤스로픽은 Claude Code에 웹서치·서브에이전트 호출 상한 같은 '폭주 방지' 안전장치를 추가했고, 커서는 메인 대화를 안 끊고 곁가지 작업을 처리하는 '사이드 챗'을 내놨습니다 — 자율 실행이 늘어날수록 이를 다스리는 장치도 함께 진화하고 있습니다.",
+  ],
+  conclusion:
+    "AIMBA 원우분들, 이번 호를 관통하는 한 줄은 'AI가 스스로 일하는 경제주체가 되어간다'입니다. 정부는 예약·결제까지 대신 처리할 '1인 1 AI에이전트'를 예고했고, 월가는 토큰화 증권을 실거래로 옮겼으며, 하버드비즈니스리뷰는 그 힘으로 소규모 팀이 대기업을 위협할 수 있다고 진단했습니다. 다만 그만큼 안전장치도 같이 붙고 있습니다 — Claude Code의 호출 상한, 정부의 스테이블코인 투자자 보호 조항처럼요. 이번 주는 각자 업무에 '에이전트에게 무엇을 맡기고, 어떤 제어장치를 둘 것인가'를 함께 그려볼 좋은 시점입니다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "이번 주 글로벌 AI의 두 축은 '중국 오픈모델의 프런티어 진입'과 '컴퓨트 확보를 위한 인재 전쟁'이었습니다. 중국 문샷 AI가 7월 17일 사상 최대 규모의 오픈웨이트 모델 Kimi K3(2.8조 파라미터)를 공개하며 미국 최상위 모델과의 격차를 빠르게 좁혔습니다. 동시에 앤스로픽은 몬조 창업자를 컴퓨트팀에 전격 영입하며, AI 경쟁의 병목이 이제 '칩·전력을 다룰 사람'으로 옮겨가고 있음을 보여줬습니다.",
+      articles: [
+        {
+          title: "문샷 AI, 사상 최대 오픈웨이트 'Kimi K3' 공개 — 2.8조 파라미터로 프런티어 문턱까지",
+          desc: "문샷 AI 공식 블로그에 따르면, 중국 문샷 AI는 7월 17일 세계 최초의 '3조 파라미터급' 오픈웨이트 모델 Kimi K3를 공개했습니다. 총 2.8조 파라미터에 100만 토큰 컨텍스트를 갖췄고, 코딩(Terminal Bench 2.1 88.3점)과 에이전트 작업(BrowseComp 91.2점)에서 오픈모델 중 최고 성능을 기록했습니다. 다만 클로드 페이블 5와 GPT-5.6 Sol 등 최상위 폐쇄모델에는 아직 못 미칩니다. 가격은 출력 100만 토큰당 15달러로 폐쇄모델 대비 크게 낮으며, 전체 가중치는 7월 27일 완전 공개됩니다.",
+          source: "문샷 AI 공식 블로그",
+          href: "https://www.kimi.com/blog/kimi-k3",
+        },
+        {
+          title: "앤스로픽, 몬조 창업자 톰 블롬필드 영입 — AI 승부처가 '컴퓨트'로",
+          desc: "핀테크 매체 PYMNTS에 따르면, 몬조·고카드리스 공동창업자이자 Y컴비네이터 파트너인 톰 블롬필드가 7월 13일 YC를 휴직하고 앤스로픽 컴퓨트팀에 합류했습니다. 그는 톰 브라운 최고컴퓨트책임자(CCO) 산하에서 칩·전력 확보 문제를 맡습니다. 전문가들은 \"컴퓨트는 이미 순수 기술 문제를 넘어 상업·운영 문제가 됐다\"며, 규제 시스템을 구축한 그의 경력을 영입 배경으로 짚었습니다. 카파시(OpenAI 출신) 등 앤스로픽의 최근 인재 영입 러시와 궤를 같이합니다.",
+          source: "PYMNTS",
+          href: "https://www.pymnts.com/personnel/2026/anthropic-recruits-monzo-co-founder-to-tackle-compute-issues/",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "이번 주 비즈니스 혁신의 화두는 'AI가 도구를 넘어 스스로 일하는 주체로' 이동하는 흐름입니다. 하버드비즈니스리뷰는 에이전틱 AI가 창업의 비용·시간·인력을 동시에 압축해 소규모 스타트업이 대기업을 위협하는 구조를 만들었다고 진단했고, 한국 정부도 자율적으로 예약·결제까지 처리하는 '1인 1 AI에이전트' 시대를 공식 로드맵으로 제시했습니다. 개인과 소기업이 거대 조직과 경쟁할 문턱이 빠르게 낮아지고 있다는 신호입니다.",
+      articles: [
+        {
+          title: "에이전트 AI가 스타트업을 무장시키고 대기업을 위협한다",
+          desc: "하버드비즈니스리뷰(HBR) 2026년 7·8월호에 따르면, 여러 AI 에이전트가 스스로 계획·실행·수정하는 '에이전틱 AI' 시스템이 창업의 비용·시간·인력을 동시에 무너뜨리는 '두 번째 창업 대압축(second great compression of entrepreneurship)'을 일으키고 있습니다. 저자 비비언 리·린다 만티아·존 맥닐은 성숙한 LLM(추론·계획 가능), 다중 에이전트 자율 협업 프레임워크, 저가 API, 하락하는 클라우드 비용 4가지가 맞물린 결과라고 분석했습니다. 소규모 스타트업이 기존 대기업이 운영모델을 다시 짜야 할 만큼의 속도·비용 구조로 시장에 진입·확장·교란할 수 있다고 진단했습니다.",
+          source: "Harvard Business Review",
+          href: "https://hbr.org/2026/07/how-agentic-ai-supercharges-startups-and-threatens-incumbents",
+        },
+        {
+          title: "전국민 무료 '모두의 AI' 연내 출시…내년엔 '1인 1 AI에이전트'",
+          desc: "파이낸셜뉴스에 따르면, 과기정통부는 7월 16일 이재명 대통령에게 2026년 하반기 업무계획을 보고하며 사용량·비용 제한이 없는 전국민 무료 AI '모두의 AI'를 연내 출시하고, 2027년에는 여행 예약·결제까지 스스로 처리하는 자율형 AI 에이전트로 고도화하겠다고 밝혔습니다. 배경훈 부총리가 브리핑을 이끌었으며, SK·GS·네이버 등이 2029년까지 550조원을 투입해 변압기·냉각장치 등 데이터센터 장비를 국산화하는 계획과 2026년 해외 AI 인재 약 600명 유치안(2030년까지 2000명)도 함께 제시됐습니다.",
+          source: "파이낸셜뉴스",
+          href: "https://www.fnnews.com/news/202607160944151755",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA",
+      code: "MBA",
+      narrative:
+        "이번 주 MBA·커리어 화두는 'AI가 MBA를 없애는 게 아니라 기준을 높인다'로 모입니다. 해외에서는 기업 채용담당자들이 AI 활용 능력을 기본값으로 요구하며 판단력·의사결정 역량을 갖춘 MBA 인재를 오히려 더 찾는 흐름이 확인됐고, 국내에서는 정부가 하반기 경제성장전략으로 AI 청년 전문인력 20만명 육성을 못박으며 스킬 기반 인재 양성에 드라이브를 걸었습니다. AI 시대의 커리어 경쟁력은 '학위 자체'보다 'AI를 다루는 실전 역량 + 대체 불가능한 인간 판단력'의 조합으로 재편되고 있습니다.",
+      articles: [
+        {
+          title: "AI는 MBA를 대체하지 않는다, 다시 정의할 뿐 — 채용담당자 3명 중 1명 \"신입 자리 이미 AI로 대체\"",
+          desc: "Poets&Quants(글로벌 MBA 전문매체)에 따르면 GMAC 기업 채용담당자 조사에서 올해 MBA 채용 계획 기업이 작년보다 늘었고, 채용담당자 절반 이상이 \"AI 확산으로 MBA 학위의 중요성이 오히려 커졌다\"고 답했습니다. 다만 기업 3곳 중 1곳은 이미 일부 신입(entry-level) 자리를 AI로 대체했다고 밝혔습니다. 필자(SP Jain 경영대학원 총장)는 이제 경영대학원이 결과물 생산이 아니라 불확실성 속 판단·의사결정 훈련에 집중하고, AI 도구를 별도 선택과목이 아닌 전 과목에 녹여야 한다고 강조했습니다.",
+          source: "Poets&Quants",
+          href: "https://poetsandquants.com/2026/07/16/ai-isnt-replacing-the-mba-its-redefining-what-business-leaders-need-to-know/",
+        },
+        {
+          title: "정부, 2030년까지 AI 청년 전문인력 20만명 육성…\"AI發 노동 양극화 완화\"",
+          desc: "뉴스핌에 따르면 정부는 2026년 하반기 경제성장전략에서 AI 확산에 따른 노동시장 양극화 완화를 핵심 과제로 제시하고, 2030년까지 청년 AI 전문인력 20만명 이상을 양성하겠다고 밝혔습니다. KDT AI 캠퍼스 41개소를 운영하고 첨단·디지털 직업훈련 인원을 4만9000명에서 5만4000명으로 늘립니다. 민간 10만개·공공 10만개 등 2030년까지 청년 일자리 20만개 창출과 청년형 ISA 출시도 함께 담겼습니다.",
+          source: "뉴스핌",
+          href: "https://www.newspim.com/news/view/20260713000344",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "이번 주 벤처 자금은 '매출·운영에 가까운 AI 인프라'로 계속 쏠렸습니다. 글로벌에선 파이어웍스(15억 달러 시리즈D)·원더(6.5억 달러 시리즈D)처럼 실사용 인프라·오퍼레이션형 기업에 메가라운드가 집중된 반면, 국내 초기투자는 신원인증(eKYC)·딥테크 등 검증된 기술 스타트업으로 자금이 흘렀습니다. 범용 'AI 래퍼'보다 수익·노동·인프라에 밀착한 플랫폼을 고르는 흐름이 한·미 양쪽에서 뚜렷합니다.",
+      articles: [
+        {
+          title: "아르고스 아이덴티티, 46억원 프리A 유치…AI 신원인증 'eKYC' 몸집 키운다",
+          desc: "스타트업레시피에 따르면 AI 기반 신원인증(eKYC)·문서검증 플랫폼 아르고스 아이덴티티가 300만 달러(약 46억원) 규모 프리 시리즈A 투자를 유치했습니다. 스톤브릿지·본엔젤스가 리드하고 아톤 등 기존 투자사가 후속 참여했으며 누적 투자액은 약 500만 달러(77억원)로 늘었습니다. 회사는 외부 문서분석 AI 에이전트 'OMNI'를 출시하며 검증업무 자동화로 영역을 넓히고 있고, 대규모 신원확인 수요 기업 기준 전년 대비 4배 성장했습니다.",
+          source: "스타트업레시피",
+          href: "https://startuprecipe.co.kr/archives/5825880",
+        },
+        {
+          title: "AI 인프라에 메가라운드 집중…파이어웍스 15억·원더 6.5억 달러 조달",
+          desc: "테크스타트업스(Tech Startups)에 따르면 7월 셋째 주 벤처투자는 'AI 래퍼'를 벗어나 매출·인프라·운영에 밀착한 플랫폼으로 쏠렸습니다. AI 추론 인프라 기업 파이어웍스가 15억500만 달러 시리즈D(아트레이데스·인덱스벤처스·TCV 주도)를, 음식배달·커머스 플랫폼 원더가 6.5억 달러 시리즈D(액셀·GV·NEA)를 각각 조달했습니다. 이 밖에 포라(6천만 달러 시리즈D), 세이블(4,500만 달러, 세쿼이아·8VC) 등도 이름을 올렸습니다.",
+          source: "Tech Startups",
+          href: "https://techstartups.com/2026/07/16/venture-capital-startup-funding-roundup-july-16-2026-8vc-accel-ark-invest-gv-khosla-ventures-mark-cuban-and-sequoia-capital/",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "최근 한 주간 앤트로픽 Claude Code와 커서(Cursor)가 나란히 업데이트를 내놓으며 AI 코딩 툴의 진화 방향이 드러났습니다. 핵심은 '무인 실행의 안전장치'와 '병렬 작업 관리'입니다 — 자동 실행이 폭주하지 않도록 막는 제어장치와, 여러 대화·에이전트를 동시에 다루는 UX가 같은 시기에 강화되고 있습니다.",
+      articles: [
+        {
+          title: "앤트로픽, Claude Code에 \"폭주 방지\" 안전장치 추가 — 웹서치·서브에이전트 호출 상한제 도입",
+          desc: "앤트로픽이 2026년 7월 17일 Claude Code 버전 2.1.212를 배포하며, 세션당 웹서치 호출을 기본 200회로 제한하고(환경변수로 조정 가능) 서브에이전트 생성 횟수도 세션당 기본 200회로 상한을 뒀습니다. 2분 넘게 걸리는 MCP 도구 호출은 자동으로 백그라운드로 넘겨 세션이 멈추지 않게 했고, `/fork` 명령은 대화를 새 백그라운드 세션으로 복제해 작업을 끊지 않고 이어갈 수 있게 바뀌었습니다. 💡 핵심: 자율 실행(autopilot·ralph 등) 워크플로를 오래 돌릴 때는 `CLAUDE_CODE_MAX_SUBAGENTS_PER_SESSION`, `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` 값을 미리 확인해 두어야 중간에 상한에 걸려 멈추는 사고를 막을 수 있습니다.",
+          source: "Claude Code 공식 체인지로그 (Anthropic)",
+          href: "https://code.claude.com/docs/en/changelog",
+        },
+        {
+          title: "커서 3.11 출시 — \"사이드 챗\"으로 메인 대화 끊지 않고 곁가지 작업 처리",
+          desc: "커서가 2026년 7월 10일 버전 3.11을 공개하며 `/side`, `/btw` 명령이나 채팅창 + 버튼으로 메인 대화의 맥락을 이어받는 독립적인 \"사이드 챗\"을 열 수 있게 했습니다. 각 사이드 챗은 나중에 다시 불러오거나 @멘션으로 메인 스레드에 다시 가져올 수 있는 완전한 에이전트 대화로 유지됩니다. 이번 버전은 과거 에이전트 대화를 이름·PR 번호를 넘어 내용으로 검색하는 기능과, 리포지토리 선택 화면을 로컬/클라우드로 재구성한 개선도 포함했습니다. 💡 핵심: 메인 작업 흐름을 안 끊고 \"이 버그 관련 파일 어디 있지?\" 같은 곁가지 질문을 처리하려면 `/side`로 분기했다가 필요할 때만 @멘션으로 결과를 메인 스레드에 흡수하는 패턴을 쓰면 컨텍스트가 섞이지 않습니다.",
+          source: "Cursor 공식 체인지로그",
+          href: "https://cursor.com/changelog",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "이번 주 RWA·STO의 무게중심은 '계획'에서 '실증'으로 넘어갔습니다. 미국은 DTCC가 월가 핵심 기관들과 토큰화 증권 실거래를 처음 가동해 제도권 결제 인프라의 온체인 전환을 눈앞으로 당겼고, 같은 주 일본은 SBI·온도 제휴로 자국 주식 토큰화에 엔화 스테이블코인 결제를 붙였습니다. 미국·아시아 모두 '기초자산 토큰화 + 스테이블코인 결제'라는 한 방향으로 수렴 중이라, 2027년 2월 STO 시행을 앞둔 한국은 정형자산(주식·국채) 토큰화와 원화 스테이블코인 연계 속도가 관전 포인트입니다.",
+      articles: [
+        {
+          title: "월가 심장부 DTCC, 토큰화 증권 '실거래' 첫 가동…블록체인 결제 분수령",
+          desc: "코인데스크에 따르면 미국 예탁결제기관 DTCC가 7월 15일 실제 운영 환경에서 토큰화 증권의 첫 실거래를 처리했습니다. JP모건·골드만삭스·블랙록·뱅가드 등 20여 개 금융사가 참여해 QQQ·SPY ETF와 미 국채를 '디지털 쌍둥이'로 변환하고 환매조건부(레포)·담보 이전·증거금 결제까지 실증했습니다. DTC에 이미 예탁된 자산을 기반으로 해 법적 소유권·배당·의결권을 그대로 유지하는 방식이며, 하이퍼레저 베수와 칸톤 네트워크를 잇는 멀티체인 구조로 처리됐습니다. DTCC는 10월 정식 상용 서비스 출시를 예고했습니다.",
+          source: "코인데스크(CoinDesk)",
+          href: "https://www.coindesk.com/business/2026/07/15/dtcc-moves-tokenized-securities-into-live-trading-marking-a-milestone-for-wall-street-s-blockchain-push",
+        },
+        {
+          title: "SBI, 온도파이낸스와 손잡고 일본 주식 토큰화…엔화 스테이블코인 결제 붙인다",
+          desc: "더블록에 따르면 일본 SBI홀딩스가 7월 16일 온도파이낸스와 제휴해 일본 주식을 블록체인에 토큰화하기로 했습니다. 온도글로벌마켓으로 일본 주식을 토큰화하고 SBI 네트워크로 유통하며, 일본 최초의 신탁은행 기반 엔화 스테이블코인 'JPYSC'를 결제·담보로 씁니다. 토큰화 주식 시장은 전체 토큰화 자산의 약 15%인 130억 달러 규모로 커졌습니다. SBI는 최근 한 달간 비트뱅크 인수(약 2억8,900만 달러)와 JPYSC 출시 등 온체인 금융 공세를 이어가고 있습니다.",
+          source: "더블록(The Block)",
+          href: "https://www.theblock.co/post/408633/sbi-extends-onchain-finance-push-with-ondo-deal-tokenize-japanese-stocks",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "이번 주(7/13~7/20) 부동산·핀테크의 두 축은 '규제가 밀어낸 외곽 확산'과 '스테이블코인 제도화 착수'였습니다. 강화된 대출 규제로 자금 부담이 큰 강남 대신 강서·은평·구로 등 중저가 외곽으로 실수요가 옮겨가며 서울 25개구 중 20곳이 전고점을 돌파했고, 동시에 정부는 하반기 디지털자산기본법 입법으로 원화 스테이블코인을 제도권에 편입하는 밑그림을 공식화했습니다. 부동산은 수요 억제책이 '풍선효과'로, 핀테크는 미국 규제 시행(2027년 1월)에 대비한 방어 입법으로 각각 움직인 한 주였습니다.",
+      articles: [
+        {
+          title: "서울 아파트값 '외곽 확산'…25개구 중 20곳 전고점 돌파",
+          desc: "세계일보에 따르면 7월 3주 서울 아파트값은 전주 대비 0.18% 올라 상승세를 이어갔습니다. 강서·은평·성북·관악·구로 등이 새로 2021~2022년 고점을 넘어서면서 서울 25개 자치구 중 20곳이 전고점을 돌파했고, 강북·금천·도봉·중랑·노원 5개구만 아직 회복하지 못했습니다. 정부의 강화된 대출 규제로 자금 조달 부담이 적은 중저가 외곽으로 실수요가 몰리는 '풍선효과'가 뚜렷해졌다는 분석입니다.",
+          source: "세계일보",
+          href: "https://segye.com/newsView/20260717508248",
+        },
+        {
+          title: "정부 \"스테이블코인법 연내 입법\"…비트코인 현물 ETF도 추진",
+          desc: "이데일리에 따르면 정부는 7월 14일 발표한 경제성장전략에서 올해 하반기 디지털자산기본법 입법으로 원화 스테이블코인을 제도권에 편입하겠다고 밝혔습니다. 발행 인가제, 준비자산 보유 의무, 이용자 상환청구권 등 투자자 보호 장치가 담기며, 자본시장법 개정을 통한 비트코인 등 디지털자산 현물 ETF 도입과 국채 토큰화 실증사업도 함께 추진됩니다. 2027년 1월 미국 지니어스법 시행에 대비한 달러 스테이블코인 방어 성격의 입법입니다.",
+          source: "이데일리",
+          href: "https://edaily.co.kr/News/Read?mediaCodeNo=257&newsId=04083606645514520",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주 정부공고는 마감이 7월 하순에 몰려 있습니다. SaaS 전환 컨설팅 2차는 오늘(7/20) 마감이니 SW기업 재직자는 서두르셔야 합니다. 창업 아이디어가 있다면 연중 상시 접수하는 TIPS(팁스)를, AI 서비스 사업화를 준비 중이라면 8/11 마감인 '모두의 AI' 사업자 모집을 우선순위로 보시길 권합니다.",
+      items: [
+        {
+          title: "2026년 팁스(TIPS) 창업기업 지원계획 — 연중 상시 (~12/31, 중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000117859",
+        },
+        {
+          title: "전 국민 AI 서비스 보편적 활용 지원(모두의 AI) 사업자 모집 ⏰ 마감 8/11 (과기정통부·NIPA)",
+          href: "https://www.nipa.kr/home/2-2/16852",
+        },
+        {
+          title: "2026년도 SaaS 전환 컨설팅 2차 수요기업 모집 ⏰ 마감 7/20 (NIPA·과기정통부)",
+          href: "https://www.nipa.kr/home/2-2/16827",
+        },
+        {
+          title: "2026년도 소프트웨어 산업발전 유공자 포상계획 ⏰ 마감 7/24 (NIPA·과기정통부)",
+          href: "https://www.nipa.kr/home/2-2/16846",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 포인트는 '공모전·경진대회' 러시입니다. SW중심대학사업단이 7/15 하루에 두 건(전국 대학생 프로그래밍 대회 ACPC, 관광데이터 활용 공모전)을 새로 띄웠고, 경영대학은 CFA 글로벌 금융분석 경진대회(~8/12)를 열어뒀습니다. AIMBA 학생 입장에선 데이터·AI 실전 경험과 금융 리서치 이력을 동시에 채울 수 있는 창구가 열린 한 주입니다.",
+      items: [
+        {
+          title: "[SW중심대학] ACPC 2026 (AWS×Codetree) 전국 대학생 프로그래밍 경진대회 개최 안내",
+          href: "https://sweducenter.sogang.ac.kr/front/cmsboardlist.do?siteId=sweducenter&bbsConfigFK=7250",
+        },
+        {
+          title: "[SW중심대학] 한국관광공사 2026년 관광데이터 활용 공모전 웹·앱 구현 부문 모집",
+          href: "https://sweducenter.sogang.ac.kr/front/cmsboardlist.do?siteId=sweducenter&bbsConfigFK=7250",
+        },
+        {
+          title: "[경영대학] CFA Institute Research Challenge 2026-2027 글로벌 금융분석 경진대회 (~8/12)",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do",
+        },
+        {
+          title: "[인공지능학과] 2026학년도 인공지능학과 학부 요람 변경 안내",
+          href: "https://ai.sogang.ac.kr/front/cmsboardlist.do?siteId=ai&bbsConfigFK=5110",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "7월 22일", day: "수", title: "6G AI-Native의 미래: Agentic AI 세미나 (TTA)", where: "온라인 (TTA아카데미 주최)", tag: "온라인 세미나", link: "https://onoffmix.com/event/345464" },
+    { date: "8월 10일", day: "월", title: "NHN NAN 2026 게임×AI 해커톤 (접수마감)", where: "판교 NHN 사옥", tag: "AI 해커톤", link: "https://nan2026.nhn.com/" },
+    { date: "8월 19일", day: "수", title: "AI Summit Seoul & Expo 2026 (8/19~21)", where: "코엑스 B홀·그랜드볼룸, 서울 강남", tag: "글로벌 AI 서밋", link: "https://www.aisummitseoul.com/" },
+  ],
+};
+
 const VOL16: IssueContent = {
   vol: 16,
   dateLabel: "2026년 7월 12일",
@@ -3421,8 +3670,223 @@ const VOL12: IssueContent = {
   ],
 };
 
+const VOL18: IssueContent = {
+  vol: 18,
+  dateLabel: "2026년 7월 27일",
+  isoDate: "20260727",
+  title:
+    "'구현의 시대' 본격 개막 — Anthropic·블랙스톤이 $15억 구현 회사를 세우고, 구글은 하루에 모델 3종을 쏟아냈다",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주 가장 선명한 장면은 AI 경쟁의 무게중심이 '더 똑똑한 모델'에서 '실제로 돌아가게 만드는 구현'으로 옮겨간 것입니다. 앤트로픽은 블랙스톤·헬먼앤프리드먼과 함께 $15억 규모의 AI 구현 전문 합작법인 'Ode'를 출범시키며 \"다음 1조 달러 AI 사업은 모델이 아니라 구축\"이라는 명제를 자본으로 확인했고, 구글은 7월 21일 하루에 Gemini 3.6 Flash·3.5 Flash-Lite·3.5 Flash Cyber 3종을 동시에 쏟아내며 출력 토큰 17% 절감과 사이버보안 특화 모델까지 내놨습니다. 같은 주 AI 추론 전용칩 스타트업 Etched는 세쿼이아·a16z·SK하이닉스에서 $3억(기업가치 $103억)을 조달해, 엔비디아 GPU 일변도였던 추론 인프라에 본격적인 경쟁이 붙었습니다. 기업 91%가 AI를 도입했지만 완전 통합은 18%에 그친다는 조사는, 모델을 넘어 '조직에 심는 힘'이 경쟁력이라는 메시지를 반복합니다.",
+    "자산과 자본에서도 흐름이 뚜렷했습니다. 글로벌 RWA 토큰화 자산은 $335억을 돌파해 1년 새 3배로 불었고, Securitize는 토큰화 기업 최초로 NYSE에 상장하며 전통 자본시장과 온체인의 접점을 넓혔습니다. 국내에서는 휴머노이드 로봇 스타트업 홀리데이로보틱스가 1,550억원 시리즈A로 국내 역대 최대 시리즈A를 경신했고, 미국 벤처투자는 상반기에만 $4,127억으로 이미 역대 연간 최고를 돌파했습니다. 서울 아파트값은 74주째 상승을 이어갔지만 부동산 PF 연체율도 함께 올라 하반기가 '진짜 고비'로 예고됩니다. AI 코딩 시장에서는 GitHub Copilot 점유율이 67%에서 51%로 떨어진 반면 Cursor ARR $20억·Claude Code 6배 성장이 확인돼, '누가 코딩하는가'의 판도 자체가 재편되고 있습니다.",
+  ],
+  conclusion:
+    "AIMBA 원우분들, 이번 호의 키워드는 '구현'입니다. 앤트로픽이 모델 회사가 아닌 구현 회사에 $15억을 걸었고, 구글은 모델 3종을 한 번에 내놓으며 실전 투입 속도를 앞당겼으며, Etched는 추론 전용 하드웨어로 GPU 독점 구조에 도전장을 냈습니다. 기업 91%가 AI를 도입했지만 18%만 완전히 녹여낸 지금, 승부는 '어떤 모델을 쓰느냐'가 아니라 '얼마나 깊이 업무에 심느냐'에 달렸습니다. 각자의 업과 조직에서 AI를 '도입'이 아닌 '내재화'로 전환할 첫 번째 실험을 이번 주에 시작해 보시면 어떨까요.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "이번 주 AI의 화두는 '모델 출시 자체'보다 '실전 배치 효율'이었습니다. 구글이 하루에 모델 3종을 쏟아내며 비용 절감과 보안 특화를 동시에 밀어붙였고, Etched는 GPU 없이 추론만 전담하는 칩으로 $103억 가치를 인정받았습니다. '더 좋은 모델'이 아니라 '더 싸고 빠르게 돌리는 인프라'가 자본의 관심을 끌고 있습니다.",
+      articles: [
+        {
+          title: "구글, Gemini 3.6 Flash·3.5 Flash-Lite·Flash Cyber 3종 동시 출시 — 출력 토큰 17% 절감, 사이버보안 특화 모델 첫 등장",
+          desc: "테크크런치에 따르면 구글은 7월 21일 Gemini 3.6 Flash(출력 토큰 17% 절감, 지식 컷오프 2026년 3월), 3.5 Flash-Lite(초당 350토큰, 에이전틱 검색·문서 처리 특화), 3.5 Flash Cyber(소프트웨어 취약점 탐지 전용, 정부·신뢰 파트너 한정)를 동시에 공개했습니다. Flash-Lite는 입력 100만 토큰 $0.30·출력 $2.50로 가격을 대폭 낮췄고, 구글은 차세대 'Gemini 4'의 사전훈련에 이미 돌입했다고 밝혀 연내 프로급 모델 출시를 예고했습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/07/21/google-releases-three-new-gemini-models-but-no-3-5-pro/",
+        },
+        {
+          title: "AI 추론칩 스타트업 Etched, 세쿼이아·a16z·SK하이닉스에서 $3억 조달 — 기업가치 $103억, GPU 독점 구조에 도전장",
+          desc: "테크크런치에 따르면 AI 추론 전용 하드웨어 스타트업 Etched가 7월 23일 세쿼이아 캐피탈 주도로 $3억 시리즈C를 마감했습니다. a16z·제인스트리트·SK하이닉스가 참여했고 기업가치는 $103억으로, 세쿼이아 주도 시리즈C 역대 최고입니다. Etched는 GPU 없이 추론만 처리하는 맞춤형 칩·메모리·냉각·소프트웨어를 일체형으로 설계해, 기존 GPU 대비 처리량을 높이고 전력 소비를 줄이는 데 집중합니다. 누적 조달액은 $10억을 넘었습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/07/23/ai-chip-startup-etched-defies-skeptics-hits-10-3b-valuation-from-big-name-investors/",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "이번 주 비즈니스 혁신의 핵심은 'AI를 만드는 것'에서 'AI를 심는 것'으로 무게가 옮겨간 장면입니다. 앤트로픽이 블랙스톤과 함께 구현 전문 회사 Ode를 세운 것은, 모델 경쟁이 한 단계 올라간 뒤 남은 승부가 '조직에 녹이는 실행력'에 있다는 판단입니다. 실제로 기업 97%가 AI 에이전트를 도입했지만 완전 통합은 18%에 그친다는 데이터가 이를 뒷받침합니다.",
+      articles: [
+        {
+          title: "앤트로픽·블랙스톤·H&F, $15억 AI 구현 합작법인 'Ode' 출범 — \"다음 1조 달러는 모델이 아니라 구축\"",
+          desc: "테크크런치에 따르면 앤트로픽은 블랙스톤·헬먼앤프리드먼과 함께 $15억 규모의 AI 구현 전문 합작법인 'Ode with Anthropic'을 출범시켰습니다. 앤트로픽·블랙스톤·H&F이 각 약 $3억, 골드만삭스가 $1.5억을 출자했고, 제너럴아틀란틱·레너드그린도 참여했습니다. Ode는 2026년 5월 인수한 프랙셔널 AI를 기반으로 시니어 엔지니어 팀을 기업에 직접 파견해 AI 시스템을 설계·구축합니다. 핵심 메시지는 \"AI의 다음 대형 상업 카테고리는 더 나은 모델이 아니라 기업이 실제로 쓰게 만드는 것\"입니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/07/15/anthropic-blackstone-bet-the-next-trillion-dollar-ai-business-is-implementation-not-models/",
+        },
+        {
+          title: "기업 AI 에이전트 97% 도입했지만 완전 통합 18%…\"도입과 내재화 사이 거대한 간극\"",
+          desc: "AI 기업 Writer의 2026 엔터프라이즈 AI 보고서에 따르면 기업 91%가 AI를 사용하고 경영진 97%가 AI 에이전트를 도입했다고 답했지만, AI를 완전히 통합한 조직은 18%에 그쳤습니다. C-suite 54%는 \"AI 도입이 조직을 갈라놓고 있다\"고 인정했고, 79%가 채택 과정에서 어려움을 겪고 있다고 답해 전년 대비 두 자릿수 증가했습니다. Citigroup은 직원 80% AI 도구 접근, 누적 4,200만 건 AI 상호작용을 기록하며 내재화 선두로 꼽혔습니다.",
+          source: "Writer",
+          href: "https://writer.com/blog/enterprise-ai-adoption-2026/",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA · 커리어",
+      code: "MBA",
+      narrative:
+        "이번 주 MBA·커리어 화두는 'AI 역량이 연봉과 채용의 기본값이 됐다'로 모입니다. 고용주 37%가 MBA 채용을 늘릴 계획이지만, AI 숙련도를 기본 기대치로 두는 곳이 22%에 달합니다. AI 스킬 보유자의 연봉 프리미엄이 56%라는 숫자는 'AI를 배울 것인가'가 아니라 '얼마나 깊이 배울 것인가'의 문제임을 보여줍니다.",
+      articles: [
+        {
+          title: "MBA 채용 37% 증가 전망, AI 역량 보유자 연봉 56% 프리미엄 — \"AI 숙련은 이제 기본값\"",
+          desc: "CSP의 2026 MBA 채용 트렌드 보고서에 따르면 고용주 37%가 올해 MBA 채용을 늘릴 계획이고, 47%가 MBA 인재에 5~9% 연봉 프리미엄을 지급합니다. 2026년 채용 최우선 역량은 AI 숙련(35%), 비즈니스 임팩트 정량화(31%), 실전 포트폴리오(25%) 순으로, 고용주 22%가 AI 역량을 MBA급 직무의 '기본 기대치'로 봅니다. 고급 AI 스킬 보유자는 같은 직무에서 56% 더 많은 급여를 받아, AI 역량이 커리어 경쟁력의 핵심 변수임이 확인됐습니다.",
+          source: "CSP Online",
+          href: "https://online.csp.edu/resources/article/more-employers-plan-to-hire-mbas-in-2026-and-ai-fluency-is-now-the-baseline/",
+        },
+        {
+          title: "서강대 인공지능학과, 세계 최우수 AI 학회 'ICML 2026' 논문 채택",
+          desc: "서강대 뉴스룸에 따르면 서강대학교 인공지능학과 연구팀의 논문이 세계 최우수 인공지능 학회인 ICML 2026(International Conference on Machine Learning)에 채택됐습니다. ICML은 NeurIPS·ICLR과 함께 AI·머신러닝 분야 3대 학회로, 2026년 대회는 7월 서울 코엑스에서 개최됐습니다. AIMBA 원우 관점에서 본교 AI 연구 역량이 글로벌 무대에서 검증된 의미 있는 성과입니다.",
+          source: "서강대 뉴스룸",
+          href: "https://www.sogang.ac.kr/ko/detail/550038",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "이번 주 벤처 자본의 흐름은 두 가지를 말합니다. 첫째, 미국 상반기 VC 투자가 $4,127억으로 역대 연간 최고를 이미 넘어섰지만 81%가 $1억 이상 대형 라운드에 집중됐습니다. 둘째, 국내에서는 홀리데이로보틱스(1,550억 시리즈A)가 휴머노이드 로봇 최대 투자를 경신하며, 딥테크에 자금이 몰리는 흐름이 뚜렷합니다.",
+      articles: [
+        {
+          title: "홀리데이로보틱스, 휴머노이드 로봇 1,550억원 시리즈A — 국내 시리즈A 역대 최대",
+          desc: "로봇신문에 따르면 휴머노이드 로봇 스타트업 홀리데이로보틱스가 1,550억원 규모 시리즈A 투자를 유치해 국내 시리즈A 역대 최대 기록을 세웠습니다. IMM인베스트먼트·SL인베스트먼트·KB인베스트먼트 등이 신규 참여했고, 스톤브릿지벤처스·인터베스트 등 기존 투자사도 후속 투자했습니다. 제조 현장에 특화된 휴머노이드 로봇 'FRIDAY'를 2026년 하반기 상용화하고, 2027년 연간 1,000대 생산 체제를 구축할 계획입니다.",
+          source: "로봇신문",
+          href: "https://www.irobotnews.com/news/articleView.html?idxno=47394",
+        },
+        {
+          title: "2026 상반기 미국 VC 투자 $4,127억, 역대 연간 최고 기록 이미 돌파 — 81%가 메가라운드에 집중",
+          desc: "테크스타트업스에 따르면 2026년 상반기 미국 벤처투자 총액이 $4,127억으로, 직전 연간 최고를 이미 넘어섰습니다. 다만 전체의 81% 이상이 $1억 이상 메가라운드에 집중돼, 자금이 AI 인프라·추론 하드웨어·피지컬 AI 등 검증된 대형 딥테크로 쏠리는 양극화가 뚜렷합니다. 같은 주 Etched($3억 시리즈C)·SambaNova($10억 시리즈F) 등 AI 인프라 기업이 대규모 조달을 이어갔습니다.",
+          source: "Tech Startups",
+          href: "https://techstartups.com/2026/07/23/venture-capital-startup-funding-roundup-july-23-2026-accel-andreessen-horowitz-battery-ventures-iconiq-jane-street-sequoia-more/",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "AI 코딩 도구 시장의 판도가 빠르게 재편되고 있습니다. GitHub Copilot 점유율이 67%에서 51%로 하락한 반면 Cursor는 ARR $20억을 돌파했고, Claude Code는 9개월 만에 업무 채택률이 6배(3%→18%) 뛰었습니다. '내가 짜고 도구가 제안하는' 페어 프로그래밍 시대에서, '의도를 말하면 도구가 실행하고 사람이 검토하는' 코딩 에이전트 시대로 전환이 가속되고 있습니다.",
+      articles: [
+        {
+          title: "GitHub Copilot 점유율 67→51% 하락, Cursor $20억 ARR·Claude Code 6배 성장 — AI 코딩 시장 3강 체제 재편",
+          desc: "JetBrains AI Pulse(2026.1)에 따르면 개발자 AI 도구 사용률은 GitHub Copilot 29%, Claude Code·Cursor 각 18%로 3강이 형성됐습니다. Cursor는 월간 활성 사용자 700만·유료 구독 100만 명을 넘어 ARR $20억을 기록했고, Claude Code는 만족도 46%(1위)로 Copilot(9%)을 크게 앞섭니다. AI 코딩 어시스턴트 시장 규모는 $128억(2026)에서 2032년 $301억(CAGR 27%)으로 성장이 전망됩니다. 💡 핵심: 세 도구 모두 무료/저가 티어가 있으니, 실제로 써보고 자기 워크플로에 맞는 것을 고르는 게 중요합니다.",
+          source: "Tech Insider",
+          href: "https://tech-insider.org/ie/github-copilot-market-share-2026/",
+        },
+        {
+          title: "AI 코딩 패러다임 전환 — \"의도를 기술하면 도구가 실행, 사람은 검토\" 시대로",
+          desc: "2026년 AI 코딩 도구 비교 분석에 따르면 개발자의 정신 모델이 '내가 짜고 도구가 제안하는(pair programming)' 방식에서 '의도를 기술하면 도구가 실행하고 사람은 검토하는(coding agent)' 방식으로 전환 중입니다. GitHub Copilot은 6월부터 사용량 기반 과금(AI 크레딧 1개=$0.01)으로 전환했고, Claude Code는 기본 모델을 Sonnet 5로 올리며 에이전트 실행 품질을 높였습니다. Cursor는 MCP 지원으로 외부 도구 연동을 강화했습니다. 💡 핵심: MBA 원우라면 코드를 직접 짜는 능력보다 '의도를 정확히 기술하고 결과를 검증하는 능력'이 AI 시대 개발 역량의 핵심이 됩니다.",
+          source: "Cosmicjs 분석",
+          href: "https://www.cosmicjs.com/blog/claude-code-vs-github-copilot-vs-cursor-which-ai-coding-agent-should-you-use-2026",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "이번 주 RWA·STO의 핵심은 '토큰화가 금융 인프라의 기본값이 되어가고 있다'는 것입니다. 글로벌 RWA 토큰화 자산이 $335억을 돌파해 1년 새 3배로 불었고, 토큰화 주식은 30일간 50% 성장해 가장 빠른 RWA 세그먼트가 됐습니다. Securitize의 NYSE 상장은 토큰화 기업이 전통 자본시장의 문법으로 검증받기 시작했다는 신호입니다.",
+      articles: [
+        {
+          title: "글로벌 RWA 토큰화 자산 $335억 돌파, 1년 새 3배 — 토큰화 주식이 가장 빠른 성장",
+          desc: "Stobox의 2026 중기 RWA 보고서에 따르면 온체인 거래 가능한 RWA 토큰화 자산 총액이 약 $335억(파이프라인 포함 $3,450억)으로, 1년 전 $118~141억 대비 약 3배로 성장했습니다. 보유자 수는 95만9천 명에 이릅니다. 특히 토큰화 주식은 최근 30일간 50% 증가해 모든 RWA 세그먼트 중 가장 빠른 성장을 보였고, 이더리움이 전체 RWA 가치의 47.9%를 차지하며 중심 체인 지위를 유지하고 있습니다.",
+          source: "Stobox",
+          href: "https://www.stobox.io/reports/state-of-rwa-2026",
+        },
+        {
+          title: "Securitize, 토큰화 기업 최초 NYSE 상장(SECZ) — 주식과 토큰을 하나의 상품으로",
+          desc: "TechTimes에 따르면 Securitize Corp.가 7월 2일 뉴욕증권거래소(NYSE)에 SECZ로 상장하며, 토큰화 전문 기업으로는 최초의 미국 주요 거래소 IPO를 달성했습니다. 동시에 자사 NYSE 주식을 솔라나·아발란체 체인에 토큰화해, '주식과 토큰이 하나의 상품'인 구조를 선보였습니다. 같은 날 Ondo Finance도 블랙록 iShares S&P 500 ETF(IVV)와 마이크론 주식을 이더리움에 토큰화해, 미국 내 두 가지 토큰화 모델이 나란히 가동을 시작했습니다.",
+          source: "TechTimes",
+          href: "https://www.techtimes.com/articles/319592/20260703/tokenized-stocks-two-rival-us-models-launched-same-day-different-investor-rights.htm",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "이번 주(7/20~7/27) 부동산·핀테크의 핵심은 '상승 관성 vs 구조적 리스크의 공존'입니다. 서울 아파트값은 74주째 상승세를 이어가며 매매·전세 모두 오름세를 지속했지만, 부동산 PF 익스포저가 169.8조원으로 줄었음에도 연체율은 오히려 올라가며 하반기를 '진짜 고비'로 예고하고 있습니다. 금융당국은 PF 규제 완화 6건을 연말까지 재연장하며 연착륙을 도모하고 있습니다.",
+      articles: [
+        {
+          title: "서울 아파트값 74주째 상승, 매매·전세 모두 오름세 — 분양시장도 회복 흐름",
+          desc: "더퍼블릭에 따르면 서울 아파트 매매가격은 74주 연속 상승세를 이어가고 있으며, 전셋값도 함께 오름세를 지속하고 있습니다. 7월 3주차(7/20 기준) 매매 상승률은 0.27%로 전주(0.30%) 대비 소폭 축소됐지만, 정주여건이 양호한 주요 단지와 개발 기대감이 있는 지역을 중심으로 상승 거래가 이어졌습니다. 분양시장도 회복 흐름을 보이며 수요 기반이 유지되고 있습니다.",
+          source: "더퍼블릭",
+          href: "https://www.thepublic.kr/news/articleView.html?idxno=311688",
+        },
+        {
+          title: "부동산 PF 익스포저 169.8조원으로 감소, 연체율은 상승…\"하반기가 진짜 고비\"",
+          desc: "아시아투데이에 따르면 금융권 부동산 PF 익스포저(대출·토담대·채무보증 합산)는 2023년 말 231.1조원에서 2026년 3월 169.8조원으로 줄었지만, PF 대출 연체율은 4.65%, 토지담보대출 연체율은 31.88%까지 높아졌습니다. 금융당국은 7월 3일 PF 한시적 규제 완화 6건을 연말까지 재연장하며 연착륙을 지원하고 있지만, 브릿지론 10조원 적체와 하반기 만기 집중이 겹쳐 '진짜 고비'가 예고됩니다. 부동산금융 종사자에게는 하반기 PF 포트폴리오 점검이 시급한 시점입니다.",
+          source: "아시아투데이",
+          href: "https://www.asiatoday.co.kr/kn/view.php?key=20260703010001329",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주 추천은 AI 인재 실증형 창업패키지와 모두의 AI 사업자 모집입니다. TIPS는 연중 상시 접수이니 창업 아이디어가 있다면 언제든 지원 가능하고, 경기도 뉴욕 투자유치 프로그램은 글로벌 진출을 준비하는 팀에게 실질적인 기회입니다.",
+      items: [
+        {
+          title: "2026년 팁스(TIPS) 창업기업 지원계획 — 연중 상시 (~12/31, 중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000117859",
+        },
+        {
+          title: "전 국민 AI 서비스 보편적 활용 지원(모두의 AI) 사업자 모집 ⏰ 마감 8/11 (과기정통부·NIPA)",
+          href: "https://www.nipa.kr/home/2-2/16852",
+        },
+        {
+          title: "2026년 창업패키지(AI 인재 실증형) 창업기업 모집 (중소벤처기업부)",
+          href: "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000122108",
+        },
+        {
+          title: "경기도 2026 스타트업 글로벌 성장지원 — 뉴욕 투자유치 프로그램 10개사 모집 (8~11월)",
+          href: "https://www.kjob.news/news/506027",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스 하이라이트는 서강대 인공지능학과의 ICML 2026 논문 채택입니다. 세계 3대 AI 학회에서 본교 연구가 인정받은 성과로, AIMBA 원우 입장에서 AI 연구 네트워크를 넓힐 좋은 계기입니다.",
+      items: [
+        {
+          title: "[인공지능학과] 세계 최우수 AI 학회 'ICML 2026' 논문 채택",
+          href: "https://www.sogang.ac.kr/ko/detail/550038",
+        },
+        {
+          title: "[SW중심대학] ACPC 2026 전국 대학생 프로그래밍 경진대회 안내",
+          href: "https://sweducenter.sogang.ac.kr/front/cmsboardlist.do?siteId=sweducenter&bbsConfigFK=7250",
+        },
+        {
+          title: "[경영대학] CFA Institute Research Challenge 2026-2027 글로벌 금융분석 경진대회 (~8/12)",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "8월 11일", day: "월", title: "전 국민 AI 서비스 '모두의 AI' 사업자 모집 마감", where: "NIPA 온라인 접수", tag: "정부사업 마감", link: "https://www.nipa.kr/home/2-2/16852" },
+    { date: "8월 19일", day: "화", title: "AI Summit Seoul & Expo 2026 (8/19~21)", where: "코엑스 B홀·그랜드볼룸, 서울 강남", tag: "글로벌 AI 서밋", link: "https://www.aisummitseoul.com/" },
+    { date: "8월 12일", day: "화", title: "CFA Institute Research Challenge 2026-2027 지원 마감", where: "서강대 경영대학 (온라인 접수)", tag: "금융분석 경진대회", link: "https://sbs.sogang.ac.kr/bbs/sbs/649/artclList.do" },
+  ],
+};
+
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL16, VOL15, VOL14, VOL13];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL18, VOL17, VOL16, VOL15];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));
