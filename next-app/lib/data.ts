@@ -60,6 +60,21 @@ export interface BriefIssue {
 
 export const BRIEF_ISSUES: BriefIssue[] = [
   {
+    vol: 19,
+    date: "2026.08.10",
+    shortDate: "08.10",
+    section: "AI-LLM",
+    sectionLabel: "AI · 단가전쟁",
+    title: "AI 경쟁의 축이 '성능'에서 '단가'로 — DeepSeek이 앤트로픽 대비 100배 싼 모델을 내놓고, 마이크로소프트는 사내 기본 모델을 갈아치웠다",
+    headline:
+      "알리바바가 2.4조 파라미터 Qwen3.8-Max를 공개하고 DeepSeek V4-Flash가 앤트로픽 대비 100배 낮은 단가를 제시한 가운데, 마이크로소프트가 사내 깃허브 코파일럿 기본 모델을 GPT-5.6 Sol로 교체하고, OpenAI는 보안 위험을 이유로 차세대 모델 개발 속도를 스스로 늦춘 주.",
+    path: "/issues/vol_20260810.html",
+    read: "14분",
+    views: "최신",
+    live: true,
+    tags: ["DeepSeek 100배저가", "Qwen3.8-Max", "MS 사내모델교체", "OpenAI Astra감속", "RWA $381억", "블랙록 BSTBL", "서울아파트 77주"],
+  },
+  {
     vol: 18,
     date: "2026.07.27",
     shortDate: "07.27",
@@ -70,8 +85,8 @@ export const BRIEF_ISSUES: BriefIssue[] = [
       "Anthropic·블랙스톤이 $15억 AI 구현 합작법인 Ode를 출범시키고, 구글이 Gemini 3종을 동시에 쏟아내며, Etched가 추론칩 $103억 가치를 인정받은 가운데, RWA 토큰화 자산 $335억 돌파와 Securitize NYSE 상장이 겹친 주.",
     path: "/issues/vol_20260727.html",
     read: "14분",
-    views: "최신",
-    live: true,
+    views: "아카이브",
+    live: false,
     tags: ["Ode AI구현", "Gemini3.6Flash", "Etched추론칩", "RWA $335억", "Securitize NYSE", "홀리데이로보틱스", "AI코딩시장재편"],
   },
   {
@@ -3885,8 +3900,223 @@ const VOL18: IssueContent = {
   ],
 };
 
+const VOL19: IssueContent = {
+  vol: 19,
+  dateLabel: "2026년 8월 10일",
+  isoDate: "20260810",
+  title:
+    "AI 경쟁의 축이 '성능'에서 '단가'로 — DeepSeek이 앤트로픽 대비 100배 싼 모델을 내놓고, 마이크로소프트는 사내 기본 모델을 갈아치웠다",
+  subtitle: DEFAULT_SUBTITLE,
+  memoLines: [
+    "이번 주 가장 선명한 장면은 AI 경쟁이 '누가 더 똑똑한가'에서 '누가 더 싸게 돌리는가'로 넘어간 것입니다. 알리바바는 2조 4천억 파라미터의 Qwen3.8-Max를 공개했고, 같은 주 DeepSeek은 V4-Flash로 앤트로픽 대비 약 100분의 1 단가를 제시하며 최상위 모델의 가격 바닥을 다시 끌어내렸습니다. 마이크로소프트는 사내 깃허브 코파일럿의 기본 모델을 OpenAI GPT-5.6 Sol로 바꿨는데, 명분은 성능만이 아니라 토큰 효율이었습니다. 한편 OpenAI는 차세대 모델 Astra의 개발 속도를 스스로 늦췄다고 밝혔습니다. 사이버보안 역량이 '위험 임계선'에 닿았다는 이유입니다. 값은 내려가고 브레이크는 처음으로 자발적으로 걸렸습니다. 두 흐름이 같은 주에 나왔다는 게 이번 호의 핵심입니다.",
+    "자본과 자산 쪽도 방향이 뚜렷했습니다. 글로벌 RWA 토큰화 자산은 $381.7억으로 $400억을 목전에 뒀고, 그중 국채가 $162.1억으로 최대 자산군입니다. 블랙록은 같은 주 스테이블코인 준비자산용 토큰화 머니마켓 상품 두 종(BSTBL·BRSRV)을 내놨습니다. 규제가 요구하는 '적격 준비자산' 자리를 선점하겠다는 포석입니다. 국내에서는 휴가철인데도 벤처투자가 멈추지 않아 이노크라스 443억원·레디로버스트머신 134억원 등 라운드가 이어졌습니다. 서울 아파트값은 77주 연속 올랐지만 강남4구는 둔화되고 중구·중랑구 같은 중저가 지역이 상승을 끌었습니다. 프롭테크 투자는 1조 9,210억원으로 전년 대비 25.4% 줄어, 실물은 오르는데 그 위에 얹히는 기술 자본은 빠지는 엇갈림이 이어지고 있습니다.",
+  ],
+  conclusion:
+    "AIMBA 원우분들, 이번 호의 키워드는 '단가'입니다. DeepSeek이 100분의 1 가격을 던지고, 마이크로소프트가 토큰 효율을 이유로 사내 표준 모델을 통째로 바꾸고, 메타가 첫 코딩 에이전트를 대형 코드베이스용으로 내놓은 흐름은 하나의 이야기입니다. AI의 경쟁 우위가 '무엇을 쓰느냐'에서 '얼마에 얼마나 자주 돌리느냐'로 옮겨간 것입니다. 이건 기술 이슈가 아니라 원가 구조 이슈입니다. 지난 호에서 '도입이 아니라 내재화'를 말씀드렸다면, 이번 주에는 한 걸음 더 들어가 보시길 권합니다. 우리 조직이 AI에 쓰는 월 비용을 한 번 뽑아보고, 그 돈이 어떤 업무 몇 건을 처리하고 있는지 '건당 단가'로 환산해 보시는 겁니다. 단가를 모르면 싸진 시장의 이득을 가져올 수 없습니다.",
+  sections: [
+    {
+      id: "ai",
+      label: "AI · LLM",
+      code: "AI-LLM",
+      narrative:
+        "이번 주 AI는 가격과 브레이크가 동시에 움직였습니다. 중국발 모델 두 종이 파라미터 규모와 가격 양쪽에서 기록을 갈아치웠고, 반대편에서 OpenAI는 사이버보안 위험을 이유로 차세대 모델 개발 속도를 스스로 늦췄다고 공개했습니다. 프런티어 모델 경쟁에서 '더 빨리'가 아닌 '일부러 천천히'가 공식 입장으로 나온 첫 사례라는 점이 눈에 띕니다.",
+      articles: [
+        {
+          title: "알리바바, 2.4조 파라미터 Qwen3.8-Max 공개…같은 주 DeepSeek V4-Flash는 앤트로픽 대비 100배 낮은 단가 제시",
+          desc: "테크스타트업스에 따르면 알리바바는 8월 초 파라미터 2조 4천억 규모의 Qwen3.8-Max를 공개했고, 비슷한 시점에 DeepSeek이 내놓은 V4-Flash는 앤트로픽 모델 대비 약 100분의 1 수준의 사용 단가를 앞세웠습니다. 파라미터(모델의 크기를 재는 단위) 경쟁과 가격 경쟁이 같은 주에 겹친 셈입니다. 중국 모델들이 성능 상위권에 안착한 뒤 가격을 무기로 내려오면서, 미국 프런티어 모델 진영은 '성능 프리미엄을 얼마나 오래 방어할 수 있는가'라는 질문을 받게 됐습니다.",
+          source: "Tech Startups",
+          href: "https://techstartups.com/2026/08/03/alibaba-unveils-2-4-trillion-parameter-qwen3-8-max-as-deepseeks-new-ai-model-undercuts-anthropic-by-100x/",
+        },
+        {
+          title: "OpenAI, 차세대 모델 'Astra' 개발 속도 자발적 감속 — \"사이버보안 역량이 위험 임계선에 도달\"",
+          desc: "테크크런치에 따르면 OpenAI는 차세대 모델 Astra의 개발 속도를 스스로 늦췄다고 8월 7일 밝혔습니다. 모델의 사이버보안 능력이 자사 안전 기준상 '위험 임계선(critical threshold)'에 근접했다는 판단 때문입니다. 프런티어 AI 기업이 경쟁 한복판에서 출시 일정을 스스로 늦춘다고 공개한 사례는 드뭅니다. 가격 경쟁이 격화되는 시점에 나온 감속 선언이라, 안전 비용을 누가 얼마나 부담할 것인가라는 산업 전체의 숙제를 드러냅니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/08/07/openai-says-it-slowed-astra-model-development-over-security-concerns/",
+        },
+      ],
+    },
+    {
+      id: "business",
+      label: "비즈니스 혁신",
+      code: "BUSINESS",
+      narrative:
+        "AI 도입의 병목이 '어떤 모델을 살까'가 아니라 '어떻게 현장에 꽂을까'라는 진단은 이제 자본의 언어가 됐습니다. 마크 베니오프가 이 문제 자체를 푸는 스타트업에 프리시드 $2천만을 태웠고, 마이크로소프트는 자사 20만 명 규모 조직의 코딩 도구 기본값을 통째로 갈아끼우며 표준화가 곧 비용 절감임을 실증했습니다.",
+      articles: [
+        {
+          title: "마크 베니오프가 투자한 'June', AI 도입 문제 자체를 푸는 스타트업으로 $2천만 프리시드 조달",
+          desc: "테크크런치에 따르면 신생 스타트업 June이 세일즈포스 창업자 마크 베니오프의 타임 벤처스 등으로부터 $2천만 규모 프리시드 투자를 받았습니다. 창업 초기 라운드 치고는 이례적으로 큰 금액입니다. June이 겨냥한 문제는 모델 성능이 아니라 'AI 배포(deployment) 문제', 즉 기업이 산 AI가 실제 업무에 안 붙는 현상입니다. 지난 호 Ode(앤트로픽·블랙스톤 합작) 사례에 이어, 구현·배포 레이어에 자본이 계속 몰리고 있음을 보여주는 두 번째 신호입니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/08/03/a-marc-benioff-backed-startup-thinks-ai-can-solve-the-ai-deployment-problem/",
+        },
+        {
+          title: "마이크로소프트, 사내 깃허브 코파일럿 기본 모델을 OpenAI GPT-5.6 Sol로 교체 — 명분은 토큰 효율",
+          desc: "CNBC에 따르면 마이크로소프트는 직원용 깃허브 코파일럿의 기본 모델을 OpenAI GPT-5.6 Sol로 바꿨습니다. CoreAI 부문을 이끄는 제이 파리크가 사내 메모로 공지했고, 근거로 성능과 함께 토큰 효율(같은 일을 더 적은 연산으로 처리하는 정도)을 들었습니다. 수만 명이 매일 쓰는 도구의 기본값을 바꾸는 결정은 개인 취향이 아니라 원가 계산의 문제입니다. AI 도구를 여러 개 병행하는 조직이라면 '무엇이 최고인가'보다 '무엇을 표준으로 삼아 단가를 낮출 것인가'를 먼저 물어야 한다는 사례입니다.",
+          source: "CNBC",
+          href: "https://www.cnbc.com/2026/08/05/microsoft-makes-openai-gpt-5point6-sol-default-in-github-copilot-for-staff.html",
+        },
+      ],
+    },
+    {
+      id: "mba",
+      label: "MBA · 커리어",
+      code: "MBA",
+      narrative:
+        "지난 호에서 'AI 숙련은 기본값'이라는 조사를 전해드렸는데, 이번 주에는 그보다 한 단계 센 숫자가 나왔습니다. 미국 금융권 임원 86%가 신입 상당수에게는 MBA보다 AI 교육이 더 가치 있다고 답했습니다. 다만 학교들도 가만있지 않습니다. 위스콘신 경영대는 커리큘럼 전반에 AI를 심는 방향으로 풀타임 MBA를 다시 설계해 이번 달부터 지원을 받기 시작했습니다.",
+      articles: [
+        {
+          title: "美 금융권 임원 86% \"신입 상당수엔 MBA보다 AI 교육이 더 값어치 있다\" — PwC 설문",
+          desc: "블룸버그가 전한 PwC 설문 결과입니다. 미국 금융서비스 기업 임원 1,000명 이상을 조사한 결과, 86%가 상당수 신입 채용에서 MBA 학위보다 AI 실무 교육이 더 가치 있다고 답했습니다. 주의해서 읽어야 할 대목은 'MBA가 필요 없다'가 아니라 '어떤 자리에는 AI 역량이 먼저다'라는 조건부 답변이라는 점입니다. 학위가 증명하던 것(분석력·판단력·네트워크)과 AI 도구가 대체하는 것(정형 분석·자료 정리)을 구분해서 자기 포트폴리오를 점검할 때입니다.",
+          source: "Bloomberg",
+          href: "https://www.bloomberg.com/news/articles/2026-08-03/ai-skills-more-valuable-than-mbas-86-of-finance-executives-say",
+        },
+        {
+          title: "위스콘신 경영대, AI를 커리큘럼 전반에 심은 풀타임 MBA 재설계 발표 — 8월 3일 지원 접수 시작",
+          desc: "위스콘신 경영대(Wisconsin School of Business)가 풀타임 MBA 과정을 전면 재설계했다고 공식 발표하고 8월 3일부터 지원 접수를 시작했습니다. 개편의 핵심은 AI 과목을 하나 더 얹는 방식이 아니라, 기존 전공 트랙 전반에 AI 활용을 녹여 넣는 구조 변경입니다. 앞선 PwC 설문과 나란히 놓고 보면 그림이 분명해집니다. 시장이 'MBA냐 AI냐'를 묻자, 학교들은 'MBA 안에서 AI를'로 답하고 있습니다.",
+          source: "Wisconsin School of Business",
+          href: "https://business.wisc.edu/news/wisconsin-school-of-business-announces-redesigned-full-time-mba/",
+        },
+      ],
+    },
+    {
+      id: "startup",
+      label: "창업 · VC · PE",
+      code: "STARTUP",
+      narrative:
+        "8월 첫째 주는 통상 벤처투자가 쉬어가는 휴가철인데 이번엔 달랐습니다. 수백억 단위 라운드가 연달아 마감됐습니다. 동시에 하반기 정부 창업지원 사업 일정이 확정돼, 자금 조달을 준비하는 팀이라면 민간 라운드와 정부 사업을 같은 달력 위에 올려놓고 볼 시점입니다.",
+      articles: [
+        {
+          title: "휴가철에도 벤처투자 활황 — 이노크라스 443억·레디로버스트머신 134억 시리즈B 마감",
+          desc: "머니투데이에 따르면 8월 둘째 주 국내 벤처투자 시장은 휴가철에도 라운드가 이어졌습니다. 이노크라스가 443억원, 레디로버스트머신이 134억원 규모 시리즈B를 각각 마감했습니다. 통상 8월은 심사역 휴가와 맞물려 딜 클로징이 뜸한 시기입니다. 그런데도 100억원대 이상 라운드가 연달아 나왔다는 것은, 상반기부터 이어진 딥테크·제조 자동화 쪽 자금 유입세가 하반기에도 유지되고 있다는 신호로 읽힙니다.",
+          source: "머니투데이",
+          href: "https://www.mt.co.kr/future/2026/08/09/2026080916044191717",
+        },
+        {
+          title: "2026 하반기 스타트업 지원정책 총정리 — 사업별 접수 일정·대상 한눈에",
+          desc: "벤처스퀘어가 2026년 하반기 스타트업 지원정책을 사업별로 정리했습니다. 창업 단계별 지원사업, R&D 과제, 글로벌 진출 프로그램의 접수 일정과 지원 대상을 묶어 보여줍니다. 정부 사업은 공고가 부처별로 흩어져 나오기 때문에 개별 사이트를 매번 확인하기 어렵습니다. 하반기 자금 계획을 짜는 원우분들은 이 정리본을 기준선으로 삼고, 관심 사업만 K-Startup 원문 공고로 교차확인하시는 방식을 권합니다.",
+          source: "벤처스퀘어",
+          href: "https://www.venturesquare.net/1099401",
+        },
+      ],
+    },
+    {
+      id: "vibe",
+      label: "Vibe Coding",
+      code: "VIBE",
+      narrative:
+        "이번 주 바이브코딩의 화두는 '작은 프로젝트'를 벗어난 것입니다. 그동안 AI 코딩 에이전트의 약점은 코드가 커지면 맥락을 놓친다는 점이었는데, 메타가 대형 코드베이스를 정면으로 겨냥한 첫 에이전트를 내놨습니다. 도구를 이미 쓰고 계신 분들에게는 클로드 코드 최신 체인지로그도 함께 챙겨보실 만합니다.",
+      articles: [
+        {
+          title: "메타, 대형 코드베이스용 첫 코딩 에이전트 'Muse Code' 출시 — 백그라운드 병렬 에이전트 지원",
+          desc: "테크크런치에 따르면 메타가 8월 5일 코딩 에이전트 'Muse Code'를 공개했습니다. 차별점은 대상 규모입니다. 소규모 프로젝트가 아니라 대형 코드베이스를 다루도록 설계했고, 여러 에이전트를 백그라운드에서 병렬로 돌려 작업을 나눠 처리합니다. 💡 핵심 노하우: 에이전트를 여러 개 동시에 돌릴 때 관건은 속도가 아니라 '작업을 겹치지 않게 쪼개는 설계'입니다. 파일 단위·모듈 단위로 경계를 미리 그어두면 병렬 에이전트가 서로의 결과를 덮어쓰는 사고를 막을 수 있습니다.",
+          source: "TechCrunch",
+          href: "https://techcrunch.com/2026/08/05/meta-launches-muse-code-an-ai-agent-for-large-code-bases/",
+        },
+        {
+          title: "Claude Code 체인지로그 — 셀프호스티드 러너, 플러그인 소스 아카이브, 세션 간 메시지 전달",
+          desc: "앤트로픽 공식 체인지로그에 최근 추가된 기능들입니다. 셀프호스티드 러너(자체 서버에서 작업을 돌리는 방식) 지원, 플러그인 소스 아카이브, 세션을 넘나드는 메시지 전달 등이 포함됐습니다. 💡 핵심 노하우: 공식 체인지로그는 블로그 요약보다 항상 앞섭니다. AI 코딩 도구를 업무에 쓰신다면 즐겨찾기에 걸어두고 2주에 한 번만 훑어도, 남들이 블로그로 알게 되는 기능을 한 달 먼저 씁니다. 1차 출처를 직접 보는 습관이 곧 도구 숙련도의 차이를 만듭니다.",
+          source: "Anthropic 공식 문서",
+          href: "https://code.claude.com/docs/en/changelog",
+        },
+      ],
+    },
+    {
+      id: "rwa",
+      label: "블록체인 · RWA",
+      code: "RWA",
+      narrative:
+        "RWA 토큰화 시장이 $400억 문턱에 섰습니다. 주목할 점은 성장의 주력이 국채라는 것입니다. 전체 $381.7억 중 $162.1억이 국채입니다. 투기적 자산이 아니라 가장 보수적인 자산이 온체인으로 옮겨가고 있다는 뜻입니다. 블랙록이 스테이블코인 준비자산용 상품을 내놓은 것도 같은 맥락입니다.",
+      articles: [
+        {
+          title: "RWA 토큰화 자산 $381.7억으로 $400억 목전 — 국채가 $162.1억으로 최대 자산군",
+          desc: "비트코인닷컴 뉴스에 따르면 실물자산(RWA) 토큰화 시장 규모가 $381.7억에 도달해 $400억 돌파를 앞두고 있습니다. 가장 큰 자산군은 국채로 $162.1억이며, 보유 지갑 63,010개·상품 87종이 집계됐습니다. 개별 상품으로는 서클의 USYC가 약 $30억, 블랙록 BUIDL이 $26.8억, 온도(Ondo)가 $21.4억 순입니다. 지난 호 $335억에서 2주 만에 약 14% 늘어난 수치로, 증가분 대부분이 국채·머니마켓 계열에서 나왔습니다.",
+          source: "Bitcoin.com News",
+          href: "https://news.bitcoin.com/crypto-news/tokenized-rwa-sector-hits-38b-as-treasury-debt-dominates-market/",
+        },
+        {
+          title: "블랙록, 스테이블코인 준비자산용 토큰화 머니마켓 상품 2종(BSTBL·BRSRV) 출시",
+          desc: "블랙록이 8월 4일 토큰화 머니마켓 상품 두 종을 내놨습니다. BSTBL은 이더리움 기반 온체인 셰어 구조이고, BRSRV는 여러 체인에 걸쳐 운용되는 스테이블코인 준비자산 전용 상품입니다. 둘 다 미국 결제형 스테이블코인 규제(GENIUS Act)가 요구하는 '적격 준비자산' 요건을 겨냥해 설계됐습니다. 운용 규모는 공개되지 않았습니다. 스테이블코인 발행사가 어떤 자산을 준비금으로 쌓느냐는 규제 통과의 관문인데, 그 자리를 세계 최대 자산운용사가 상품으로 선점하러 들어온 것입니다.",
+          source: "Simply Wall St",
+          href: "https://simplywall.st/stocks/us/diversified-financials/nyse-blk/blackrock/news/how-blackrocks-tokenized-money-market-push-for-stablecoin-re",
+        },
+      ],
+    },
+    {
+      id: "re",
+      label: "부동산 · 핀테크",
+      code: "RE",
+      narrative:
+        "서울 아파트값 상승은 77주째 이어졌지만 내용이 바뀌었습니다. 강남4구는 둔화되고 중구·중랑구 같은 중저가 지역이 상승률 상위로 올라왔습니다. 반면 부동산에 기술을 얹는 프롭테크 투자는 25.4% 줄었습니다. 실물 가격은 오르는데 그 위 산업으로는 돈이 덜 들어가는 엇갈림입니다.",
+      articles: [
+        {
+          title: "서울 아파트값 77주 연속 상승(+0.26%) — 중구 0.54%·중랑 0.52%로 상승축 이동, 강남4구는 둔화",
+          desc: "아시아경제에 따르면 8월 3일 기준 서울 아파트 매매가격은 전주 대비 0.26% 올라 77주 연속 상승을 기록했습니다. 눈여겨볼 대목은 순위 변화입니다. 중구가 0.54%, 중랑구가 0.52%로 상승률 상위에 올랐고, 그동안 시장을 끌던 강남4구는 상승폭이 둔화됐습니다. 규제와 가격 부담이 큰 상급지 대신 상대적으로 진입 문턱이 낮은 지역으로 매수세가 옮겨가는 흐름으로, 부동산금융 실무에서는 담보 평가와 사업지 선정 기준을 재점검할 시점입니다.",
+          source: "아시아경제",
+          href: "https://www.asiae.co.kr/article/2026080614171632233",
+        },
+        {
+          title: "국내 프롭테크 투자 1조 9,210억원, 전년 대비 25.4% 감소 — 투자 유치 기업 27개사",
+          desc: "뉴스핌에 따르면 국내 프롭테크(부동산+기술) 기업의 누적 투자 유치액은 1조 9,210억원으로 전년 대비 25.4% 감소했고, 투자를 받은 기업은 27개사로 집계됐습니다. ※ 이 기사는 7월 2일 자로 이번 호 수집 기간(최근 7일) 밖입니다. 해당 주간에 검증을 통과한 국내 프롭테크·핀테크 기사가 부족해 최근 자료로 보완했음을 밝힙니다. 실물 가격은 77주째 오르는데 그 위에 얹히는 기술 자본은 4분의 1이 빠졌다는 대비는, 부동산 산업의 디지털 전환이 자금 조달 측면에서 조정기에 들어섰음을 시사합니다.",
+          source: "뉴스핌",
+          href: "https://www.newspim.com/news/view/20260702000798",
+        },
+      ],
+    },
+  ],
+  supportGroups: [
+    {
+      id: "government",
+      title: "정부과제 · 지원",
+      note:
+        "이번 주 가장 급한 건은 '모두의 AI' 사업자 모집입니다. 8월 11일 마감이라 이 호가 나가는 다음 날입니다. 하반기 창업 자금을 준비하시는 분들은 K-Startup과 창업진흥원 공고 페이지를 북마크해 두시면 부처별로 흩어진 공고를 한 곳에서 훑을 수 있습니다.",
+      items: [
+        {
+          title: "전 국민 AI 서비스 보편적 활용 지원(모두의 AI) 사업자 모집 ⏰ 마감 8/11 (과기정통부·NIPA)",
+          href: "https://www.nipa.kr/home/2-2/16852",
+        },
+        {
+          title: "K-Startup 창업지원포털 — 하반기 사업공고 통합 게시판 (중소벤처기업부)",
+          href: "https://www.k-startup.go.kr/web/main/mainSection0.do",
+        },
+        {
+          title: "창업진흥원 사업공고 — 창업지원사업 상시 공고 게시판",
+          href: "https://www.kised.or.kr/menu.es?mid=a10302000000",
+        },
+      ],
+    },
+    {
+      id: "campus",
+      title: "서강대 · Campus",
+      note:
+        "이번 주 캠퍼스는 공모전과 모집 공고가 몰렸습니다. 특히 SW중심대학사업단이 올린 'MABC 2026 전국민 AI 에이전트 공모전'은 업스테이지·타임리 주최에 총상금 1,200만원 규모로, AI 에이전트를 직접 만들어 볼 기회입니다. 2학기 AI·SW 실습 멘토 모집은 8월 17일 마감입니다.",
+      items: [
+        {
+          title: "[경영대학] 2026-하계 전공심화인증 프로그램 안내 (8/7 게시)",
+          href: "https://sbs.sogang.ac.kr/bbs/sbs/649/231923/artclView.do",
+        },
+        {
+          title: "[SW중심대학] 전국민 AI 에이전트 공모전 'MABC 2026' — 업스테이지·타임리 주최, 총상금 1,200만원 (8/3 게시)",
+          href: "https://scc.sogang.ac.kr/front/cmsboardview.do?siteId=sweducenter&bbsConfigFK=7250&pkid=938856",
+        },
+        {
+          title: "[SW중심대학] 2026-2학기 AI·SW 실습 멘토 모집 ⏰ 마감 8/17 (8/5 게시)",
+          href: "https://scc.sogang.ac.kr/front/cmsboardview.do?siteId=sweducenter&bbsConfigFK=7250&pkid=938987",
+        },
+        {
+          title: "[인공지능학과] 제4회 스마트축산 AI 경진대회 안내 (8/5 게시)",
+          href: "https://ai.sogang.ac.kr/front/cmsboardview.do?siteId=ai&bbsConfigFK=6330&pkid=938978",
+        },
+      ],
+    },
+  ],
+  events: [
+    { date: "8월 11일", day: "화", title: "전 국민 AI 서비스 '모두의 AI' 사업자 모집 마감 (D-1)", where: "NIPA 온라인 접수", tag: "정부사업 마감", link: "https://www.nipa.kr/home/2-2/16852" },
+    { date: "8월 17일", day: "월", title: "서강대 2026-2학기 AI·SW 실습 멘토 모집 마감", where: "서강대 SW중심대학사업단", tag: "교내 모집 마감", link: "https://scc.sogang.ac.kr/front/cmsboardview.do?siteId=sweducenter&bbsConfigFK=7250&pkid=938987" },
+    { date: "8월 19일", day: "수", title: "AI Summit Seoul & Expo 2026 (8/19~21)", where: "코엑스, 서울 강남", tag: "글로벌 AI 서밋", link: "https://www.aisummit.co.kr/" },
+  ],
+};
+
 // 신규 디자인 호 레지스트리(최신호가 앞).
-export const ISSUE_CONTENTS: IssueContent[] = [VOL18, VOL17, VOL16, VOL15];
+export const ISSUE_CONTENTS: IssueContent[] = [VOL19, VOL18, VOL17, VOL16];
 
 // 빌드 시 NEXT_PUBLIC_ISSUE_VOL 로 어떤 호를 현재호로 렌더할지 선택(미지정 시 최신호).
 const LATEST_VOL = Math.max(...ISSUE_CONTENTS.map((i) => i.vol));

@@ -7,10 +7,10 @@ $nextApp = Join-Path $repoRoot "next-app"
 # Vol  : data.ts ISSUE_CONTENTS 의 vol 값과 일치해야 함
 # Iso  : 발간일(YYYYMMDD) → issues/vol_<Iso>.html
 $issues = @(
+  @{ Vol = 19; Iso = "20260810" },
   @{ Vol = 18; Iso = "20260727" },
   @{ Vol = 17; Iso = "20260720" },
-  @{ Vol = 16; Iso = "20260712" },
-  @{ Vol = 15; Iso = "20260706" }
+  @{ Vol = 16; Iso = "20260712" }
 )
 
 $latest = $issues[0]
