@@ -2,6 +2,7 @@
 
 export type Section =
   | "AI-LLM"
+  | "PHYS"
   | "BUS"
   | "MBA"
   | "STARTUP"
@@ -66,14 +67,14 @@ export const BRIEF_ISSUES: BriefIssue[] = [
     section: "AI-LLM",
     sectionLabel: "AI · 자율의시대",
     title:
-      "AI가 '답을 쓰는 것'을 넘어 '컴퓨터를 직접 쓰기' 시작했다 — OpenAI GPT-6 Astra가 화면 조작 시험 72.6%에 작업 시간을 47% 줄였고, 앤트로픽은 같은 주 Fable 5.1로 에이전트 비용을 최대 45% 내렸다",
+      "AI가 '답을 쓰는 것'을 넘어 '컴퓨터를 직접 쓰기' 시작했다 — OpenAI GPT-6 Astra가 화면 조작 시험 72.6%에 작업 시간을 47% 줄였고, 앤트로픽은 같은 주 Fable 5.1로 에이전트 비용을 최대 45% 내렸다. 한국 정부는 2027년 예산안에서 피지컬 AI 예산을 3배 키우며 로봇의 첫 손님으로 나섰다",
     headline:
-      "OpenAI가 GPT-6 Astra를 내놓으며 컴퓨터 사용 시험 72.6%·작업당 시간 47% 단축과 사이버보안 '위험 최고 등급' 첫 도달을 함께 공개하고, 앤트로픽이 Claude Fable 5.1로 에이전트 작업 비용을 최대 45% 낮춘 가운데, 맥킨지는 대기업 40%가 AI 에이전트를 확산 단계에 올렸다고 집계하고 토큰화 자산의 89%는 여전히 놀고 있다는 통계가 나온 주.",
+      "OpenAI가 GPT-6 Astra를 내놓으며 컴퓨터 사용 시험 72.6%·작업당 시간 47% 단축과 사이버보안 '위험 최고 등급' 첫 도달을 함께 공개하고, 앤트로픽이 Claude Fable 5.1로 에이전트 작업 비용을 최대 45% 낮춘 가운데, 맥킨지는 대기업 40%가 AI 에이전트를 확산 단계에 올렸다고 집계하고 토큰화 자산의 89%는 여전히 놀고 있다는 통계가 나오고, 한국 정부가 2027년 예산안에서 피지컬 AI 예산을 3배(9,000억→3.1조) 키운 주.",
     path: "/issues/vol_20260907.html",
     read: "16분",
     views: "최신",
     live: true,
-    tags: ["GPT-6 Astra", "OSWorld 72.6%", "작업시간 -47%", "Fable 5.1 -45%", "맥킨지 에이전트 40%", "RWA 89% 유휴", "PF 애로센터"],
+    tags: ["GPT-6 Astra", "피지컬AI 예산 3배", "OSWorld 72.6%", "작업시간 -47%", "Fable 5.1 -45%", "맥킨지 에이전트 40%", "RWA 89% 유휴", "PF 애로센터"],
   },
   {
     vol: 20,
@@ -4152,7 +4153,7 @@ const VOL21: IssueContent = {
   dateLabel: "2026년 9월 7일",
   isoDate: "20260907",
   title:
-    "AI가 '답을 쓰는 것'을 넘어 '컴퓨터를 직접 쓰기' 시작했다 — OpenAI GPT-6 Astra가 화면 조작 시험 72.6%에 작업 시간을 47% 줄였고, 앤트로픽은 같은 주 Fable 5.1로 에이전트 비용을 최대 45% 내렸다",
+    "AI가 '답을 쓰는 것'을 넘어 '컴퓨터를 직접 쓰기' 시작했다 — OpenAI GPT-6 Astra가 화면 조작 시험 72.6%에 작업 시간을 47% 줄였고, 앤트로픽은 같은 주 Fable 5.1로 에이전트 비용을 최대 45% 내렸다. 한국 정부는 2027년 예산안에서 피지컬 AI 예산을 3배 키우며 로봇의 첫 손님으로 나섰다",
   subtitle: DEFAULT_SUBTITLE,
   memoLines: [
     "이번 주는 'AI가 컴퓨터를 직접 쓰는 시대'가 요금표와 함께 도착한 주입니다. OpenAI의 GPT-6 Astra는 화면을 보고 마우스와 키보드를 조작하는 시험(OSWorld 2.0)에서 72.6%를 기록했고, 작업 하나에 걸리는 시간을 직전 모델보다 47% 줄였습니다. 여기서 눈여겨볼 숫자는 정확도보다 '약 40분'이라는 작업 시간입니다. 75분 걸리던 반복 업무가 40분에 끝나고 그 비용이 입력 100만 토큰당 $10으로 적혀 있으면, 그때부터는 기술 논쟁이 아니라 원가 계산입니다. 같은 주에 앤트로픽은 Claude Fable 5.1로 에이전트 작업 비용을 최대 45% 내렸고, 구글은 Gemini 3.8 Flash를 100만 토큰당 $0.75에 내놓았습니다. 세 회사가 같은 주에 '더 잘한다'가 아니라 '더 싸게 더 오래 일한다'로 경쟁하기 시작했습니다.",
@@ -4199,7 +4200,7 @@ const VOL21: IssueContent = {
       label: "Physical AI · 로보틱스",
       code: "PHYSICAL-AI",
       narrative:
-        "이번 주 피지컬 AI의 핵심은 정부가 첫 고객이 된다는 전환입니다. 2027년 예산안이 피지컬 AI 예산을 3배 넘게 키우면서 지원 축을 R&D에서 구매·실증·양산으로 옮겼고, 일본에서는 VLA(보고·듣고·움직이는 로봇 파운데이션 모델) 실증과 역무 현장 투입이 같은 주에 나왔습니다. AIMBA 원우 관점에서는 로봇 하드웨어 자체보다 누가 초기 수요를 만들어 현장 데이터를 먼저 쌓느냐가 다음 3년의 승부처입니다.",
+        "이번 주 피지컬 AI의 핵심은 정부가 첫 고객이 된다는 전환입니다. 2027년 예산안이 피지컬 AI 예산을 3배 넘게 키우면서 지원 축을 R&D에서 구매·실증·양산으로 옮겼고, 일본에서는 VLA(보고·듣고·움직이는 로봇 파운데이션 모델) 실증과 역무 현장 투입이 같은 주에 나왔습니다. AIMBA 원우 관점에서는 로봇 하드웨어 자체보다 누가 초기 수요를 만들어 현장 데이터를 먼저 쌓느냐가 다음 3년의 승부처입니다. 📡 섹터워치 주간 신호(08/30~09/05, 196종목 실측): 9레이어 중 가장 강한 층은 구동/근육(L1) 평균 +2.4%, 가장 약한 층은 SW/파운데이션(L5) -8.3%. 급등 1위 Draganfly(DPRO) +40.0%, 급락 1위 Nauticus Robotics(KITT) -18.8%.",
       articles: [
         {
           title: "[2027 예산안] GPU 1만장·AI로봇 2000여대…AI·반도체에 21.3조",
@@ -6258,6 +6259,7 @@ const filterGroupCount = (id: string): number =>
 export const FILTERS: FilterItem[] = [
   { code: "ALL", label: "전체보기", count: BRIEF_ISSUES.length, href: "#archive" },
   { code: "AI-LLM", label: "AI · LLM", count: filterSectionCount("ai"), href: `${CURRENT_ISSUE_PATH}#ai` },
+  { code: "PHYS", label: "Physical AI · Robotics", count: filterSectionCount("physical"), href: `${CURRENT_ISSUE_PATH}#physical` },
   { code: "BUS", label: "Business · Strategy", count: filterSectionCount("business"), href: `${CURRENT_ISSUE_PATH}#business` },
   { code: "MBA", label: "MBA Insight", count: filterSectionCount("mba"), href: `${CURRENT_ISSUE_PATH}#mba` },
   { code: "STARTUP", label: "Startup · VC · PE", count: filterSectionCount("startup"), href: `${CURRENT_ISSUE_PATH}#startup` },
