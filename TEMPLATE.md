@@ -5,11 +5,16 @@
 - HTML 신문 스타일 (issues/vol_YYYYMMDD.html)
 - GitHub Pages 자동 배포
 
-## 섹션 구성 (6+1 섹터 + 정부과제 + 서강대)
+## 섹션 구성 (7+1 섹터 + 정부과제 + 서강대)
 
 ### 🤖 AI·LLM 최신 동향 (Full Width, 5건 = 2표시+3숨김)
 - 글로벌 AI 모델/에이전트 발표, 벤치마크 돌파, 주요 인수합병
 - LLM 성능 비교, AI 에이전트 트렌드
+
+### 🦾 Physical AI·로보틱스 (Full Width, 5건 = 2표시+3숨김) — 26-09-05 신설
+- 휴머노이드·산업용 로봇 양산/현장 투입, 로봇 파운데이션 모델(VLA) 실증
+- 피지컬 AI 정책·예산(국민성장펀드·K-휴머노이드), 로봇 스타트업 투자·IPO
+- 공식 발표(기업 뉴스룸·정부 보도자료) > 언론 > 블로그. 숫자는 원문 확인분만
 
 ### 💼 비즈니스 혁신 (2열 좌측, 5건 = 2표시+3숨김)
 - AI 기반 비즈니스 모델, 바이브코딩, 1인 기업, 생산성 혁신
@@ -34,7 +39,7 @@
 - 처음 2건은 바로 표시
 - 나머지 3건은 `<div class="more-items" id="more-{id}">` 안에 숨김
 - `<button class="more-toggle" onclick="toggleMore('{id}')">더보기 ▼</button>` 배치
-- id 규칙: ai, biz, rwa, re, vc, mba
+- id 규칙: ai, physical, biz, rwa, re, vc, mba
 
 ### 💡 이번 주 한줄 인사이트
 - 위 뉴스 중 가장 임팩트 있는 것을 AIMBA 원우 관점에서 한 문단 해설

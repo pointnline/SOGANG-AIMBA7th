@@ -4195,6 +4195,45 @@ const VOL21: IssueContent = {
       ],
     },
     {
+      id: "physical",
+      label: "Physical AI · 로보틱스",
+      code: "PHYSICAL-AI",
+      narrative:
+        "이번 주 피지컬 AI의 핵심은 정부가 첫 고객이 된다는 전환입니다. 2027년 예산안이 피지컬 AI 예산을 3배 넘게 키우면서 지원 축을 R&D에서 구매·실증·양산으로 옮겼고, 일본에서는 VLA(보고·듣고·움직이는 로봇 파운데이션 모델) 실증과 역무 현장 투입이 같은 주에 나왔습니다. AIMBA 원우 관점에서는 로봇 하드웨어 자체보다 누가 초기 수요를 만들어 현장 데이터를 먼저 쌓느냐가 다음 3년의 승부처입니다.",
+      articles: [
+        {
+          title: "[2027 예산안] GPU 1만장·AI로봇 2000여대…AI·반도체에 21.3조",
+          desc: "피지컬 AI 예산 9000억→3조1000억(3배 이상). 현장 실증 5000억, 공공이 국산 AI 로봇 2000여대(연구·교육 650, 경찰·소방 369, 국방 214, 돌봄 200)를 먼저 사준다.",
+          source: "아주경제",
+          href: "https://www.ajunews.com/view/20260901104647524",
+        },
+        {
+          title: "‘정부가 로봇 200대 사준다’…증권가가 찍은 수혜주는?",
+          desc: "자율제조 사업에 국산 휴머노이드 200대 공공 실증 300억 반영. 3대 메가프로젝트 예산 10.8조→21.3조(+97.2%), 축이 R&D에서 구매·실증·양산으로. 완제품 플랫폼(레인보우로보틱스·로보티즈) 수혜 전망.",
+          source: "한국경제",
+          href: "https://www.hankyung.com/article/2026090320136",
+        },
+        {
+          title: "Reframe Systems raises $40M to scale its robotic microfactories for home building",
+          desc: "아마존 로보틱스 출신 창업팀의 주택 건설 로봇 마이크로팩토리. EIP 리드. 완공 10채(8채 입주), 향후 1년 114유닛 계획. 10월 5일 여는 FAB1은 연 500 다세대 유닛 규모, 설비비 500만 달러 미만.",
+          source: "The Robot Report",
+          href: "https://www.therobotreport.com/reframe-systems-raises-40m-scale-robotic-microfactories-home-building/",
+        },
+        {
+          title: "ABEJA × Murata Manufacturing, Physical AI Technology Verification for Lab Automation",
+          desc: "NVIDIA GR00T N1.7 VLA 모델로 양팔 로봇이 부품을 왼팔에서 오른팔로 넘겨 랙에 삽입. 수백 건의 시연 데이터로 모방학습, 통제된 시험 환경에서 검증(양산 아님). 무라타는 사내 R&D 공정 적용이 목표.",
+          source: "ABEJA",
+          href: "https://www.abejainc.com/en/news/20260831/1",
+        },
+        {
+          title: "Osaka Metro, 휴머노이드 역무 안내 실증 시작 (8/31~9/15)",
+          desc: "Metro Opus 우메다·다니마치9초메 매장에서 제복 입은 휴머노이드가 역 구조·환승·주변 관광 안내. 8.31~9.6, 9.9~9.15 두 단계로 접객 실증.",
+          source: "Osaka Metro",
+          href: "https://subway.osakametro.co.jp/news/news/other/20260828_humanoid_annai_service.php",
+        },
+      ],
+    },
+    {
       id: "business",
       label: "비즈니스 혁신",
       code: "BUSINESS",
