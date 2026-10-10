@@ -1,0 +1,671 @@
+// SOGANG AIMBA 7th — AI 이벤트 레이더 데이터 소스 (독립 파일)
+//
+// ⚠️ 이 파일은 /radar 커맨드(크론)가 통째로 재생성하는 "생성물"이다.
+//    수기 편집보다, 다음 수집 사이클에서 자동 갱신되는 것을 기본으로 한다.
+//    스키마(인터페이스)만 안정적으로 유지하고, RADAR_EVENTS 배열은 교체된다.
+//
+// 검증 상태(verified):
+//   "verified"  = 링크 HTTP 200 + 날짜·장소·주최 교차확인 완료 (풀검증 통과)
+//   "link-ok"   = 링크 도달 확인, 메타 교차검증 일부 미완
+//   "seed"      = 베리해피독 수집분, 자동검증 전 (초기 시드)
+//   "failed"    = 검증 실패 — 화면에 [미검증] 경고와 함께 노출
+//
+// 큐레이션(curate):  pick=추천 / watch=관심 / exclude=제외(저품질·홍보성)
+// 조전무 시간대(jjFlag): weekday-work=평일 업무시간(⚠️) / weekday-eve=평일 저녁 / weekend=주말
+
+export type RadarTier = 1 | 2 | 3 | 4;
+export type RadarVerified = "verified" | "link-ok" | "seed" | "failed";
+export type RadarCurate = "pick" | "watch" | "exclude";
+export type RadarRegion = "서울" | "수도권" | "온라인";
+export type RadarPriceType = "free" | "paid" | "approval" | "split" | "unknown";
+export type RadarLinkType = "official" | "registration" | "partner" | "community";
+export type RadarJjFlag = "weekday-work" | "weekday-eve" | "weekend" | "multi";
+
+export interface RadarEvent {
+  id: string;
+  title: string;
+  date: string; // ISO 시작일 YYYY-MM-DD
+  dateEnd?: string; // 다일 행사 종료일
+  dateLabel: string; // 화면 표기 "2026-06-06(토) 10:00"
+  recurring?: string; // 반복 행사 표기 "매주 금 19:00"
+  venue: string; // 장소
+  region: RadarRegion;
+  host: string; // 주최
+  price: string; // 화면 표기 "무료" / "20,000원" / "유료(승인제)"
+  priceType: RadarPriceType;
+  link: string;
+  linkType: RadarLinkType;
+  point: string; // 한 줄 포인트
+  tier: RadarTier; // 실무가치 1(최상)~4
+  category: string; // 에이전트 / 빅테크 / 정책 / 전시 / 네트워킹 / 교육
+  verified: RadarVerified;
+  verifyNote?: string;
+  jjFlag: RadarJjFlag; // 조전무 참석 시간대
+  curate: RadarCurate;
+  excludeReason?: string;
+}
+
+export interface RadarMeta {
+  generated: string; // 생성일
+  baseDate: string; // 기준일(향후 N일의 시작점)
+  rangeDays: number; // 탐색 범위(일)
+  source: string;
+  total: number;
+  pickCount: number;
+  excludeCount: number;
+}
+
+// 실무가치 티어 정의 (정렬·뱃지에 사용)
+export const RADAR_TIERS: Record<RadarTier, { label: string; desc: string; color: string }> = {
+  1: { label: "T1 · 에이전트/개발", desc: "AI 에이전트·개발자동화 직접 관련", color: "#8B0029" },
+  2: { label: "T2 · 빅테크/모델사", desc: "빅테크·모델사·클라우드 공식 행사", color: "#a07f47" },
+  3: { label: "T3 · 투자/정책/산업", desc: "투자·정책·산업 인사이트 가치", color: "#3d342d" },
+  4: { label: "T4 · 네트워킹", desc: "커뮤니티 네트워킹 가치", color: "#6b5e54" },
+};
+
+export const RADAR_EVENTS: RadarEvent[] = [
+  // ───────────── TIER 1 · 에이전트/개발 ─────────────
+  {
+    id: "m5go7n2c-1013",
+    title: "Google Agentic AI Night (Beyond the Vibes Community)",
+    date: "2026-10-13",
+    dateLabel: "2026-10-13(화) 19:00–22:00",
+    venue: "구글 서울(강남파이낸스센터 22층), 서울 강남 테헤란로 152",
+    region: "서울",
+    host: "Beyond the Vibes Community (호스트 Thu Ya Kyaw · Sunny Park)",
+    price: "무료(승인제)",
+    priceType: "approval",
+    link: "https://luma.com/m5go7n2c",
+    linkType: "registration",
+    point: "구글 서울 오피스에서 에이전틱 소프트웨어 개발, Antigravity 멀티에이전트, A2A 프로토콜, Google Cloud 배포까지 한 저녁에 다룬다. 딜 자동화 에이전트를 구글 스택으로 짤 때의 설계 선택지를 직접 확인하는 자리. 같은 저녁 AI Salon·OpenSearch 밋업과 겹친다.",
+    tier: 1,
+    category: "에이전트",
+    verified: "verified",
+    verifyNote: "Luma 페이지 재확인(HTTP 200, 2026-10-05 재검증) — start_at(UTC→KST 환산)·장소(테헤란로 152 강남파이낸스센터 22F)·호스트·승인제 불변",
+    jjFlag: "weekday-eve",
+    curate: "pick",
+  },
+  {
+    id: "ai-salon-dev-korea-1013",
+    title: "AI SALON X Dev Korea #2",
+    date: "2026-10-13",
+    dateLabel: "2026-10-13(화) 18:30–21:15",
+    venue: "서울 마포 양화로 일대 (Luma 승인 후 상세 주소 공개)",
+    region: "서울",
+    host: "AI Salon · Dev Korea (호스트 Anton Reshetov · Jay Kim · Florian Ludot 외)",
+    price: "무료(승인제)",
+    priceType: "approval",
+    link: "https://luma.com/AI-Salon-October-Seoul-2026",
+    linkType: "registration",
+    point: "글로벌 AI 토론 모임 AI Salon과 서울 개발자 커뮤니티 Dev Korea의 두 번째 공동 모임. 같은 날 구글 Agentic AI Night와 겹치므로 둘 중 하나를 고르는 용도.",
+    tier: 1,
+    category: "개발",
+    verified: "verified",
+    verifyNote: "Luma 페이지 재확인(HTTP 200, 2026-10-05 재검증) — start_at(UTC→KST 환산)·호스트·승인제 불변. Luma 서울 AI 목록에 장소가 'Yanghwa-ro'로 노출, 상세 주소는 승인자 공개",
+    jjFlag: "weekday-eve",
+    curate: "watch",
+  },
+  {
+    id: "opensearch-seoul-rag-1013",
+    title: "OpenSearch Project Seoul Meetup — 메타 저장소 기반 로컬 문서 RAG",
+    date: "2026-10-13",
+    dateLabel: "2026-10-13(화) 19:30–21:00",
+    venue: "센터필드 EAST동 18층(테헤란로 231), 서울 강남 역삼",
+    region: "서울",
+    host: "OpenSearch Project Seoul (Meetup, 호스트 West K.)",
+    price: "무료",
+    priceType: "free",
+    link: "https://www.meetup.com/opensearch-project-seoul/events/316379129/",
+    linkType: "community",
+    point: "수십 개 저장소의 사양 문서를 메모리화해 OpenSearch로 관리하고 memory MCP로 다루는 '메타 저장소' 전략으로 토큰 비용과 추론 시간을 줄인 사례가 메인 세션(조용진). 사내 딜 자료 검색을 붙일 때 그대로 대입해볼 실무 밀도. 식사 미제공, 출입 QR은 전날 문자 발송.",
+    tier: 1,
+    category: "개발",
+    verified: "verified",
+    verifyNote: "Meetup 페이지 직접 확인(HTTP 200, 2026-10-05) — 일시·장소(역삼 센터필드 EAST동 18층)·무료·세션 주제·출입 QR 안내 교차확인",
+    jjFlag: "weekday-eve",
+    curate: "watch",
+  },
+  {
+    id: "1odx3eoy-1014",
+    title: "ML Engineer Meetup (Channel Dev Meetup)",
+    date: "2026-10-14",
+    dateLabel: "2026-10-14(수) 18:00–21:30",
+    venue: "GS타워(역삼역), 서울 강남",
+    region: "서울",
+    host: "Channel Dev Meetup (채널코퍼레이션)",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/1odx3eoy",
+    linkType: "registration",
+    point: "채널코퍼레이션·라이너 ML 엔지니어가 자체 모델 운영과 AI 에이전트용 검색엔진 구축 경험을 공유한다. 사내 문서 검색·딜 자료 RAG를 붙일 때의 실무 난점 청취용. 같은 저녁 PyTorchKR 세미나(서초)와 겹친다.",
+    tier: 1,
+    category: "개발",
+    verified: "verified",
+    verifyNote: "Luma 페이지 재확인(HTTP 200, 2026-10-05 재검증) — start_at(UTC→KST 환산)·장소(역삼역 GS타워)·호스트 불변",
+    jjFlag: "weekday-eve",
+    curate: "watch",
+  },
+  {
+    id: "daytona-hacksprint-seoul-1018",
+    title: "Daytona HackSprint Seoul 해커톤 (AI Builders · Daytona · Nosana)",
+    date: "2026-10-18",
+    dateLabel: "2026-10-18(일) 14:00–18:00",
+    venue: "서울 (Luma 승인 후 상세 장소 공개)",
+    region: "서울",
+    host: "AI Builders, Daytona, Nosana",
+    price: "무료(승인제, 정원 150)",
+    priceType: "approval",
+    link: "https://luma.com/daytonaseoul1018",
+    linkType: "registration",
+    point: "'단순한 챗봇의 시대는 끝났다'를 내걸고 실시간 데이터 수집·워크플로우 자동화·인프라 관리·프로덕션 배포를 묶는 AI 애플리케이션을 만드는 일요일 오후 4시간 해커톤. 에이전트 샌드박스 인프라(Daytona) 위에서 딜 자동화 프로토타입을 압축 포맷으로 돌려보기 좋다.",
+    tier: 1,
+    category: "빌드",
+    verified: "verified",
+    verifyNote: "Luma 페이지 직접 확인(HEAD 403→GET 200, 2026-10-05) — start_at(UTC→KST 환산)·호스트·승인제·정원 150·본문 교차확인. 장소 좌표 비공개(승인자 공개)",
+    jjFlag: "weekend",
+    curate: "watch",
+  },
+  {
+    id: "cursor-hackathon-seoul-1024",
+    title: "Cursor Hackathon Seoul 4th: AI Builder's Playground",
+    date: "2026-10-24",
+    dateLabel: "2026-10-24(토) 10:30–19:00",
+    venue: "서울 (Luma 승인 후 상세 장소 공개)",
+    region: "서울",
+    host: "SpaceXAI 커뮤니티 (호스트 SIREAL · 가온 · Dave · Jihee Woo · Eric Kim)",
+    price: "무료(승인제)",
+    priceType: "approval",
+    link: "https://luma.com/06x2etd7",
+    linkType: "registration",
+    point: "서울에서 네 번째로 열리는 Cursor 실전 AI 해커톤. 토요일 종일 포맷이라 Cursor 기반 자동화 프로토타입을 끝까지 밀어붙여 볼 수 있다. 상세 프로그램은 페이지에 아직 미공개. 같은 날 GitHub Copilot Dev Days·Mobbin MCP 워크숍과 겹친다.",
+    tier: 1,
+    category: "빌드",
+    verified: "verified",
+    verifyNote: "Luma 페이지 직접 확인(HTTP 200, 2026-10-05) — start_at(UTC→KST 환산)·호스트·승인제 교차확인, dev-event 목록과 일시 일치. 장소 좌표 비공개, 본문 프로그램 미공개",
+    jjFlag: "weekend",
+    curate: "watch",
+  },
+  {
+    id: "github-copilot-dev-days-seoul-1024",
+    title: "GitHub Copilot Dev Days | Seoul",
+    date: "2026-10-24",
+    dateLabel: "2026-10-24(토) 12:00–18:00",
+    venue: "한국마이크로소프트(더케이트윈타워 A동 13층, 종로1길 50), 서울 종로",
+    region: "서울",
+    host: "Microsoft 커뮤니티 이벤트 (문의 devrel-kr@microsoft.com)",
+    price: "무료(신청 10/4 마감 · 10/8 추첨 발표)",
+    priceType: "free",
+    link: "https://ticketa.co/event/xzch6c1g",
+    linkType: "registration",
+    point: "키노트가 '비개발자가 GitHub Copilot으로 코드가 아닌 진짜 문제를 푸는 실전 AX'(이영빈, GM TCK 전략개발팀장)이고, 이어 Copilot 앱(트랙 A)·CLI(트랙 B) 워크숍이 4시간 이어진다. 토요일 광화문이라 동선은 좋지만 신청이 10/4에 끝나 추첨 당첨자만 입장 — 추가 모집 공지 확인용.",
+    tier: 1,
+    category: "개발",
+    verified: "verified",
+    verifyNote: "Ticketa 등록 페이지 직접 확인(HTTP 200, 2026-10-05) — 일시·장소(더케이트윈타워 A 13F)·주최·무료·시간표·신청기간(~10/4, 10/8 추첨) 교차확인, dev-event 목록과 일치",
+    jjFlag: "weekend",
+    curate: "watch",
+  },
+  {
+    id: "8a5unpnu-1024",
+    title: "Research Fast and Design Live with Mobbin MCP (Designed Minds)",
+    date: "2026-10-24",
+    dateLabel: "2026-10-24(토) 12:00–13:30",
+    venue: "디캠프(d·camp, 선릉로 551 새롬빌딩), 서울 강남 역삼",
+    region: "서울",
+    host: "Designed Minds",
+    price: "무료(승인제)",
+    priceType: "approval",
+    link: "https://luma.com/8a5unpnu",
+    linkType: "registration",
+    point: "실제 앱 화면 라이브러리를 MCP로 AI 에이전트에 연결해 리서치·설계하는 영어 워크숍(한국어 요약 제공). 토요일 낮 90분이라 MCP 실습을 부담 없이 해볼 수 있다.",
+    tier: 1,
+    category: "빌드",
+    verified: "verified",
+    verifyNote: "Luma 페이지 재확인(HTTP 200, 2026-10-05 재검증) — start_at(UTC→KST 환산)·장소·호스트·승인제 불변",
+    jjFlag: "weekend",
+    curate: "watch",
+  },
+
+  // ───────────── TIER 2 · 빅테크/모델사 ─────────────
+  {
+    id: "if-kakao-26-1013",
+    title: "if(kakao)26 — 카카오 개발자 컨퍼런스",
+    date: "2026-10-13",
+    dateEnd: "2026-10-14",
+    dateLabel: "2026-10-13(화)~10-14(수)",
+    venue: "카카오 AI 캠퍼스 (강남역·판교역 셔틀 운행, 상세 주소 페이지 미표기)",
+    region: "수도권",
+    host: "카카오",
+    price: "무료(오프라인 참가 신청 마감, 전 세션 생중계)",
+    priceType: "free",
+    link: "https://if.kakao.com/2026",
+    linkType: "official",
+    point: "카카오의 연례 개발자 컨퍼런스로 전 세션이 생중계된다. 오프라인 신청은 이미 닫혔으니 국내 빅테크가 AI 에이전트를 서비스에 어떻게 붙이는지 온라인으로 챙겨보는 용도.",
+    tier: 2,
+    category: "빅테크",
+    verified: "link-ok",
+    verifyNote: "공식 페이지 재확인(HTTP 200, 2026-10-05) — 일시·'참가 신청은 마감되었습니다'·전 세션 라이브 스트리밍·셔틀(강남역·판교역) 표기. 행사장 상세 주소는 페이지 미표기라 link-ok 유지",
+    jjFlag: "multi",
+    curate: "watch",
+  },
+  {
+    id: "build-with-gemini-seoul-1014",
+    title: "Build with Gemini Seoul — All Builders Day (Google Cloud)",
+    date: "2026-10-14",
+    dateLabel: "2026-10-14(수) 09:00–18:00",
+    venue: "롯데호텔 월드 3층(올림픽로 240), 서울 송파",
+    region: "서울",
+    host: "Google Cloud",
+    price: "무료(등록제 · Track 1 Business Builders는 등록 마감)",
+    priceType: "free",
+    link: "https://cloud.google.com/events/intl/ko-kr/build-with-gemini-seoul/all-builders-day?hl=ko",
+    linkType: "official",
+    point: "구글 클라우드의 하루짜리 AI 에이전트 핸즈온. 오전 키노트 'AI 시대, 빌더처럼 생각하고 실행하는 법' 뒤에 노코드 업무자동화(Track 1, HR·재무회계·영업 실무자 추천, 마감)·엔터프라이즈 에이전트 거버넌스(Track 2, IT 아키텍트)·프로코드 앱 개발(Track 3) 중 하나를 골라 오후 3시간 실습한다. 재무·회계 실무자 트랙이 먼저 마감된 것이 수요를 보여준다.",
+    tier: 2,
+    category: "빅테크",
+    verified: "verified",
+    verifyNote: "Google Cloud 공식 페이지 직접 확인(HTTP 200, 2026-10-05) — '2026년 10월 14일 수요일 9:00 AM–6:00 PM KST · 롯데호텔 월드 3층 240 Olympic-ro'·3트랙 대상·'[등록 마감] Track 1'·아젠다 교차확인, dev-event 목록과 일치",
+    jjFlag: "weekday-work",
+    curate: "pick",
+  },
+  {
+    id: "industrial-ai-expo-1021",
+    title: "2026 산업AI EXPO (주제: Embodied AI) — AMXPO 2026 동시 개최",
+    date: "2026-10-21",
+    dateEnd: "2026-10-23",
+    dateLabel: "2026-10-21(수)~10-23(금)",
+    venue: "킨텍스 1전시장 2홀, 경기 고양 일산",
+    region: "수도권",
+    host: "과학기술정보통신부 주최 · 한국산업지능화협회(KOIIA)·KOTRA 주관",
+    price: "무료(전시 사전등록)",
+    priceType: "free",
+    link: "https://industrialaiexpo.or.kr/main.asp",
+    linkType: "official",
+    point: "제조 AX와 Embodied AI를 한 자리에 모은 산업 AI 전시. 산업AI 컨퍼런스가 함께 열려 휴머노이드·산업로봇의 현장 적용 사례를 사흘 안에 훑는다. 같은 기간 킨텍스 1전시장에서 INSIGHT CONNECT×AMXPO(AX 팩토리) 컨퍼런스도 열려 한 번 방문으로 둘을 묶을 수 있다.",
+    tier: 2,
+    category: "전시",
+    verified: "verified",
+    verifyNote: "공식 사이트 재확인(HTTP 200, 2026-10-05) — 일정(10/21~23)·장소(킨텍스 1전시장 2홀)·주최(과기정통부)·주관(KOIIA·KOTRA)·무료 사전등록 본문 교차확인. 직전 호 미완이던 장소 검증 완료 → verified 승급. 동시 개최 컨퍼런스는 온오프믹스 350212로 확인",
+    jjFlag: "multi",
+    curate: "pick",
+  },
+  {
+    id: "openai-devday-exchange-seoul-1022",
+    title: "OpenAI DevDay Exchange 2026 — Seoul",
+    date: "2026-10-22",
+    dateLabel: "2026-10-22(목) 14:00~ (종료 시각·상세 프로그램은 승인 후 안내)",
+    venue: "서울 (지원 승인 후 장소 공개)",
+    region: "서울",
+    host: "OpenAI",
+    price: "무료(지원·승인제, 심사 진행 중이나 추가 지원 가능)",
+    priceType: "approval",
+    link: "https://events.openai.com/devdayexchange2026",
+    linkType: "official",
+    point: "OpenAI가 벵갈루루(10/16)·도쿄(10/20)에 이어 서울에서 여는 도시 순회 개발자 행사. OpenAI 제품·엔지니어링 팀의 기술 세션, 창업자·개발자의 실제 프로젝트와 Codex 워크플로우, 프로젝트 핸즈온 가이드가 예고돼 모델사의 에이전트 로드맵을 1차 소스로 듣는 통로. 페이지가 '심사 중이지만 지원은 계속 받는다'고 밝혀 지금 넣어볼 가치가 있다.",
+    tier: 2,
+    category: "빅테크",
+    verified: "verified",
+    verifyNote: "OpenAI 공식 이벤트 페이지 직접 확인(HTTP 200, 2026-10-05) — 'Seoul - October 22'·'The event begins at 2pm local time'·'Applications are currently being reviewed, but please still feel free to apply'·장소는 승인 후 공개 교차확인",
+    jjFlag: "weekday-work",
+    curate: "pick",
+  },
+
+  // ───────────── TIER 3 · 투자/정책/산업 ─────────────
+  {
+    id: "ai-festa-26-slw-1006",
+    title: "AI FESTA 26 · 스마트라이프위크(SLW) 2026 — 국가 공식 '인공지능주간' 대표 행사",
+    date: "2026-10-06",
+    dateEnd: "2026-10-08",
+    dateLabel: "2026-10-06(화)~10-08(목)",
+    venue: "코엑스 A·B홀 및 300~308호, 서울 강남",
+    region: "서울",
+    host: "과학기술정보통신부(인공지능주간 지정) · 서울시·세계스마트시티기구(WeGO)(SLW, 주관 서울AI재단)",
+    price: "무료(사전등록 ~10/5, 전시 관람 기준)",
+    priceType: "free",
+    link: "https://www.aifesta.kr/",
+    linkType: "official",
+    point: "과기정통부 지정 국가 인공지능주간의 대표 전시·컨퍼런스. SLW 2026 주제는 'AI로 그리는 미래도시의 일상'으로 피지컬AI 비중이 커 스마트시티·부동산 개발 관점의 AI 적용 지도를 한 번에 훑기 좋다. 사전등록이 오늘(10/5) 마감이니 바로 등록할 것.",
+    tier: 3,
+    category: "전시",
+    verified: "verified",
+    verifyNote: "공식 페이지 재확인(HTTP 200, 2026-10-05 재검증) + 서울시 보도자료(news.seoul.go.kr/gov/archives/580148, HTTP 200)로 일시·장소·주최·사전등록(~10/5) 교차확인",
+    jjFlag: "multi",
+    curate: "pick",
+  },
+  {
+    id: "qejy2rqx-1007",
+    title: "The Leap — SVC 서울 리버스 IR·스타트업 IR",
+    date: "2026-10-07",
+    dateLabel: "2026-10-07(수) 15:00–19:30",
+    venue: "SVC 서울(마포 동교동 165-1), 서울 마포",
+    region: "서울",
+    host: "SVC Seoul Global Team",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/qejy2rqx",
+    linkType: "registration",
+    point: "VC가 투자 기준을 먼저 발표하는 리버스 IR과 스타트업 9곳(AI 3곳) IR을 한 번에 본다. 초기 AI 기업 밸류에이션 감각을 잡는 용도.",
+    tier: 3,
+    category: "산업",
+    verified: "verified",
+    verifyNote: "Luma 페이지 재확인(HTTP 200, 2026-10-05 재검증) — start_at(UTC→KST 환산)·장소·호스트 불변",
+    jjFlag: "weekday-work",
+    curate: "watch",
+  },
+  {
+    id: "kes-2026-1013",
+    title: "KES 2026 한국전자전 — CES Asia Unveiled Seoul 동시 개최",
+    date: "2026-10-13",
+    dateEnd: "2026-10-16",
+    dateLabel: "2026-10-13(화)~10-16(금) 10:00–17:00 (마지막 날 16:00)",
+    venue: "코엑스 A·B홀, 서울 강남",
+    region: "서울",
+    host: "산업통상자원부 주최 · 한국전자정보통신산업진흥회(KEA) 주관",
+    price: "20,000원(현장 입장 · 사전등록 시 무료)",
+    priceType: "paid",
+    link: "https://www.kes.org/",
+    linkType: "official",
+    point: "국내 최대 전자·IT 전시로 글로벌 키노트·컨퍼런스와 혁신상이 붙는다. 올해는 CES Asia Unveiled Seoul이 함께 열려 10/13 14:00 코엑스 401호 키노트로 시작한다. AI FESTA(10/6~8)와 같은 코엑스라 한 주 간격으로 산업 AI 하드웨어 흐름을 이어 볼 수 있다. 참관 사전등록은 무료.",
+    tier: 3,
+    category: "전시",
+    verified: "verified",
+    verifyNote: "KES 공식 사이트(HTTP 200, 2026-10-05) + 코엑스 전시 페이지(GET 200)로 일정·홀·관람시간·입장료·주최/주관 교차확인. 공식 사이트에 '참관 등록 사전등록 1분 · 무료' 표기. CES Asia Unveiled Seoul 키노트(10/13 14:00 401호)는 KES 안내 기준",
+    jjFlag: "multi",
+    curate: "watch",
+  },
+  {
+    id: "pytorchkr-physical-ai-1014",
+    title: "PyTorchKR 테크 세미나 — Physical AI",
+    date: "2026-10-14",
+    dateLabel: "2026-10-14(수) 19:00–22:00",
+    venue: "오픈업(우제빌딩 2층, 서초대로40길 83, 서초역 도보 5분), 서울 서초",
+    region: "서울",
+    host: "파이토치 한국 사용자 모임(PyTorchKR)",
+    price: "무료(신청 ~10/6 23:59, 마감임박)",
+    priceType: "free",
+    link: "https://event-us.kr/pytorchkr/event/135213",
+    linkType: "registration",
+    point: "Physical AI를 주제로 한 파이토치 한국 커뮤니티의 평일 저녁 테크 세미나. 피지컬 AI 섹터를 모델 밑단에서 확인하는 자리이며 신청이 10/6에 닫힌다(주차 불가). 같은 저녁 ML Engineer Meetup(역삼)과 겹친다.",
+    tier: 3,
+    category: "학술",
+    verified: "verified",
+    verifyNote: "이벤터스 페이지 직접 확인(HTTP 200, 2026-10-05) — 일시·장소(오픈업 우제빌딩 2F)·주최·무료·신청기간(9/26~10/6 23:59) 교차확인, dev-event 목록과 일치. 세부 발표 라인업은 페이지 본문 기준 미확인",
+    jjFlag: "weekday-eve",
+    curate: "watch",
+  },
+  {
+    id: "seoul-innovest-summit-1019",
+    title: "2026 서울투자서밋 (Seoul Innovest Summit)",
+    date: "2026-10-19",
+    dateEnd: "2026-10-20",
+    dateLabel: "2026-10-19(월)~10-20(화)",
+    venue: "콘래드 서울(예정), 서울 영등포 여의도",
+    region: "서울",
+    host: "서울시 · 서울투자진흥재단",
+    price: "미표기(글로벌 투자자·혁신기업 초청형)",
+    priceType: "unknown",
+    link: "https://festival.seoul.go.kr/festival/main/festivalView.do?festacode=332",
+    linkType: "official",
+    point: "글로벌 투자자와 서울 혁신기업이 IR과 1:1 미팅으로 만나는 서울시 투자유치 서밋. 산업 AI 투자 흐름과 해외 기관 네트워킹 수요를 확인하는 자리이나 일반 참가 경로는 미표기(문의 02-120).",
+    tier: 3,
+    category: "산업",
+    verified: "link-ok",
+    verifyNote: "서울시 공식 행사 페이지(festival.seoul.go.kr, HTTP 200, 2026-10-05)로 링크 교체(직전 호 다음 뉴스) — '(예정) 2026-10-19~10-20 · 콘래드 서울(예정)' 표기. 참가 방식·비용 미표기라 link-ok 유지. seoulinvestorsforum.com은 아직 2025 내용",
+    jjFlag: "multi",
+    curate: "watch",
+  },
+  {
+    id: "modulabs-ai-for-science-1022",
+    title: "수학 연구의 AI 혁신 — AI for Science/Engineering 연례 세미나 (리벨리온×모두의연구소)",
+    date: "2026-10-22",
+    dateLabel: "2026-10-22(목) 19:00–20:30",
+    venue: "모두의연구소 강남캠퍼스(강남대로 324 디오슈페리움 2층), 서울 강남",
+    region: "서울",
+    host: "모두의연구소 커뮤니티 × 리벨리온 (호스트 SungTay · 이영빈)",
+    price: "무료(선착순, 승인 불필요)",
+    priceType: "free",
+    link: "https://luma.com/6fx4hphm",
+    linkType: "registration",
+    point: "AI가 글쓰기·번역을 넘어 수학 문제를 이해하고 증명을 찾는 단계로 온 변화를 '자동 형식화(Autoformalization)'와 '자동 정리 증명(ATP)' 두 개념으로 푸는 리벨리온×모두의연구소 연례 강연. 90분 평일 저녁이라 AI 추론 능력의 최전선을 학술 관점에서 짚기 좋고, 같은 날 오후 OpenAI DevDay Exchange와 이어 붙일 수 있다.",
+    tier: 3,
+    category: "학술",
+    verified: "verified",
+    verifyNote: "Luma 페이지 직접 확인(HTTP 200, 2026-10-05) — start_at(UTC→KST 환산)·장소(강남대로 324 디오슈페리움 2F)·호스트·무료·require_approval=false·본문 주제 교차확인",
+    jjFlag: "weekday-eve",
+    curate: "watch",
+  },
+  {
+    id: "seoul-fintech-week-1026",
+    title: "서울 핀테크 위크 2026 (Seoul FinTech Week)",
+    date: "2026-10-26",
+    dateEnd: "2026-10-28",
+    dateLabel: "2026-10-26(월)~10-28(수)",
+    venue: "콘래드 서울 · IFC 더포럼, 서울 영등포 여의도",
+    region: "서울",
+    host: "서울시",
+    price: "무료(사전등록 9/15~10/21)",
+    priceType: "free",
+    link: "https://www.seoulfintechweek.com/",
+    linkType: "official",
+    point: "주제가 'AX 기반 디지털금융 전환'이다. 카카오페이 신원근 대표의 금융 AI 에이전트 기조연설, 에이전틱 AI와 금융의 미래, 토큰화·스테이블코인 세미나가 여의도에서 열려 증권사 실무와 가장 가깝다. 사전등록 10/21 마감.",
+    tier: 3,
+    category: "산업",
+    verified: "verified",
+    verifyNote: "공식 사이트 재확인(HTTP 200, 2026-10-05 재검증) + 서울시 보도자료(news.seoul.go.kr/economy/archives/574676, HTTP 200)로 일시·장소·주최·무료·사전등록 기간·세션 교차확인",
+    jjFlag: "multi",
+    curate: "pick",
+  },
+
+  // ───────────── TIER 4 · 네트워킹 ─────────────
+  {
+    id: "58lloj1f-1010",
+    title: "zerobase tech week II.",
+    date: "2026-10-10",
+    dateLabel: "2026-10-10(토) 13:00–22:00",
+    venue: "SJ 쿤스트할레, 서울 강남 언주로",
+    region: "서울",
+    host: "zerobase (호스트 Sam Kim)",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/58lloj1f",
+    linkType: "registration",
+    point: "스타트업 스쿨 zerobase가 여는 토요일 스타트업 테크 컨퍼런스. 10월 둘째 주 유일한 주말 AI·스타트업 모임이라 네트워킹용으로 확보.",
+    tier: 4,
+    category: "네트워킹",
+    verified: "verified",
+    verifyNote: "Luma 페이지 재확인(HTTP 200, 2026-10-05 재검증) — start_at(UTC→KST 환산)·장소(강남구 언주로148길 5)·호스트 불변. 게스트 라인업은 '추후 공개'로 미확정",
+    jjFlag: "weekend",
+    curate: "watch",
+  },
+
+  // ───────────── 제외 (캘린더 비노출) ─────────────
+  {
+    id: "onoffmix-350433-1010",
+    title: "[10/10] AX 리더·K-FDE 전문가 양성과정 저자 공개강연 (중앙정보기술인재개발원)",
+    date: "2026-10-10",
+    dateLabel: "2026-10-10(토) 11:00–12:30",
+    venue: "중앙빌딩(신촌로 176), 서울 마포",
+    region: "서울",
+    host: "중앙정보기술인재개발원",
+    price: "무료 공개강연(온오프믹스 분류는 유료 교육/워크숍)",
+    priceType: "unknown",
+    link: "https://onoffmix.com/event/350433",
+    linkType: "registration",
+    point: "AX 전략·FDE·온톨로지·바이브코딩 MVP를 다루는 양성과정 저자 공개강연.",
+    tier: 4,
+    category: "교육",
+    verified: "verified",
+    verifyNote: "온오프믹스 페이지 직접 확인(HTTP 200, 2026-10-05) — 일시·장소·주최 교차확인",
+    jjFlag: "weekend",
+    curate: "exclude",
+    excludeReason: "교육기관의 유료 양성과정(K-FDE) 모객용 공개강연으로 홍보성이 강함. 캘린더 비노출",
+  },
+  {
+    id: "vessl-neocloud-1015",
+    title: "베슬AI '2026 네오클라우드 전략 발표회'",
+    date: "2026-10-15",
+    dateLabel: "2026-10-15(목) 10:00–11:00",
+    venue: "드림플러스 강남(강남대로 311), 서울 서초",
+    region: "서울",
+    host: "베슬AI",
+    price: "무료",
+    priceType: "free",
+    link: "https://luma.com/7z70ejex",
+    linkType: "registration",
+    point: "AI 인프라 스타트업 베슬AI의 네오클라우드 전략 발표.",
+    tier: 2,
+    category: "산업",
+    verified: "verified",
+    verifyNote: "Luma 페이지 재확인(HTTP 200, 2026-10-05 재검증) — start_at(UTC→KST 환산)·장소 불변",
+    jjFlag: "weekday-work",
+    curate: "exclude",
+    excludeReason: "기자 대상 1시간 기업 발표회로 일반 참석자 가치가 낮음. 캘린더 비노출",
+  },
+  {
+    id: "genspark-hackathon-1018",
+    title: "젠스파크AI 해커톤 (한국젠스파크AI연구회)",
+    date: "2026-10-18",
+    dateLabel: "2026-10-18(일) 12:00–15:00",
+    venue: "서울 (Luma 등록 후 상세 장소 공개)",
+    region: "서울",
+    host: "챗GPT강사 (한국젠스파크AI연구회)",
+    price: "무료(매진)",
+    priceType: "free",
+    link: "https://luma.com/xhy6dy2f",
+    linkType: "registration",
+    point: "젠스파크 도구 활용 3시간 해커톤.",
+    tier: 4,
+    category: "교육",
+    verified: "verified",
+    verifyNote: "Luma 페이지 재확인(HEAD 000→GET 200, 2026-10-05 재검증) — start_at(UTC→KST 환산)·호스트 불변. sold_out=true, 장소 좌표 비공개",
+    jjFlag: "weekend",
+    curate: "exclude",
+    excludeReason: "강사 개인이 여는 단일 도구 실습형 모임으로 강의 홍보 성격이 강하고 이미 매진. 캘린더 비노출",
+  },
+  {
+    id: "onoffmix-349960-1022",
+    title: "MS Ai365 세미나 (엠클라우드브리지)",
+    date: "2026-10-22",
+    dateLabel: "2026-10-22(목) 13:00–17:00",
+    venue: "GS타워 아모리스 역삼, 서울 강남",
+    region: "서울",
+    host: "엠클라우드브리지",
+    price: "페이지 참조",
+    priceType: "unknown",
+    link: "https://onoffmix.com/event/349960",
+    linkType: "registration",
+    point: "마이크로소프트 AI 솔루션 파트너사의 제품 세미나.",
+    tier: 2,
+    category: "빅테크",
+    verified: "verified",
+    verifyNote: "온오프믹스 페이지 재확인(HTTP 200, 2026-10-05 재검증) — 일시·장소·주최 불변",
+    jjFlag: "weekday-work",
+    curate: "exclude",
+    excludeReason: "MS 공식 행사가 아닌 파트너사 제품 판매형 세미나. 캘린더 비노출",
+  },
+  {
+    id: "onoffmix-347929-1024",
+    title: "[무료] 단 2일, 구글 ADK·n8n 활용 AI Agent 구축 (솔데스크)",
+    date: "2026-10-24",
+    dateEnd: "2026-10-25",
+    dateLabel: "2026-10-24(토)~10-25(일)",
+    venue: "솔데스크(관철동 13-13), 서울 종로",
+    region: "서울",
+    host: "솔데스크",
+    price: "무료(고용보험 가입 재직자 국비 지원)",
+    priceType: "free",
+    link: "https://onoffmix.com/event/347929",
+    linkType: "registration",
+    point: "구글 ADK와 n8n으로 AI 에이전트를 구축하는 이틀짜리 재직자 훈련과정.",
+    tier: 4,
+    category: "교육",
+    verified: "verified",
+    verifyNote: "온오프믹스 페이지 직접 확인(HTTP 200, 2026-10-05) — 일시·장소·주최·고용보험 국비 조건 교차확인",
+    jjFlag: "weekend",
+    curate: "exclude",
+    excludeReason: "고용보험 환급형 국비 교육(재직자 한정)으로 행사가 아닌 훈련과정. 캘린더 비노출",
+  },
+];
+
+const pickCount = RADAR_EVENTS.filter((e) => e.curate === "pick").length;
+const excludeCount = RADAR_EVENTS.filter((e) => e.curate === "exclude").length;
+
+export const RADAR_META: RadarMeta = {
+  generated: "2026-10-05",
+  baseDate: "2026-10-05",
+  rangeDays: 30,
+  source:
+    "2026-10-05 /radar --no-build --since 2026-10-05 --range 30 재생성 (윈도우 2026-10-05~11-04) — 직전 09-29 호 30건 중 경과 16건 삭제(KBW 주간 9/28~10/3 사이드 전부: Agentic Payments·Open AGI Frontier·Agentic Seoul·Next Builders·AI&Payment CARNIVAL·Yellow Korea·Builder Nights·OpenSource AI Mixer·Samsung AI Forum·RealFi·AI Meets the Chart·KBW 본행사·GWDC·Solana Summit·HSC·DIGITAL AF!). 잔존 14건 curl 재검증 전부 HTTP 200(실패 0, 젠스파크 HEAD 000→GET 200). 신규 11건(Luma seoul·discover/seoul/ai 캘린더 JSON 파싱, dev-event.vercel.app, 온오프믹스 #AI, Meetup, 이벤터스, 공식 페이지): Build with Gemini Seoul(10/14, 추천), OpenAI DevDay Exchange Seoul(10/22, 추천), OpenSearch 로컬 RAG 밋업(10/13), Daytona HackSprint(10/18), Cursor Hackathon 4th(10/24), GitHub Copilot Dev Days(10/24, 신청 마감·추첨), KES 2026(10/13~16), PyTorchKR Physical AI(10/14), 리벨리온×모두연 AI for Science(10/22) + 제외 2건(AX 리더 유료과정 공개강연·솔데스크 국비 ADK/n8n 과정). 승급: 산업AI EXPO 장소(킨텍스 1전시장 2홀)·주최 교차확인 완료 → verified·추천. 교체: 서울투자서밋 링크 뉴스→서울시 공식 행사 페이지(festival.seoul.go.kr). 탈락: AWS AI x Industry Week(2025 온디맨드 페이지), Hermes Agent 밋업(5/9 과거), Codex 밋업(ICML 7월 과거), AI Risk Conference(9/7 과거), ThinkingAI Summit(2025), SAIPCON(6월), SK AI Summit 2026·네이버 DAN26·GDG DevFest Seoul·Anthropic 서울(10월 일정 미공개), PyTorch Day Korea(11/21)·c0mpiled-17(11/9) 윈도우 밖, 서울 AI 로봇쇼 피지컬 AI 포럼(10/7, 9/18 모집 종료), AWSKRUG 구디 소모임(25석 소규모 유료), Grok Bot 밋업·How to Win US Market·D4D 국방 해커톤·MBC AI콘텐츠랩·GSC 포럼(AI 직접성 낮음), AI Adoption Talk(격주 토론 모임), AI HRD 포럼·LLM 최적화 개론(교육·HR 성격). WebSearch 세션 예산 소진으로 후반 수집은 WebFetch·curl만 사용. 이월 확인: if(kakao) 행사장 주소·서울투자서밋 참가 경로는 교차검증 미완(link-ok).",
+  total: RADAR_EVENTS.length,
+  pickCount,
+  excludeCount,
+};
+
+// 화면 정렬용 헬퍼: 큐레이션(pick>watch>exclude) → 티어 → 날짜
+const CURATE_ORDER: Record<RadarCurate, number> = { pick: 0, watch: 1, exclude: 2 };
+
+export function sortedRadarEvents(): RadarEvent[] {
+  return [...RADAR_EVENTS].sort((a, b) => {
+    if (CURATE_ORDER[a.curate] !== CURATE_ORDER[b.curate]) {
+      return CURATE_ORDER[a.curate] - CURATE_ORDER[b.curate];
+    }
+    if (a.tier !== b.tier) return a.tier - b.tier;
+    return a.date.localeCompare(b.date);
+  });
+}
+
+export const RADAR_PICKS = sortedRadarEvents().filter((e) => e.curate === "pick");
+export const RADAR_WATCH = sortedRadarEvents().filter((e) => e.curate === "watch");
+export const RADAR_EXCLUDED = sortedRadarEvents().filter((e) => e.curate === "exclude");
+
+// ───────────── 캘린더 어댑터 ─────────────
+// 홈 "AI 행사·모임 캘린더"가 레이더를 단일 소스로 읽도록 정규화한다.
+// exclude(저품질)는 캘린더에서 빼고, 날짜순으로 정렬한다.
+
+const DOW = ["일", "월", "화", "수", "목", "금", "토"];
+
+function isoToShort(iso: string): string {
+  const [, m, d] = iso.split("-").map(Number);
+  return `${m}.${String(d).padStart(2, "0")}`;
+}
+
+function isoToDay(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  // 빌드 타임 결정적 계산(UTC 고정) — TZ 흔들림 방지
+  return DOW[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
+}
+
+export interface CalendarRow {
+  shortDate: string; // "6.06"
+  day: string; // "토"
+  rangeNote?: string; // "~6.12" / "매주"
+  sortKey: string; // ISO
+  title: string;
+  where: string;
+  link?: string;
+  tag: string; // category
+  tier: RadarTier;
+  price: string;
+  priceType: RadarPriceType;
+  verified: RadarVerified;
+  jjWork: boolean; // 평일 업무시간(⚠️)
+}
+
+export const CALENDAR_ROWS: CalendarRow[] = sortedRadarEvents()
+  .filter((e) => e.curate !== "exclude")
+  .map((e) => ({
+    shortDate: isoToShort(e.date),
+    day: e.recurring ? "금" : isoToDay(e.date),
+    rangeNote: e.recurring ? "매주" : e.dateEnd ? `~${isoToShort(e.dateEnd)}` : undefined,
+    sortKey: e.date,
+    title: e.title,
+    where: e.venue,
+    link: e.link,
+    tag: e.category,
+    tier: e.tier,
+    price: e.price,
+    priceType: e.priceType,
+    verified: e.verified,
+    jjWork: e.jjFlag === "weekday-work",
+  }))
+  .sort((a, b) => a.sortKey.localeCompare(b.sortKey));
